@@ -1,0 +1,77 @@
+\begin{thebibliography}{}
+
+\bibitem[Anderson et~al., 2008]{anderson}
+Anderson, D.~R., Sweeney, D.~J., and Williams, T.~A. (2008).
+\newblock {\em Estadística para administración y economía}.
+\newblock Cengage Learning, México, 10a ed edition.
+
+\bibitem[de~Micheaux et~al., 2013]{deMicheaux2013}
+de~Micheaux, P.~L., Drouilhet, R., and Liquet, B. (2013).
+\newblock {\em R and Its Documentation}, pages 141--150.
+\newblock Springer New York, New York, NY.
+
+\bibitem[Devore, 2008]{Devore}
+Devore, J.~L. (2008).
+\newblock {\em Probability and statistics for engineering and the sciences}.
+\newblock Thomson/Brooks/Cole, Belmont, CA, 7th ed edition.
+
+\bibitem[Fahrmeir, 2013]{fahrmeir_regression_2013}
+Fahrmeir, L. (2013).
+\newblock {\em Regression: models, methods and applications}.
+\newblock Springer, New York.
+
+\bibitem[Healy, 2019]{healy2019data}
+Healy, K. (2019).
+\newblock {\em Data Visualization: A Practical Introduction}.
+\newblock Princeton University Press.
+
+\bibitem[Hintze and Nelson, 1998]{hintze1998violin}
+Hintze, J.~L. and Nelson, R.~D. (1998).
+\newblock Violin plots: A box plot-density trace synergism.
+\newblock {\em The American Statistician}, 52(2):181--184.
+
+\bibitem[James et~al., 2013]{James2013}
+James, G., Witten, D., Hastie, T., and Tibshirani, R. (2013).
+\newblock {\em An Introduction to Statistical Learning: with Applications in
+  R}.
+\newblock Springer.
+
+\bibitem[Kutner et~al., 2004]{neter}
+Kutner, M.~H., Nachtsheim, C.~J., Neter, J., and Wasserman, W. (2004).
+\newblock {\em Applied linear regression models}, volume~4.
+\newblock McGraw-Hill/Irwin New York.
+
+\bibitem[Peng, 2016]{peng2016r}
+Peng, R.~D. (2016).
+\newblock {\em R programming for data science}.
+\newblock Leanpub, Victoria, BC, Canada.
+
+\bibitem[Ratner, 2009]{ratner_correlation_2009}
+Ratner, B. (2009).
+\newblock The correlation coefficient: {Its} values range between +1/−1, or
+  do they?
+\newblock {\em Journal of Targeting, Measurement and Analysis for Marketing},
+  17(2):139--142.
+
+\bibitem[Rowlingson, 2016]{rowlingson2016data}
+Rowlingson, B. (2016).
+\newblock {\em Data Analysis with R}.
+\newblock Springer.
+
+\bibitem[Sturges, 1926]{sturges1926choice}
+Sturges, H.~A. (1926).
+\newblock The choice of a class interval.
+\newblock {\em Journal of the american statistical association},
+  21(153):65--66.
+
+\bibitem[Tukey, 1977]{Tukey}
+Tukey, J.~W. (1977).
+\newblock {\em Exploratory Data Analysis}.
+\newblock Addison-Wesley.
+
+\bibitem[Wickham, 2009]{wickham_ggplot2_2009}
+Wickham, H. (2009).
+\newblock {\em Ggplot2: elegant graphics for data analysis}.
+\newblock Use {R}! Springer, New York.
+
+\end{thebibliography}

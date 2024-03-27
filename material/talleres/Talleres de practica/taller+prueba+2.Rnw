@@ -1,0 +1,118 @@
+
+\begin{center}
+{\bf \Large{Taller de práctica Prueba 2}}\\Covarianza y Correlación\\Regresión Lineal Simple\\ (secciones 3.1.2, 3.1.3 y 3.2)
+\end{center}
+
+Los dos conjuntos de datos están relacionados con las variantes tinto \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv}{(link)} y blanco \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-white.csv}{(link)} del vino portugués ``Vinho Verde''. Debido a cuestiones de privacidad y logística, sólo están disponibles variables fisicoquímicas (entradas) y sensoriales (salidas) (por ejemplo, no hay datos sobre tipos de uva, marca de vino, precio de venta del vino, etc.).
+
+Las columnas de las bases de datos son las siguientes:
+
+\begin{itemize}
+\item \texttt{fixed.acidity} ($g/L$): cantidad de la mayoría de los ácidos involucrados con el vino o fijos o no volátiles (no se evaporan fácilmente).
+\item \texttt{volatile.acidity} ($g/L$): cantidad de ácido acético en el vino, que en niveles demasiado altos puede provocar un sabor desagradable a vinagre
+\item \texttt{citric.acid} ($g/L$): cantidad de ácido cítrico, que se encuentra en pequeñas cantidades, el cual, puede añadir ``frescura'' y sabor a los vinos.
+\item \texttt{residual.sugar} ($g/L$): cantidad de azúcar que queda después de que se detiene la fermentación. Es raro encontrar vinos con menos de 1 gramo/litro y los vinos con más de 45 gramos/litro se consideran dulces.
+\item \texttt{chlorides} ($g/L$): cantidad de sal en el vino.
+\item \texttt{free.sulfu.dioxide} ($ppm$): cantidad de la forma libre de SO2 existe en equilibrio entre el SO2 molecular (como gas disuelto) y el ion bisulfito; previene el crecimiento microbiano y la oxidación del vino.
+\item \texttt{total.sulfur.dioxide} ($ppm$): cantidad de formas libres y ligadas de S02; En concentraciones bajas, el SO2 es prácticamente indetectable en el vino, pero en concentraciones de SO2 libre superiores a 50 ppm, el SO2 se vuelve evidente en la nariz y el sabor del vino.
+\item \texttt{density} ($g/cm^3$): densidad del agua dependiendo del porcentaje de alcohol y contenido de azúcar.
+\item \texttt{pH}: describe qué tan ácido o básico es un vino en una escala de 0 (muy ácido) a 14 (muy básico); la mayoría de los vinos tienen entre 3 y 4 en la escala de pH.
+\item \texttt{sulphates} ($mg/L$): cantidad de aditivo del vino que puede contribuir a los niveles de dióxido de azufre (S02), que actúa como antimicrobiano y antioxidante.
+\item \texttt{alcohol} (ABV, Alcohol por volumen): el porcentaje de alcohol del vino.
+\item \texttt{quality}: variable de salida (basada en datos sensoriales, puntuación entre 0 y 10), un número cercano a 10 indica un vino de mayor calidad.
+\end{itemize}
+
+A continuación, se utiliza la base de datos asociada a los datos del vino tinto para los enunciados siguientes.
+
+<<echo=FALSE>>=
+data = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv", sep = ";")
+@
+
+\begin{enumerate}
+
+\item Interprete las siguiente salidas de código respecto a la relación entre las variables de la base de datos.
+
+<<>>=
+cov(data$citric.acid, data$alcohol)
+cor(data$pH, data$citric.acid)
+@
+
+
+\item La siguiente salida de código está asociada a un modelo de regresión lineal. A continuación,
+
+\begin{enumerate}
+  \item Escriba la ecuación de regresión verdadera.
+  \item Escriba la ecuación de regresión ajustada.
+  \item Interprete de los parámetros estimados.
+  \item Estudie de las hipótesis de no nulidad de cada parámetro por separado. Utilizando una confianza del 95\%. Escriba las hipótesis involucradas.
+  \item Interprete del $R^2$ del modelo.
+\end{enumerate}
+
+<<echo=F>>=
+modelo = lm(pH ~ citric.acid, data = data)
+summary(modelo)
+@
+
+
+\item Seleccione los gráficos y/o salidas de R necesarios para estudiar los supuestos del modelo del enunciado anterior. Escriba las hipótesis involucradas cuando corresponda e, interprete utilizando una confianza del 95\%. Justifique la elección de gráficos y códigos a utilizar.
+
+<<echo=FALSE, fig.width=6, fig.height=4>>=
+data$ajustados = modelo$fitted.values
+data$residuos = residuals(modelo)
+data$residuos_estandarizados = rstandard(modelo)
+library(gridExtra)
+library(ggplot2)
+library(lmtest)
+g1 = ggplot(data = data, aes(x = citric.acid, y = ajustados)) + geom_point() +
+  labs(y = "Valores ajustados", title = "Gráfico 1")
+g2 = ggplot(data = data, aes(x = citric.acid, y = pH)) + geom_point() + 
+  labs(title = "Gráfico 2")
+g3 = ggplot(data = data, aes(x = residuos, y = pH)) + geom_point() + 
+  labs(title = "Gráfico 3")
+g4 = ggplot(data = data, aes(x = residuos, y = citric.acid)) + geom_point() + 
+  labs(title = "Gráfico 4")
+grid.arrange(g1,g2,g3,g4)
+@
+
+\newpage
+
+<<echo=FALSE, warning=FALSE>>=
+ks.test(residuals(modelo), "pnorm",0 ,1)
+shapiro.test(x = resid(modelo))
+ks.test(rstandard(modelo), "pnorm",0 ,1)
+shapiro.test(x = modelo$fitted.values)
+@
+
+<<echo=FALSE>>=
+bptest(formula = citric.acid ~ pH, data = data)
+bptest(formula = pH ~ citric.acid + alcohol, data = data)
+bptest(formula = pH ~ fixed.acidity, data = data)
+bptest(formula = pH ~ citric.acid, data = data)
+@
+
+<<echo=FALSE>>=
+dwtest(formula = citric.acid ~ pH, data = data, alternative = "greater")
+dwtest(formula = citric.acid ~ alcohol, data = data, alternative = "less")
+dwtest(formula = pH ~ citric.acid, data = data, alternative = "two.sided")
+dwtest(formula = pH ~ citric.acid, data = data, alternative = "greater")
+@
+
+
+\item A continuación, comparé el desempeño de ambos modelos respecto a la variable respuesta estudiada, para ello, utilice el coeficiente de determinación y el error estándar residual.
+
+<<echo=F>>=
+m1 = lm(alcohol ~ chlorides, data = data)
+summary(m1)
+@
+
+<<echo=F>>=
+m1 = lm(alcohol ~ sulphates, data = data)
+summary(m1)
+@
+
+\end{enumerate}
+
+
+
+
+

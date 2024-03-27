@@ -1,0 +1,57 @@
+\begin{center}
+{\bf \Large{Taller de práctica 7}}\\Interpretación de parámetros estimados\\Métricas y pruebas de hipótesis asociadas a una regresión lineal múltiple\\(secciones 3.3.2, 3.3.3 y 3.3.4)
+\end{center}
+
+La siguiente base de datos \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%202/Airbnb.csv}{(link)} contiene los datos del mercado de valores de Airbnb desde su creación. Las variable que contiene son las siguientes:
+    
+    \begin{itemize}
+        \item \texttt{Date}: Fecha de inclusión del inmueble al sistema de Airbnb
+        \item \texttt{Open}: Precio cuando se abre el mercado.
+        \item \texttt{High}: Precio más alto registrado para el día.
+        \item \texttt{Low}: Precio más bajo registrado para el día
+        \item \texttt{Close}: Precio cuando el mercado cierra.
+        \item \texttt{Adj Close}: Precio de cierre modificado basado en acciones corporativas.
+        \item \texttt{Volume}: Cantidad de existencias vendidas en un día (estadias).
+    \end{itemize}
+    
+    Nota: todos los precios están en dólares.
+
+    \begin{enumerate}[1)]
+        
+        \item Modifique la columna \texttt{Date}, de tal forma, que refleje únicamente el año (número) de la fecha de inclusión del inmueble. Para ello, utilice el siguiente código:
+        
+        <<eval=FALSE>>=
+        df$Date = as.numeric(format(as.Date(df$Date), "%Y")) 
+        @
+        
+        \item Para estudiar el Cantidad de existencias vendidas, realice los siguientes pasos:
+        
+        \begin{enumerate}
+            \item Aplique logaritmo sobre la variable \texttt{Volume} reescribiéndola en la base de datos.
+            
+            \item Filtre La base de datos, conservando solo las observaciones correspondientes al año 2021.
+            
+            \item Construya un modelo con nombre \texttt{modelo1} que estudie el logaritmo de la cantidad de evidencias vendidas a base de el precio más alto, más bajo registrado en el día y el precio de apertura.
+            
+            % \item Estudie los supuesto del \texttt{modelo1}, interprete los beta estimados y las pruebas de no nulidad asociadas.
+            
+            \item Interprete los parámetros estimados y las pruebas de no nulidad asociadas al \texttt{modelo1}.
+            
+            % \item Tome una decisión respecto a la variable \texttt{Open} sobre si debe o no estar en el modelo.
+            
+            \item Construya un nuevo modelo \texttt{modelo1\_1} igual al \texttt{modelo1}, excluyendo la covariable \texttt{Open}.
+            
+            % \item Estudie los supuestos del \texttt{modelo1\_1}, interprete los beta estimados y las pruebas de no nulidad asociadas.
+            
+            \item Interprete los parámetros estimados y las pruebas de no nulidad asociadas al \texttt{modelo1\_1}.
+            
+            \item Construya un modelo con nombre \texttt{modelo2} que estudie el logaritmo de la cantidad de evidencias vendidas a base de el precio de cierre y el precio más bajo registrado en el día.
+            
+            % \item Estudie los supuesto del \texttt{modelo2}, interprete los beta estimados y las pruebas de no nulidad asociadas.
+            \item Interprete los beta estimados y las pruebas de no nulidad asociadas al \texttt{modelo2}.
+            
+            \item Compare los tres modelos construidos, para ello utilice el $R^2$ ajustado y el error estándar residual. ¿Qué modelo utilizaría en un caso de negocio real?
+            
+        \end{enumerate}
+        
+    \end{enumerate}

@@ -1,0 +1,68 @@
+
+\begin{center}
+{\bf \Large{Taller de práctica 6}}\\Regresión lineal simple\\(sección 3.2)
+\end{center}
+
+\begin{enumerate}
+\item El siguiente conjunto de datos proviene originalmente del Instituto Nacional de Diabetes y Enfermedades Digestivas y Renales. El objetivo del conjunto de datos es estudiar de forma diagnóstica si un paciente tiene diabetes, en función de ciertas medidas de diagnóstico incluidas en el conjunto de datos. Se impusieron varias restricciones a la selección de estas instancias de una base de datos más grande. En particular, todos los pacientes aquí son mujeres de al menos 21 años de ascendencia indígena Pima
+
+Los datos en la base \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/diabetes.csv}{(link)} contiene las siguientes columnas.
+
+\begin{itemize}
+    \item \texttt{Pregnancies}: Número de embarazos.
+    \item \texttt{Glucose}: Concentración de glucosa plasmática en la sangre a las 2 horas en una prueba de tolerancia oral a la glucosa (mg/dL).
+    \item \texttt{BloodPressure}: Presión arterial diastólica (mm Hg)
+    \item \texttt{SkinThickness}: Grosor del pliegue cutáneo del tríceps (mm)
+    \item \texttt{Insulin}: Insulina sérica de 2 horas (mU/mL).
+    \item \texttt{BMI}: Índice de masa corporal.
+    \item \texttt{DiabetesPedigreeFunction}: Función de pedigrí de diabetes, que califica la probabilidad de diabetes según los antecedentes familiares.
+    \item \texttt{Age}: Edad (años).
+    \item \texttt{Outcome}: variable de clase (0 o 1, o no tiene o tiene diabetes).
+\end{itemize}
+
+Plantee un modelo para estudiar el porcentaje de diabetes presente en las mujeres a base del índice de masa corporal y la presión arterial separadamente. Luego,
+
+    \begin{enumerate}
+        \item Ajuste cada uno de los modelos y escriba la ecuación de regresión ajustada correspondiente.
+        \item Interprete las pruebas de hipótesis de no nulidad de cada parámetro. Considere una confianza del 95\%.
+        \item Interprete el $R^2$ de cada modelo. Compare.
+        \item Estudie los supuestos para cada uno de los modelos, utilizano una confianza del 95\%. Comente.
+
+    \end{enumerate}
+    
+\item Los dos conjuntos de datos están relacionados con las variantes tinto \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv}{(link)} y blanco \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-white.csv}{(link)} del vino portugués ``Vinho Verde''. Debido a cuestiones de privacidad y logística, sólo están disponibles variables fisicoquímicas (entradas) y sensoriales (salidas) (por ejemplo, no hay datos sobre tipos de uva, marca de vino, precio de venta del vino, etc.).
+
+Las columnas de las bases de datos son las siguientes:
+
+\begin{itemize}
+\item \texttt{fixed.acidity} ($g/L$): cantidad de la mayoría de los ácidos involucrados con el vino o fijos o no volátiles (no se evaporan fácilmente).
+\item \texttt{volatile.acidity} ($g/L$): cantidad de ácido acético en el vino, que en niveles demasiado altos puede provocar un sabor desagradable a vinagre
+\item \texttt{citric.acid} ($g/L$): cantidad de ácido cítrico, que se encuentra en pequeñas cantidades, el cual, puede añadir ``frescura'' y sabor a los vinos.
+\item \texttt{residual.sugar} ($g/L$): cantidad de azúcar que queda después de que se detiene la fermentación. Es raro encontrar vinos con menos de 1 gramo/litro y los vinos con más de 45 gramos/litro se consideran dulces.
+\item \texttt{chlorides} ($g/L$): cantidad de sal en el vino.
+\item \texttt{free.sulfu.dioxide} ($ppm$): cantidad de la forma libre de SO2 existe en equilibrio entre el SO2 molecular (como gas disuelto) y el ion bisulfito; previene el crecimiento microbiano y la oxidación del vino.
+\item \texttt{total.sulfur.dioxide} ($ppm$): cantidad de formas libres y ligadas de S02; En concentraciones bajas, el SO2 es prácticamente indetectable en el vino, pero en concentraciones de SO2 libre superiores a 50 ppm, el SO2 se vuelve evidente en la nariz y el sabor del vino.
+\item \texttt{density} ($g/cm^3$): densidad del agua dependiendo del porcentaje de alcohol y contenido de azúcar.
+\item \texttt{pH}: describe qué tan ácido o básico es un vino en una escala de 0 (muy ácido) a 14 (muy básico); la mayoría de los vinos tienen entre 3 y 4 en la escala de pH.
+\item \texttt{sulphates} ($mg/L$): cantidad de aditivo del vino que puede contribuir a los niveles de dióxido de azufre (S02), que actúa como antimicrobiano y antioxidante.
+\item \texttt{alcohol} (ABV, Alcohol por volumen): el porcentaje de alcohol del vino.
+\item \texttt{quality}: variable de salida (basada en datos sensoriales, puntuación entre 0 y 10), un número cercano a 10 indica un vino de mayor calidad.
+\end{itemize}
+
+A continuación, utilice la base de datos asociada a los datos del vino tinto (si utiliza el comando \texttt{read.csv()}, debe agregar el argumento \texttt{sep = ";"}) para los enunciados siguientes.
+
+\begin{enumerate}
+\item Filtre la base de datos para conservar únicamente las columnas \texttt{pH}, \texttt{fixed.acidity} y \texttt{alcohol}. Utilice esta nueva base de datos en los enunciados posteriores.
+\item Calcule la matriz de correlación y covarianza entre las variables. Interprete.
+\item Elabore dos modelos de regresión lineal simple para estudiar el porcentaje del alcohol del vino, a través de las variables \texttt{pH} y \texttt{fixed.acidity} respectivamente. Para cada uno de los modelos:
+  \begin{enumerate}
+    \item Escriba la ecuación poblacional de los datos.
+    \item Ajuste el modelo y escriba la ecuación de regresión ajustada.
+    \item Interprete los parámetros estimados.
+    \item Estudie las pruebas de no nulidad de los parámetros. Utilice una confianza del 95\%.
+    \item Determine el $R^2$ e interprete.
+    \item Estudie los supuestos del modelo. Utilice una confianza del 95\%.
+  \end{enumerate}
+\item Compare el desempeño de ambos modelos mediante el valor del $R^2$.
+\end{enumerate}
+\end{enumerate}

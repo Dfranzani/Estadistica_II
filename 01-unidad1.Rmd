@@ -1,0 +1,419 @@
+# Intervalos de confianza
+
+Las bases de datos que se trabajarán en esta unidad son las siguientes:
+
+- [Imacec](https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv){#Imacec1}: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:
+
+  - Ano: Año de medición del Imacec.
+  - Mes: Mes de medición del Imacec.
+  - Mineria: Imacec del sector de minería.
+  - Industria: Imacec del sector de industria.
+  
+  ```{r, echo = FALSE, results="asis", eval=code}
+  cat("El código para cargar la base de datos en R es:")
+  ```
+  
+  ```{r, eval = F, echo = code}
+  datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv")
+  ```
+
+- [Control cuotas](https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/control%2Bcuotas.csv){#Cuotas}: Contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Las columnas de la base de datos son las siguientes:
+
+  - Plan.Vital: contiene los valores cuota en pesos de la AFP Plan Vital de un APV de fondo A.
+  - Provida: contiene lo valores cuota en pesos de la AFP Provida de un APV de fondo A.
+  
+  ```{r, echo = FALSE, results="asis", eval=code}
+  cat("El código para cargar la base de datos en R es:")
+  ```
+  
+  ```{r, eval = F, echo = code}
+  datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/control%2Bcuotas.csv")
+  ```
+
+## Concepto
+
+La estimación puntual aproxima mediante un número el valor de una característica poblacional o parámetro desconocido (la altura media de los chilenos, la intención de voto a un partido en las próximas elecciones generales, el tiempo medio de ejecución de un algoritmo, el valor del reajuste del IPC del próximo año) pero no nos indica el error que se comete en dicha estimación. [@Devore, página 254]
+
+Lo razonable, en la práctica, es adjuntar junto a la estimación puntual del parámetro, un margen de error de la estimación. La construcción de dicho intervalo es el objetivo de la **estimación por intervalos de confianza**.
+
+Un intervalo de confianza para un parámetro con un nivel de confianza de $1-\alpha$ (el cual debe elegir el investigador), es un intervalo de extremos aleatorios $(L,U)$ que con probabilidad $1-\alpha$ contiene al parámetro.
+
+$$
+P(\text{Parámetro} \in (L,U)) = 1-\alpha
+$$
+
+En la estimación por intervalos de confianza partimos de una muestra $x_1,\ldots,x_n$, de lo cuales obtenemos un un intervalo numérico. Por ejemplo, podríamos hablar de que, con una confianza del $90\%$, la estatura media de los chilenos (parámetro poblacional) está contenida por el intervalo $(1.80, 1.84)$ metros, o , la probabilidad de que el intervalo $(1.80,1.84)$ contenga al valor real de la estatura media de los chilenos en metros es de $0.9$.
+
+### Elaboración
+
+Cuando trabajamos con bases de datos (o cualquier conjunto de datos), se supone que las observaciones muestrales reales $x_1,\ldots , x_n$ son el resultado de una muestra aleatoria $X_1,\ldots , X_n$ tomada de una distribución normal con valor medio $\mu$ y desviación estándar $\sigma$. Los resultados de la última unidad del curso de Estadística I (Distribución de la media) implican que independientemente del tamaño de la muestra ($n$), la media muestral $\bar{X}$ está normalmente distribuida con valor esperado $\mu$ y desviación estándar $\sigma/\sqrt{n}$. Si se estandariza el promedio se obtiene la variable normal estándar
+
+```{=tex}
+\begin{equation}
+Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(\mu = 0,\sigma^2=1)
+(\#eq:normalestandar)
+\end{equation}
+```
+
+Luego, en caso de estar interesado en construir un intervalo (bilateral) de confianza para la media con una determinada confianza, se debe plantear de la siguiente forma:
+
+```{=tex}
+\begin{equation}
+P\left( Z_{\alpha/2} < Z < Z_{1-\alpha/2}\right) = 1-\alpha
+(\#eq:IC1)
+\end{equation}
+```
+
+En la expresión \@ref(eq:IC1), $Z_{\alpha/2}$ y $Z_{1-\alpha/2}$ son los puntos de cortes en el eje $X$ alrededor del 0, para los cuales, el área bajo la curva (probabilidad) de la función de densidad de la distribución normal estándar es igual a $1-\alpha$, tal como se muestra en la figura \@ref(fig:normalestandar). En este sentido, para la figura planteada, los puntos de corte se traducen en las siguientes expresiones.
+
+$$Z_{\alpha/2} = x : P(Z \leq x) = \alpha/2$$
+$$Z_{1-\alpha/2} = x : P(Z \leq x) = 1-\alpha/2$$
+
+```{r normalestandar, fig.width=4, fig.height=2.5, fig.cap="Curva Z, Normal Estándar", fig.align='center', echo = F}
+x = seq(-3,3, by = 0.01)
+f = dnorm(x,0,1)
+df = data.frame("x" = x, "f" = f)
+ggplot(data = df, aes(x = x, y = f)) +
+  stat_function(xlim = c(-2,2), geom = "area", fun = dnorm, fill = "gray") + 
+  geom_line() +
+  scale_x_continuous(breaks = c(-2,2), labels = c(expression("Z" ~ alpha/2), expression("Z" ~ 1-alpha/2))) + 
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(y = "", x = "", title = "Curva Z") +
+  geom_segment(aes(x = -2, y = 0, xend = -2, yend = dnorm(-2,0,1)), color = "red", linetype = 1) + 
+  geom_segment(aes(x = 2, y = 0, xend = 2, yend = dnorm(2,0,1)), color = "red", linetype = 1)
+```
+
+Luego, reemplazando el valor de $Z$ por \@ref(eq:normalestandar) en la ecuación \@ref(eq:IC1), y despejando el valor $\mu$ al interior de la probabilidad, se obtiene la siguiente expresión.
+
+```{=tex}
+\begin{equation}
+P\left( \overline{X} + Z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \overline{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+(\#eq:IntC)
+\end{equation}
+```
+
+o
+
+```{=tex}
+\begin{equation}
+P\left( \overline{X} - Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \overline{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+(\#eq:IntC2)
+\end{equation}
+```
+
+La desigualdad dentro de la probabilidad es el intervalo de confianza construido para la media poblacional, mientras que, el término a la derecha de la igualdad corresponde a la confianza trabajada por el investigador ($1-\alpha$). En la sección \@ref(PH) se dará a conocer en mayor profundidad el concepto de confianza y significancia ($\alpha$).
+
+La forma de construir un intervalo de confianza para un determinado parámetro es distinta en todos los casos, en particular, debido a la suposiciones con las que se trabaja. Por ejemplo, para expresión desarrollada en \@ref(eq:IntC) es necesario suponer que se conoce la varianza poblacional de los datos, algo que puedo o no ocurrir en la realidad.
+
+Por último, cabe mencionar, que existen otros tipos de intervalos, si bien el que se ha mostrado hasta el momento es un intervalo que tiene tanto una cota inferior como superior, existen otros tipos de intervalos que son solo tienen una cota (o superior o inferior).
+
+A continuación, se dan a conocer intervalos de confianza para estimar la media poblacional, la diferencia de medias poblacionales y la comparación de varianzas, omitiendo los procesos de construcción.
+
+## Intervalo de confianza para la media
+
+### Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida
+
+```{r echo=FALSE}
+tabla = matrix(c("Bilateral", "$P(a < \\mu < b) = 1-\\alpha$", "$\\left(\\bar{x} \\pm Z_{1-\\alpha/2}\\displaystyle\\frac{\\sigma}{\\sqrt{n}}\\right)$",
+                 "Acotado por la derecha", "$P(\\mu < b)=1-\\alpha$", "$\\left( -\\infty, \\bar{x} + Z_{1-\\alpha}\\displaystyle\\frac{\\sigma}{\\sqrt{n}}\\right)$",
+                 "Acotado por la izquierda", "$P(a < \\mu)=1-\\alpha$", "$\\left(\\bar{x} - Z_{1-\\alpha}\\displaystyle\\frac{\\sigma}{\\sqrt{n}}, \\infty\\right)$"),
+               byrow = T, nrow = 3)
+
+kableExtra::kbl(tabla, align = c('l','l','c'), booktabs = TRUE,
+      caption = "Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida",
+      col.names = c("Tipo de intervalo", "Probabilidad","Expresión del intervalo"), escape = FALSE) |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("condensed"), latex_options = c("HOLD_position", "scale_down")) |>
+  scroll_box(box_css = "border: 0px; ", extra_css = "overflow-x: auto; ")
+```
+
+:::: {.blackbox}
+::: {.example #ejemplo1IC}
+Los datos que a continuación se dan son los pesos en gramos del contenido de 16 cajas de cereal que se seleccionaron de una proceso de llenado con el propósito de verificar el peso promedio: 506, 508, 499, 503, 504, 510, 497, 512, 514, 505, 493, 496, 506, 502, 509, 496. Si el peso de cada caja es una variable aleatoria normal con una desviación estándar $\sigma = 5g$, obtener el intervalo de confianza al 99\% para la media de llenado de este proceso.
+
+*Nota*: $\bar{x} = 503.75$
+
+Dado que, no se especifica el tipo de intervalo, y que se está interesado es el estudiar la media del llenado de las cajas de cereal, corresponde elaborar un intervalo de confianza bilateral:
+
+$$\left(\bar{x} \pm Z_{1-\alpha/2}\displaystyle\frac{\sigma}{\sqrt{n}}\right)$$
+
+No existe un comando de R (nativo) para elaborar este intervalo, por lo que, la construcción debe ser manual, tal como se muestra a continuación.
+
+```{r}
+peso = c(506,508,499,503,504,510,497,512,
+         514,505,493,496,506,502,509,496)
+promedio = mean(peso)
+L = promedio - qnorm(1-0.01/2)*5/sqrt(length(peso))
+U = promedio + qnorm(1-0.01/2)*5/sqrt(length(peso))
+c(L,U)
+```
+
+El resultado indica que, la probabilidad de que el intervalo $(500.5, 506.9)$ (en gramos) contenga el valor de la media de llenado de las cajas es de 0.99.
+:::
+::::
+
+::: {.exercise}
+Obtener los intervalos con las confianzas al 90\% y 95\% asociados al ejemplo \@ref(exm:ejemplo1IC). Comente las diferencias e interprete.
+:::
+
+### Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida
+
+```{r echo=FALSE}
+tabla = matrix(c("Bilateral", "$P(a < \\mu < b) = 1-\\alpha$", "$\\left(\\bar{x} \\pm t_{1-\\alpha/2,n-1}\\displaystyle\\frac{S}{\\sqrt{n}} \\right)$",
+                 "Acotado por la derecha", "$P(\\mu < b)=1-\\alpha$", "$\\left( -\\infty, \\bar{x} + t_{1-\\alpha,n-1}\\displaystyle\\frac{S}{\\sqrt{n}}\\right)$",
+                 "Acotado por la izquierda", "$P(a < \\mu)=1-\\alpha$", "$\\left(\\bar{x} - t_{1-\\alpha,n-1}\\displaystyle\\frac{S}{\\sqrt{n}}, \\infty\\right)$"),
+               byrow = T, nrow = 3)
+
+kableExtra::kbl(tabla, align = c('l','l','c'), booktabs = TRUE,
+      caption = "Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida",
+      col.names = c("Tipo de intervalo", "Probabilidad","Expresión del intervalo"), escape = FALSE) |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("condensed"), latex_options = c("HOLD_position", "scale_down")) |>
+  scroll_box(box_css = "border: 0px; ", extra_css = "overflow-x: auto; ")
+```
+
+:::: {.blackbox}
+::: {.example}
+Para resolver el ejemplo \@ref(exm:ejemplo1IC) considerando varianza poblacional desconocida, es posible utilizar el comando `t.test()` para obtener el intervalo de confianza.
+
+$$\left(\bar{x} \pm t_{1-\alpha/2,n-1}\displaystyle\frac{S}{\sqrt{n}} \right)$$
+
+
+```{r}
+peso = c(506,508,499,503,504,510,497,512,
+         514,505,493,496,506,502,509,496)
+t.test(x = peso, conf.level = 0.99, alternative = "two.sided")
+```
+
+En este sentido, se tiene una probabilidad de 0.99 de que el intervalo $(499.1, 508.3)$ contenga el valor de la media de llenado de las cajas de cereal.
+:::
+::::
+
+::: {.exercise}
+Utilizando la base de datos del [Imacec](#Imacec1):
+
+1. Elabore un intervalo de confianza para estudiar el valor promedio del Imacec en el sector de Minería en los años 2019 y 2021, asumiendo que el Imacec de Minería es una variable aleatoria que distribuye normal. Utilice una confianza de 91\%. Interprete.
+2. Elabore un intervalo de confianza para estudiar si, el valor promedio del Imacec en el sector de Industria en los años 2019 y 2021 es mayor a 100, asumiendo que el Imacec de Industria es una variable aleatoria que distribuye normal. Utilice una confianza de 91\%. Interprete.
+:::
+
+## Intervalo de confianza para la diferencia de medias
+
+### Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas
+
+```{r echo=FALSE}
+tabla = matrix(c("Bilateral", "$P(a < \\mu_X - \\mu_Y < b) = 1-\\alpha$", "$\\left(\\bar{x} - \\bar{y} \\pm Z_{1-\\alpha/2}\\displaystyle\\sqrt{\\displaystyle\\frac{\\sigma^2_X}{n_x} + \\displaystyle\\frac{\\sigma^2_Y}{n_y}}\\right)$",
+                 "Acotado por la derecha", "$P(\\mu_X - \\mu_Y < b) = 1-\\alpha$", "$\\left( -\\infty, \\bar{x} - \\bar{y} + Z_{1-\\alpha}\\displaystyle\\sqrt{\\displaystyle\\frac{\\sigma^2_X}{n_x} + \\displaystyle\\frac{\\sigma^2_Y}{n_y}}\\right)$",
+                 "Acotado por la izquierda", "$P(a < \\mu_X - \\mu_Y) = 1-\\alpha$", "$\\left(\\bar{x} - \\bar{y} - Z_{1-\\alpha}\\displaystyle\\sqrt{\\displaystyle\\frac{\\sigma^2_X}{n_x} + \\displaystyle\\frac{\\sigma^2_Y}{n_y}}, \\infty\\right)$"),
+               byrow = T, nrow = 3)
+
+kableExtra::kbl(tabla, align = c('l','l','c'), booktabs = TRUE,
+      caption = "Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas",
+      col.names = c("Tipo de intervalo", "Probabilidad","Expresión del intervalo"), escape = FALSE) |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("condensed"), latex_options = c("HOLD_position", "scale_down")) |>
+  scroll_box(box_css = "border: 0px; ", extra_css = "overflow-x: auto; ")
+```
+
+:::: {.blackbox}
+::: {.example #ICdiferencianormal}
+La base de datos [dolar.csv](https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/dolar.csv) contiene los datos asociados al tipo de cambio del dólar. Las columnas de la base de datos son las siguientes:
+
+- Mes: mes de medición.
+- Dia: día de medición.
+- Valor: tipo de cambio del dólar a pesos (clp).
+
+Elabore un intervalo de confianza para estudiar la diferencia del valor promedio del dólar entre los meses de junio y julio, asumiendo distribución normal de los datos en ambas poblaciones, y varianzas poblacionales de 1250 y 580 para cada mes respectivamente.
+
+Al conocer las varianzas poblacionales, y querer estudiar la diferencia, corresponde elaborar el siguiente intervalo de confianza. Asumiendo una confianza del 95%.
+
+$$\left(\bar{x} - \bar{y} \pm Z_{1-\alpha/2}\displaystyle\sqrt{\displaystyle\frac{\sigma^2_X}{n_x} + \displaystyle\frac{\sigma^2_Y}{n_y}}\right)$$
+No existe un comando en R que permita generar este intervalo de confianza, por lo que corresponde construirlo manualmente, tal como se muestra a continuación.
+
+```{r, echo=FALSE}
+df = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%202/dolar.csv")
+```
+
+```{r}
+# Cargue previamente la base datos, guardándola con el nombre "df"
+junio = df$Valor[df$Mes=="Junio"]
+julio = df$Valor[df$Mes=="Julio"]
+L = mean(junio) - mean(julio) - 
+  qnorm(1-0.05/2)*
+  sqrt(1250/length(junio) + 580/length(julio))
+U = mean(junio) - mean(julio) + 
+  qnorm(1-0.05/2)*
+  sqrt(1250/length(junio) + 580/length(julio))
+c(L,U)
+```
+
+El resultado indica que, la probabilidad de que el intervalo $(-103.8,  -65.7)$ (en pesos) contenga al valor real de la diferencia entre ambas medias es de 0.95.
+:::
+::::
+
+::: {.exercise}
+Estudiar si el valor promedio del dólar de Julio es mayor al de Junio por más de 50 pesos (clp). Considere que las variables distribuyen normal, y que las varianzas poblacionales son las mismas que se mencionan en el ejemplo \@ref(exm:ICdiferencianormal). Utilice una confianza del 92.3%. Interprete.
+:::
+
+### Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales
+
+```{r echo=FALSE}
+tabla = matrix(c("Bilateral", "$P(a < \\mu_X - \\mu_Y < b) = 1-\\alpha$", "$\\left(\\bar{x} - \\bar{y} \\pm t_{1-\\alpha/2,k}S_p\\displaystyle\\sqrt{\\displaystyle\\frac{1}{n_x} + \\displaystyle\\frac{1}{n_y}}\\right)$",
+                 "Acotado por la derecha", "$P(\\mu_X - \\mu_Y < b) = 1-\\alpha$", "$\\left( -\\infty, \\bar{x} - \\bar{y} + t_{1-\\alpha,k}S_p\\displaystyle\\sqrt{\\displaystyle\\frac{1}{n_x} + \\displaystyle\\frac{1}{n_y}}\\right)$",
+                 "Acotado por la izquierda", "$P(a < \\mu_X - \\mu_Y) = 1-\\alpha$", "$\\left(\\bar{x} - \\bar{y} - t_{1-\\alpha,k}S_p\\displaystyle\\sqrt{\\displaystyle\\frac{1}{n_x} + \\displaystyle\\frac{1}{n_y}}, \\infty\\right)$"),
+               byrow = T, nrow = 3)
+
+kableExtra::kbl(tabla, align = c('l','l','c'), booktabs = TRUE,
+      caption = "Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales",
+      col.names = c("Tipo de intervalo", "Probabilidad","Expresión del intervalo"), escape = FALSE) |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("condensed"), latex_options = c("HOLD_position", "scale_down")) |>
+  scroll_box(box_css = "border: 0px; ", extra_css = "overflow-x: auto; ")
+```
+
+donde,
+
+$$k = n_X + n_Y-2$$
+
+$$S_p^2 = \frac{(n_X-1)S_X^2 + (n_Y-1)S_Y^2}{n_X+n_Y-2}$$
+
+:::: {.blackbox}
+::: {.example #ejemploICdiferencia}
+Dos universidades financiadas por el gobierno tienen métodos distintos para inscribir a sus alumnos a principios de cada semestre. Las dos desean comparar el tiempo promedio que les toma a los estudiantes el trámite de inscripción. En cada universidad se anotaron los tiempo de inscripción para 30 alumnos seleccionados al azar. Las medias y las desviaciones estándar muestrales son las siguientes:
+
+```{=tex}
+\begin{equation}
+\notag
+\begin{matrix}
+\bar{x}_1 = 50.2 & \bar{x}_2=52.9\\
+S_1 = 4.8 & S_2 = 5.4
+\end{matrix}
+\end{equation}
+```
+
+Si se supone que el muestreo se llevó a cabo sobre dos poblaciones distribuidas normales e independientes con varianzas iguales , obtener el intervalo de confianza estimado del 90\% para la diferencia entre las medias del tiempo de inscripción para las dos universidades. Con base en este evidencia, ¿se estaría inclinando a concluir que existe una diferencia real entre los tiempos medios para cada universidad?
+
+
+Para responder a la pregunta, es necesario construir un intervalo de confianza para la diferencia de medias y, verificar si el cero está incluido dentro de este. El desarrollo del intervalo debe ser manual, ya que, no se cuenta con una base de datos, sino que directamente con los promedios y desviaciones estándar de las muestras.
+
+```{=tex}
+\begin{equation}
+\notag
+\begin{split}
+&\left(\bar{x}_1 - \bar{x}_2 \pm t_{1-\alpha/2,k}S_p\displaystyle\sqrt{\displaystyle\frac{1}{n_{X_1}} + \displaystyle\frac{1}{n_{X_2}}}\right) = \left(-6.208;0.808 \right)\\
+S_p^2 &= \frac{(n_{X_1}-1)S_{X_1}^2 + (n_{X_2}-1)S_{X_2}^2}{n_{X_1}+n_{X_2}-2} = \frac{29\cdot 4.8^2 + 29\cdot 5.4^2}{58} = 26.1\\
+k &= n_{X_1} + n_{X_2}-2 = 58 \text{, } t_{0.995, 58} = 2.66\\
+\end{split}
+\end{equation}
+```
+
+Como el intervalo contiene al cero, no existe suficiente evidencia para indicar que existe una diferencia real entre los tiempos medios para cada universidad, con un 90\% de confianza.
+:::
+::::
+
+::: {.exercise #ICcontrolcuotas}
+La base de datos [Control cuotas](#Cuotas) contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Se está interesado en saber si el valor promedio de las cuotas de Plan Vital superan al de Provida por más de 30000 pesos, para ello, elabore un intervalo de confianza, considerando una confianza del 90\%. Asuma, que el valor cuota es una variable aleatoria que distribuye normal en ambas poblaciones (independientes), y que las varianzas poblacionales son desconocidas e iguales.
+:::
+
+::: {.exercise}
+Utilizando la base de datos [Control cuotas](#Cuotas), estudiar si la media del valor cuota de Provida es menor a la de Plan Vital. Utilice una confianza del 99.64% Considere distribución normal de las variables y varianzas poblacionales desconocidas e iguales.
+:::
+
+### Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas
+
+```{r echo=FALSE}
+tabla = matrix(c("Bilateral", "$P(a < \\mu_X - \\mu_Y < b) = 1-\\alpha$", "$\\left(\\bar{x} - \\bar{y} \\pm t_{1-\\alpha/2,k}\\sqrt{S^2_X/n_X + S^2_Y/n_Y}\\right)$",
+                 "Acotado por la derecha", "$P(\\mu_X - \\mu_Y < b) = 1-\\alpha$", "$\\left( -\\infty, \\bar{x} - \\bar{y} + t_{1-\\alpha,k}\\sqrt{S^2_X/n_X + S^2_Y/n_Y}\\right)$",
+                 "Acotado por la izquierda", "$P(a < \\mu_X - \\mu_Y) = 1-\\alpha$", "$\\left(\\bar{x} - \\bar{y} - t_{1-\\alpha,k}\\sqrt{S^2_X/n_X + S^2_Y/n_Y}, \\infty\\right)$"),
+               byrow = T, nrow = 3)
+
+kableExtra::kbl(tabla, align = c('l','l','c'), booktabs = TRUE,
+      caption = "Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas",
+      col.names = c("Tipo de intervalo", "Probabilidad","Expresión del intervalo"), escape = FALSE) |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("condensed"), latex_options = c("HOLD_position", "scale_down")) |>
+  scroll_box(box_css = "border: 0px; ", extra_css = "overflow-x: auto; ")
+```
+
+dónde $k$ es el entero más cercano a
+
+$$\frac{(S_X^2/n_X + S_Y^2/n_Y)^2}{(S_X^2/n_X)^2/(n_X-1) + (S_Y^2/n_Y)^2/(n_Y-1)}$$
+
+:::: {.blackbox}
+::: {.example}
+Resuelva el ejemplo \@ref(exm:ICdiferencianormal) asumiendo varianzas poblacionales desconocidas y diferentes.
+
+Al asumir que las varianzas poblacionales son desconocidas y diferentes, corresponde elaborar el siguiente intervalo.
+
+$$\left(\bar{x} - \bar{y} \pm t_{1-\alpha/2,k}\sqrt{S^2_X/n_X + S^2_Y/n_Y}\right)$$
+
+La ejecución en R es mediante el comando `t.test()` considerando el argumento `var.equal = F`, el cual, indica que las varianzas poblacionales son desconocidas y distintas (por defecto el valor de este argumento es `F`, es decir, se asume que las varianzas poblacionales son desconocidas y distintas). Además, se asume una confianza del 95%.
+
+```{r}
+junio = df$Valor[df$Mes=="Junio"]
+julio = df$Valor[df$Mes=="Julio"]
+t.test(x = junio, y = julio, conf.level = 0.95, var.equal = F)
+```
+
+
+El resultado indica que, la probabilidad de que el intervalo $(-104.3,  -65.17)$ (en pesos) contenga al valor real de la diferencia entre ambas medias es de 0.95.
+:::
+::::
+
+::: {.exercise}
+Utilizando la base de datos del [Imacec](#Imacec1), elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor que el del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
+:::
+
+
+## Intervalo de confianza para la comparación de varianzas
+
+En este caso, se estará interesado el siguiente intervalo, ya que, es el fundamental para determinar la igualdad de las varianzas.
+
+```{=tex}
+\begin{equation}
+\notag
+\begin{split}
+P\left(a<\frac{\sigma_Y^2}{\sigma_X^2}<b\right) = 1-\alpha &\Rightarrow \left( F_1\frac{S_Y^2}{S_X^2},F_2\frac{S_Y^2}{S_X^2} \right)\\
+& F_1 = \frac{1}{f_{1-\alpha/2,n_Y-1,n_X-1}}\\
+& F_2 = f_{1-\alpha/2,n_X-1,n_Y-1}
+\end{split}
+\end{equation}
+```
+
+:::: {.blackbox}
+::: {.example}
+Utilizando la base de datos [dolar.csv](https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/dolar.csv), elabore un intervalo de confianza para el cociente de la variabilidad del valor del dólar entre los meses de junio y julio, asumiendo que las distribuciones poblacionales son normales e independientes
+
+Para estudiar o comparar varianzas, corresponde elaborar el único intervalo especificado en esta sección.
+
+$$\left( F_1\frac{S_Y^2}{S_X^2},F_2\frac{S_Y^2}{S_X^2} \right)$$
+
+La ejecución en R, considerando una confianza del 95% es la siguiente.
+
+```{r}
+junio = df$Valor[df$Mes=="Junio"]
+julio = df$Valor[df$Mes=="Julio"]
+var.test(x = junio, y = julio, conf.level = 0.95)
+```
+
+Dado que, la probabilidad asociada a este intervalo de confianza contiene al cociente de las varianzas poblacionales, para determinar si existe o no diferencia entre estos parámetros se debe verificar si el 1 está dentro o no del intervalo. En caso de que el 1 esté dentro del intervalo, entonces, se asume que las varianzas poblacionales son iguales.
+
+En este sentido, el intervalo asociado al ejemplo es $(0.8, 5.7)$, el cual, contiene al 1. Por lo tanto, se asume que las varianzas del valor del dólar de ambos meses es igual, con un 95% de confianza.
+:::
+::::
+
+::: {.exercise}
+Considerando el ejercicio \@ref(exr:ICcontrolcuotas), elabore un intervalo de confianza para la comparación de varianzas de ambas poblaciones. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 93.2%. Interprete.
+:::
+
+::: {.exercise}
+Utilizando la base de datos del [Imacec](#Imacec1), elabore un intervalo de confianza para comparar la variabilidad (varianza) del valor del Imacec entre ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 90%. Interprete.
+:::
+
+::: {.exercise}
+Utilizando la base de datos del [Imacec](#Imacec1), elabore un intervalo de confianza para estudiar la diferencia la media del Imacec de ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 92%. Interprete.
+:::
+
+::: {.exercise}
+Utilizando la base de datos del [Imacec](#Imacec1), elabore un intervalo de confianza para estudiar si, el promedio del Imacec de minería es mayor al de industria por al más de 2 unidades. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 97%. Interprete.
+:::
+
+
+
+
+
+

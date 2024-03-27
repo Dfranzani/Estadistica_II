@@ -1,0 +1,44 @@
+\begin{center}
+{\bf \Large{Taller de práctica 4}}\\Prueba de hipótesis para la comparación de varianzas, y para la diferencia de proporciones\\(secciones 2.4 y 2.5)
+\end{center}
+
+\begin{enumerate}
+
+\item La base de datos \texttt{UF+IVP+2022.csv} (\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/UF%2BIVP%2B2022.csv}{link}) contiene datos de algunos índices para expresar la reajustibilidad,es decir, el valor actualizado de una moneda, dependiendo de la inflación. En particular los índices considerados en esta base son la UF (Unidad de Fomento) e IVP (Índice del Valor Promedio).
+
+Para entender estos índices cabe mencionar que,
+
+\begin{itemize}
+\item la UF corresponde a tasa promedio geométrica de la variación del IPC del mes anterior,
+\item el IVP utiliza la variación semestral móvil que haya experimentado el IPC.
+\end{itemize}
+
+Ambos índices están expresadas en pesos. 
+
+\begin{enumerate}
+\item Elabore una prueba de hipótesis para estudiar si ambos índices en promedio presentan una diferencia real. Utilice una confianza del 95\%. Considere los supuestos necesarios.
+\item Estudie si el valor promedio del IVP es mayor al de la UF, considerando únicamente la primera quincena en los meses del primer semestre. Utilice una confianza del 90\%.
+\item Similar a lo anterior (\textit{b)}), modifique su estudio, de tal forma que considere los primeros 10 días de cada trimestre. Además, suponga que desea evaluar si el valor promedio del IVP es mayor a de la UF por más del \$110.3 pesos. Utilice una confianza del 88\%.
+\end{enumerate}
+
+\item La base de datos \texttt{Contacto+clientes.csv} (\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Contacto%2Bclientes.csv}{link}) contiene información sobre los contactos de ejecutivos a potenciales clientes. Las columnas de la base de datos son las siguientes.
+
+\begin{itemize}
+\item Edad: edad de la persona contactada por ejecutivo.
+\item Sexo: Masculino (M) o Femenino (F).
+\item Tipo: Tipo de medio por el cual el cliente se informa del producto que ofrece la empresa a la cual pertenece el ejecutivo (Facebook, FI-``Banner Web Interactivo'', Google, Instragram u Otro).
+\item diaSemanaContacto: día de la semana en la que el ejecutivo contacta al cliente (de 2 a 7, siendo 7 el día domingo).
+\end{itemize}
+
+\begin{enumerate}
+\item Elabore una prueba de hipótesis para estudiar si hay diferencia entre las medias de las edades de hombres y mujeres. Utilice una confianza del 90\%. Considere los supuestos necesarios.
+
+\item Elabore una prueba de hipótesis para estudiar si, la proporción de mujeres y hombres que se informaron del producto mediante Facebook es distinta. Utilice una confianza del 96\%. Considere los supuestos necesarios.
+
+\item Elabore una prueba de hipótesis para estudiar si, la proporción de mujeres y hombres que se informaron del producto mediante Instagram es distinta. Utilice una confianza del 92\%. Considere los supuestos necesarios.
+
+\item Estudie si, respecto a las personas que se informaron del producto de la empresa mediante Google, la proporción de hombres contactados es mayor a la de las mujeres contactadas. Utilice una confianza del 91\%. Considere los supuestos necesarios.
+
+\end{enumerate}
+
+\end{enumerate}
