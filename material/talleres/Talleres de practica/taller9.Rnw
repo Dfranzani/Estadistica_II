@@ -1,0 +1,55 @@
+\begin{center}
+{\bf \Large{Taller de práctica 9}}\\Métodos de selección de variables,e intervalos de confianza y predicción\\(secciones 3.4 y 3.5)
+\end{center}
+
+Los dos conjuntos de datos están relacionados con las variantes tinto \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv}{(link)} y blanco \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-white.csv}{(link)} del vino portugués ``Vinho Verde''. Debido a cuestiones de privacidad y logística, sólo están disponibles variables fisicoquímicas (entradas) y sensoriales (salidas) (por ejemplo, no hay datos sobre tipos de uva, marca de vino, precio de venta del vino, etc.).
+
+Las columnas de las bases de datos son las siguientes:
+
+\begin{itemize}
+\item \texttt{fixed.acidity} ($g/L$): cantidad de la mayoría de los ácidos involucrados con el vino o fijos o no volátiles (no se evaporan fácilmente).
+\item \texttt{volatile.acidity} ($g/L$): cantidad de ácido acético en el vino, que en niveles demasiado altos puede provocar un sabor desagradable a vinagre
+\item \texttt{citric.acid} ($g/L$): cantidad de ácido cítrico, que se encuentra en pequeñas cantidades, el cual, puede añadir ``frescura'' y sabor a los vinos.
+\item \texttt{residual.sugar} ($g/L$): cantidad de azúcar que queda después de que se detiene la fermentación. Es raro encontrar vinos con menos de 1 gramo/litro y los vinos con más de 45 gramos/litro se consideran dulces.
+\item \texttt{chlorides} ($g/L$): cantidad de sal en el vino.
+\item \texttt{free.sulfu.dioxide} ($ppm$): cantidad de la forma libre de SO2 existe en equilibrio entre el SO2 molecular (como gas disuelto) y el ion bisulfito; previene el crecimiento microbiano y la oxidación del vino.
+\item \texttt{total.sulfur.dioxide} ($ppm$): cantidad de formas libres y ligadas de S02; En concentraciones bajas, el SO2 es prácticamente indetectable en el vino, pero en concentraciones de SO2 libre superiores a 50 ppm, el SO2 se vuelve evidente en la nariz y el sabor del vino.
+\item \texttt{density} ($g/cm^3$): densidad del agua dependiendo del porcentaje de alcohol y contenido de azúcar.
+\item \texttt{pH}: describe qué tan ácido o básico es un vino en una escala de 0 (muy ácido) a 14 (muy básico); la mayoría de los vinos tienen entre 3 y 4 en la escala de pH.
+\item \texttt{sulphates} ($mg/L$): cantidad de aditivo del vino que puede contribuir a los niveles de dióxido de azufre (S02), que actúa como antimicrobiano y antioxidante.
+\item \texttt{alcohol} (ABV, Alcohol por volumen): el porcentaje de alcohol del vino.
+\item \texttt{quality}: variable de salida (basada en datos sensoriales, puntuación entre 0 y 10), un número cercano a 10 indica un vino de mayor calidad.
+\end{itemize}
+
+A continuación, se utiliza la base de datos asociada a los datos del vino tinto para los enunciados siguientes.
+
+<<echo=FALSE>>=
+data = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv", sep = ";")
+@
+
+
+\begin{enumerate}
+  \item Ajuste un modelo para estudiar el nivel de pH del vino a través de las variables \texttt{chlorides}, \texttt{density} y \texttt{sulphates}.
+  \item Ajuste un modelo para estudiar el nivel del pH, utilizando la metodología \textit{backward}.
+  \item ¿Es posible comparar el desempeño de los dos modelos ajustados anteriormente? En caso de ser posible, compare e interprete.
+  \item Ajuste un tercer modelo para estudiar el nivel del pH, utilizando la metodología \textit{forward}. Comente similitudes y diferencias respecto al modelo ajustado con la metodología \textit{backward} con relación a las variables utilizadas por cada uno de los modelos.
+  \item Considerando el modelo ajustado en el ítem 1, responda.
+  \begin{enumerate}
+    \item ¿Cuál sería el nivel de pH de un vino con una cantidad de sal de 0.05 $g/L$, una densidad del agua de 0.99 $g/cm^3$ y una cantidad de aditivo del vino que puede contribuir a los niveles de dióxido de azufre de 0.63 $mg/L$?
+    \item ¿Cuál sería el nivel de pH promedio de un vino con una cantidad de sal de 0.05 $g/L$, una densidad del agua de 0.99 $g/cm^3$ y una cantidad de aditivo del vino que puede contribuir a los niveles de dióxido de azufre de 0.63 $mg/L$?
+    \item Comente las razones de la diferencias entre los intervalos de confianza obtenidos en los ítems anteriores.
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+

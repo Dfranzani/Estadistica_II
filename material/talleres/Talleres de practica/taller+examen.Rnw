@@ -1,0 +1,119 @@
+\begin{center}
+{\bf \Large{Taller de práctica Examen}}\\
+\end{center}
+
+La base con la que se trabajará a continuación contiene datos relacionados a la contratación de seguros médicos. Las columnas de la base de datos son las siguientes:
+
+    \begin{itemize}
+        \item age: edad en años del beneficiario principal.
+        \item sex: sexo (``female'', ``male'') del beneficiario principal.
+        \item bmi: índice de masa corporal del beneficiario principal.
+        \item children: número de niños cubiertos por el seguro.
+        \item smoker: indica si es (``yes'') o no (``no'') fumador el beneficiario principal.
+        \item region: el área residencial del beneficiario en los EE. UU., ``northeast'', ``southeast'', ``southwest'', ``northwest''.
+        \item charges: costos médicos (en dólares) individuales facturados por el seguro de salud.
+    \end{itemize}
+    
+A continuación, se despliega la siguiente salida de R asociada a un modelo de regresión lineal múltiple
+
+<<echo=F>>=
+data = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/insurance.csv")
+data$sex = factor(data$sex, levels =c("male", "female"))
+data$smoker = factor(data$smoker, levels =c("yes", "no"))
+modelo = lm(charges ~ age + sex + region + smoker, data = data)
+summary(modelo)
+@
+
+\begin{enumerate}
+\item Escriba el modelo poblacional.
+\item Escriba el modelo ajustado.
+\item Escriba la ecuación de regresión ajustada.
+\item Interprete los parámetros estimados.
+\item Estudie las pruebas de hipótesis de no nulidad y no nulidad conjunta. Utilice una confianza del 95\%. Escriba las hipótesis involucradas.
+\item Interprete el $R^2$ ajustado, y comente porque no es adecuado usar el $R^2$ para interpretar un modelo de regresión lineal múltiple.
+\item Explique el principio de la parsimonia.
+\item A continuación, de despliegan distintos gráfico y resultados en R. Utilice los que considere pertinentes para estudiar los supuestos del modelo. Escriba las hipótesis involucradas cuando corresponda. Utilice una confianza del 95\%.
+
+<<echo = F, fig.width = 6, fig.height = 5>>=
+library(ggplot2)
+library(gridExtra)
+residuos = residuals(modelo)
+residuos_e = rstandard(modelo)
+ygorro = modelo$fitted.values
+df = data.frame("Residuos" = residuos, "Valores.Ajustados" = ygorro, charges = data$charges, "Residuos.Estandarizados" = residuos_e, "age" = data$age)
+g1 = ggplot(data = df, aes(x = Valores.Ajustados, y = Residuos)) + geom_point(size = 2) + labs(title = "Gráfico 1", x="Valores predichos")
+g2 = ggplot(data = df, aes(x = charges, y = Residuos)) + geom_point(size = 2) + labs(title = "Gráfico 2", x = "charges")
+g3 = ggplot(data = df, aes(x = Valores.Ajustados, y = Residuos.Estandarizados)) + geom_point(size = 2) + labs(title = "Gráfico 3")
+g4 = ggplot(data = df, aes(x = age, y = Residuos.Estandarizados)) + geom_point(size = 2) + labs(title = "Gráfico 4")
+grid.arrange(g1,g2,g3,g4, ncol = 2)
+@
+
+<<echo = F, fig.width = 6, fig.height = 3, warning = F>>=
+g5= ggplot(data = df, aes(x = 1:dim(data[1]),y = Residuos)) + geom_point(size = 2) + labs(title = "Gráfico 5", x = "Observaciones")
+g6 = ggplot(df, aes(sample=Residuos)) +  stat_qq() +   stat_qq_line() +
+labs(title = "Gráfico 6: cuantil - cuantil", y = "Residuos", x = "")
+grid.arrange(g5,g6, ncol = 2)
+@
+
+<<echo = F, message = F, warning=F>>=
+library(lmtest)
+library(nortest)
+shapiro.test(x = df$Valores.Ajustados)
+ks.test(df$charges, "pnorm", 0, 1)
+shapiro.test(x = df$Residuos.Estandarizados)
+ad.test(x = df$Valores.Ajustados)
+@
+
+<<echo = F, message = F, warning=F>>=
+dwtest(formula = age ~ charges + sex + region + smoker, data = data, alternative = "two.sided")
+dwtest(formula = charges ~ age + region + smoker, data = data, alternative = "two.sided")
+dwtest(formula = charges ~ age + sex + region + smoker, data = data, alternative = "two.sided")
+@
+
+<<echo = F, message = F, warning=F>>=
+bptest(formula = age ~ charges + sex + region + smoker, data = data)
+bptest(formula = charges ~ age + sex + region + smoker, data = data)
+bptest(formula = charges ~ age + region + smoker, data = data)
+@
+
+\item Explique los siguientes códigos asociados a la base de datos. Sea riguroso en su explicación, escriba toda la terminología estadística involucrada. En particular explique/defina lo siguientes:
+\begin{itemize}
+    \item Elabore las hipótesis.
+    \item Explique las variables involucradas en las pruebas (incluyendo los filtros aplicados).
+    \item Interprete el valor-p y los intervalos de confianza como criterio de rechazo, Elaborando una conclusión asociada a la prueba. Utilice una confianza del 95\%.
+\end{itemize}
+\begin{enumerate}
+     
+
+\item 
+<<>>=
+var.test(x = data$charges[data$smoker == "yes"], 
+         y = data$charges[data$smoker == "no"],
+         conf.level = 0.932,
+         alternative = "two.sided")
+@
+\item 
+<<>>=
+t.test(x = data$charges[data$smoker == "yes"], 
+         y = data$charges[data$smoker == "no"],
+         conf.level = 0.932,
+         mu = 22090,
+         alternative = "greater",
+         var.equal = T)
+@
+\item ¿Que relación tiene el código del ítem \textit{a)} con el del ítem \textit{b)}? ¿Habría que corregir algo para que estuviesen bien planteados ambos en un mismo análisis?
+
+% \item Interprete las siguientes salidas asociadas a intervalos de confianza y predicción.
+% 
+% <<>>=
+% new.df = data.frame("age"= 55, "sex" = "male", region = "southwest", smoker = "yes")
+% predict.lm(modelo, newdata = new.df, interval = "prediction")
+% @
+% 
+% <<>>=
+% new.df = data.frame("age"= 65, sex = "female", region = "southwest", smoker = "no")
+% predict.lm(modelo, newdata = new.df, interval = "confidence")
+% @
+
+\end{enumerate}
+\end{enumerate}
