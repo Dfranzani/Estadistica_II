@@ -958,8 +958,8 @@ Utilizando la base de datos [Ingreso](#Ingreso):
 
 1.  Ajuste un modelo para estudiar la proporción de logro a partir el puntaje NEM.
 2.  Ajuste un modelo para estudiar la proporción de logro a partir el puntaje PTU de la prueba de Lenguaje.
-3.  Obtenga de manera manual el estadístico F asociado a la prueba de hipótesis de nulidad conjunta de cada modelo. Interprete.
-4.  Compare los ajustes de ambos modelos utilizando el error estándar residual y el $R^2$. Obtenga las métricas de manera manual. Interprete.
+3.  Obtenga de manera manual el estadístico F asociado a la prueba de hipótesis de nulidad conjunta de cada modelo. Interprete, utilizando una confianza del 95%.
+4.  Compare los ajustes de ambos modelos utilizando el error estándar residual y el $R^2$, obteniendo las métricas de manera manual. Interprete.
 :::
 
 ### Supuestos
@@ -1016,7 +1016,7 @@ residuos_estandarizados = rstandard(modelo) # Residuos estandarizados
 shapiro.test(x = residuos_estandarizados)
 ```
 
-Considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar $H_0$, ya que el valor - p es mayor a 0.05. Por lo tanto, se asume normalidad en los residuos.
+Considerando una confianza del 95%, el valor-p de 0.1177 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos (estandarizados) tienen distribución normal.
 
 En caso de que la cantidad de datos sea mayor a 5000, el comando `shapiro.test()` fallará. En su lugar, es posible usar el comando `ks.test()`, un ejemplo con los residuos del ejemplo anterior es
 
@@ -1044,6 +1044,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{split}
 \end{equation}
 ```
+
 ```{r fig.width=6, fig.height=3, fig.align='center'}
 valores_predichos = modelo$fitted.values
 ggplot(data = datos) +
@@ -1061,7 +1062,7 @@ bptest(formula = Valor.Patrimonio ~ Valor.Cuota,
        data = datos)
 ```
 
-Considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar $H_0$, ya que el valor - p es superior a 0.05. Por lo tanto, se asume que los residuos tienen varianza constante (Homocedasticidad).
+Considerando una confianza del 95%, el valor-p de 0.5835 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tienen varianza constante (homocedasticidad).
 
 #### Independencia
 
@@ -1072,10 +1073,11 @@ El último supuesto corresponde a la independencia de los residuos, es decir que
 \notag
 \begin{split}
 H_0&: \text{Autocorrelación de los residuos es igual a 0}\\
-H_1&: \text{AutoCorrelación de los residuos es distinta de 0}\\
+H_1&: \text{Autocorrelación de los residuos es distinta de 0}\\
 \end{split}
 \end{equation}
 ```
+
 ```{r}
 # Prueba de Durbin Watson
 dwtest(formula = Valor.Patrimonio ~ Valor.Cuota,
@@ -1083,7 +1085,7 @@ dwtest(formula = Valor.Patrimonio ~ Valor.Cuota,
        alternative = "two.sided")
 ```
 
-Considerando una confianza del 95%, existe suficiente evidencia estadística para rechazar $H_0$, ya que el valor - p es mejor a 0.05. Por lo tanto, se asume que los residuos no son independientes.
+Considerando una confianza del 95%, el valor-p de $2.2 \times 10^{-16}$ es menor o igual a la significancia de 0.05, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos no son independientes (autocorrelación distinta de 0).
 
 **Conclusión**: En resumen, se han cumplido 3 de los 4 supuestos planteados. Esto es muy común que suceda en la realidad, además de existir diversos factores que influyen en los resultados vistos.
 
@@ -1091,9 +1093,10 @@ Considerando una confianza del 95%, existe suficiente evidencia estadística par
 Utilizando la base de datos [Ingreso](#Ingreso), ajuste el modelo:
 
 $$\widehat{Y}_{\text{Logro}} = \widehat{\beta}_0 + \widehat{\beta}_1X_{\text{NEM}}$$
-Luego, 
+Luego,
+
 1.  Escriba la ecuación de regresión ajustada.
-2.  Verifique los supuestos del modelo.
+2.  Verifique los supuestos del modelo, utilizando una confianza del 95% cuando corresponda.
 :::
 
 ::: {.exercise}
@@ -1133,7 +1136,7 @@ Y = X\beta + \epsilon
 (\#eq:multiple1)
 \end{equation}
 ```
-con $\epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)$ independientes. Es detalles de las matrices es el siguiente,
+con $\epsilon \sim N(0,\sigma^2I)$ independientes. Es detalles de las matrices es el siguiente,
 
 ```{=tex}
 \begin{equation}
@@ -1171,7 +1174,7 @@ Una expresión equivalente es:
 
 ```{=tex}
 \begin{equation}
-y_i = \beta_0 + \sum_{j=1}^k x_{ij}\beta_j +\epsilon_i\text{, } i = 1,\dots,n \text{, } \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2)
+y_i = \beta_0 + \sum_{j=1}^k x_{ij}\beta_j +\epsilon_i\text{, } i = 1,\dots,n \text{, } \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 (\#eq:multiple3)
 \end{equation}
 ```
@@ -1329,7 +1332,7 @@ str(extracto)
 
 Suponiendo que, se desea estudiar el Imacec de Minería a través del Imacec de Industria y el mes de medición, el modelo poblacional es el siguiente:
 
-$$Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = febrero}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)$$
+$$Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = febrero}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)$$
 
 La covariable $I_{\text{Mes = febrero}}$ corresponde a una indicatriz, esta función vale 1 para el mes que se especifica (febrero en este caso) y 0 en otro caso (más detalles en el anexo \@ref(funcion-indicatriz)). El valor del `Mes` que no se observa en el modelo es llamado **categoría de referencia**. Ajustando el modelo en R se obtiene el siguiente resumen.
 
@@ -1353,7 +1356,7 @@ Para modelos que consideren variables con más opciones de categoría, se debe a
 \notag
 \begin{split}
 Y_{\text{Imacec Minería}} = &\beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = abril}} + \\
-&\beta_3I_{\text{Mes = mayo}} + \epsilon, \epsilon \sim N(0,\sigma^2I)\\
+&\beta_3I_{\text{Mes = mayo}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\\
 \end{split}
 \end{equation}
 ```
@@ -1364,7 +1367,7 @@ Se puede observar, que dado el modelo poblacional planteado, la categoría de re
 Utilizando la base de datos [Pacientes](#Pacientes), ajuste el siguiente modelo.
 
 $$
-Y_{\text{Logro}} = \beta_0 + \beta_1I_{\text{Sexo = Hombre}} + \beta_2X_{\text{NEM}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
+Y_{\text{Logro}} = \beta_0 + \beta_1I_{\text{Sexo = Hombre}} + \beta_2X_{\text{NEM}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 $$ 
 Luego,
 
@@ -1384,8 +1387,9 @@ La base de datos *CO2* (propia de R) contiene datos de una experimento sobre la 
 Ajuste el siguiente modelo:
 
 $$
-Y_{\text{uptake}} = \beta_0 + \beta_1I_{\text{Type = Mississippi}} + \beta_2I_{\text{Treatment = chilled}} +  \beta_3X_{\text{conc}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
-$$ Luego,
+Y_{\text{uptake}} = \beta_0 + \beta_1I_{\text{Type = Mississippi}} + \beta_2I_{\text{Treatment = chilled}} +  \beta_3X_{\text{conc}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+$$
+Luego,
 
 1.  Escriba la ecuación de regresión ajustada.
 2.  Interprete los betas estimados.
@@ -1469,7 +1473,7 @@ Elimine los datos faltantes de la base de datos utilizando el comando `na.omit()
 Considere el siguiente modelo
 
 $$
-Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} + \beta_3X_{\text{Wind}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
+Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} + \beta_3X_{\text{Wind}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 $$
 
 Luego,
@@ -1538,7 +1542,7 @@ Por otro lado, aparece un nuevo fenómeno llamado colinealidad entre las variabl
 
 ::: blackbox
 ::: example
-Utilizando el modelo ajustado en el ejemplo \@ref(exm:MultipleManual), verifique los supuestos para la regresión construida.
+Utilizando el modelo ajustado en el ejemplo \@ref(exm:MultipleManual), verifique los supuestos para la regresión construida, utilizando una confianza del 95%.
 
 ```{r}
 modelo = lm(Mineria ~ Ano + Industria, data = df)
@@ -1557,14 +1561,34 @@ Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el su
 
 2.  **Normalidad**
 
+```{=tex}
+\begin{equation}
+\notag
+\begin{split}
+H_0&: \text{Los residuos estandarizados tienen distribución Normal}\\
+H_1&: \text{Los residuos estandarizados NO tienen distribución Normal}\\
+\end{split}
+\end{equation}
+```
+
 ```{r}
 r_e = rstandard(modelo) # residuos estandarizados
 shapiro.test(x = r_e)
 ```
 
-Haciendo uso de la prueba de hipótesis de Shapiro, se obtiene un valor-p de 0.837, por lo que, considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar $H_0$, es decir, se asume normalidad de los residuos.
+El valor-p de 0.8738 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechaza la hipótesis nula, es decir, se asume que los residuos tienen distribución normal.Considerando una confianza del 95%.
 
 3.  **Homocedasticidad**
+
+```{=tex}
+\begin{equation}
+\notag
+\begin{split}
+H_0&: \text{Los residuos tienen varianza constante}\\
+H_1&: \text{Los residuos NO tienen varianza constante}\\
+\end{split}
+\end{equation}
+```
 
 ```{r fig.width=6, fig.height=3, fig.align='center'}
 df$Valores.ajustados = modelo$fitted.values
@@ -1579,15 +1603,26 @@ No se evidencia patrones en la amplitud de los residuos, por lo que se asume hom
 bptest(formula = Mineria ~ Ano + Industria, data = df)
 ```
 
-Con un valor-p de 0.482 y, considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar $H_0$, es decir, se refuerza lo concluido mediante el gráfico.
+El valor-p de 0.482 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tiene varianza constante. Considerando una confianza del 95%.
 
 4.  **Independencia**
+
+```{=tex}
+\begin{equation}
+\notag
+\begin{split}
+H_0&: \text{Autocorrelación de los residuos es igual a 0}\\
+H_1&: \text{Autocorrelación de los residuos es distinta de 0}\\
+\end{split}
+\end{equation}
+```
 
 ```{r}
 dwtest(formula = Mineria ~ Ano + Industria, data = df, alternative = "two.sided")
 ```
 
-Con un valor-p de 0.0009 y, considerando una confianza del 95%, existe suficiente evidencia estadística para rechazar $H_0$, por lo que se asume que los residuos no son independientes.
+El valor-p de 0.0009 es menor o igual a la significancia de 0.05, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos no son independientes. Considerando una confianza del 95%.
+
 :::
 :::
 
@@ -1770,7 +1805,8 @@ ggplot(data = df_grafico, aes(x = x, y = y)) + geom_point() +
   geom_line(aes(x = x, y = Confianza_upper, color = "IC"), linetype = 2) +
   geom_line(aes(x = x, y = Prediccion_lower, color = "IP"), linetype = 2) +
   geom_line(aes(x = x, y = Prediccion_upper, color = "IP"), linetype = 2) +
-  labs(x = "Temperatura" , y = "Ozono", color = "Intervalos")
+  labs(x = "Temperatura" , y = "Ozono", color = "Intervalos",
+       title = "Intervalo de confianza (IC) y predicción (IP)")
 ```
 
 Ahora, para responder a preguntas como ¿cuál sería la concentración de ozono a una temperatura de 90.34 grados Fahrenheit? se debe reportar el intervalo de predicción, el cual, en R, es al 95% de confianza por defecto.
@@ -1816,14 +1852,14 @@ El conjunto de datos ([Empleo+femenino.csv](https://raw.githubusercontent.com/Df
 
 A continuación:
 
-1.  Ajuste en R un modelo mediante la metodología forward para estudiar la variable PerFemEmploy.
+1.  Ajuste en R un modelo mediante la metodología forward para estudiar la variable *PerFemEmploy.*
 2.  Escriba el modelo poblacional.
 3.  Escriba el modelo ajustado.
 4.  Escriba la ecuación de regresión ajustada.
 5.  Interprete los parámetros estimados.
 6.  Estudie las pruebas de hipótesis de no nulidad (individual y conjunta) utilizando una confianza del 95%.
-7.  Determine el intervalo de predicción de la variable PerFemEmploy asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 37.543 en el año 2020. Interprete.
-8.  Determine el intervalo de confianza del valor promedio de la variable PerFemEmploy asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 45.121 en el año 2021. Interprete.
+7.  Determine el intervalo de predicción de la variable *PerFemEmploy* asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 37.543 en el año 2020. Interprete.
+8.  Determine el intervalo de confianza del valor promedio de la variable *PerFemEmploy* asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 45.121 en el año 2021. Interprete.
 9.  Interprete el $R^2$ ajustado.
-10. Estudie los supuestos del modelo utilizando una confianza del 95%.
+10. Estudie los supuestos del modelo, utilizando una confianza del 95%.
 :::

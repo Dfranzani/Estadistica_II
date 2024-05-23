@@ -1036,8 +1036,8 @@ R^2 = \frac{\text{SCReg}}{\text{SCT}}
 <ol style="list-style-type: decimal">
 <li>Ajuste un modelo para estudiar la proporción de logro a partir el puntaje NEM.</li>
 <li>Ajuste un modelo para estudiar la proporción de logro a partir el puntaje PTU de la prueba de Lenguaje.</li>
-<li>Obtenga de manera manual el estadístico F asociado a la prueba de hipótesis de nulidad conjunta de cada modelo. Interprete.</li>
-<li>Compare los ajustes de ambos modelos utilizando el error estándar residual y el <span class="math inline">\(R^2\)</span>. Obtenga las métricas de manera manual. Interprete.</li>
+<li>Obtenga de manera manual el estadístico F asociado a la prueba de hipótesis de nulidad conjunta de cada modelo. Interprete, utilizando una confianza del 95%.</li>
+<li>Compare los ajustes de ambos modelos utilizando el error estándar residual y el <span class="math inline">\(R^2\)</span>, obteniendo las métricas de manera manual. Interprete.</li>
 </ol>
 </div>
 </div>
@@ -1081,7 +1081,7 @@ r_i = \frac{e_i}{\sqrt{\text{MCE}}}
 ## 
 ## data:  residuos_estandarizados
 ## W = 0.96765, p-value = 0.1177</code></pre>
-<p>Considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, ya que el valor - p es mayor a 0.05. Por lo tanto, se asume normalidad en los residuos.</p>
+<p>Considerando una confianza del 95%, el valor-p de 0.1177 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos (estandarizados) tienen distribución normal.</p>
 <p>En caso de que la cantidad de datos sea mayor a 5000, el comando <code>shapiro.test()</code> fallará. En su lugar, es posible usar el comando <code>ks.test()</code>, un ejemplo con los residuos del ejemplo anterior es</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="regresión-lineal.html#cb142-1" tabindex="-1"></a><span class="fu">ks.test</span>(residuos_estandarizados, <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 
@@ -1125,7 +1125,7 @@ H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
 ## 
 ## data:  Valor.Patrimonio ~ Valor.Cuota
 ## BP = 0.30064, df = 1, p-value = 0.5835</code></pre>
-<p>Considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, ya que el valor - p es superior a 0.05. Por lo tanto, se asume que los residuos tienen varianza constante (Homocedasticidad).</p>
+<p>Considerando una confianza del 95%, el valor-p de 0.5835 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tienen varianza constante (homocedasticidad).</p>
 </div>
 <div id="independencia" class="section level4 hasAnchor" number="3.2.5.4">
 <h4><span class="header-section-number">3.2.5.4</span> Independencia<a href="regresión-lineal.html#independencia" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1134,7 +1134,7 @@ H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
 \notag
 \begin{split}
 H_0&amp;: \text{Autocorrelación de los residuos es igual a 0}\\
-H_1&amp;: \text{AutoCorrelación de los residuos es distinta de 0}\\
+H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
 \end{split}
 \end{equation}\]</span>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="regresión-lineal.html#cb149-1" tabindex="-1"></a><span class="co"># Prueba de Durbin Watson</span></span>
@@ -1147,14 +1147,16 @@ H_1&amp;: \text{AutoCorrelación de los residuos es distinta de 0}\\
 ## data:  Valor.Patrimonio ~ Valor.Cuota
 ## DW = 0.080415, p-value &lt; 2.2e-16
 ## alternative hypothesis: true autocorrelation is not 0</code></pre>
-<p>Considerando una confianza del 95%, existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, ya que el valor - p es mejor a 0.05. Por lo tanto, se asume que los residuos no son independientes.</p>
+<p>Considerando una confianza del 95%, el valor-p de <span class="math inline">\(2.2 \times 10^{-16}\)</span> es menor o igual a la significancia de 0.05, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos no son independientes (autocorrelación distinta de 0).</p>
 <p><strong>Conclusión</strong>: En resumen, se han cumplido 3 de los 4 supuestos planteados. Esto es muy común que suceda en la realidad, además de existir diversos factores que influyen en los resultados vistos.</p>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-61" class="exercise"><strong>Ejercicio 3.18  </strong></span>Utilizando la base de datos <a href="regresión-lineal.html#Ingreso">Ingreso</a>, ajuste el modelo:</p>
 <p><span class="math display">\[\widehat{Y}_{\text{Logro}} = \widehat{\beta}_0 + \widehat{\beta}_1X_{\text{NEM}}\]</span>
-Luego,
-1. Escriba la ecuación de regresión ajustada.
-2. Verifique los supuestos del modelo.</p>
+Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Verifique los supuestos del modelo, utilizando una confianza del 95% cuando corresponda.</li>
+</ol>
 </div>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-62" class="exercise"><strong>Ejercicio 3.19  </strong></span>Utilizando la base de datos <a href="regresión-lineal.html#Pacientes">Pacientes</a>, elabore un modelo para estudiar la variable <em>oldpeak</em> a través de la variable <em>chol</em>. Estudie los supuestos del modelo, utilizando una confianza del 92%.</p>
@@ -1191,7 +1193,7 @@ Luego,
 Y = X\beta + \epsilon
 \tag{3.17}
 \end{equation}\]</span>
-<p>con <span class="math inline">\(\epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)\)</span> independientes. Es detalles de las matrices es el siguiente,</p>
+<p>con <span class="math inline">\(\epsilon \sim N(0,\sigma^2I)\)</span> independientes. Es detalles de las matrices es el siguiente,</p>
 <span class="math display" id="eq:multiple2">\[\begin{equation}
 \begin{pmatrix}
 y_1\\
@@ -1223,7 +1225,7 @@ y_n
 \end{equation}\]</span>
 <p>Una expresión equivalente es:</p>
 <span class="math display" id="eq:multiple3">\[\begin{equation}
-y_i = \beta_0 + \sum_{j=1}^k x_{ij}\beta_j +\epsilon_i\text{, } i = 1,\dots,n \text{, } \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2)
+y_i = \beta_0 + \sum_{j=1}^k x_{ij}\beta_j +\epsilon_i\text{, } i = 1,\dots,n \text{, } \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 \tag{3.19}
 \end{equation}\]</span>
 <div id="estimadores-de-mínimos-cuadrados" class="section level3 hasAnchor" number="3.3.1">
@@ -1359,7 +1361,7 @@ Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Año}} + \beta_2X_{\text{
 ##  $ Mineria  : num  96.5 92.5 92 82.2 94 91.2 92.5 85.9 87.5 81.4
 ##  $ Industria: num  99.6 93.2 101.9 93.2 100.8 ...</code></pre>
 <p>Suponiendo que, se desea estudiar el Imacec de Minería a través del Imacec de Industria y el mes de medición, el modelo poblacional es el siguiente:</p>
-<p><span class="math display">\[Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = febrero}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)\]</span></p>
+<p><span class="math display">\[Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = febrero}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\]</span></p>
 <p>La covariable <span class="math inline">\(I_{\text{Mes = febrero}}\)</span> corresponde a una indicatriz, esta función vale 1 para el mes que se especifica (febrero en este caso) y 0 en otro caso (más detalles en el anexo <a href="funciones.html#funcion-indicatriz">C.1</a>). El valor del <code>Mes</code> que no se observa en el modelo es llamado <strong>categoría de referencia</strong>. Ajustando el modelo en R se obtiene el siguiente resumen.</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="regresión-lineal.html#cb162-1" tabindex="-1"></a>modelo_con_categorias <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Industria <span class="sc">+</span> Mes, <span class="at">data =</span> extracto) </span>
 <span id="cb162-2"><a href="regresión-lineal.html#cb162-2" tabindex="-1"></a><span class="fu">summary</span>(modelo_con_categorias)</span></code></pre></div>
@@ -1389,14 +1391,14 @@ Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Año}} + \beta_2X_{\text{
 \notag
 \begin{split}
 Y_{\text{Imacec Minería}} = &amp;\beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = abril}} + \\
-&amp;\beta_3I_{\text{Mes = mayo}} + \epsilon, \epsilon \sim N(0,\sigma^2I)\\
+&amp;\beta_3I_{\text{Mes = mayo}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\\
 \end{split}
 \end{equation}\]</span>
 <p>Se puede observar, que dado el modelo poblacional planteado, la categoría de referencia de la variable Mes corresponde a marzo.</p>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-66" class="exercise"><strong>Ejercicio 3.23  </strong></span>Utilizando la base de datos <a href="regresión-lineal.html#Pacientes">Pacientes</a>, ajuste el siguiente modelo.</p>
 <p><span class="math display">\[
-Y_{\text{Logro}} = \beta_0 + \beta_1I_{\text{Sexo = Hombre}} + \beta_2X_{\text{NEM}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
+Y_{\text{Logro}} = \beta_0 + \beta_1I_{\text{Sexo = Hombre}} + \beta_2X_{\text{NEM}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 \]</span>
 Luego,</p>
 <ol style="list-style-type: decimal">
@@ -1415,8 +1417,9 @@ Luego,</p>
 </ul>
 <p>Ajuste el siguiente modelo:</p>
 <p><span class="math display">\[
-Y_{\text{uptake}} = \beta_0 + \beta_1I_{\text{Type = Mississippi}} + \beta_2I_{\text{Treatment = chilled}} +  \beta_3X_{\text{conc}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
-\]</span> Luego,</p>
+Y_{\text{uptake}} = \beta_0 + \beta_1I_{\text{Type = Mississippi}} + \beta_2I_{\text{Treatment = chilled}} +  \beta_3X_{\text{conc}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\]</span>
+Luego,</p>
 <ol style="list-style-type: decimal">
 <li>Escriba la ecuación de regresión ajustada.</li>
 <li>Interprete los betas estimados.</li>
@@ -1494,7 +1497,7 @@ F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-2},
 <p>Elimine los datos faltantes de la base de datos utilizando el comando <code>na.omit()</code>.</p>
 <p>Considere el siguiente modelo</p>
 <p><span class="math display">\[
-Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} + \beta_3X_{\text{Wind}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
+Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} + \beta_3X_{\text{Wind}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 \]</span></p>
 <p>Luego,</p>
 <ol style="list-style-type: decimal">
@@ -1549,7 +1552,7 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <p>Por otro lado, aparece un nuevo fenómeno llamado colinealidad entre las variables predictoras (multicolinealidad). La colinealidad indica que las covariables están correlacionadas entre si (correlación lineal). Es normal y esperable que esto suceda en alguna medida con las covariables de una base de datos. El problema surge, cuando hay como mínimo dos variables cuya correlación es fuerte, ya que esto provoca que ambas variables traten de explicar la misma “información” (variabilidad) de la variable respuesta. En temas posteriores, se abordarán técnicas para evitar la ocurrencia de este fenómeno.</p>
 <div class="blackbox">
 <div class="example">
-<p><span id="exm:unlabeled-div-69" class="example"><strong>Ejemplo 3.6  </strong></span>Utilizando el modelo ajustado en el ejemplo <a href="regresión-lineal.html#exm:MultipleManual">3.5</a>, verifique los supuestos para la regresión construida.</p>
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Ejemplo 3.6  </strong></span>Utilizando el modelo ajustado en el ejemplo <a href="regresión-lineal.html#exm:MultipleManual">3.5</a>, verifique los supuestos para la regresión construida, utilizando una confianza del 95%.</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="regresión-lineal.html#cb168-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><strong>Linealidad</strong></li>
@@ -1563,6 +1566,13 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Normalidad</strong></li>
 </ol>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Los residuos estandarizados tienen distribución Normal}\\
+H_1&amp;: \text{Los residuos estandarizados NO tienen distribución Normal}\\
+\end{split}
+\end{equation}\]</span>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="regresión-lineal.html#cb170-1" tabindex="-1"></a>r_e <span class="ot">=</span> <span class="fu">rstandard</span>(modelo) <span class="co"># residuos estandarizados</span></span>
 <span id="cb170-2"><a href="regresión-lineal.html#cb170-2" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="at">x =</span> r_e)</span></code></pre></div>
 <pre><code>## 
@@ -1570,10 +1580,17 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 ## 
 ## data:  r_e
 ## W = 0.98827, p-value = 0.8738</code></pre>
-<p>Haciendo uso de la prueba de hipótesis de Shapiro, se obtiene un valor-p de 0.837, por lo que, considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, es decir, se asume normalidad de los residuos.</p>
+<p>El valor-p de 0.8738 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechaza la hipótesis nula, es decir, se asume que los residuos tienen distribución normal.Considerando una confianza del 95%.</p>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Homocedasticidad</strong></li>
 </ol>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Los residuos tienen varianza constante}\\
+H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
+\end{split}
+\end{equation}\]</span>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="regresión-lineal.html#cb172-1" tabindex="-1"></a>df<span class="sc">$</span>Valores.ajustados <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values</span>
 <span id="cb172-2"><a href="regresión-lineal.html#cb172-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Valores.ajustados, <span class="at">y =</span> r_e)) <span class="sc">+</span></span>
 <span id="cb172-3"><a href="regresión-lineal.html#cb172-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
@@ -1586,10 +1603,17 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 ## 
 ## data:  Mineria ~ Ano + Industria
 ## BP = 1.4598, df = 2, p-value = 0.482</code></pre>
-<p>Con un valor-p de 0.482 y, considerando una confianza del 95%, no existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, es decir, se refuerza lo concluido mediante el gráfico.</p>
+<p>El valor-p de 0.482 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tiene varianza constante. Considerando una confianza del 95%.</p>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Independencia</strong></li>
 </ol>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Autocorrelación de los residuos es igual a 0}\\
+H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
+\end{split}
+\end{equation}\]</span>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="regresión-lineal.html#cb175-1" tabindex="-1"></a><span class="fu">dwtest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Durbin-Watson test
@@ -1597,7 +1621,7 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 ## data:  Mineria ~ Ano + Industria
 ## DW = 1.1949, p-value = 0.0009229
 ## alternative hypothesis: true autocorrelation is not 0</code></pre>
-<p>Con un valor-p de 0.0009 y, considerando una confianza del 95%, existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, por lo que se asume que los residuos no son independientes.</p>
+<p>El valor-p de 0.0009 es menor o igual a la significancia de 0.05, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos no son independientes. Considerando una confianza del 95%.</p>
 </div>
 </div>
 <div class="exercise">
@@ -1798,7 +1822,8 @@ H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados
 <span id="cb187-11"><a href="regresión-lineal.html#cb187-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_upper, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb187-12"><a href="regresión-lineal.html#cb187-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_lower, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb187-13"><a href="regresión-lineal.html#cb187-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_upper, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb187-14"><a href="regresión-lineal.html#cb187-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Ozono&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Intervalos&quot;</span>)</span></code></pre></div>
+<span id="cb187-14"><a href="regresión-lineal.html#cb187-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Ozono&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Intervalos&quot;</span>,</span>
+<span id="cb187-15"><a href="regresión-lineal.html#cb187-15" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Intervalo de confianza (IC) y predicción (IP)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:IC-IP"></span>
 <img src="est2+inferencia_files/figure-html/IC-IP-1.png" alt="Intervalo de confianza y predicción" width="576" />
 <p class="caption">
@@ -1841,16 +1866,16 @@ Figura 3.3: Intervalo de confianza y predicción
 </ul>
 <p>A continuación:</p>
 <ol style="list-style-type: decimal">
-<li>Ajuste en R un modelo mediante la metodología forward para estudiar la variable PerFemEmploy.</li>
+<li>Ajuste en R un modelo mediante la metodología forward para estudiar la variable <em>PerFemEmploy.</em></li>
 <li>Escriba el modelo poblacional.</li>
 <li>Escriba el modelo ajustado.</li>
 <li>Escriba la ecuación de regresión ajustada.</li>
 <li>Interprete los parámetros estimados.</li>
 <li>Estudie las pruebas de hipótesis de no nulidad (individual y conjunta) utilizando una confianza del 95%.</li>
-<li>Determine el intervalo de predicción de la variable PerFemEmploy asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 37.543 en el año 2020. Interprete.</li>
-<li>Determine el intervalo de confianza del valor promedio de la variable PerFemEmploy asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 45.121 en el año 2021. Interprete.</li>
+<li>Determine el intervalo de predicción de la variable <em>PerFemEmploy</em> asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 37.543 en el año 2020. Interprete.</li>
+<li>Determine el intervalo de confianza del valor promedio de la variable <em>PerFemEmploy</em> asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 45.121 en el año 2021. Interprete.</li>
 <li>Interprete el <span class="math inline">\(R^2\)</span> ajustado.</li>
-<li>Estudie los supuestos del modelo utilizando una confianza del 95%.</li>
+<li>Estudie los supuestos del modelo, utilizando una confianza del 95%.</li>
 </ol>
 </div>
 
