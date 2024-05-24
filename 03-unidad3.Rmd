@@ -1114,9 +1114,9 @@ La base de datos [*terremotos.csv*](https://raw.githubusercontent.com/Dfranzani/
 
 Ajuste los siguientes modelos:
 
--   $Y_{\text{Magnitud}} = \beta_0 + \beta_1X_{\text{Profundidad}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2)$
+-   $Y_{\text{Magnitud}} = \beta_0 + \beta_1X_{\text{Profundidad}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)$
 
--   $Y_{\text{Magnitud}} = \beta_0 + \beta_1X_{\text{Latitud}} + \epsilon, \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2)$
+-   $Y_{\text{Magnitud}} = \beta_0 + \beta_1X_{\text{Latitud}} + \epsilon, \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)$
 
 Luego, para cada modelo:
 
@@ -1222,7 +1222,7 @@ Los modelos poblacional y ajustado son:
 ```{=tex}
 \begin{equation}
 \notag
-Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Año}} + \beta_2X_{\text{Imacec Industria}} + \epsilon \text{, } \epsilon \overset{\text{iid}}{\sim} N(0,\sigma^2I)
+Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Año}} + \beta_2X_{\text{Imacec Industria}} + \epsilon \text{, } \epsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
 \end{equation}
 ```
 

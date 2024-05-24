@@ -5,7 +5,6 @@
 
 \section*{Parte 1}
 
-
 Sean $X$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal simple:
 
 $$
@@ -25,112 +24,127 @@ Demuestre que:
 
 \section*{Parte 2}
 
-Los dos conjuntos de datos están relacionados con las variantes tinto \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv}{(link)} y blanco \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-white.csv}{(link)} del vino portugués ``Vinho Verde''. Debido a cuestiones de privacidad y logística, sólo están disponibles variables fisicoquímicas (entradas) y sensoriales (salidas) (por ejemplo, no hay datos sobre tipos de uva, marca de vino, precio de venta del vino, etc.).
+La siguiente base de datos extraída del Banco Central, contiene datos sobre indicadores de producción de electricidad, gas y agua. La generación eléctrica corresponde a la medición mensual de la generación real de las centrales generadoras del sistema eléctrico nacional. Por otro lado, la Producción de Electricidad, Gas y Agua (IPEGA) corresponde a un índice coyuntural cuyo objetivo es estimar, en términos de volumen, la evolución mensual de la actividad productiva de este sector.
 
-Las columnas de las bases de datos son las siguientes:
+Las columnas de la base de datos son las siguientes:
 
 \begin{itemize}
-\item \texttt{fixed.acidity} ($g/L$): cantidad de la mayoría de los ácidos involucrados con el vino o fijos o no volátiles (no se evaporan fácilmente).
-\item \texttt{volatile.acidity} ($g/L$): cantidad de ácido acético en el vino, que en niveles demasiado altos puede provocar un sabor desagradable a vinagre
-\item \texttt{citric.acid} ($g/L$): cantidad de ácido cítrico, que se encuentra en pequeñas cantidades, el cual, puede añadir ``frescura'' y sabor a los vinos.
-\item \texttt{residual.sugar} ($g/L$): cantidad de azúcar que queda después de que se detiene la fermentación. Es raro encontrar vinos con menos de 1 gramo/litro y los vinos con más de 45 gramos/litro se consideran dulces.
-\item \texttt{chlorides} ($g/L$): cantidad de sal en el vino.
-\item \texttt{free.sulfu.dioxide} ($ppm$): cantidad de la forma libre de SO2 existe en equilibrio entre el SO2 molecular (como gas disuelto) y el ion bisulfito; previene el crecimiento microbiano y la oxidación del vino.
-\item \texttt{total.sulfur.dioxide} ($ppm$): cantidad de formas libres y ligadas de SO2; En concentraciones bajas, el SO2 es prácticamente indetectable en el vino, pero en concentraciones de SO2 libre superiores a 50 ppm, el SO2 se vuelve evidente en la nariz y el sabor del vino.
-\item \texttt{density} ($g/cm^3$): densidad del agua dependiendo del porcentaje de alcohol y contenido de azúcar.
-\item \texttt{pH}: describe qué tan ácido o básico es un vino en una escala de 0 (muy ácido) a 14 (muy básico); la mayoría de los vinos tienen entre 3 y 4 en la escala de pH.
-\item \texttt{sulphates} ($mg/L$): cantidad de aditivo del vino que puede contribuir a los niveles de dióxido de azufre (S02), que actúa como antimicrobiano y antioxidante.
-\item \texttt{alcohol} (ABV, Alcohol por volumen): el porcentaje de alcohol del vino.
-\item \texttt{quality}: variable de salida (basada en datos sensoriales, puntuación entre 0 y 10), un número cercano a 10 indica un vino de mayor calidad.
+\item \texttt{Periodo}: Año, Mes y Día (yyyy-mm-dd) de medición.
+\item \texttt{Generacion}: Generación de energía eléctrica, CDEC (GWh).
+\item \texttt{Indice}: Índice de Producción de Electricidad, Gas y Agua, INE (2018=100).
+\item \texttt{Electricidad}: Índice de Producción de Electricidad, INE (2018=100).
+\item \texttt{Gas}: Índice de Producción de Gas, INE (2018=100).
+\item \texttt{Agua}: Índice de Producción de Agua, INE (2018=100).
+\item \texttt{IndiceDesestacionalizado}: Índice de Producción de Electricidad, Gas y Agua, desestacionalizado, INE (2018=100).
 \end{itemize}
 
-A continuación, se utiliza la base de datos asociada a los datos del vino tinto para los enunciados siguientes.
-
 <<echo=FALSE>>=
-data = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-2/winequality-red.csv", sep = ";")
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Indicadores%20sectoriales%20de%20energ%C3%ADa.csv")
 @
 
 \begin{enumerate}
 
-% \item Interprete las siguiente salidas de código respecto a la relación entre las variables de la base de datos.
-% 
-% <<>>=
-% cov(data$citric.acid, data$alcohol)
-% cor(data$pH, data$citric.acid)
-% @
+\item Considere el siguiente modelo de regresión lineal simple:
 
+$$
+Y_{\text{Gas}} = \beta_0 + \beta_1X_{\text{Agua}} + \epsilon, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2) \text{ ,} i = 1, \ldots, n = 74
+$$
 
-\item La siguiente salida de código está asociada a un modelo de regresión lineal. A continuación,
+Utilizando los datos que se muestran a continuación, calcule lo siguiente: $R^2$, Error estándar residual, $F_0$ de la prueba de no nulidad conjunta y los EMC de $\beta_0$ y $\beta_1$. Trabaje con 4 decimales.
+
+<<echo=FALSE, results='asis'>>=
+library(kableExtra)
+
+modelo = lm(Gas ~ Agua, data = datos)
+
+sum.y.gorro = sum(modelo$fitted.values)
+sum.y.gorro2 = sum(modelo$fitted.values^2)
+sum.y.por.y.gorro = sum(datos$Gas*modelo$fitted.values)
+sum.y2 = sum(datos$Gas^2)
+sum.x.por.y = sum(datos$Agua*datos$Gas)
+sum.x = sum(datos$Agua)
+sum.y = sum(datos$Gas)
+sum.x2 = sum(datos$Agua^2)
+
+mat_latex = function(x,y){
+	return(paste("$", x, round(y, 2), "$"))
+}
+
+tabla = c(
+  mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i = ", sum.y.gorro),
+  mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i^2 = ", sum.y.gorro2),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y\\widehat{y}_i = ", sum.y.por.y.gorro),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_i^2 = ", sum.y2),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_ix_i = ", sum.x.por.y),
+  mat_latex("\\displaystyle\\sum_{i=1}^n x_i = ", sum.x),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_i = ", sum.y),
+  mat_latex("\\displaystyle\\sum_{i=1}^n x_i^2 = ", sum.x2)
+)
+
+tabla = structure(tabla, .Dim = c(2,4))
+
+cat(kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex") |>
+  kable_styling(full_width = FALSE,
+                bootstrap_options = c("condensed"),
+                latex_options = c("HOLD_position", "scale_down")))
+@
+
+\item La siguiente salida de código está asociada a un modelo de regresión lineal. 
+
+<<echo=F>>=
+modelo = lm(Electricidad ~ Gas, data = datos)
+summary(modelo)
+@
+
+A continuación,
 
 \begin{enumerate}
   \item Escriba la ecuación de regresión verdadera.
   \item Escriba la ecuación de regresión ajustada.
   \item Interprete de los parámetros estimados.
-  \item Estudie de las hipótesis de no nulidad de cada parámetro por separado. Utilizando una confianza del 95\%. Escriba las hipótesis involucradas.
+  \item Estudie de las hipótesis de no nulidad de cada parámetro y conjunta. Utilice una confianza del 95\% y escriba las hipótesis involucradas.
   \item Interprete del $R^2$ del modelo.
 \end{enumerate}
 
-<<echo=F>>=
-modelo = lm(pH ~ citric.acid, data = data)
-summary(modelo)
-@
+\item Seleccione los gráficos y/o salidas de R necesarios para estudiar los supuestos del modelo del enunciado anterior. Escriba las hipótesis involucradas cuando corresponda e, interprete utilizando una confianza del 95\%. Justifique la elección de gráficos y códigos a utilizar. Trabaje con 4 decimales.
 
-
-\item Seleccione los gráficos y/o salidas de R necesarios para estudiar los supuestos del modelo del enunciado anterior. Escriba las hipótesis involucradas cuando corresponda e, interprete utilizando una confianza del 95\%. Justifique la elección de gráficos y códigos a utilizar.
-
-<<echo=FALSE, fig.width=6, fig.height=3>>=
-data$ajustados = modelo$fitted.values
-data$residuos = residuals(modelo)
-data$residuos_estandarizados = rstandard(modelo)
+<<echo=FALSE, fig.width=6, fig.height=3, fig.align='center'>>=
+datos$ajustados = modelo$fitted.values
+datos$residuos = residuals(modelo)
+datos$residuos_estandarizados = rstandard(modelo)
 library(gridExtra)
 library(ggplot2)
 library(lmtest)
-g1 = ggplot(data = data, aes(x = citric.acid, y = ajustados)) + geom_point(size = 0.5, alpha = 0.5) +
+g1 = ggplot(data = datos, aes(x = Gas, y = ajustados)) + geom_point(size = 1, alpha = 0.8) +
   labs(y = "Valores ajustados", title = "Gráfico 1")
-g2 = ggplot(data = data, aes(x = citric.acid, y = pH)) + geom_point(size = 0.5, alpha = 0.5) + 
+g2 = ggplot(data = datos, aes(x = Gas, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
   labs(title = "Gráfico 2")
-g3 = ggplot(data = data, aes(x = residuos, y = pH)) + geom_point(size = 0.5, alpha = 0.5) + 
+g3 = ggplot(data = datos, aes(x = residuos, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
   labs(title = "Gráfico 3")
-g4 = ggplot(data = data, aes(x = residuos, y = citric.acid)) + geom_point(size = 0.5, alpha = 0.5) + 
+g4 = ggplot(data = datos, aes(x = residuos, y = Gas)) + geom_point(size = 1, alpha = 0.5) + 
   labs(title = "Gráfico 4")
 grid.arrange(g1,g2,g3,g4)
 @
 
-% \newpage
+\newpage
 
 <<echo=FALSE, warning=FALSE>>=
-ks.test(residuals(modelo), "pnorm",0 ,1)
 shapiro.test(x = resid(modelo))
 ks.test(rstandard(modelo), "pnorm",0 ,1)
 shapiro.test(x = modelo$fitted.values)
 @
 
 <<echo=FALSE>>=
-bptest(formula = citric.acid ~ pH, data = data)
-bptest(formula = pH ~ citric.acid + alcohol, data = data)
-bptest(formula = pH ~ fixed.acidity, data = data)
-bptest(formula = pH ~ citric.acid, data = data)
+bptest(formula = Electricidad ~ Gas, data = datos)
+bptest(formula = Electricidad ~ Generacion, data = datos)
+bptest(formula = Electricidad ~ Indice, data = datos)
 @
 
 <<echo=FALSE>>=
-dwtest(formula = citric.acid ~ pH, data = data, alternative = "greater")
-dwtest(formula = citric.acid ~ alcohol, data = data, alternative = "less")
-dwtest(formula = pH ~ citric.acid, data = data, alternative = "two.sided")
-dwtest(formula = pH ~ citric.acid, data = data, alternative = "greater")
+dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "greater")
+dwtest(formula = Gas ~ Electricidad, data = datos, alternative = "two.sided")
+dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "two.sided")
 @
-
-
-% \item A continuación, comparé el desempeño de ambos modelos respecto a la variable respuesta estudiada, para ello, utilice el coeficiente de determinación y el error estándar residual.
-% 
-% <<echo=F>>=
-% m1 = lm(alcohol ~ chlorides, data = data)
-% summary(m1)
-% @
-% 
-% <<echo=F>>=
-% m1 = lm(alcohol ~ sulphates, data = data)
-% summary(m1)
-% @
 
 \end{enumerate}
 

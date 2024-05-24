@@ -68,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -323,11 +323,9 @@ P\left( Z_{\alpha/2} &lt; Z &lt; Z_{1-\alpha/2}\right) = 1-\alpha
 <p><span class="math display">\[Z_{\alpha/2} = x : P(Z \leq x) = \alpha/2\]</span>
 <span class="math display">\[Z_{1-\alpha/2} = x : P(Z \leq x) = 1-\alpha/2\]</span></p>
 <pre><code>## Warning in geom_segment(aes(x = -2, y = 0, xend = -2, yend = dnorm(-2, 0, : All aesthetics have length 1, but the data has 601 rows.
-## ℹ Please consider using `annotate()` or provide this layer with data containing
-##   a single row.</code></pre>
+## ℹ Please consider using `annotate()` or provide this layer with data containing a single row.</code></pre>
 <pre><code>## Warning in geom_segment(aes(x = 2, y = 0, xend = 2, yend = dnorm(2, 0, 1)), : All aesthetics have length 1, but the data has 601 rows.
-## ℹ Please consider using `annotate()` or provide this layer with data containing
-##   a single row.</code></pre>
+## ℹ Please consider using `annotate()` or provide this layer with data containing a single row.</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalestandar"></span>
 <img src="est2+inferencia_files/figure-html/normalestandar-1.png" alt="Curva Z, Normal Estándar" width="384" />
 <p class="caption">
@@ -355,7 +353,7 @@ P\left( \overline{X} - Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}} &lt; \mu &lt; \over
 <div id="intervalo-de-confianza-para-la-media-de-una-distribución-normal-y-varianza-poblacional-conocida" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media-de-una-distribución-normal-y-varianza-poblacional-conocida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div style="border: 0px; overflow-x: auto; ">
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-8">Tabla 1.1: </span>Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida
 </caption>
@@ -433,7 +431,7 @@ Acotado por la izquierda
 <div id="intervalo-de-confianza-para-la-media-de-una-distribución-normal-y-varianza-poblacional-desconocida" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media-de-una-distribución-normal-y-varianza-poblacional-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div style="border: 0px; overflow-x: auto; ">
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-10">Tabla 1.2: </span>Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida
 </caption>
@@ -522,7 +520,7 @@ Acotado por la izquierda
 <div id="intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-conocidas" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-conocidas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div style="border: 0px; overflow-x: auto; ">
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-12">Tabla 1.3: </span>Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas
 </caption>
@@ -609,7 +607,7 @@ No existe un comando en R que permita generar este intervalo de confianza, por l
 <div id="intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-e-iguales" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-e-iguales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div style="border: 0px; overflow-x: auto; ">
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-15">Tabla 1.4: </span>Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales
 </caption>
@@ -699,7 +697,7 @@ k &amp;= n_{X_1} + n_{X_2}-2 = 58 \text{, } t_{0.995, 58} = 2.66\\
 <div id="intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-y-distintas" class="section level3 hasAnchor" number="1.3.3">
 <h3><span class="header-section-number">1.3.3</span> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-y-distintas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div style="border: 0px; overflow-x: auto; ">
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-16">Tabla 1.5: </span>Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas
 </caption>
