@@ -220,7 +220,7 @@ Luego, derivando respecto a $\beta$.
 ```{=tex}
 \begin{equation}
 \begin{split}
-\frac{S(\beta)}{\partial \beta} &= - Y^tX - X^tY + 2X^tX\beta\\
+\frac{S(\beta)}{\partial \beta} &= - X^tY - X^tY + 2X^tX\beta\\
 &= - 2X^tY + 2X^tX\beta\\
 \end{split}
 (\#eq:betasmultiple2-demostracion)
