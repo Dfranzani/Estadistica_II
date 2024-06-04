@@ -15,8 +15,8 @@ Demuestre que:
 
 \begin{enumerate}
   % \item El estimador de mínimos cuadrados de $\beta_1$ es $\hat{\beta}_1 = \displaystyle\frac{\sum_{i=1}^n(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n(X_i - \bar{X})^2}$.
-  \item El estimador de mínimos cuadrados de $\beta_0$ es $\widehat{\beta}_0 = \bar{Y} - \widehat{\beta}_1\bar{X}$.
-  \item $Y = \bar{Y} + r_{XY}\displaystyle\frac{S_Y}{S_X}(X-\bar{X})$
+  \item El estimador de mínimos cuadrados de $\beta_0$ es $\widehat{\beta}_0 = \bar{Y} - \beta_1\bar{X}$.
+  \item $\widehat{Y} = \bar{Y} + r_{XY}\displaystyle\frac{S_Y}{S_X}(X-\bar{X})$
   \item $R^2 = 1 - \displaystyle\frac{\text{SCE}}{\text{SCT}}$
   \item $R^2 = r_{XY}^2$
   % \item $\bar{R}^2 = 1 - \displaystyle\frac{(1-R^2)(n-1)}{n-p-1}$
@@ -73,7 +73,7 @@ mat_latex = function(x,y){
 tabla = c(
   mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i = ", sum.y.gorro),
   mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i^2 = ", sum.y.gorro2),
-  mat_latex("\\displaystyle\\sum_{i=1}^n y\\widehat{y}_i = ", sum.y.por.y.gorro),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_i\\widehat{y}_i = ", sum.y.por.y.gorro),
   mat_latex("\\displaystyle\\sum_{i=1}^n y_i^2 = ", sum.y2),
   mat_latex("\\displaystyle\\sum_{i=1}^n y_ix_i = ", sum.x.por.y),
   mat_latex("\\displaystyle\\sum_{i=1}^n x_i = ", sum.x),
