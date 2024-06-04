@@ -1,0 +1,43 @@
+\begin{center}
+{\bf \Large{Taller de práctica 2}}\\Prueba de hipótesis para la media con \\ varianza poblacional conocida, y varianza poblacional desconocida\\(sección 2.2)
+\end{center}
+
+\begin{enumerate}
+\item Considere la base de datos del \texttt{imacec.csv} (\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv}{link}), la cual contiene las siguiente columnas.
+  
+\begin{itemize}
+  \item \texttt{Ano}: indica el año de medición.
+  \item \texttt{Mes}: indica el mes de medición.
+  \item \texttt{Mineria}: Imacec del sector de minería de la actividad Producción de Bienes.
+  \item \texttt{Industria}: Imacec del sector de industria de la actividad Producción de Bienes.
+\end{itemize}
+
+Para los siguientes ejercicios utilice todos los métodos para estudiar el rechazo de la hipótesis nula. Asuma una confianza del 95\% en todos los casos.
+
+\begin{enumerate}
+\item Elabore una prueba de hipótesis para verificar si la media del Imacec de Minería es distinta de 98.1. Considere los supuestos necesarios, además de una varianza poblacional de 43.3. Interprete.
+
+\item Elabore una prueba de hipótesis para verificar si la media del Imacec de Industria es menor a 102.1. Considere los supuestos necesarios. Interprete.
+
+\item Elabore una prueba de hipótesis para verificar si la media del Imacec de Minería para cada uno de los años es menor a 97.1. Utilice los supuestos mencionados en el ejercicio a.
+
+\item Elabore una prueba de hipótesis para verificar si la media del Imacec de Industria para cada uno de los años es mayor a 99.2. Utilice los supuestos mencionados en el ejercicio b.
+\end{enumerate}
+
+\item La base de datos \texttt{Poblacion+nacional.csv} (\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Poblacion%2Bnacional.csv}{link}) contiene los datos de la cantidad de hombres y muejeres en Chile a través de los años. Las columnas en la base de datos son las siguientes.
+
+\begin{itemize}
+\item \texttt{Periodo}: Año
+\item \texttt{Hombres}: total de hombres en la población
+\item \texttt{Mujeres}: total de mujeres en la población
+\end{itemize}
+
+Para los siguientes enunciados plantee la prueba de hipótesis correspondiente, y analice el rechazo de la hipótesis nula según el método señalado.
+
+\begin{enumerate}
+  \item Establezca si hay suficiente evidencia estadística para decir que el promedio de mujeres en la población chilena a través del tiempo es menor a 9.485.000 personas. Considere una confianza del 89\%, y asuma una desviación estándar poblacional de 490.443 personas. Utilice el método del valor-p y valor crítico para concluir.
+
+  \item Establezca si hay suficiente evidencia estadística para aseverar que el promedio de la población de hombres chilena a través del tiempo es distinta 9.068.500 personas. Considere una significancia del 3\%. Utilice el método del intervalo de confianza para concluir.
+\end{enumerate}
+
+\end{enumerate}

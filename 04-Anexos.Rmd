@@ -1,0 +1,558 @@
+# (APPENDIX) Apéndice {-}
+
+# Estimadores
+
+## EMC en RLS {#RLS-EMC}
+
+El proceso de obtención de los estimadores de mínimos cuadrado en una regresión lineal simple es el siguiente:
+
+```{=tex}
+\begin{equation}
+\begin{split}
+S(\beta_0,\beta_1) &= \sum_{i=1}^n\epsilon_i^2 = \sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])^2
+\end{split}
+(\#eq:betasestimador-demostracion)
+\end{equation}
+```
+
+Para determinar el estimador de $\beta_0$ se calcula la derivada parcial la función $S(\cdot)$ respecto a este parámetro.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\frac{\partial S}{\partial\beta_0} &= \frac{\partial }{\partial\beta_0}\left(\sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])^2\right)\\
+&= \sum_{i=1}^n 2(Y_i - [\beta_0 + \beta_1X_i])(-1)\\
+&= -2\sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])\\
+\end{split}
+(\#eq:beta0estimador-demostracion1)
+\end{equation}
+```
+
+Igualando a cero y despejando el parámetro, el estimador es:
+
+```{=tex}
+\begin{equation}
+\begin{split}
+&-2\sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i]) = 0\\
+&\sum_{i=1}^n (Y_i - \beta_0 - \beta_1X_i) = 0\\
+&\sum_{i=1}^n Y_i - n\beta_0 - \beta_1\sum_{i=1}^nX_i = 0\\
+&\sum_{i=1}^n Y_i - \beta_1\sum_{i=1}^nX_i = n\beta_0\\
+&\widehat{\beta}_0 = \bar{Y} - \beta_1\bar{X} \\
+\end{split}
+(\#eq:beta0estimador-demostracion2)
+\end{equation}
+```
+
+Para determinar el estimador de $\beta_1$ se calcula la derivada parcial la función $S(\cdot)$ respecto a este parámetro.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\frac{\partial S}{\partial\beta_1} &= \frac{\partial }{\partial\beta_1}\left(\sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])^2\right)\\
+&= \sum_{i=1}^n 2(Y_i - [\beta_0 + \beta_1X_i])(-X_i)\\
+&= -2\sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])X_i\\
+\end{split}
+(\#eq:beta1estimador-demostracion1)
+\end{equation}
+```
+
+Igualando a cero.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+-2\sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])X_i &= 0\\
+\sum_{i=1}^n (Y_iX_i - \beta_0X_i - \beta_1X_i^2) &= 0\\
+\end{split}
+(\#eq:beta1estimador-demostracion2)
+\end{equation}
+```
+
+Reemplazamos el estimador obtenido en \@ref(eq:beta0estimador-demostracion2).
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\sum_{i=1}^n (Y_iX_i - (\bar{Y} - \beta_1\bar{X})X_i - \beta_1X_i^2) &= 0\\
+\sum_{i=1}^n (Y_iX_i - \bar{Y}X_i + \beta_1\bar{X}X_i - \beta_1X_i^2) &= 0\\
+\sum_{i=1}^n (Y_iX_i - \bar{Y}X_i) + \beta_1\sum_{i=1}^n(\bar{X}X_i - X_i^2) &= 0\\
+\end{split}
+(\#eq:beta1estimador-demostracion3)
+\end{equation}
+```
+
+Cada una de las sumatorias se puede reescribir de la siguiente manera:
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\sum_{i=1}^n(\bar{X}X_i - X_i^2) &= \sum_{i=1}^n(\bar{X}X_i - X_i^2 + \bar{X}^2 + \bar{X}X_i - \bar{X}^2 - \bar{X}X_i)\\
+&= \sum_{i=1}^n(\bar{X}X_i - X_i^2 + \bar{X}^2 + \bar{X}X_i - \bar{X}^2 - \bar{X}X_i)\\
+&= -\sum_{i=1}^n(X_i -\bar{X})^2 + \sum_{i=1}^n\bar{X}(\bar{X}-X_i)\\
+&= -\sum_{i=1}^n(X_i -\bar{X})^2 + 0\\
+&= -\sum_{i=1}^n(X_i -\bar{X})^2\\
+\end{split}
+(\#eq:beta1estimador-demostracion4)
+\end{equation}
+```
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\sum_{i=1}^n (Y_iX_i - \bar{Y}X_i) &= \sum_{i=1}^n (Y_iX_i - \bar{Y}X_i + Y_i\bar{X} + \bar{Y}\bar{X} - Y_i\bar{X} - \bar{Y}\bar{X})\\
+&= \sum_{i=1}^n (Y_i(X_i - \bar{X}) - \bar{Y}(X_i - \bar{X})) + \sum_{i=1}^n(Y_i\bar{X} - \bar{Y}\bar{X}) \\
+&= \sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X}) + 0 \\
+&= \sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})\\
+\end{split}
+(\#eq:beta1estimador-demostracion5)
+\end{equation}
+```
+
+Reemplazando \@ref(eq:beta1estimador-demostracion4) y \@ref(eq:beta1estimador-demostracion5) en la ecuación \@ref(eq:beta1estimador-demostracion3), el estimador de $\beta_1$ es:
+
+```{=tex}
+\begin{equation}
+\begin{split}
+&\sum_{i=1}^n (Y_iX_i - \bar{Y}X_i) + \beta_1\sum_{i=1}^n(\bar{X}X_i - X_i^2) = 0 \\
+&\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X}) - \beta_1\sum_{i=1}^n(X_i -\bar{X})^2 = 0 \\
+&\beta_1\sum_{i=1}^n(X_i -\bar{X})^2 = \sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X}) \\
+&\widehat{\beta}_1 = \frac{\displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})}{\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2} \\
+\end{split}
+(\#eq:beta1estimador-demostracion6)
+\end{equation}
+```
+
+Luego, se puede reescribir el estimador de $\beta_0$ de la siguiente manera:
+
+```{=tex}
+\begin{equation}
+\begin{split}
+&\widehat{\beta}_0 = \bar{Y} - \widehat{\beta}_1\bar{X} \\
+\end{split}
+(\#eq:beta0estimador-demostracion3)
+\end{equation}
+```
+
+## Descomposición de la Suma de Cuadrados Total
+
+En la sección \@ref(sumascuadraticas), la ecuación \@ref(eq:descomposicion-sct) plantea que la suma de cuadrados total (SCT) se puede descomponer en la suma de cuadrados del modelo (SCReg) y la suma de cuadrados del error (SCE). La demostración es la siguiente:
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\sum_{i=1}^n\left( Y_i - \bar{Y} \right)^2 &= \sum_{i=1}^n\left( \left( \widehat{Y}_i - \bar{Y} \right) + \left( Y_i - \widehat{Y}_i \right) \right)^2\\
+&= \sum_{i=1}^n\left( \widehat{Y}_i - \bar{Y} \right)^2  + 2\sum_{i=1}^n\left( \widehat{Y}_i - \bar{Y} \right)\left( Y_i - \widehat{Y}_i \right) + \sum_{i=1}^n\left( Y_i - \widehat{Y}_i \right)^2\\
+\end{split}
+(\#eq:demostracionSCT1)
+\end{equation}
+```
+
+Luego, basta demostrar que
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\sum_{i=1}^n\left( \widehat{Y}_i - \bar{Y} \right)\left( Y_i - \widehat{Y}_i \right) = 0
+\end{split}
+(\#eq:demostracionSCT2)
+\end{equation}
+```
+
+Partiendo desde el lado izquierda de la igualdad, se tiene que
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\sum_{i=1}^n\left( \widehat{Y}_i - \bar{Y} \right)\left( Y_i - \widehat{Y}_i \right) &= \sum_{i=1}^n\left( \widehat{\beta}_0 + \widehat{\beta}_1X_i - \bar{Y} \right)\left( Y_i - \left( \widehat{\beta}_0 + \widehat{\beta}_1X_i \right) \right)\\
+\end{split}
+(\#eq:demostracionSCT3)
+\end{equation}
+```
+
+Reemplazando el estimador de mínimos cuadrados de $\beta_0$ obtenido en \@ref(eq:beta0estimador-demostracion3), se tiene que lo anterior es igual a
+
+```{=tex}
+\begin{equation}
+\begin{split}
+&= \sum_{i=1}^n\left( \bar{Y} - \widehat{\beta}_1\bar{X} + \widehat{\beta}_1X_i - \bar{Y} \right)\left( Y_i - \bar{Y} + \widehat{\beta}_1\bar{X} - \widehat{\beta}_1X_i \right)\\
+&= \widehat{\beta}_1\sum_{i=1}^n\left(-\bar{X}  + X_i \right) \left( Y_i - \bar{Y} + \widehat{\beta}_1\bar{X} - \widehat{\beta}_1X_i \right) \\
+&= \widehat{\beta}_1\sum_{i=1}^n\left(X_i -\bar{X} \right) \left( Y_i - \bar{Y}\right) + \widehat{\beta}_1\sum_{i=1}^n\left(X_i -\bar{X} \right)\widehat{\beta}_1 \left( \bar{X} - X_i \right) \\
+&= \widehat{\beta}_1\sum_{i=1}^n\left(X_i -\bar{X} \right) \left( Y_i - \bar{Y}\right) - \widehat{\beta}_1^2\sum_{i=1}^n\left(X_i -\bar{X} \right)^2 \\
+\end{split}
+(\#eq:demostracionSCT4)
+\end{equation}
+```
+
+Reemplazando el estimador de mínimos cuadrados de $\beta_1$ obtenido en \@ref(eq:beta1estimador-demostracion6), se tiene que lo anterior es igual a
+
+```{=tex}
+\begin{equation}
+\begin{split}
+&= \frac{\displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})}{\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2}\sum_{i=1}^n\left(X_i -\bar{X} \right) \left( Y_i - \bar{Y}\right)\\
+& \hspace{2cm} - \left( \frac{\displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})}{\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2} \right)^2\sum_{i=1}^n\left(X_i -\bar{X} \right)^2 \\
+&= \frac{\left(\displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})\right)^2}{\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2} - \frac{\left( \displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})\right)^2}{\left(\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2\right)^2} \sum_{i=1}^n\left(X_i -\bar{X} \right)^2 \\
+&= \frac{\left(\displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})\right)^2}{\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2} - \frac{\left( \displaystyle\sum_{i=1}^n (Y_i - \bar{Y})(X_i - \bar{X})\right)^2}{\displaystyle\sum_{i=1}^n(X_i -\bar{X})^2}\\
+& = 0
+\end{split}
+(\#eq:demostracionSCT5)
+\end{equation}
+```
+
+Quedando así demostrada la descomposición de las Suma de Cuadrados Total.
+
+## EMC en RLM {#RLM-EMC}
+
+El proceso de obtención de los estimadores de mínimos cuadrado en una regresión lineal múltiple corresponde a la minimización de la suma cuadrática de los errores.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+S(\beta) = \epsilon^t\epsilon &= (Y - X\beta)^t(Y - X\beta)\\
+&= (Y^t - \beta^tX^t)(Y - X\beta)\\
+&= Y^tY - Y^tX\beta - \beta^tX^tY + \beta^tX^tX\beta\\
+\end{split}
+(\#eq:betasmultiple-demostracion)
+\end{equation}
+```
+
+Luego, derivando respecto a $\beta$.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\frac{S(\beta)}{\partial \beta} &= - X^tY - X^tY + 2X^tX\beta\\
+&= - 2X^tY + 2X^tX\beta\\
+\end{split}
+(\#eq:betasmultiple2-demostracion)
+\end{equation}
+```
+
+Igualando a cero y despejando la matriz $\beta$.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+- 2X^tY + 2X^tX\beta &= 0\\
+2X^tX\beta &= 2X^tY\\
+X^tX\beta &= X^tY\\
+\widehat{\beta} &= (X^tX)^{-1}X^tY\\
+\end{split}
+(\#eq:betasmultiple3-demostracion)
+\end{equation}
+```
+
+# Estadísticos
+
+## Estadístico F del método de selección Forward {#F-forward}
+
+El estadístico $F$ utilizado en la metodología *forward* para la selección de variables de un modelo de regresión lineal múltiple es:
+
+```{=tex}
+\begin{equation}
+F = \displaystyle\frac{(SCR_{\text{modelo previo}} - SCR_{\text{modelo propuesto}})/k}{SCR_{\text{modelo completo}}/(n-p)} \sim F_{k, n-p}
+(\#eq:EstadisticoFforward)
+\end{equation}
+```
+
+donde:
+
+- $SCR_{\text{modelo incial}}$: es la suma cuadrática de los errores del modelo inicial (con un parámetro menos que el modelo propuesto).
+- $SCR_{\text{modelo propuesto}}$: es la suma cuadrática de los errores del modelo con el nuevo predictor incluido.
+- $SCR_{\text{modelo completo}}$: es la suma cuadrática de los errores del modelo con todos los predictores seleccionados.
+- $k$: es la cantidad de predictores añadidos de un modelo a otro; en este caso corresponde siempre al valor de 1.
+- $n$: cantidad de observaciones.
+- $p$: cantidad de parámetros del modelo completo (betas).
+- La distribución $F$ con $n_1$ y $n_2$ grados de libertad tiene la siguiente función de densidad:
+
+```{=tex}
+\begin{equation}
+f(x) = \frac{\Gamma(n_1/2+n_2/2)}{\Gamma(n_1/2)\Gamma(n_2/2)}\left(\frac{n_1}{n_2}\right)^{n_1/2}x^{n_1/2-1}\left(1+\frac{n_1x}{n_2}\right)^{-(n_1 + n_2)/2}, \text{ }x>0
+(\#eq:distribucionF)
+\end{equation}
+```
+
+
+Considerando la base de datos [Ingreso](#Ingreso) y el modelo generado en el ejemplo \@ref(exm:forward1):
+
+$$
+Y_{\text{Logro}} = \beta_0 + \beta_1X_{\text{LEN}} + \beta_2X_{\text{NEM}} + \beta_3I_{\text{Sexo=Mujer}} + \epsilon, \text{ } \epsilon \sim N(0,\sigma^2I)
+$$
+
+El modelo ajustado es
+
+```{r, echo=FALSE}
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Ingreso%2Buniversidad.csv")
+```
+
+```{r}
+modelo = lm(Logro ~ LEN + NEM + Sexo, data = datos)
+anova(modelo)
+```
+
+
+La tabla anova da cuenta del estadístico $F$ asociado a cada covariable a medida que ingresa en el modelo (en orden descendente). El estadístico asociado a cada covariable se calcula manualmente de la siguiente manera.
+
+```{r}
+modelo_nulo = lm(Logro ~ 1, data = datos)
+modelo_propuesto0 = lm(Logro ~ LEN, data = datos)
+modelo_propuesto1 = lm(Logro ~ LEN + NEM, data = datos)
+modelo_propuesto2  = lm(Logro ~ LEN + NEM + Sexo, data = datos) # Modelo completo
+
+# Estadístico F para la covariable LEN
+SCR_modeloprevio = sum(residuals(modelo_nulo)^2)
+SCR_modelopropuesto = sum(residuals(modelo_propuesto0)^2)
+k = 1
+n = dim(datos)[1]
+p = length(modelo_propuesto2$coefficients) # Cantidad de parámetros del modelo completo
+SCR_modelocompleto = sum(residuals(modelo_propuesto2)^2)
+F_LEN = ((SCR_modeloprevio - SCR_modelopropuesto)/k)/(SCR_modelocompleto/(n - p))
+F_LEN
+
+# Estadístico F para la covariable NEM
+SCR_modeloprevio = sum(residuals(modelo_propuesto0)^2)
+SCR_modelopropuesto = sum(residuals(modelo_propuesto1)^2)
+F_NEM = ((SCR_modeloprevio - SCR_modelopropuesto)/k)/(SCR_modelocompleto/(n - p))
+F_NEM
+
+# Estadístico F para la covariable Sexo
+SCR_modeloprevio = sum(residuals(modelo_propuesto1)^2)
+SCR_modelopropuesto = sum(residuals(modelo_propuesto2)^2)
+F_Sexo = ((SCR_modeloprevio - SCR_modelopropuesto)/k)/(SCR_modelocompleto/(n - p))
+F_Sexo
+```
+
+Cada uno de estos estadísticos distribuye $F_{1,196}$. El criterio de rechazo es:
+
+$$
+F \geq F_{k, n-p}^{1-\alpha}
+$$
+
+El valor-p de cada estadístico es:
+
+```{r}
+1-pf(F_LEN,1,196)
+1-pf(F_NEM,1,196)
+1-pf(F_Sexo,1,196)
+```
+
+, los cuales, son los mismo a los visualizados en la salida del comando `anova()`.
+
+# Funciones
+
+## Esquema de la función indicatriz {#funcion-indicatriz}
+
+Al trabajar con variables cualitativas, existen distintas maneras de esquematizar esta variable en la matriz de diseño. Considerando una muestra de dos observaciones, para la cual se labora un modelo de regresión lineal con una sola variable independiente cualitativa de 2 categorías, entonces, la matriz de diseño $X$, tentativamente, sería de la siguiente forma.
+
+```{=tex}
+\begin{equation}
+X = \begin{pmatrix}
+1 & 1 & 0 \\
+1 & 0 & 1 \\
+\end{pmatrix},
+(\#eq:matriz-colineal)
+\end{equation}
+```
+
+donde, la primera está asociada a $\beta_0$, y la segunda y tercera columna están asociadas a la variable cualitativa. La segunda columna toma el valor de 1 cuando la observación está asociada a una determinada categoría y 0 si está asociada a otra. Lo mismo ocurre para la tercera columna, que es para referirse a la otra categoría de la variable. Esta forma de ordenar las columnas para los distintos valores de la variable se denomina **función indicatriz**, que se especifica de la siguiente manera:
+
+```{=tex}
+\begin{equation}
+I(x) = \left\lbrace\begin{matrix}
+1 & \text{si } x \in \text{categoría} \\
+0 & \text{si } x \notin \text{categoría} \\
+\end{matrix}
+\right.
+(\#eq:funcion-indicatriz)
+\end{equation}
+```
+
+Luego, el modelo ajustado (incorrecto) sería el siguiente.
+
+```{=tex}
+\begin{equation}
+\widehat{Y} = \widehat{\beta}_0 + \widehat{\beta}_1I_{\text{Variable = Categoría 1}} + \widehat{\beta}_2I_{\text{Variable = Categoría 2}}
+(\#eq:matriz-colineal-modelo)
+\end{equation}
+```
+
+Sin embargo, la matriz \@ref(eq:matriz-colineal) tiene columnas linealmente dependientes, es decir, al menos una de ellas puede ser expresada como combinación lineal de las otras. En este caso, y a modo de ejemplo, es fácil ver qué 
+
+```{=tex}
+\begin{equation}
+C_1 = C_2 + C_3, 
+(\#eq:colinealidad)
+\end{equation}
+```
+
+donde $C_i$ indica la columna de la matriz. Esto implica, que no es posible calcular los estimadores de EMC expresados en la ecuación \@ref(eq:betasmultiple3-demostracion), ya que, la matriz $(X^tX)$ no es invertible al darse este fenómeno de dependencia, y por ende, el modelo ajustado planteado en \@ref(eq:matriz-colineal-modelo) es incorrecto.
+
+Para corregir esto, una de las soluciones más intuitivas es plantear una nueva matriz de diseño eliminando una de las columnas involucradas en la ecuación \@ref(eq:colinealidad). Así, ninguna de las columnas de la matriz $X$ podría ser expresada como combinación lineal de las otras. Sin embargo, nace la siguiente pregunta, ¿que sucede con el parámetro asociado a la columna que se elimina?
+
+Como se explica en la sección \@ref(covariables-cualitativas), la variable que no se observa en el modelo es la denominada categoría de referencia, que en otras palabras, es la columna que se ha eliminado de la matriz de diseño para poder calcular los EMC. Ahora, el beta asociado a la categoría (columna) que se elimina de la matriz de diseño será "absorbido" por el intercepto, es decir, $\beta_0$. Para estudiar esto, considere dos matrices de diseño, $X_1$ y $X_2$, en la primera se ha eliminado la segunda columna, y en la segunda se ha eliminado la primera columna (la asociada al intercepto).
+
+```{=tex}
+\begin{equation}
+\begin{matrix}
+X_1 = \begin{pmatrix}
+1 & 0 \\
+1 & 1 \\
+\end{pmatrix},
+&
+X_2 = \begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+\end{pmatrix}
+\end{matrix}
+(\#eq:matriz-corregidas)
+\end{equation}
+```
+
+Se procede a escribir las ecuaciones de regresión para cada matriz (se omite la inclusión de los errores para facilitar la lectura), diferenciando simbólicamente los betas para cada ecuación. Tener en cuenta que los betas de cada ecuación dependen de las columnas consideradas, ya que al observar la matriz \@ref(eq:matriz-colineal), se tienen tres betas "originalmente" (esto solo debe ser considerado como notación).
+
+```{=tex}
+\begin{equation}
+Y = X_1\beta = 
+\begin{pmatrix}
+1 & 1 \\
+1 & 0 \\
+\end{pmatrix}
+\begin{pmatrix}
+\beta_0\\
+\beta_1\\
+\end{pmatrix}
+(\#eq:ecuacion-x1)
+\end{equation}
+```
+
+```{=tex}
+\begin{equation}
+Y = X_2\beta = 
+\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+\end{pmatrix}
+\begin{pmatrix}
+\beta_1'\\
+\beta_2'\\
+\end{pmatrix}
+(\#eq:ecuacion-x2)
+\end{equation}
+```
+
+Cómo se puede observar, ambos esquemas deben dar como resultado la misma variable $Y$. Esto es lo único similar entre ambos modelos, por lo cual, debe existir una relación entre ellos. El modelo correspondiente a la ecuación \@ref(eq:ecuacion-x1) expresa el efecto tanto del intercepto como el de la primera categoría de la variable cualitativa, mientras que el modelo asociado a la ecuación \@ref(eq:ecuacion-x2) expresa el efecto de la primera y segunda categoría de la variable cualitativa. Desarrollando las matrices de ambas ecuaciones se tiene lo siguiente.
+
+```{=tex}
+\begin{equation}
+Y = 
+\begin{pmatrix}
+\beta_0 + \beta_1 \\
+\beta_0 \\
+\end{pmatrix}
+(\#eq:ecuacion-x1-1)
+\end{equation}
+```
+
+```{=tex}
+\begin{equation}
+Y = 
+\begin{pmatrix}
+\beta_1' \\
+\beta_2' \\
+\end{pmatrix}
+(\#eq:ecuacion-x2-1)
+\end{equation}
+```
+
+Luego, igualando las matrices, y por ende, elemento con elemento, se tienen las expresiones \@ref(eq:ecuacion-x1-x2-1) y \@ref(eq:ecuacion-x1-x2-2). Se puede observar, que en la ecuación \@ref(eq:ecuacion-x1-x2-2) el valor del intercepto asociado al modelo \@ref(eq:ecuacion-x1) es igual ("absorbe") al efecto ("beta") correspondiente a la segunda categoría de la variable cualitativa del modelo \@ref(eq:ecuacion-x2), es decir, la categoría de referencia.
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\beta_0 + \beta_1  &= \beta_1'\\
+\end{split}
+(\#eq:ecuacion-x1-x2-1)
+\end{equation}
+```
+
+```{=tex}
+\begin{equation}
+\begin{split}
+\beta_0 &= \beta_2' \\
+\end{split}
+(\#eq:ecuacion-x1-x2-2)
+\end{equation}
+```
+
+Por otro lado, considerando a la ecuación \@ref(eq:ecuacion-x1-x2-1) y, reemplazando \@ref(eq:ecuacion-x1-x2-2), se tiene que $\beta_2' + \beta_1 = \beta_1'$, por ende, el efecto propio de la primera categoría de la variable cualitativa ($\beta_1'$) es igual al valor del efecto propio de la segunda categoría más una diferencia, es decir, como afecta la primera categoría a la variable $Y$ respecto a la categoría de referencia (que es la segunda categoría). Esta igualdad se puede expresar como el efecto superior o inferior ($\beta_1$) que tiene la primera categoría sobre el efecto directo de la segunda ($\beta_2'$). (**Nota:** estas relaciones son válidas tanto para los parámetros como para sus estimadores).
+
+A continuación, se muestra un ejemplo práctico para entender estas relaciones. La base de datos `iris` tiene la siguiente descripción en la documentación de R: "Este famoso conjunto de datos de iris (de Fisher o Anderson) proporciona las medidas en centímetros de las variables longitud y ancho del sépalo y longitud y ancho de los pétalos, respectivamente, para 50 flores de cada una de las 3 especies de iris. Las especies son Iris setosa, versicolor y virginica.".
+
+Se filtran los tipos de especies para considerar solo dos, `setosa` y `versicolor`. Luego, se plantea un modelo que utiliza el intercepto y una categoría de referencia, es decir, se hace uso de una matriz de diseño del tipo \@ref(eq:ecuacion-x1). La salida del modelo refleja que la categoría de referencia (columna eliminada) corresponde a `setosa`. Luego, el modelo ajustado es el siguiente.
+
+```{=tex}
+\begin{equation}
+\widehat{Y}_{\text{Sepal.Length}} = \widehat{\beta}_0 + \widehat{\beta}_1I_{\text{Species = versicolor}}
+(\#eq:modelo-x1-ejemplo)
+\end{equation}
+```
+
+```{r}
+datos = iris
+datos = subset(datos, Species %in% c("setosa", "versicolor"))
+lm(Sepal.Length ~ Species, data = datos)
+```
+
+Se plantea un segundo modelo, que contiene el efecto de ambas categorías, dejando fuera el efecto del intercepto, es decir, se hace uso de una matriz de diseño del tipo \@ref(eq:ecuacion-x2). Se puede observar, que se tiene un valor directamente para una de la categorías (un efecto *propio* para cada una). **Nota:** ignorar el orden de los resultados en la salida de R.
+
+```{=tex}
+\begin{equation}
+\widehat{Y}_{\text{Sepal.Length}} = \widehat{\beta}_1'I_{\text{Species = versicolor}} +  \widehat{\beta}_2'I_{\text{Species = setosa}}
+(\#eq:modelo-x2-ejemplo)
+\end{equation}
+```
+
+```{r}
+lm(Sepal.Length ~ -1 + Species, data = datos)
+```
+
+La tabla \@ref(tab:tablaxx), muestra la asociación de estos valores según lo expresado en las ecuaciones \@ref(eq:ecuacion-x1-x2-1) y \@ref(eq:ecuacion-x1-x2-2). Se puede verificar que, el valor de $\widehat{\beta}_1' = 5.936$ es igual a $\widehat{\beta}_0 + \widehat{\beta}_1 = 5.006 + 0.930$ y, que el valor de $\widehat{\beta}_0 = 5.006$ es igual a $\widehat{\beta}_2' = 5.006$. En resumen, se tienen las siguientes interpretaciones de los parámetros estimados.
+
+- Observando el modelo modelo \@ref(eq:modelo-x1-ejemplo):
+  - $\widehat{\beta}_0$: Ya se mostró que este valor absorbe el efecto asociado a la categoría de referencia ($\widehat{\beta}_2'$), por lo cual, su interpretación es la siguiente. Cuando la especie de la planta no es *versicolor* (es decir, *setosa*), entonces, el valor promedio del largo del sépalo es de 5.006 cm.
+  - $\widehat{\beta}_1$: Es el efecto que tiene la categoría observada ($\widehat{\beta}_1 = \widehat{\beta}_1' - \widehat{\beta}_2' = 0.903$) sobre la categoría de referencia ($\widehat{\beta}_1'$), por lo cual su interpretación es la siguiente. Cuando la especie de planta es *versicolor*, entonces, el valor promedio del largo del sépalo es superior en 0.903 cm respecto a las plantas de especie *setosa*.
+
+- Observando el modelo \@ref(eq:modelo-x2-ejemplo):
+  - $\widehat{\beta}_1'$: Corresponde al efecto propio de la categoría, por lo cual, su interpretación la siguiente. Cuando la especie de planta es *setosa*, entonces, el valor promedio del largo del sépalo es de 5.006 cm.
+  - $\widehat{\beta}_2'$: Corresponde al efecto propio de la categoría, por lo cual, su interpretación la siguiente. Cuando la especie de planta es *versicolor*, entonces, el valor promedio del largo del sépalo es de 5.936 cm.
+
+```{r tablaxx, echo=FALSE}
+tabla = matrix(c("$\\widehat{\\beta}_0$","$\\widehat{\\beta}_1$","$\\widehat{\\beta}_1'$","$\\widehat{\\beta}_2'$", "5.006", "0.930", "5.936", "5.006"), nrow = 2, byrow = T)
+row.names(tabla) = c("Estimador", "Valor")
+kableExtra::kbl(tabla, escape = F, booktabs = T, align = c("l"), linesep = "",
+      caption = "Ejemplificación de la relación de parámetros y esquema de función indicatriz") |>
+  kable_styling(full_width = FALSE, bootstrap_options = c("condensed"), latex_options = c("HOLD_position", "scale_down")) |>
+  scroll_box(box_css = "border: 0px; ", extra_css = "overflow-x: auto; ")
+```
+
+Como se puede apreciar, las interpretaciones de los parámetros estimados en el modelo \@ref(eq:modelo-x2-ejemplo) no requieren de una comparación con una de las categorías, ya que se midió el efecto por separado de cada una ellas.
+
+Cabe mencionar, que la categoría de referencia que se elija no influye en las propiedades mencionadas, sin embargo, la forma en la que se esquematiza la función indicatriz puede ser distinta. En la ecuación \@ref(eq:matriz-corregidas), la matriz $X_1$ es la forma en la que R trabaja por defecto para asignar categorías de referencia, mientras que la matriz $X_2$ requiere ser implementada manualmente, tal como se mostró para el modelo \@ref(eq:modelo-x2-ejemplo); una opción distinta es la siguiente.
+
+```{=tex}
+\begin{equation}
+X_3 = \begin{pmatrix}
+1 & 1 \\
+1 & -1 \\
+\end{pmatrix},
+(\#eq:matriz-corregida3)
+\end{equation}
+```
+
+la cual, debería ser implementada manualmente en R, aunque existen ciertos softwares como [SAS](https://www.sas.com/es_cl/home.html), que tiene opciones para implementar este tipo de matrices de diseño. 
+
+Si bien existe libertad a la hora de elegir cómo trabajar la matriz de diseño, se debe tener en cuenta, que todas las matrices de diseño que evitan el problema de colinealidad implican estilos de interpretación distintos.
+
+
+
+
+

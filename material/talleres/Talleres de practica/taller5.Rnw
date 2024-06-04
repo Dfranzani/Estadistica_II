@@ -1,0 +1,29 @@
+\begin{center}
+{\bf \Large{Taller de práctica 5}}\\Gráficos descriptivos\\(sección 3.1.1)
+\end{center}
+
+Esta base \texttt{Ingreso+universidad.csv} (\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Ingreso%2Buniversidad.csv}{link}) contiene datos relacionados a características de ingresos de estudiantes a un determinada universidad. Las columnas de la base de datos son las siguientes.
+
+\begin{itemize}
+\item \texttt{Sexo}: Hombre o Mujer.
+\item \texttt{Ingreso}: indica la vía de ingreso del estudiante a la universidad, se clasifica en PTU u Otra.
+\item \texttt{Logro}: corresponde a la proporción de logro (número entre 0 y 1, un logro de 0.4 indica que el estudiante respondió correctamente un 40\% de la prueba) del estudiante en el diagnóstico de ``Comunicación escrita'' aplicado por la universidad a la cual ingresa.
+\item \texttt{LEN}: Puntaje PTU - Lenguaje.
+\item \texttt{NEM}: Puntaje NEM del estudiante.
+\end{itemize}
+
+
+\begin{enumerate}
+\item Elabore un gráfico de violín (con caja y promedio) de la variable NEM. Interprete el gráfico haciendo énfasis en las principales concentraciones de datos, a la posición del promedio respecto a la mediana y las posibles causas de esto. 
+
+\item Elabore un gráfico de dispersión entre la variable LEN (eje X) y la variable Logro (eje Y). Interprete la tendencia de los datos.
+
+\item Elabore un gráfico de violín (con caja y promedio) de la variable NEM, separando por sexo. Compare ambos comportamientos.
+
+\item Elabore un gráfico de violín (con caja y promedio) de la variable NEM, separando por vía de ingreso. Compare ambos comportamientos.
+
+\item Elabore un gráfico de violín (con caja y promedio) de la variable LEN diferenciando por Sexo, y dentro por Vía de ingreso. Compare e interprete.
+
+\item Realice un gráfico de dispersión de la proporción de logro (eje X) versus el puntaje NEM (eje Y) únicamente de las mujeres, coloreando según el puntaje obtenido en la prueba PTU de Lenguaje. Interprete.
+
+\end{enumerate}

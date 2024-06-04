@@ -1,0 +1,273 @@
+\begin{center}
+{\bf \Large{Taller de práctica Prueba 1}}\\Pruebas de hipótesis (secciones 2.2.2, 2.3.2, 2.3.3 y 2.4)\\Conceptos de pruebas de hipótesis (sección 2.1)
+\end{center}
+
+\subsection*{Parte 1: Pruebas de hipótesis}
+
+La siguiente base de datos contiene datos sobre el PIB (expresado en miles de millones de pesos) de las distintas regiones de Chile en el periodo de años 2013 - 2021. El detalle de las columnas es el siguiente:
+
+\begin{itemize}
+\item \texttt{Reg}: numeración de la región.
+\item \texttt{Region}: nombre de la región.
+\item \texttt{X...}: PIB regional en el año determinado (ejemplo: X2013 corresponde al PIB regional del año 2013).
+\end{itemize}
+
+<<>>=
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
+str(datos)
+@
+
+% \begin{enumerate}
+% 
+% \item Para los siguientes códigos en R realice lo siguiente:
+% 
+% \begin{itemize}
+% \item Señale el tipo de intervalo de confianza y exprese la probabilidad asociada a este.
+% \item Explique (y justifique cuando corresponda) cada uno de los valores para los comandos de R utilizados para construir el intervalo de confianza (incluyendo los filtros).
+% \item Interprete la salida de cada uno de los intervalos de confianza, dando una conclusión según la probabilidad planteada anteriormente.
+% \end{itemize}
+% 
+% \begin{enumerate}
+% 
+% \item Intervalo de confianza: 
+% 
+% <<>>=
+% t.test(x = datos$X2013, alternative = "two.sided", conf.level = 0.971)
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 0.
+% 
+% \item Intervalo de confianza: 
+% 
+% <<>>=
+% t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891)
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 12501.
+% 
+% \item Intervalo de confianza: 
+% 
+% <<>>=
+% t.test(
+%   x = datos$X2017, 
+%   y = datos$X2020, 
+%   alternative = "less", 
+%   conf.level = 0.97, 
+%   var.equal = T
+% )
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 11430.
+% 
+% \item Intervalo de confianza: 
+% 
+% <<>>=
+% t.test(
+%   x = datos$X2014[datos$Reg %in% 1:10], 
+%   y = datos$X2018[datos$Reg %in% 1:10], 
+%   alternative = "two.sided", 
+%   conf.level = 0.946, 
+%   var.equal = F
+% )
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 20200.
+% 
+% \item Intervalos de confianza:
+% 
+% <<>>=
+% var.test(
+%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
+%   conf.level = 0.81
+% )
+% @
+% 
+% <<>>=
+% t.test(
+%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)], 
+%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
+%   alternative = "less", 
+%   conf.level = 0.81, 
+%   var.equal = T
+% )
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 2000.
+% \end{enumerate}
+% \end{enumerate}
+
+\begin{enumerate}
+
+\item A continuación, se presentan diversos códigos asociados a pruebas de hipótesis; especifique: la(s) media(s) (y las varianzas cuando corresponda), las hipótesis ($H_0$ y $H_1$), el tipo de prueba, la(s) regla(s) de rechazo a utilizar y la confianza. Interprete el resultado de la prueba de hipótesis utilizando tanto método del valor p como el método del intervalo de confianza.
+
+\begin{enumerate}
+
+\item Prueba de hipótesis:
+
+<<>>=
+t.test(x = datos$X2013, alternative = "two.sided", conf.level = 0.971, mu = 0)
+@
+
+\item Prueba de hipótesis:: 
+
+<<>>=
+t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891, mu = 12501)
+@
+
+\item Prueba de hipótesis:
+
+<<>>=
+t.test(
+  x = datos$X2017, 
+  y = datos$X2020, 
+  alternative = "less", 
+  conf.level = 0.97, 
+  mu = 11430,
+  var.equal = T
+)
+@
+
+\item Prueba de hipótesis:
+
+<<>>=
+t.test(
+  x = datos$X2014[datos$Reg %in% 1:10], 
+  y = datos$X2018[datos$Reg %in% 1:10], 
+  alternative = "two.sided", 
+  conf.level = 0.946, 
+  mu = 20200,
+  var.equal = F
+)
+@
+
+\item Prueba de hipótesis:
+
+<<>>=
+var.test(
+  x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+  y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
+  conf.level = 0.81
+)
+@
+
+<<>>=
+t.test(
+  x = datos$X2015[datos$Reg %in% c(1:5,8:10)], 
+  y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
+  alternative = "less", 
+  conf.level = 0.81, 
+  mu = 2000,
+  var.equal = T
+)
+@
+\end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\subsection*{Parte 2: Conceptos de pruebas de hipótesis}
+
+% \textbf{Observación}: Los intervalos que se pide construir corresponden únicamente a intervalos de confianza para una media.
+
+Para todos las pruebas de hipótesis plantee la media, $H_0$ y $H_1$, y tipo de prueba.
+
+\begin{enumerate}
+\item En la Western University, la media histórica poblacional en las puntuaciones de los solicitantes de una beca es 900. La desviación estándar poblacional histórica que se considera conocida es $\sigma = 180$. Cada año se toma una muestra de los solicitantes para determinar si esta media ha cambiado.
+  \begin{enumerate}
+    \item Establezca las hipótesis.
+    \item Escriba una conclusión apropiada en caso de cometer un Error Tipo I en el estudio (haga notar que se comete un Error Tipo I).
+    % \item ¿Cuál es el intervalo de 94\% de confianza para la estimación de la media poblacional de las puntuaciones en el examen, si en una muestra de 200 estudiantes la media muestral es $\bar{x} = 935$? \textbf{Nota}: utilice la tabla de cuantiles.
+  \end{enumerate}
+    
+  \item \textit{Playbill} es una revista que se distribuye entre las personas que asisten a conciertos y al teatro. El ingreso medio anual por familia en la población de lectores de \textit{Playbill} es $\$119155$ (\textit{Playbill}, enero de 2006). Suponga que la desviación estándar es $\sigma = \$20700$. Un grupo de San Francisco asegura que entre las personas de la zona de la Bahía que van al teatro el ingreso medio es más alto. En una muestra de 60 personas de la Bahía que suelen ir al teatro, el ingreso medio por hogar fue $\$126100$.
+  \begin{enumerate}
+    \item Establezca las hipótesis para determinar si los datos muestrales apoyan la conclusión de que las personas de la zona de la Bahía que suelen asistir al teatro tienen un ingreso medio por familia más alto que los demás lectores de \textit{Playbill}.
+    \item Escriba una conclusión apropiada en caso de cometer un Error Tipo II en el estudio (haga notar que se comete un Error Tipo II).
+    % \item ¿Cuál es el intervalo de 98\% de confianza para la estimación del ingreso medio por familia de las personas de la zona de la Bahía? \textbf{Nota}: utilice la tabla de cuantiles.
+  \end{enumerate}
+  
+  \item La cámara de comercio de una comunidad de Florida anuncia en su publicidad que el costo medio de un terreno residencial es $\$125000$ o menos por lote. Suponga que en una muestra de 32 lotes se encuentra que la media muestral es $\$130000$ por lote y que la desviación estándar muestral es $\$12500$.
+  
+  \begin{enumerate}
+    \item Establezca las hipótesis para probar si la media el costo medio real de un terreno residencial en Florida es mayor al comunicado por la cámara de comercio de la comunidad de Florida que emitió la publicidad.
+    \item Establezca una conclusión apropiada en caso de rechazar la hipótesis nula.
+    % \item Elabore un intervalo de 96\% de confianza para estudiar el costo medio de un terreno residencial. \textbf{Nota}: utilice la tabla de cuantiles.
+  \end{enumerate}
+
+\end{enumerate}
+
+% \newpage
+% 
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qnorm(p),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles Z") |> 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 199),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles t-student, df = 199") |> 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+% 
+% 
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 59),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles t-student, df = 59") |> 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 31),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles t-student, df = 31") |> 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+
+
+
+
+
+
+
+
+
+
+
+
+

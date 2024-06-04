@@ -1,0 +1,154 @@
+
+\begin{center}
+{\bf \Large{Taller de práctica Prueba 2}}\\Regresión Lineal Simple\\ (Sección 3.2)
+\end{center}
+
+\section*{Parte 1}
+
+Sean $X$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal simple:
+
+$$
+Y_i = \beta_0 + \beta_1X_i + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+$$
+
+Demuestre que:
+
+\begin{enumerate}
+  % \item El estimador de mínimos cuadrados de $\beta_1$ es $\hat{\beta}_1 = \displaystyle\frac{\sum_{i=1}^n(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n(X_i - \bar{X})^2}$.
+  \item El estimador de mínimos cuadrados de $\beta_0$ es $\widehat{\beta}_0 = \bar{Y} - \beta_1\bar{X}$.
+  \item $\widehat{Y}_i = \bar{Y} + r_{XY}\displaystyle\frac{S_Y}{S_X}(X_i-\bar{X})$
+  \item $R^2 = 1 - \displaystyle\frac{\text{SCE}}{\text{SCT}}$
+  \item $R^2 = r_{XY}^2$
+  % \item $\bar{R}^2 = 1 - \displaystyle\frac{(1-R^2)(n-1)}{n-p-1}$
+\end{enumerate}
+
+\section*{Parte 2}
+
+La siguiente base de datos extraída del Banco Central, contiene datos sobre indicadores de producción de electricidad, gas y agua. La generación eléctrica corresponde a la medición mensual de la generación real de las centrales generadoras del sistema eléctrico nacional. Por otro lado, la Producción de Electricidad, Gas y Agua (IPEGA) corresponde a un índice coyuntural cuyo objetivo es estimar, en términos de volumen, la evolución mensual de la actividad productiva de este sector.
+
+Las columnas de la base de datos son las siguientes:
+
+\begin{itemize}
+\item \texttt{Periodo}: Año, Mes y Día (yyyy-mm-dd) de medición.
+\item \texttt{Generacion}: Generación de energía eléctrica, CDEC (GWh).
+\item \texttt{Indice}: Índice de Producción de Electricidad, Gas y Agua, INE (2018=100).
+\item \texttt{Electricidad}: Índice de Producción de Electricidad, INE (2018=100).
+\item \texttt{Gas}: Índice de Producción de Gas, INE (2018=100).
+\item \texttt{Agua}: Índice de Producción de Agua, INE (2018=100).
+\item \texttt{IndiceDesestacionalizado}: Índice de Producción de Electricidad, Gas y Agua, desestacionalizado, INE (2018=100).
+\end{itemize}
+
+<<echo=FALSE>>=
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Indicadores%20sectoriales%20de%20energ%C3%ADa.csv")
+@
+
+\begin{enumerate}
+
+\item Considere el siguiente modelo de regresión lineal simple:
+
+$$
+Y_{\text{Gas}} = \beta_0 + \beta_1X_{\text{Agua}} + \epsilon, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2) \text{ ,} i = 1, \ldots, n = 74
+$$
+
+Utilizando los datos que se muestran a continuación, calcule lo siguiente: $R^2$, Error estándar residual, $F_0$ de la prueba de no nulidad conjunta y los EMC de $\beta_0$ y $\beta_1$. Trabaje con 4 decimales.
+
+<<echo=FALSE, results='asis'>>=
+library(kableExtra)
+
+modelo = lm(Gas ~ Agua, data = datos)
+
+sum.y.gorro = sum(modelo$fitted.values)
+sum.y.gorro2 = sum(modelo$fitted.values^2)
+sum.y.por.y.gorro = sum(datos$Gas*modelo$fitted.values)
+sum.y2 = sum(datos$Gas^2)
+sum.x.por.y = sum(datos$Agua*datos$Gas)
+sum.x = sum(datos$Agua)
+sum.y = sum(datos$Gas)
+sum.x2 = sum(datos$Agua^2)
+
+mat_latex = function(x,y){
+	return(paste("$", x, round(y, 2), "$"))
+}
+
+tabla = c(
+  mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i = ", sum.y.gorro),
+  mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i^2 = ", sum.y.gorro2),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_i\\widehat{y}_i = ", sum.y.por.y.gorro),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_i^2 = ", sum.y2),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_ix_i = ", sum.x.por.y),
+  mat_latex("\\displaystyle\\sum_{i=1}^n x_i = ", sum.x),
+  mat_latex("\\displaystyle\\sum_{i=1}^n y_i = ", sum.y),
+  mat_latex("\\displaystyle\\sum_{i=1}^n x_i^2 = ", sum.x2)
+)
+
+tabla = structure(tabla, .Dim = c(2,4))
+
+cat(kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex") |>
+  kable_styling(full_width = FALSE,
+                bootstrap_options = c("condensed"),
+                latex_options = c("HOLD_position", "scale_down")))
+@
+
+\item La siguiente salida de código está asociada a un modelo de regresión lineal. 
+
+<<echo=F>>=
+modelo = lm(Electricidad ~ Gas, data = datos)
+summary(modelo)
+@
+
+A continuación,
+
+\begin{enumerate}
+  \item Escriba la ecuación de regresión verdadera.
+  \item Escriba la ecuación de regresión ajustada.
+  \item Interprete de los parámetros estimados.
+  \item Estudie de las hipótesis de no nulidad de cada parámetro y conjunta. Utilice una confianza del 95\% y escriba las hipótesis involucradas.
+  \item Interprete del $R^2$ del modelo.
+\end{enumerate}
+
+\item Seleccione los gráficos y/o salidas de R necesarios para estudiar los supuestos del modelo del enunciado anterior. Escriba las hipótesis involucradas cuando corresponda e, interprete utilizando una confianza del 95\%. Justifique la elección de gráficos y códigos a utilizar. Trabaje con 4 decimales.
+
+<<echo=FALSE, fig.width=6, fig.height=3, fig.align='center'>>=
+datos$ajustados = modelo$fitted.values
+datos$residuos = residuals(modelo)
+datos$residuos_estandarizados = rstandard(modelo)
+library(gridExtra)
+library(ggplot2)
+library(lmtest)
+g1 = ggplot(data = datos, aes(x = Gas, y = ajustados)) + geom_point(size = 1, alpha = 0.8) +
+  labs(y = "Valores ajustados", title = "Gráfico 1")
+g2 = ggplot(data = datos, aes(x = Gas, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
+  labs(title = "Gráfico 2")
+g3 = ggplot(data = datos, aes(x = residuos, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
+  labs(title = "Gráfico 3")
+g4 = ggplot(data = datos, aes(x = residuos, y = Gas)) + geom_point(size = 1, alpha = 0.5) + 
+  labs(title = "Gráfico 4")
+grid.arrange(g1,g2,g3,g4)
+@
+
+\newpage
+
+<<echo=FALSE, warning=FALSE>>=
+shapiro.test(x = resid(modelo))
+ks.test(rstandard(modelo), "pnorm",0 ,1)
+shapiro.test(x = modelo$fitted.values)
+@
+
+<<echo=FALSE>>=
+bptest(formula = Electricidad ~ Gas, data = datos)
+bptest(formula = Electricidad ~ Generacion, data = datos)
+bptest(formula = Electricidad ~ Indice, data = datos)
+@
+
+<<echo=FALSE>>=
+dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "greater")
+dwtest(formula = Gas ~ Electricidad, data = datos, alternative = "two.sided")
+dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "two.sided")
+@
+
+\end{enumerate}
+
+
+
+
+
