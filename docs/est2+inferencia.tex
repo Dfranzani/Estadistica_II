@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 21-06-2024}
+\date{Actualizado al 22-06-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -3773,7 +3773,7 @@ El detalle por columna es el siguiente.
 
   El estadístico para cada uno de los beta se obtiene dividiendo el valor estimado (\textbf{Estimate}) por la desviación estándar (\textbf{Std. Error}). El resultado de estos valores, se puede apreciar en la columna \textbf{t value}.
 \item
-  Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula \(2\cdot(1-pt(|t_0|, n-1))\). El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna \textbf{Pr(\textgreater\textbar t\textbar)}. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.
+  Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula \(2\cdot(1-pt(|t_0|, n-2))\). El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna \textbf{Pr(\textgreater\textbar t\textbar)}. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.
 \end{itemize}
 
 En el ejemplo \ref{exm:AFPUNO}, al no rechazarse la hipótesis nula asociada a cada beta estimado, se tiene que cada variable (intercepto y valor cuota) son relevantes para explicar la variable respuesta (valor del patrimonio). Sin embargo, esto no es un regla decidora respecto a si una variable debe o no considerarse en el modelo, es decir,
@@ -4559,7 +4559,18 @@ H_1:&\beta_j \neq 0\\
 \end{split}
 \end{equation}
 
-Se observa, que todos lo betas estimados son significativos considerando una confianza del 95\%. De manera similar, se aprecia que el valor-p (0.01405) asociado a la prueba de hipótesis de nulidad conjunta es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero.
+El criterio de rechazo es:
+
+\begin{equation}
+|t_0| \geq t_{1-\alpha/2, n-k-1}
+\label{eq:valor-critico-cada-beta-RLM}
+\end{equation}
+
+donde \(n\) es el tamaño de la muestra y \(k\) es la cantidad de covariables del modelo.
+
+Para el ejemplo planteado, se observa que todos lo betas estimados son significativos para una confianza del 95\%.
+
+Respecto a la prueba de hipótesis de no nulidad conjunta, se aprecia que el valor-p (0.01405) es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero. Las hipótesis involucradas son las siguientes:
 
 \begin{equation}
 \notag
@@ -4569,7 +4580,7 @@ H_1:&\text{ Al menos uno de los beta es distinto de 0}\\
 \end{split}
 \end{equation}
 
-A diferencia del estadístico expresado en la ecuación \eqref{eq:estadistico-F-RLS}, la expresión es:
+A diferencia del estadístico expresado en la ecuación \eqref{eq:estadistico-F-RLS}, la expresión del criterio de rechazo para esta prueba es:
 
 \begin{equation}
 F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},

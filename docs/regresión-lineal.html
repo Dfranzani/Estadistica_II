@@ -976,7 +976,7 @@ H_1:&amp;\beta_i \neq 0\\
 \end{split}
 \end{equation}\]</span>
 <p>El estadístico para cada uno de los beta se obtiene dividiendo el valor estimado (<strong>Estimate</strong>) por la desviación estándar (<strong>Std. Error</strong>). El resultado de estos valores, se puede apreciar en la columna <strong>t value</strong>.</p></li>
-<li><p>Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula <span class="math inline">\(2\cdot(1-pt(|t_0|, n-1))\)</span>. El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna <strong>Pr(&gt;|t|)</strong>. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.</p></li>
+<li><p>Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula <span class="math inline">\(2\cdot(1-pt(|t_0|, n-2))\)</span>. El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna <strong>Pr(&gt;|t|)</strong>. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.</p></li>
 </ul>
 <p>En el ejemplo <a href="regresión-lineal.html#exm:AFPUNO">3.4</a>, al no rechazarse la hipótesis nula asociada a cada beta estimado, se tiene que cada variable (intercepto y valor cuota) son relevantes para explicar la variable respuesta (valor del patrimonio). Sin embargo, esto no es un regla decidora respecto a si una variable debe o no considerarse en el modelo, es decir,</p>
 <ul>
@@ -1462,7 +1462,14 @@ H_0:&amp;\beta_j = 0\\
 H_1:&amp;\beta_j \neq 0\\
 \end{split}
 \end{equation}\]</span>
-<p>Se observa, que todos lo betas estimados son significativos considerando una confianza del 95%. De manera similar, se aprecia que el valor-p (0.01405) asociado a la prueba de hipótesis de nulidad conjunta es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero.</p>
+<p>El criterio de rechazo es:</p>
+<span class="math display" id="eq:valor-critico-cada-beta-RLM">\[\begin{equation}
+|t_0| \geq t_{1-\alpha/2, n-k-1}
+\tag{3.24}
+\end{equation}\]</span>
+<p>donde <span class="math inline">\(n\)</span> es el tamaño de la muestra y <span class="math inline">\(k\)</span> es la cantidad de covariables del modelo.</p>
+<p>Para el ejemplo planteado, se observa que todos lo betas estimados son significativos para una confianza del 95%.</p>
+<p>Respecto a la prueba de hipótesis de no nulidad conjunta, se aprecia que el valor-p (0.01405) es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero. Las hipótesis involucradas son las siguientes:</p>
 <span class="math display">\[\begin{equation}
 \notag
 \begin{split}
@@ -1470,15 +1477,15 @@ H_0:&amp; \beta_1 = \ldots  = \beta_k = 0\\
 H_1:&amp;\text{ Al menos uno de los beta es distinto de 0}\\
 \end{split}
 \end{equation}\]</span>
-<p>A diferencia del estadístico expresado en la ecuación <a href="regresión-lineal.html#eq:estadistico-F-RLS">(3.12)</a>, la expresión es:</p>
+<p>A diferencia del estadístico expresado en la ecuación <a href="regresión-lineal.html#eq:estadistico-F-RLS">(3.12)</a>, la expresión del criterio de rechazo para esta prueba es:</p>
 <span class="math display" id="eq:estadistico-F-RLM">\[\begin{equation}
 F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},
-\tag{3.24}
+\tag{3.25}
 \end{equation}\]</span>
 <p>donde,</p>
 <span class="math display" id="eq:MCReg">\[\begin{equation}
 \text{MCReg} = \frac{\text{SCReg}}{k}
-\tag{3.25}
+\tag{3.26}
 \end{equation}\]</span>
 <p>para una significancia <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(k\)</span> variables predictoras. Además, la expresión asociada al MCE también cambia, para ello refiérase a la sección <a href="regresión-lineal.html#metricasRLM">3.3.4</a>.</p>
 <div class="exercise">
@@ -1516,13 +1523,13 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <li><p>Residual standard error: a diferencia de lo mostrado en <a href="regresión-lineal.html#eq:sigma2-estimador">(3.13)</a>, la cantidad de parámetros es variable y se denota con la letra <span class="math inline">\(k\)</span>, por lo cual, el estimador es el siguiente.</p>
 <span class="math display" id="eq:error-estandar-residual-RLM">\[\begin{equation}
 \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1} = \text{MCE},
-\tag{3.26}
+\tag{3.27}
 \end{equation}\]</span>
 <p>Luego, el valor del error estándar residual (<span class="math inline">\(\widehat{\sigma}\)</span>) es igual a <span class="math inline">\(\sqrt{\text{MCE}}\)</span>.</p></li>
 <li><p>Adjusted R-squared: se agrega una penalización respecto a la cantidad de covariables (<span class="math inline">\(k\)</span>) incluidas en el modelo. Luego, la expresión correspondiente es la siguiente.</p>
 <span class="math display" id="eq:r2-ajustado">\[\begin{equation}
 \bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
-\tag{3.27}
+\tag{3.28}
 \end{equation}\]</span></li>
 </ul>
 <p>Respecto al ejemplo <a href="regresión-lineal.html#exm:MultipleManual">3.5</a>, la salida de resumen del modelo en R es:</p>
@@ -1663,7 +1670,7 @@ H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
 H_0 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados } X_1, \ldots , X_{j-1}, \text{ es igual a cero}\\
 H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados } X_1, \ldots , X_{j-1}, \text{ es distinta cero}
 \end{split}
-\tag{3.28}
+\tag{3.29}
 \end{equation}\]</span>
 <p>Más detalles del funcionamiento de este estadístico en el anexo <a href="estadísticos.html#F-forward">B.1</a>.</p>
 <div class="blackbox">

@@ -7,20 +7,30 @@
 Sean $X_1, \ldots, X_k$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal múltiple:
 
 $$
-Y_i = \beta_0 + \beta_1X_1 +\cdots + \beta_kX_k + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+Y_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
 $$
 
-Demuestre que:
+Considere las siguiente matrices asociadas al modelo.
 
-\begin{enumerate}
-  \item
-  \item 
-  \item 
-\end{enumerate}
+\begin{equation}
+  \notag
+  X = \begin{pmatrix}
+    1 & 3 & 6 \\
+    1 & 4 & 2 \\
+    1 & 5 & 9 \\
+    \end{pmatrix},\quad
+    Y = \begin{pmatrix} 
+    9.4 \\
+    3.1 \\
+    7.2 \\
+    \end{pmatrix}
+\end{equation}
+
+Determine $\widehat{\beta}$, $\widehat{Y}$ y $e$.
 
 \section*{Parte 2}
 
-La siguiente base contiene datos relacionados a la contratación de seguros médicos. Las columnas de la base de datos son las siguientes:
+La siguiente base contiene 1338 observaciones respecto a la contratación de seguros médicos. Las columnas de la base de datos son las siguientes:
 
 \begin{itemize}
     \item \texttt{age}: edad en años del beneficiario principal.
@@ -31,16 +41,86 @@ La siguiente base contiene datos relacionados a la contratación de seguros méd
     \item \texttt{region}: el área residencial del beneficiario en los EEUU, ``northeast'', ``southeast'', ``southwest'', ``northwest''.
     \item \texttt{charges}: costos médicos (en dólares) individuales facturados por el seguro de salud.
 \end{itemize}
+
+\begin{enumerate}
+  <<echo=F>>=
+  library(kableExtra)
+  data = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/insurance.csv")
+  data$sex = factor(data$sex, levels = c("male", "female"))
+  data$smoker = factor(data$smoker, levels = c("yes", "no"))
+  ecuacion = parse(text = "lm(charges ~ age + children + sex, data = data)")
+  modelo = eval(ecuacion)
+  SCT = round(sum((data$charges - mean(data$charges))^2))
+  SCReg = round(sum((modelo$fitted.values - mean(data$charges))^2))
+  @
+  
+  \item Se ejecutó en R el comando: \texttt{lm(charges $\sim$ age + children + sex, data = data)}. Los valores de SCT y SCR son \Sexpr{SCT} y \Sexpr{SCReg}, respectivamente.
+  
+  \begin{enumerate}
+    \item Calcule SCE.
+    \item Calcule $R^2$.
+    \item Calcule $R^2$ ajustado.
+  \end{enumerate}
+  
+  <<echo=F>>=
+  ecuacion = parse(text = "lm(bmi ~ age + smoker, data = data)")
+  modelo = eval(ecuacion)
+  resumen = summary(modelo)
+  sds = round(resumen$coefficients[,2],4)
+  SCT = round(sum((data$bmi - mean(data$bmi))^2))
+  SCReg = round(sum((modelo$fitted.values - mean(data$bmi))^2))
+  @
+
+  \item Se ejecutó en R el comando: \texttt{lm(bmi $\sim$ age + smoker, data = data)}. Aquí SCT = \Sexpr{SCT}, SCR = \Sexpr{SCReg}, $S_{\widehat{\beta}_0} =$ \Sexpr{sds[1]}, $S_{\widehat{\beta}_1} =$ \Sexpr{sds[2]} y $S_{\widehat{\beta}_2} =$ \Sexpr{sds[3]}. Además, la ecuación de regresión ajustada es
+  
+  $$\widehat{Y}_{\text{bmi}} = 28.8790 + 0.0475X_{\text{age}} - 0.0980I_{\text{smoker = no}}$$
+
+  \begin{enumerate}
+    \item Calcule MCE y MCReg.
+    \item Calcule el estadístico $F_0$. Estudie la prueba de hipótesis asociada al 95\% de confianza, para ello, utilice la siguiente tabla.
     
-A continuación, se despliega la siguiente salida de R asociada a un modelo de regresión lineal múltiple
+    <<echo=F>>=
+    alfa = seq(0.01, 0.1, 0.01)
+    tabla = matrix(c(qf(seq(0.01, 0.1, 0.01), 2, 1335, lower.tail = F),
+                     qf(seq(0.01, 0.1, 0.01), 2, 1335)), byrow = T, ncol = length(alfa))
+      
+    tabla = structure(round(tabla, 4), dim = c(dim(tabla)))
+    row.names(tabla) = c("$F_{1-\\alpha,k,n-k-1}$","$F_{1-\\alpha/2,k,n-k-1}$")
+    kbl(tabla, align = 'c', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex",
+        col.names = round(alfa, 4),
+        caption = "Valores críticos según significancia") |>
+      kable_styling(latex_options = c("HOLD_position"))
+    @
+    
+    \item Estudie la prueba de no nulidad para cada uno de los parámetros de la regresión al 98\% de confianza. Interprete utilizando la siguiente tabla.
+    
+    <<echo=F>>=
+    alfa = seq(0.01, 0.1, 0.01)
+    tabla = matrix(c(qt(1-alfa/2, 1335),qt(alfa, 1335)), byrow = T, ncol = length(alfa))
+      
+    tabla = structure(round(tabla, 4), dim = c(dim(tabla)))
+    row.names(tabla) = c("$t_{1-\\alpha/2,n-k-1}$","$t_{\\alpha,n-k-1}$")
+    kbl(tabla, align = 'c', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex",
+        col.names = round(alfa, 4),
+        caption = "Valores críticos según significancia") |>
+      kable_styling(latex_options = c("HOLD_position"))
+    @
+    
+  \end{enumerate}
+  
+\end{enumerate}
+    
+    
+\section*{Parte 3}
+
+A continuación,haciendo uso de la base de datos explicada en la Parte 2, se despliega una salida de R asociada a un modelo de regresión lineal múltiple.
 
 <<echo=F>>=
-data = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/insurance.csv")
-data$sex = factor(data$sex, levels =c("male", "female"))
-data$smoker = factor(data$smoker, levels =c("yes", "no"))
 modelo = lm(charges ~ age + sex + region + smoker, data = data)
 summary(modelo)
 @
+
+Luego,
 
 \begin{enumerate}
 \item Escriba la ecuación de regresión poblacional.
