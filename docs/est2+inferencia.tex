@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 04-06-2024}
+\date{Actualizado al 21-06-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4572,7 +4572,7 @@ H_1:&\text{ Al menos uno de los beta es distinto de 0}\\
 A diferencia del estadístico expresado en la ecuación \eqref{eq:estadistico-F-RLS}, la expresión es:
 
 \begin{equation}
-F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-2},
+F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},
 \label{eq:estadistico-F-RLM}
 \end{equation}
 
@@ -4646,7 +4646,7 @@ En términos de la ecuación \eqref{eq:descomposicion-sct} se tienen las siguien
   Residual standard error: a diferencia de lo mostrado en \eqref{eq:sigma2-estimador}, la cantidad de parámetros es variable y se denota con la letra \(k\), por lo cual, el estimador es el siguiente.
 
   \begin{equation}
-  \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k} = \text{MCE},
+  \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1} = \text{MCE},
   \label{eq:error-estandar-residual-RLM}
   \end{equation}
 
@@ -4655,7 +4655,7 @@ En términos de la ecuación \eqref{eq:descomposicion-sct} se tienen las siguien
   Adjusted R-squared: se agrega una penalización respecto a la cantidad de covariables (\(k\)) incluidas en el modelo. Luego, la expresión correspondiente es la siguiente.
 
   \begin{equation}
-  \bar{R}^2 = \frac{\text{SCReg}/(n-k-1)}{\text{SCT}/n}
+  \bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
   \label{eq:r2-ajustado}
   \end{equation}
 \end{itemize}

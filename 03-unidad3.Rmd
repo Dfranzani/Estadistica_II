@@ -1438,7 +1438,7 @@ A diferencia del estadístico expresado en la ecuación \@ref(eq:estadistico-F-R
 
 ```{=tex}
 \begin{equation}
-F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-2},
+F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},
 (\#eq:estadistico-F-RLM)
 \end{equation}
 ```
@@ -1494,7 +1494,7 @@ En términos de la ecuación \@ref(eq:descomposicion-sct) se tienen las siguient
 
   ```{=tex}
   \begin{equation}
-  \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k} = \text{MCE},
+  \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1} = \text{MCE},
   (\#eq:error-estandar-residual-RLM)
   \end{equation}
   ```
@@ -1504,7 +1504,7 @@ En términos de la ecuación \@ref(eq:descomposicion-sct) se tienen las siguient
 
   ```{=tex}
   \begin{equation}
-  \bar{R}^2 = \frac{\text{SCReg}/(n-k-1)}{\text{SCT}/n}
+  \bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
   (\#eq:r2-ajustado)
   \end{equation}
   ```

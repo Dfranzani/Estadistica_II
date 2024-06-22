@@ -1472,7 +1472,7 @@ H_1:&amp;\text{ Al menos uno de los beta es distinto de 0}\\
 \end{equation}\]</span>
 <p>A diferencia del estadístico expresado en la ecuación <a href="regresión-lineal.html#eq:estadistico-F-RLS">(3.12)</a>, la expresión es:</p>
 <span class="math display" id="eq:estadistico-F-RLM">\[\begin{equation}
-F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-2},
+F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},
 \tag{3.24}
 \end{equation}\]</span>
 <p>donde,</p>
@@ -1515,13 +1515,13 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <ul>
 <li><p>Residual standard error: a diferencia de lo mostrado en <a href="regresión-lineal.html#eq:sigma2-estimador">(3.13)</a>, la cantidad de parámetros es variable y se denota con la letra <span class="math inline">\(k\)</span>, por lo cual, el estimador es el siguiente.</p>
 <span class="math display" id="eq:error-estandar-residual-RLM">\[\begin{equation}
-\widehat{\sigma}^2 = \frac{\text{SCE}}{n-k} = \text{MCE},
+\widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1} = \text{MCE},
 \tag{3.26}
 \end{equation}\]</span>
 <p>Luego, el valor del error estándar residual (<span class="math inline">\(\widehat{\sigma}\)</span>) es igual a <span class="math inline">\(\sqrt{\text{MCE}}\)</span>.</p></li>
 <li><p>Adjusted R-squared: se agrega una penalización respecto a la cantidad de covariables (<span class="math inline">\(k\)</span>) incluidas en el modelo. Luego, la expresión correspondiente es la siguiente.</p>
 <span class="math display" id="eq:r2-ajustado">\[\begin{equation}
-\bar{R}^2 = \frac{\text{SCReg}/(n-k-1)}{\text{SCT}/n}
+\bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
 \tag{3.27}
 \end{equation}\]</span></li>
 </ul>
