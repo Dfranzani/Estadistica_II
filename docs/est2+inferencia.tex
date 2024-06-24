@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 22-06-2024}
+\date{Actualizado al 24-06-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -5650,7 +5650,7 @@ El valor-p de cada estadístico es:
 
 \section{Esquema de la función indicatriz}\label{funcion-indicatriz}
 
-Al trabajar con variables cualitativas, existen distintas maneras de esquematizar esta variable en la matriz de diseño. Considerando una muestra de dos observaciones, para la cual se labora un modelo de regresión lineal con una sola variable independiente cualitativa de 2 categorías, entonces, la matriz de diseño \(X\), tentativamente, sería de la siguiente forma.
+Al trabajar con variables cualitativas, existen distintas maneras de esquematizar este tipo de variable en la matriz de diseño. Considerando una muestra de dos observaciones, para la cual se labora un modelo de regresión lineal con una sola variable independiente cualitativa de dos categorías, entonces, la matriz de diseño \(X\), tentativamente, sería de la siguiente forma.
 
 \begin{equation}
 X = \begin{pmatrix}
@@ -5660,7 +5660,7 @@ X = \begin{pmatrix}
 \label{eq:matriz-colineal}
 \end{equation}
 
-donde, la primera está asociada a \(\beta_0\), y la segunda y tercera columna están asociadas a la variable cualitativa. La segunda columna toma el valor de 1 cuando la observación está asociada a una determinada categoría y 0 si está asociada a otra. Lo mismo ocurre para la tercera columna, que es para referirse a la otra categoría de la variable. Esta forma de ordenar las columnas para los distintos valores de la variable se denomina \textbf{función indicatriz}, que se especifica de la siguiente manera:
+donde, la primera columna está asociada a \(\beta_0\), y la segunda y tercera están asociadas a las categorías de la variable cualitativa. La segunda columna toma el valor de 1 cuando la observación está asociada a una determinada categoría y 0 si está asociada a otra. Lo mismo ocurre para la tercera columna (que es para referirse a la otra categoría de la variable). Esta forma de ordenar las columnas para los distintos valores de la variable se denomina \textbf{función indicatriz}, que se especifica de la siguiente manera:
 
 \begin{equation}
 I(x) = \left\lbrace\begin{matrix}
@@ -5678,16 +5678,16 @@ Luego, el modelo ajustado (incorrecto) sería el siguiente.
 \label{eq:matriz-colineal-modelo}
 \end{equation}
 
-Sin embargo, la matriz \eqref{eq:matriz-colineal} tiene columnas linealmente dependientes, es decir, al menos una de ellas puede ser expresada como combinación lineal de las otras. En este caso, y a modo de ejemplo, es fácil ver qué
+La matriz \eqref{eq:matriz-colineal} tiene columnas linealmente dependientes, es decir, al menos una de ellas puede ser expresada como combinación lineal de las otras. En este caso, y a modo de ejemplo, es fácil ver qué
 
 \begin{equation}
 C_1 = C_2 + C_3, 
 \label{eq:colinealidad}
 \end{equation}
 
-donde \(C_i\) indica la columna de la matriz. Esto implica, que no es posible calcular los estimadores de EMC expresados en la ecuación \eqref{eq:betasmultiple3-demostracion}, ya que, la matriz \((X^tX)\) no es invertible al darse este fenómeno de dependencia, y por ende, el modelo ajustado planteado en \eqref{eq:matriz-colineal-modelo} es incorrecto.
+donde \(C_i\) indica la columna de la matriz. Esto implica, que no es posible calcular los EMC expresados en la ecuación \eqref{eq:betasmultiple3-demostracion}, ya que, la matriz \((X^tX)\) no es invertible al darse este fenómeno de dependencia, y por ende, el modelo ajustado \eqref{eq:matriz-colineal-modelo} es incorrecto.
 
-Para corregir esto, una de las soluciones más intuitivas es plantear una nueva matriz de diseño eliminando una de las columnas involucradas en la ecuación \eqref{eq:colinealidad}. Así, ninguna de las columnas de la matriz \(X\) podría ser expresada como combinación lineal de las otras. Sin embargo, nace la siguiente pregunta, ¿que sucede con el parámetro asociado a la columna que se elimina?
+Para corregir esto, una de las soluciones más intuitivas es plantear una nueva matriz de diseño eliminando una de las columnas involucradas en la ecuación \eqref{eq:colinealidad}. Así, ninguna de las columnas de la matriz \(X\) podría ser expresada como combinación lineal de las otras, sin embargo, ¿que sucede con el parámetro asociado a la columna que se elimina?
 
 Como se explica en la sección \ref{covariables-cualitativas}, la variable que no se observa en el modelo es la denominada categoría de referencia, que en otras palabras, es la columna que se ha eliminado de la matriz de diseño para poder calcular los EMC. Ahora, el beta asociado a la categoría (columna) que se elimina de la matriz de diseño será ``absorbido'' por el intercepto, es decir, \(\beta_0\). Para estudiar esto, considere dos matrices de diseño, \(X_1\) y \(X_2\), en la primera se ha eliminado la segunda columna, y en la segunda se ha eliminado la primera columna (la asociada al intercepto).
 
@@ -5706,71 +5706,74 @@ X_2 = \begin{pmatrix}
 \label{eq:matriz-corregidas}
 \end{equation}
 
-Se procede a escribir las ecuaciones de regresión para cada matriz (se omite la inclusión de los errores para facilitar la lectura), diferenciando simbólicamente los betas para cada ecuación. Tener en cuenta que los betas de cada ecuación dependen de las columnas consideradas, ya que al observar la matriz \eqref{eq:matriz-colineal}, se tienen tres betas ``originalmente'' (esto solo debe ser considerado como notación).
+Las ecuaciones \eqref{eq:ecuacion-x1} y \eqref{eq:ecuacion-x2} corresponde a las ecuación de regresión poblacional para matriz de diseño. El superíndice sobre los residuos indica a qué modelo pertenecen.
 
 \begin{equation}
-Y = X_1\beta = 
-\begin{pmatrix}
-1 & 1 \\
-1 & 0 \\
-\end{pmatrix}
-\begin{pmatrix}
-\beta_0\\
-\beta_1\\
-\end{pmatrix}
+Y = X_1\beta + \epsilon^1
 \label{eq:ecuacion-x1}
 \end{equation}
 
 \begin{equation}
-Y = X_2\beta = 
-\begin{pmatrix}
-1 & 0 \\
-0 & 1 \\
-\end{pmatrix}
-\begin{pmatrix}
-\beta_1'\\
-\beta_2'\\
-\end{pmatrix}
+Y = X_2\beta + \epsilon^2 
 \label{eq:ecuacion-x2}
 \end{equation}
 
-Cómo se puede observar, ambos esquemas deben dar como resultado la misma variable \(Y\). Esto es lo único similar entre ambos modelos, por lo cual, debe existir una relación entre ellos. El modelo correspondiente a la ecuación \eqref{eq:ecuacion-x1} expresa el efecto tanto del intercepto como el de la primera categoría de la variable cualitativa, mientras que el modelo asociado a la ecuación \eqref{eq:ecuacion-x2} expresa el efecto de la primera y segunda categoría de la variable cualitativa. Desarrollando las matrices de ambas ecuaciones se tiene lo siguiente.
+Las ecuaciones \eqref{eq:ecuacion-x1-lineal} y \eqref{eq:ecuacion-x2-lineal} corresponde a la forma lineal de las ecuaciones anteriores. El subíndice 1 bajo la función indicatriz indica que la variable cualitativa está asociada a la primera categoría, y el subíndice 2 indica que está asociada a la segunda categoría.
 
 \begin{equation}
-Y = 
-\begin{pmatrix}
-\beta_0 + \beta_1 \\
-\beta_0 \\
-\end{pmatrix}
-\label{eq:ecuacion-x1-1}
+Y_i = \beta_0 + \beta_1I_1 + \epsilon_i^1
+\label{eq:ecuacion-x1-lineal}
 \end{equation}
 
 \begin{equation}
-Y = 
-\begin{pmatrix}
-\beta_1' \\
-\beta_2' \\
-\end{pmatrix}
-\label{eq:ecuacion-x2-1}
+Y_i = \beta_1I_1 + \beta_2I_2 + \epsilon_i^2
+\label{eq:ecuacion-x2-lineal}
 \end{equation}
 
-Luego, igualando las matrices, y por ende, elemento con elemento, se tienen las expresiones \eqref{eq:ecuacion-x1-x2-1} y \eqref{eq:ecuacion-x1-x2-2}. Se puede observar, que en la ecuación \eqref{eq:ecuacion-x1-x2-2} el valor del intercepto asociado al modelo \eqref{eq:ecuacion-x1} es igual (``absorbe'') al efecto (``beta'') correspondiente a la segunda categoría de la variable cualitativa del modelo \eqref{eq:ecuacion-x2}, es decir, la categoría de referencia.
+Las ecuaciones \eqref{eq:ecuacion-x1-lineal-ajustado} corresponden a las ecuaciones \eqref{eq:ecuacion-x2-lineal-ajustado} ajustadas al reemplazar los EMC en las ecuaciones anteriores. Cabe mencionar, que si bien el parámetro \(\beta_1\) está presente en ambas ecuaciones, el EMC será distinto en cada modelo, es por ello, que lo diferenciamos con comilla, además, los residuos serán diferenciados de la misma forma los errores.
+
+\begin{equation}
+Y_i = \widehat{\beta}_0 + \widehat{\beta}_1I_1 + e_i^1
+\label{eq:ecuacion-x1-lineal-ajustado}
+\end{equation}
+
+\begin{equation}
+Y_i = \widehat{\beta}_1'I_1 + \widehat{\beta}_2'I_2 + e_i^2
+\label{eq:ecuacion-x2-lineal-ajustado}
+\end{equation}
+
+Luego, igualando las ecuaciones \eqref{eq:ecuacion-x1-lineal-ajustado} y \eqref{eq:ecuacion-x2-lineal-ajustado} se tiene que
 
 \begin{equation}
 \begin{split}
-\beta_0 + \beta_1  &= \beta_1'\\
+\widehat{\beta}_0 + \widehat{\beta}_1I_1 + e_i^1 &= \widehat{\beta}_1'I_1 + \widehat{\beta}_2'I_2 + e_i^2\\
+\sum_{i=1}^n\widehat{\beta}_0 + \sum_{i=1}^n\widehat{\beta}_1I_1 + \sum_{i=1}^ne_i^1 &= \sum_{i=1}^n\widehat{\beta}_1'I_1 + \sum_{i=1}^n\widehat{\beta}_2'I_2 + \sum_{i=1}^ne_i^2\\
+\sum_{i=1}^n\widehat{\beta}_0 + \sum_{i=1}^n\widehat{\beta}_1I_1 &= \sum_{i=1}^n\widehat{\beta}_1'I_1 + \sum_{i=1}^n\widehat{\beta}_2'I_2\\
+n\widehat{\beta}_0 + j\widehat{\beta}_1 &= j\widehat{\beta}_1' + (n-j)\widehat{\beta}_2'\\
+n\widehat{\beta}_0 + j\widehat{\beta}_1 &= j\widehat{\beta}_1' + n\widehat{\beta}_2'-j\widehat{\beta}_2'\\
+\end{split}
+\label{eq:igualando-x1-x2}
+\end{equation}
+
+donde, \(j\) es la cantidad de veces que la variable cualitativa toma el valor de la primera categoría, por ende, \(n-j\) es la cantidad de veces que la variable cualitativa toma el valor de la segunda categoría. Luego, igualando los elementos que acompañan a \(n\) y \(j\) respectivamente, se tiene las siguiente igualdades:
+
+\begin{equation}
+\begin{split}
+\widehat{\beta}_0 &= \widehat{\beta}_2'\\
 \end{split}
 \label{eq:ecuacion-x1-x2-1}
 \end{equation}
 
 \begin{equation}
 \begin{split}
-\beta_0 &= \beta_2' \\
+\widehat{\beta}_1 &= \widehat{\beta}_1' - \widehat{\beta}_2'\\
+\widehat{\beta}_1 &= \widehat{\beta}_1' - \widehat{\beta}_0\\
+\widehat{\beta}_1 + \widehat{\beta}_0 &= \widehat{\beta}_1'\\
 \end{split}
 \label{eq:ecuacion-x1-x2-2}
 \end{equation}
 
-Por otro lado, considerando a la ecuación \eqref{eq:ecuacion-x1-x2-1} y, reemplazando \eqref{eq:ecuacion-x1-x2-2}, se tiene que \(\beta_2' + \beta_1 = \beta_1'\), por ende, el efecto propio de la primera categoría de la variable cualitativa (\(\beta_1'\)) es igual al valor del efecto propio de la segunda categoría más una diferencia, es decir, como afecta la primera categoría a la variable \(Y\) respecto a la categoría de referencia (que es la segunda categoría). Esta igualdad se puede expresar como el efecto superior o inferior (\(\beta_1\)) que tiene la primera categoría sobre el efecto directo de la segunda (\(\beta_2'\)). (\textbf{Nota:} estas relaciones son válidas tanto para los parámetros como para sus estimadores).
+Considerando la ecuación \eqref{eq:ecuacion-x1-x2-1} y, reemplazando \eqref{eq:ecuacion-x1-x2-2}, se tiene que \(\widehat{\beta}_2' + \widehat{\beta}_1 = \widehat{\beta}_1'\), por lo cual, el efecto propio de la primera categoría de la variable cualitativa (\(\widehat{\beta}_1'\)) es igual al valor del efecto propio de la segunda categoría más una diferencia, es decir, es el efecto de la primera categoría sobre la variable \(Y\) respecto a la categoría de referencia. Esta igualdad se puede expresar como el efecto superior o inferior (\(\widehat{\beta}_1\)) que tiene la primera categoría sobre el efecto directo de la segunda (\(\widehat{\beta}_2'\)).
 
 A continuación, se muestra un ejemplo práctico para entender estas relaciones. La base de datos \texttt{iris} tiene la siguiente descripción en la documentación de R: ``Este famoso conjunto de datos de iris (de Fisher o Anderson) proporciona las medidas en centímetros de las variables longitud y ancho del sépalo y longitud y ancho de los pétalos, respectivamente, para 50 flores de cada una de las 3 especies de iris. Las especies son Iris setosa, versicolor y virginica.''.
 
@@ -5827,7 +5830,7 @@ La tabla \ref{tab:tablaxx}, muestra la asociación de estos valores según lo ex
 \begin{itemize}
 \tightlist
 \item
-  Observando el modelo modelo \eqref{eq:modelo-x1-ejemplo}:
+  Observando el modelo \eqref{eq:modelo-x1-ejemplo}:
 
   \begin{itemize}
   \tightlist
@@ -5873,7 +5876,7 @@ X_3 = \begin{pmatrix}
 \label{eq:matriz-corregida3}
 \end{equation}
 
-la cual, debería ser implementada manualmente en R, aunque existen ciertos softwares como \href{https://www.sas.com/es_cl/home.html}{SAS}, que tiene opciones para implementar este tipo de matrices de diseño.
+la cual, debería ser implementada manualmente en R.
 
 Si bien existe libertad a la hora de elegir cómo trabajar la matriz de diseño, se debe tener en cuenta, que todas las matrices de diseño que evitan el problema de colinealidad implican estilos de interpretación distintos.
 
