@@ -2,33 +2,33 @@
 {\bf \Large{Taller de práctica Examen}}\\
 \end{center}
 
+% \section*{Parte 1}
+% 
+% Sean $X_1, \ldots, X_k$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal múltiple:
+% 
+% $$
+% Y_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+% $$
+% 
+% Considere las siguiente matrices asociadas al modelo.
+% 
+% \begin{equation}
+%   \notag
+%   X = \begin{pmatrix}
+%     1 & 3 & 6 \\
+%     1 & 4 & 2 \\
+%     1 & 5 & 9 \\
+%     \end{pmatrix},\quad
+%     Y = \begin{pmatrix} 
+%     9.4 \\
+%     3.1 \\
+%     7.2 \\
+%     \end{pmatrix}
+% \end{equation}
+% 
+% Determine $\widehat{\beta}$, $\widehat{Y}$ y $e$.
+
 \section*{Parte 1}
-
-Sean $X_1, \ldots, X_k$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal múltiple:
-
-$$
-Y_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
-$$
-
-Considere las siguiente matrices asociadas al modelo.
-
-\begin{equation}
-  \notag
-  X = \begin{pmatrix}
-    1 & 3 & 6 \\
-    1 & 4 & 2 \\
-    1 & 5 & 9 \\
-    \end{pmatrix},\quad
-    Y = \begin{pmatrix} 
-    9.4 \\
-    3.1 \\
-    7.2 \\
-    \end{pmatrix}
-\end{equation}
-
-Determine $\widehat{\beta}$, $\widehat{Y}$ y $e$.
-
-\section*{Parte 2}
 
 La siguiente base contiene 1338 observaciones respecto a la contratación de seguros médicos. Las columnas de la base de datos son las siguientes:
 
@@ -111,7 +111,7 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
 \end{enumerate}
     
     
-\section*{Parte 3}
+\section*{Parte 2}
 
 A continuación,haciendo uso de la base de datos explicada en la Parte 2, se despliega una salida de R asociada a un modelo de regresión lineal múltiple.
 
