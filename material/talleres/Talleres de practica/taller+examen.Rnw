@@ -71,7 +71,7 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
   SCReg = round(sum((modelo$fitted.values - mean(data$bmi))^2))
   @
 
-  \item Se ejecutó en R el comando: \texttt{lm(bmi $\sim$ age + smoker, data = data)}. Aquí SCT = \Sexpr{SCT}, SCReg = \Sexpr{SCReg}, $S_{\widehat{\beta}_0} =$ \Sexpr{sds[1]}, $S_{\widehat{\beta}_1} =$ \Sexpr{sds[2]} y $S_{\widehat{\beta}_2} =$ \Sexpr{sds[3]}. Además, la ecuación de regresión ajustada es
+  \item Se ejecutó en R el comando: \texttt{lm(bmi $\sim$ age + smoker, data = data)}. Aquí SCT = \Sexpr{SCT}, SCReg = \Sexpr{SCReg}, $S_{\widehat{\beta}_0} =$ \Sexpr{sds[1]}, $S_{\widehat{\beta}_1} =$ \Sexpr{sds[2]} y $S_{\widehat{\beta}_2} =$ \Sexpr{sds[3]}. Además, la ecuación de regresión ajustada es 
   
   $$\widehat{Y}_{\text{bmi}} = 28.8790 + 0.0475X_{\text{age}} - 0.0980I_{\text{smoker = no}}$$
 
