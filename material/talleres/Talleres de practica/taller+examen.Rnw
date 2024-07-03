@@ -113,7 +113,7 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
     
 \section*{Parte 2}
 
-A continuación,haciendo uso de la base de datos explicada en la Parte 2, se despliega una salida de R asociada a un modelo de regresión lineal múltiple.
+A continuación,haciendo uso de la base de datos explicada en la Parte 1, se despliega una salida de R asociada a un modelo de regresión lineal múltiple.
 
 <<echo=F>>=
 modelo = lm(charges ~ age + sex + region + smoker, data = data)
