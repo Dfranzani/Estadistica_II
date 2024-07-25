@@ -1541,6 +1541,58 @@ print(c("Error estándar residual" = resumen$sigma, "R cuadrado ajustado" = resu
 Interprete las métricas del modelo desarrollado en el ejercicio \@ref(exr:calidad-aire).
 :::
 
+::: {.exercise}
+A continuación, se trabaja con una base (de 607 filas) que contiene datos referentes a salarios de trabajos de ciencia de datos. Las columnas de la base de datos son las siguientes:
+
+```{r echo=FALSE}
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/salariosds.csv")
+datos = datos[,c(1,2,7,11)]
+colnames(datos) = c("workYear", "experienceLevel", "salaryInUSD", "companySize")
+modelo = lm(salaryInUSD ~ workYear + companySize, data = datos)
+SCT = round(sum((datos$salaryInUSD - mean(datos$salaryInUSD))^2))
+SCReg = round(sum((modelo$fitted.values - mean(datos$salaryInUSD))^2))
+```
+
+- workYear: El año en que se pagó el salario.
+- experienceLevel: El nivel de experiencia en el trabajo durante el año con los siguientes valores posibles: EN (Entry-level/Junior), MI (Mid-level/Intermedio), SE (Senior-level/Experto), EX (Executive-level/Director).
+- salaryInUSD: El salario en USD (tasa de cambio dividida por la tasa promedio de USD para el año respectivo a través de fxdata.foorilla.com).
+- companySize: El número promedio de personas que trabajaron para la empresa durante el año: S menos de 50 empleados (pequeño), M de 50 a 250 empleados (mediano), L más de 250 empleados (grande).
+
+Se ejecutó en R el comando: 
+
+```{r eval=FALSE}
+lm(salaryInUSD ~ workYear + companySize, data = datos)
+```
+
+Los valores de SCT y SCReg son $`r SCT`$ y $`r SCReg`$, respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule el R cuadrado ajustado y $F_0$.
+:::
+
+::: {.exercise}
+Considera una base que contiene datos (de 303 filas) respecto a los ataques al corazón de distintos pacientes hospitalarios. Las columnas de la base de datos son las siguientes:
+
+- sex: sexo del paciente (Hombre: H y  Mujer: M).
+- trtbps: presión arterial en reposo (en mm Hg).
+- thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).
+- oldpeak: tiempo de duración del último ataque al corazón (en minutos).
+
+```{r echo=FALSE}
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart2.csv")
+datos$sex = factor(datos$sex, levels = c("M", "H"))
+modelo = lm(oldpeak ~ trtbps + sex, data = datos)
+SCT = round(sum((datos$oldpeak - mean(datos$oldpeak))^2))
+SCReg = round(sum((modelo$fitted.values - mean(datos$oldpeak))^2))
+```
+
+Se ejecutó en R el comando: 
+
+```{r echo=FALSE}
+lm(oldpeak ~ trtbps + sex, data = datos)
+```
+
+Los valores de SCT y SCReg son $`r SCT`$ y $`r SCReg`$, respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule MCE, MCReg y $F_0$.
+:::
+
+
 ### Supuestos
 
 Al igual que en la regresión lineal simple, lo supuestos a verificar son:

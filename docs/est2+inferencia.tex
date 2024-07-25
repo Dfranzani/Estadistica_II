@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 03-07-2024}
+\date{Actualizado al 24-07-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4698,6 +4698,62 @@ Respecto al ejemplo \ref{exm:MultipleManual}, la salida de resumen del modelo en
 Interprete las métricas del modelo desarrollado en el ejercicio \ref{exr:calidad-aire}.
 \end{exercise}
 
+\begin{exercise}
+A continuación, se trabaja con una base (de 607 filas) que contiene datos referentes a salarios de trabajos de ciencia de datos. Las columnas de la base de datos son las siguientes:
+
+\begin{itemize}
+\tightlist
+\item
+  workYear: El año en que se pagó el salario.
+\item
+  experienceLevel: El nivel de experiencia en el trabajo durante el año con los siguientes valores posibles: EN (Entry-level/Junior), MI (Mid-level/Intermedio), SE (Senior-level/Experto), EX (Executive-level/Director).
+\item
+  salaryInUSD: El salario en USD (tasa de cambio dividida por la tasa promedio de USD para el año respectivo a través de fxdata.foorilla.com).
+\item
+  companySize: El número promedio de personas que trabajaron para la empresa durante el año: S menos de 50 empleados (pequeño), M de 50 a 250 empleados (mediano), L más de 250 empleados (grande).
+\end{itemize}
+
+Se ejecutó en R el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(salaryInUSD }\SpecialCharTok{\textasciitilde{}}\NormalTok{ workYear }\SpecialCharTok{+}\NormalTok{ companySize, }\AttributeTok{data =}\NormalTok{ datos)}
+\end{Highlighting}
+\end{Shaded}
+
+Los valores de SCT y SCReg son \(\ensuremath{3.0511692\times 10^{12}}\) y \(\ensuremath{1.7439024\times 10^{11}}\), respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule el R cuadrado ajustado y \(F_0\).
+\end{exercise}
+
+\begin{exercise}
+Considera una base que contiene datos (de 303 filas) respecto a los ataques al corazón de distintos pacientes hospitalarios. Las columnas de la base de datos son las siguientes:
+
+\begin{itemize}
+\tightlist
+\item
+  sex: sexo del paciente (Hombre: H y Mujer: M).
+\item
+  trtbps: presión arterial en reposo (en mm Hg).
+\item
+  thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).
+\item
+  oldpeak: tiempo de duración del último ataque al corazón (en minutos).
+\end{itemize}
+
+Se ejecutó en R el comando:
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = oldpeak ~ trtbps + sex, data = datos)
+## 
+## Coefficients:
+## (Intercept)       trtbps         sexH  
+##     -0.8800       0.0132       0.2676
+\end{verbatim}
+
+Los valores de SCT y SCReg son \(407\) y \(20\), respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule MCE, MCReg y \(F_0\).
+\end{exercise}
+
 \subsection{Supuestos}\label{supuestos-1}
 
 Al igual que en la regresión lineal simple, lo supuestos a verificar son:
@@ -4741,7 +4797,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-129-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-133-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -4803,7 +4859,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-131-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-135-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 

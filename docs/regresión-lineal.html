@@ -1546,6 +1546,36 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <div class="exercise">
 <p><span id="exr:unlabeled-div-68" class="exercise"><strong>Ejercicio 3.27  </strong></span>Interprete las métricas del modelo desarrollado en el ejercicio <a href="regresión-lineal.html#exr:calidad-aire">3.26</a>.</p>
 </div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-69" class="exercise"><strong>Ejercicio 3.28  </strong></span>A continuación, se trabaja con una base (de 607 filas) que contiene datos referentes a salarios de trabajos de ciencia de datos. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>workYear: El año en que se pagó el salario.</li>
+<li>experienceLevel: El nivel de experiencia en el trabajo durante el año con los siguientes valores posibles: EN (Entry-level/Junior), MI (Mid-level/Intermedio), SE (Senior-level/Experto), EX (Executive-level/Director).</li>
+<li>salaryInUSD: El salario en USD (tasa de cambio dividida por la tasa promedio de USD para el año respectivo a través de fxdata.foorilla.com).</li>
+<li>companySize: El número promedio de personas que trabajaron para la empresa durante el año: S menos de 50 empleados (pequeño), M de 50 a 250 empleados (mediano), L más de 250 empleados (grande).</li>
+</ul>
+<p>Se ejecutó en R el comando:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="regresión-lineal.html#cb168-1" tabindex="-1"></a><span class="fu">lm</span>(salaryInUSD <span class="sc">~</span> workYear <span class="sc">+</span> companySize, <span class="at">data =</span> datos)</span></code></pre></div>
+<p>Los valores de SCT y SCReg son <span class="math inline">\(3.0511692\times 10^{12}\)</span> y <span class="math inline">\(1.7439024\times 10^{11}\)</span>, respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule el R cuadrado ajustado y <span class="math inline">\(F_0\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-70" class="exercise"><strong>Ejercicio 3.29  </strong></span>Considera una base que contiene datos (de 303 filas) respecto a los ataques al corazón de distintos pacientes hospitalarios. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>sex: sexo del paciente (Hombre: H y Mujer: M).</li>
+<li>trtbps: presión arterial en reposo (en mm Hg).</li>
+<li>thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).</li>
+<li>oldpeak: tiempo de duración del último ataque al corazón (en minutos).</li>
+</ul>
+<p>Se ejecutó en R el comando:</p>
+<pre><code>## 
+## Call:
+## lm(formula = oldpeak ~ trtbps + sex, data = datos)
+## 
+## Coefficients:
+## (Intercept)       trtbps         sexH  
+##     -0.8800       0.0132       0.2676</code></pre>
+<p>Los valores de SCT y SCReg son <span class="math inline">\(407\)</span> y <span class="math inline">\(20\)</span>, respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule MCE, MCReg y <span class="math inline">\(F_0\)</span>.</p>
+</div>
 </div>
 <div id="supuestos-1" class="section level3 hasAnchor" number="3.3.5">
 <h3><span class="header-section-number">3.3.5</span> Supuestos<a href="regresión-lineal.html#supuestos-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1559,16 +1589,16 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <p>Por otro lado, aparece un nuevo fenómeno llamado colinealidad entre las variables predictoras (multicolinealidad). La colinealidad indica que las covariables están correlacionadas entre si (correlación lineal). Es normal y esperable que esto suceda en alguna medida con las covariables de una base de datos. El problema surge, cuando hay como mínimo dos variables cuya correlación es fuerte, ya que esto provoca que ambas variables traten de explicar la misma “información” (variabilidad) de la variable respuesta. En temas posteriores, se abordarán técnicas para evitar la ocurrencia de este fenómeno.</p>
 <div class="blackbox">
 <div class="example">
-<p><span id="exm:unlabeled-div-69" class="example"><strong>Ejemplo 3.6  </strong></span>Utilizando el modelo ajustado en el ejemplo <a href="regresión-lineal.html#exm:MultipleManual">3.5</a>, verifique los supuestos para la regresión construida, utilizando una confianza del 95%.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="regresión-lineal.html#cb168-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
+<p><span id="exm:unlabeled-div-71" class="example"><strong>Ejemplo 3.6  </strong></span>Utilizando el modelo ajustado en el ejemplo <a href="regresión-lineal.html#exm:MultipleManual">3.5</a>, verifique los supuestos para la regresión construida, utilizando una confianza del 95%.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="regresión-lineal.html#cb170-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><strong>Linealidad</strong></li>
 </ol>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="regresión-lineal.html#cb169-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="st">&quot;Y_Gorro&quot;</span> <span class="ot">=</span> df<span class="sc">$</span>Mineria, <span class="st">&quot;Residuos&quot;</span> <span class="ot">=</span> <span class="fu">residuals</span>(modelo)),</span>
-<span id="cb169-2"><a href="regresión-lineal.html#cb169-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Residuos, <span class="at">y =</span> Y_Gorro)) <span class="sc">+</span></span>
-<span id="cb169-3"><a href="regresión-lineal.html#cb169-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb169-4"><a href="regresión-lineal.html#cb169-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Valores </span><span class="sc">\n</span><span class="st"> ajustados&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-129-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="regresión-lineal.html#cb171-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="st">&quot;Y_Gorro&quot;</span> <span class="ot">=</span> df<span class="sc">$</span>Mineria, <span class="st">&quot;Residuos&quot;</span> <span class="ot">=</span> <span class="fu">residuals</span>(modelo)),</span>
+<span id="cb171-2"><a href="regresión-lineal.html#cb171-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Residuos, <span class="at">y =</span> Y_Gorro)) <span class="sc">+</span></span>
+<span id="cb171-3"><a href="regresión-lineal.html#cb171-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb171-4"><a href="regresión-lineal.html#cb171-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Valores </span><span class="sc">\n</span><span class="st"> ajustados&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-133-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Normalidad</strong></li>
@@ -1580,8 +1610,8 @@ H_0&amp;: \text{Los residuos estandarizados tienen distribución Normal}\\
 H_1&amp;: \text{Los residuos estandarizados NO tienen distribución Normal}\\
 \end{split}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="regresión-lineal.html#cb170-1" tabindex="-1"></a>r_e <span class="ot">=</span> <span class="fu">rstandard</span>(modelo) <span class="co"># residuos estandarizados</span></span>
-<span id="cb170-2"><a href="regresión-lineal.html#cb170-2" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="at">x =</span> r_e)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="regresión-lineal.html#cb172-1" tabindex="-1"></a>r_e <span class="ot">=</span> <span class="fu">rstandard</span>(modelo) <span class="co"># residuos estandarizados</span></span>
+<span id="cb172-2"><a href="regresión-lineal.html#cb172-2" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="at">x =</span> r_e)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -1598,13 +1628,13 @@ H_0&amp;: \text{Los residuos tienen varianza constante}\\
 H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
 \end{split}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="regresión-lineal.html#cb172-1" tabindex="-1"></a>df<span class="sc">$</span>Valores.ajustados <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values</span>
-<span id="cb172-2"><a href="regresión-lineal.html#cb172-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Valores.ajustados, <span class="at">y =</span> r_e)) <span class="sc">+</span></span>
-<span id="cb172-3"><a href="regresión-lineal.html#cb172-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb172-4"><a href="regresión-lineal.html#cb172-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores ajustados&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-131-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="regresión-lineal.html#cb174-1" tabindex="-1"></a>df<span class="sc">$</span>Valores.ajustados <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values</span>
+<span id="cb174-2"><a href="regresión-lineal.html#cb174-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Valores.ajustados, <span class="at">y =</span> r_e)) <span class="sc">+</span></span>
+<span id="cb174-3"><a href="regresión-lineal.html#cb174-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb174-4"><a href="regresión-lineal.html#cb174-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores ajustados&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-135-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="regresión-lineal.html#cb173-1" tabindex="-1"></a><span class="fu">bptest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="regresión-lineal.html#cb175-1" tabindex="-1"></a><span class="fu">bptest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
@@ -1621,7 +1651,7 @@ H_0&amp;: \text{Autocorrelación de los residuos es igual a 0}\\
 H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
 \end{split}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="regresión-lineal.html#cb175-1" tabindex="-1"></a><span class="fu">dwtest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="regresión-lineal.html#cb177-1" tabindex="-1"></a><span class="fu">dwtest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Durbin-Watson test
 ## 
@@ -1632,7 +1662,7 @@ H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
 </div>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-70" class="exercise"><strong>Ejercicio 3.28  </strong></span>Considere los modelos ajustados en:</p>
+<p><span id="exr:unlabeled-div-72" class="exercise"><strong>Ejercicio 3.30  </strong></span>Considere los modelos ajustados en:</p>
 <ul>
 <li>El ejercicio <a href="regresión-lineal.html#exr:co2">3.24</a>.</li>
 <li>El ejercicio <a href="regresión-lineal.html#exr:calidad-aire">3.26</a>.</li>
@@ -1676,19 +1706,19 @@ H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados
 <div class="blackbox">
 <div class="example">
 <p><span id="exm:forward1" class="example"><strong>Ejemplo 3.7  </strong></span>Considerando el ejercicio <a href="regresión-lineal.html#exr:ingreso">3.15</a>, elabore un modelo para estudiar la proporción de logro obtenida en el diagnóstico de lenguaje, seleccionado las variables independientes mediante el método <em>forward</em>.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="regresión-lineal.html#cb177-1" tabindex="-1"></a><span class="co"># Cargamos la base de datos previamente, guardándola con el nombre &quot;datos&quot;</span></span>
-<span id="cb177-2"><a href="regresión-lineal.html#cb177-2" tabindex="-1"></a></span>
-<span id="cb177-3"><a href="regresión-lineal.html#cb177-3" tabindex="-1"></a><span class="co"># Planteamos un modelo vacío sin covariables, solo intercepto</span></span>
-<span id="cb177-4"><a href="regresión-lineal.html#cb177-4" tabindex="-1"></a>modelo.nulo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
-<span id="cb177-5"><a href="regresión-lineal.html#cb177-5" tabindex="-1"></a><span class="co"># Planteamos un modelo con todas las covariables</span></span>
-<span id="cb177-6"><a href="regresión-lineal.html#cb177-6" tabindex="-1"></a>modelo.total <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> ., <span class="at">data =</span> datos)</span>
-<span id="cb177-7"><a href="regresión-lineal.html#cb177-7" tabindex="-1"></a>modelo.final <span class="ot">=</span> <span class="fu">step</span>(modelo.nulo, <span class="co"># Modelo nulo</span></span>
-<span id="cb177-8"><a href="regresión-lineal.html#cb177-8" tabindex="-1"></a>                    <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="fu">formula</span>(modelo.nulo), <span class="co"># Rango inicial de modelos examinados</span></span>
-<span id="cb177-9"><a href="regresión-lineal.html#cb177-9" tabindex="-1"></a>                                 <span class="at">upper =</span> <span class="fu">formula</span>(modelo.total)), <span class="co"># Rango final de modelos examinados</span></span>
-<span id="cb177-10"><a href="regresión-lineal.html#cb177-10" tabindex="-1"></a>                    <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>, <span class="co"># Método de selección de variables</span></span>
-<span id="cb177-11"><a href="regresión-lineal.html#cb177-11" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="dv">0</span>, <span class="co"># Si es igual a 0, no imprime todos los modelos que va elaborando, solo imprime el modelo final</span></span>
-<span id="cb177-12"><a href="regresión-lineal.html#cb177-12" tabindex="-1"></a>                    <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># Estadístico utilizado</span></span>
-<span id="cb177-13"><a href="regresión-lineal.html#cb177-13" tabindex="-1"></a><span class="fu">summary</span>(modelo.final)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="regresión-lineal.html#cb179-1" tabindex="-1"></a><span class="co"># Cargamos la base de datos previamente, guardándola con el nombre &quot;datos&quot;</span></span>
+<span id="cb179-2"><a href="regresión-lineal.html#cb179-2" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="regresión-lineal.html#cb179-3" tabindex="-1"></a><span class="co"># Planteamos un modelo vacío sin covariables, solo intercepto</span></span>
+<span id="cb179-4"><a href="regresión-lineal.html#cb179-4" tabindex="-1"></a>modelo.nulo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
+<span id="cb179-5"><a href="regresión-lineal.html#cb179-5" tabindex="-1"></a><span class="co"># Planteamos un modelo con todas las covariables</span></span>
+<span id="cb179-6"><a href="regresión-lineal.html#cb179-6" tabindex="-1"></a>modelo.total <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> ., <span class="at">data =</span> datos)</span>
+<span id="cb179-7"><a href="regresión-lineal.html#cb179-7" tabindex="-1"></a>modelo.final <span class="ot">=</span> <span class="fu">step</span>(modelo.nulo, <span class="co"># Modelo nulo</span></span>
+<span id="cb179-8"><a href="regresión-lineal.html#cb179-8" tabindex="-1"></a>                    <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="fu">formula</span>(modelo.nulo), <span class="co"># Rango inicial de modelos examinados</span></span>
+<span id="cb179-9"><a href="regresión-lineal.html#cb179-9" tabindex="-1"></a>                                 <span class="at">upper =</span> <span class="fu">formula</span>(modelo.total)), <span class="co"># Rango final de modelos examinados</span></span>
+<span id="cb179-10"><a href="regresión-lineal.html#cb179-10" tabindex="-1"></a>                    <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>, <span class="co"># Método de selección de variables</span></span>
+<span id="cb179-11"><a href="regresión-lineal.html#cb179-11" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="dv">0</span>, <span class="co"># Si es igual a 0, no imprime todos los modelos que va elaborando, solo imprime el modelo final</span></span>
+<span id="cb179-12"><a href="regresión-lineal.html#cb179-12" tabindex="-1"></a>                    <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># Estadístico utilizado</span></span>
+<span id="cb179-13"><a href="regresión-lineal.html#cb179-13" tabindex="-1"></a><span class="fu">summary</span>(modelo.final)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Logro ~ LEN + NEM + Sexo, data = datos)
@@ -1713,12 +1743,12 @@ H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados
 </div>
 </div>
 <div class="exercise">
-<p><span id="exr:forward2" class="exercise"><strong>Ejercicio 3.29  </strong></span>Considerando el ejercicio <a href="regresión-lineal.html#exr:co2">3.24</a>, elabore un modelo para estudiar la tasa de absorción de dióxido de carbono de las plantas, seleccionado las variables independientes mediante el método <em>forward</em>. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el <span class="math inline">\(R^2\)</span> ajustado del modelo. Se recomienda aplicar el siguiente código de manera previa:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="regresión-lineal.html#cb179-1" tabindex="-1"></a>data <span class="ot">=</span> CO2</span>
-<span id="cb179-2"><a href="regresión-lineal.html#cb179-2" tabindex="-1"></a>data<span class="sc">$</span>Plant <span class="ot">=</span> <span class="fu">factor</span>(data<span class="sc">$</span>Plant, <span class="at">ordered =</span> F)</span></code></pre></div>
+<p><span id="exr:forward2" class="exercise"><strong>Ejercicio 3.31  </strong></span>Considerando el ejercicio <a href="regresión-lineal.html#exr:co2">3.24</a>, elabore un modelo para estudiar la tasa de absorción de dióxido de carbono de las plantas, seleccionado las variables independientes mediante el método <em>forward</em>. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el <span class="math inline">\(R^2\)</span> ajustado del modelo. Se recomienda aplicar el siguiente código de manera previa:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="regresión-lineal.html#cb181-1" tabindex="-1"></a>data <span class="ot">=</span> CO2</span>
+<span id="cb181-2"><a href="regresión-lineal.html#cb181-2" tabindex="-1"></a>data<span class="sc">$</span>Plant <span class="ot">=</span> <span class="fu">factor</span>(data<span class="sc">$</span>Plant, <span class="at">ordered =</span> F)</span></code></pre></div>
 </div>
 <div class="exercise">
-<p><span id="exr:forward3" class="exercise"><strong>Ejercicio 3.30  </strong></span>Considerando el ejercicio <a href="regresión-lineal.html#exr:calidad-aire">3.26</a>, elabore un modelo para estudiar la concentración de Ozono en el aire, seleccionado las variables independientes mediante el método <em>forward</em>. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el <span class="math inline">\(R^2\)</span> ajustado del modelo.</p>
+<p><span id="exr:forward3" class="exercise"><strong>Ejercicio 3.32  </strong></span>Considerando el ejercicio <a href="regresión-lineal.html#exr:calidad-aire">3.26</a>, elabore un modelo para estudiar la concentración de Ozono en el aire, seleccionado las variables independientes mediante el método <em>forward</em>. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el <span class="math inline">\(R^2\)</span> ajustado del modelo.</p>
 </div>
 </div>
 <div id="backward" class="section level3 hasAnchor" number="3.4.2">
@@ -1738,19 +1768,19 @@ H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados
 <div class="blackbox">
 <div class="example">
 <p><span id="exm:backward1" class="example"><strong>Ejemplo 3.8  </strong></span>Considerando el ejercicio <a href="regresión-lineal.html#exr:calidad-aire">3.26</a>, elabore un modelo para estudiar la concentración de Ozono, seleccionado las variables independientes mediante el método <em>backward</em>.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="regresión-lineal.html#cb180-1" tabindex="-1"></a>datos <span class="ot">=</span> airquality</span>
-<span id="cb180-2"><a href="regresión-lineal.html#cb180-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
-<span id="cb180-3"><a href="regresión-lineal.html#cb180-3" tabindex="-1"></a><span class="co"># Planteamos un modelo vacío sin covariables, solo intercepto</span></span>
-<span id="cb180-4"><a href="regresión-lineal.html#cb180-4" tabindex="-1"></a>modelo.nulo <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
-<span id="cb180-5"><a href="regresión-lineal.html#cb180-5" tabindex="-1"></a><span class="co"># Planteamos un modelo con todas las covariables</span></span>
-<span id="cb180-6"><a href="regresión-lineal.html#cb180-6" tabindex="-1"></a>modelo.total <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> ., <span class="at">data =</span> datos)</span>
-<span id="cb180-7"><a href="regresión-lineal.html#cb180-7" tabindex="-1"></a>modelo.final <span class="ot">=</span> <span class="fu">step</span>(modelo.total, <span class="co"># Modelo total</span></span>
-<span id="cb180-8"><a href="regresión-lineal.html#cb180-8" tabindex="-1"></a>                    <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="fu">formula</span>(modelo.nulo), <span class="co"># Rango inicial de modelos examinados</span></span>
-<span id="cb180-9"><a href="regresión-lineal.html#cb180-9" tabindex="-1"></a>                                 <span class="at">upper =</span> <span class="fu">formula</span>(modelo.total)), <span class="co"># Rango final de modelos examinados</span></span>
-<span id="cb180-10"><a href="regresión-lineal.html#cb180-10" tabindex="-1"></a>                    <span class="at">direction =</span> <span class="st">&quot;backward&quot;</span>, <span class="co"># Método de selección de variables</span></span>
-<span id="cb180-11"><a href="regresión-lineal.html#cb180-11" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="dv">0</span>, <span class="co"># Si es igual a 0, no imprime todos los modelos que va elaborando, solo imprime el modelo final</span></span>
-<span id="cb180-12"><a href="regresión-lineal.html#cb180-12" tabindex="-1"></a>                    <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># Estadístico utilizado</span></span>
-<span id="cb180-13"><a href="regresión-lineal.html#cb180-13" tabindex="-1"></a><span class="fu">summary</span>(modelo.final)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="regresión-lineal.html#cb182-1" tabindex="-1"></a>datos <span class="ot">=</span> airquality</span>
+<span id="cb182-2"><a href="regresión-lineal.html#cb182-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
+<span id="cb182-3"><a href="regresión-lineal.html#cb182-3" tabindex="-1"></a><span class="co"># Planteamos un modelo vacío sin covariables, solo intercepto</span></span>
+<span id="cb182-4"><a href="regresión-lineal.html#cb182-4" tabindex="-1"></a>modelo.nulo <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
+<span id="cb182-5"><a href="regresión-lineal.html#cb182-5" tabindex="-1"></a><span class="co"># Planteamos un modelo con todas las covariables</span></span>
+<span id="cb182-6"><a href="regresión-lineal.html#cb182-6" tabindex="-1"></a>modelo.total <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> ., <span class="at">data =</span> datos)</span>
+<span id="cb182-7"><a href="regresión-lineal.html#cb182-7" tabindex="-1"></a>modelo.final <span class="ot">=</span> <span class="fu">step</span>(modelo.total, <span class="co"># Modelo total</span></span>
+<span id="cb182-8"><a href="regresión-lineal.html#cb182-8" tabindex="-1"></a>                    <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="fu">formula</span>(modelo.nulo), <span class="co"># Rango inicial de modelos examinados</span></span>
+<span id="cb182-9"><a href="regresión-lineal.html#cb182-9" tabindex="-1"></a>                                 <span class="at">upper =</span> <span class="fu">formula</span>(modelo.total)), <span class="co"># Rango final de modelos examinados</span></span>
+<span id="cb182-10"><a href="regresión-lineal.html#cb182-10" tabindex="-1"></a>                    <span class="at">direction =</span> <span class="st">&quot;backward&quot;</span>, <span class="co"># Método de selección de variables</span></span>
+<span id="cb182-11"><a href="regresión-lineal.html#cb182-11" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="dv">0</span>, <span class="co"># Si es igual a 0, no imprime todos los modelos que va elaborando, solo imprime el modelo final</span></span>
+<span id="cb182-12"><a href="regresión-lineal.html#cb182-12" tabindex="-1"></a>                    <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># Estadístico utilizado</span></span>
+<span id="cb182-13"><a href="regresión-lineal.html#cb182-13" tabindex="-1"></a><span class="fu">summary</span>(modelo.final)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Ozone ~ Solar.R + Wind + Temp + Month, data = datos)
@@ -1775,7 +1805,7 @@ H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados
 </div>
 </div>
 <div class="exercise">
-<p><span id="exr:contaminacion" class="exercise"><strong>Ejercicio 3.31  </strong></span>En un estudio para explicar la tasa máxima de flujo de seis sectores de drenaje después de una tormenta, se desea analizar la relación entre el logaritmo de esta tasa (logq) y los siguientes predictores (<a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/drenaje.txt"><em>contaminacion.txt</em></a>), a través de un modelo de regresión lineal múltiple:</p>
+<p><span id="exr:contaminacion" class="exercise"><strong>Ejercicio 3.33  </strong></span>En un estudio para explicar la tasa máxima de flujo de seis sectores de drenaje después de una tormenta, se desea analizar la relación entre el logaritmo de esta tasa (logq) y los siguientes predictores (<a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/drenaje.txt"><em>contaminacion.txt</em></a>), a través de un modelo de regresión lineal múltiple:</p>
 <ul>
 <li>area: área del sector de drenaje.</li>
 <li>area2: área impermeabilizada.</li>
@@ -1799,38 +1829,38 @@ H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados
 <li><p>Un intervalo de confianza es un intervalo asociado a un parámetro. Se supone que el parámetro no es aleatorio sino desconocido, y el intervalo de confianza se calcula a partir de los datos, con una probabilidad específica de que el intervalo contenga al parámetro.</p></li>
 </ul>
 <p>Consideremos la base de datos <em>airquality</em> del ejercicio <a href="regresión-lineal.html#exr:calidad-aire">3.26</a>. Para visualizar la diferencia entre los dos tipos de intervalos ajustemos una regresión lineal simple para estudiar la tasa de absorción del dióxido de carbono a través de la temperatura.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="regresión-lineal.html#cb182-1" tabindex="-1"></a>datos <span class="ot">=</span> airquality</span>
-<span id="cb182-2"><a href="regresión-lineal.html#cb182-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
-<span id="cb182-3"><a href="regresión-lineal.html#cb182-3" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> Temp, <span class="at">data =</span> datos) <span class="co"># Modelo</span></span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="regresión-lineal.html#cb184-1" tabindex="-1"></a>datos <span class="ot">=</span> airquality</span>
+<span id="cb184-2"><a href="regresión-lineal.html#cb184-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
+<span id="cb184-3"><a href="regresión-lineal.html#cb184-3" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> Temp, <span class="at">data =</span> datos) <span class="co"># Modelo</span></span></code></pre></div>
 <p>Al momento de obtener la información de los intervalos de confianza y predicción se incluye el valor central del intervalo (el mismo para ambos), además del valor inferior y superior de cada uno.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="regresión-lineal.html#cb183-1" tabindex="-1"></a>I_confianza <span class="ot">=</span> <span class="fu">predict.lm</span>(modelo, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="co"># Intervalos de confianza</span></span>
-<span id="cb183-2"><a href="regresión-lineal.html#cb183-2" tabindex="-1"></a>I_prediccion <span class="ot">=</span> <span class="fu">predict.lm</span>(modelo, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>) <span class="co"># Intervalos de predicción</span></span>
-<span id="cb183-3"><a href="regresión-lineal.html#cb183-3" tabindex="-1"></a><span class="fu">head</span>(I_confianza,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="regresión-lineal.html#cb185-1" tabindex="-1"></a>I_confianza <span class="ot">=</span> <span class="fu">predict.lm</span>(modelo, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="co"># Intervalos de confianza</span></span>
+<span id="cb185-2"><a href="regresión-lineal.html#cb185-2" tabindex="-1"></a>I_prediccion <span class="ot">=</span> <span class="fu">predict.lm</span>(modelo, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>) <span class="co"># Intervalos de predicción</span></span>
+<span id="cb185-3"><a href="regresión-lineal.html#cb185-3" tabindex="-1"></a><span class="fu">head</span>(I_confianza,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##        fit       lwr      upr
 ## 1 15.77429  8.958438 22.59014
 ## 2 27.96984 22.697411 33.24227
 ## 3 32.84806 28.001893 37.69423</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="regresión-lineal.html#cb185-1" tabindex="-1"></a><span class="fu">head</span>(I_prediccion,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="regresión-lineal.html#cb187-1" tabindex="-1"></a><span class="fu">head</span>(I_prediccion,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##        fit       lwr      upr
 ## 1 15.77429 -32.12231 63.67089
 ## 2 27.96984 -19.73159 75.67127
 ## 3 32.84806 -14.80814 80.50426</code></pre>
 <p>El gráfico <a href="regresión-lineal.html#fig:IC-IP">3.3</a> refleja los dos tipos de intervalo.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="regresión-lineal.html#cb187-1" tabindex="-1"></a>df_grafico <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> datos<span class="sc">$</span>Ozone, </span>
-<span id="cb187-2"><a href="regresión-lineal.html#cb187-2" tabindex="-1"></a>                        <span class="st">&quot;x&quot;</span> <span class="ot">=</span> datos<span class="sc">$</span>Temp,</span>
-<span id="cb187-3"><a href="regresión-lineal.html#cb187-3" tabindex="-1"></a>                        <span class="st">&quot;Confianza_lower&quot;</span> <span class="ot">=</span> I_confianza[,<span class="dv">2</span>],</span>
-<span id="cb187-4"><a href="regresión-lineal.html#cb187-4" tabindex="-1"></a>                        <span class="st">&quot;Confianza_upper&quot;</span> <span class="ot">=</span> I_confianza[,<span class="dv">3</span>],</span>
-<span id="cb187-5"><a href="regresión-lineal.html#cb187-5" tabindex="-1"></a>                        <span class="st">&quot;Prediccion_lower&quot;</span> <span class="ot">=</span> I_prediccion[,<span class="dv">2</span>],</span>
-<span id="cb187-6"><a href="regresión-lineal.html#cb187-6" tabindex="-1"></a>                        <span class="st">&quot;Prediccion_upper&quot;</span> <span class="ot">=</span> I_prediccion[,<span class="dv">3</span>])</span>
-<span id="cb187-7"><a href="regresión-lineal.html#cb187-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb187-8"><a href="regresión-lineal.html#cb187-8" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_grafico, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb187-9"><a href="regresión-lineal.html#cb187-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb187-10"><a href="regresión-lineal.html#cb187-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_lower, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb187-11"><a href="regresión-lineal.html#cb187-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_upper, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb187-12"><a href="regresión-lineal.html#cb187-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_lower, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb187-13"><a href="regresión-lineal.html#cb187-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_upper, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb187-14"><a href="regresión-lineal.html#cb187-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Ozono&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Intervalos&quot;</span>,</span>
-<span id="cb187-15"><a href="regresión-lineal.html#cb187-15" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Intervalo de confianza (IC) y predicción (IP)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="regresión-lineal.html#cb189-1" tabindex="-1"></a>df_grafico <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> datos<span class="sc">$</span>Ozone, </span>
+<span id="cb189-2"><a href="regresión-lineal.html#cb189-2" tabindex="-1"></a>                        <span class="st">&quot;x&quot;</span> <span class="ot">=</span> datos<span class="sc">$</span>Temp,</span>
+<span id="cb189-3"><a href="regresión-lineal.html#cb189-3" tabindex="-1"></a>                        <span class="st">&quot;Confianza_lower&quot;</span> <span class="ot">=</span> I_confianza[,<span class="dv">2</span>],</span>
+<span id="cb189-4"><a href="regresión-lineal.html#cb189-4" tabindex="-1"></a>                        <span class="st">&quot;Confianza_upper&quot;</span> <span class="ot">=</span> I_confianza[,<span class="dv">3</span>],</span>
+<span id="cb189-5"><a href="regresión-lineal.html#cb189-5" tabindex="-1"></a>                        <span class="st">&quot;Prediccion_lower&quot;</span> <span class="ot">=</span> I_prediccion[,<span class="dv">2</span>],</span>
+<span id="cb189-6"><a href="regresión-lineal.html#cb189-6" tabindex="-1"></a>                        <span class="st">&quot;Prediccion_upper&quot;</span> <span class="ot">=</span> I_prediccion[,<span class="dv">3</span>])</span>
+<span id="cb189-7"><a href="regresión-lineal.html#cb189-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb189-8"><a href="regresión-lineal.html#cb189-8" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_grafico, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb189-9"><a href="regresión-lineal.html#cb189-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb189-10"><a href="regresión-lineal.html#cb189-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_lower, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb189-11"><a href="regresión-lineal.html#cb189-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_upper, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb189-12"><a href="regresión-lineal.html#cb189-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_lower, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb189-13"><a href="regresión-lineal.html#cb189-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_upper, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb189-14"><a href="regresión-lineal.html#cb189-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Ozono&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Intervalos&quot;</span>,</span>
+<span id="cb189-15"><a href="regresión-lineal.html#cb189-15" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Intervalo de confianza (IC) y predicción (IP)&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:IC-IP"></span>
 <img src="est2+inferencia_files/figure-html/IC-IP-1.png" alt="Intervalo de confianza y predicción" width="576" />
 <p class="caption">
@@ -1838,21 +1868,21 @@ Figura 3.3: Intervalo de confianza y predicción
 </p>
 </div>
 <p>Ahora, para responder a preguntas como ¿cuál sería la concentración de ozono a una temperatura de 90.34 grados Fahrenheit? se debe reportar el intervalo de predicción, el cual, en R, es al 95% de confianza por defecto.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="regresión-lineal.html#cb188-1" tabindex="-1"></a><span class="co"># Creamos una nueva base de datos para poder consultar el intervalo de predicción</span></span>
-<span id="cb188-2"><a href="regresión-lineal.html#cb188-2" tabindex="-1"></a><span class="co"># Se debe tener el cuidado de que las columnas tengan el mismo nombre que base usada</span></span>
-<span id="cb188-3"><a href="regresión-lineal.html#cb188-3" tabindex="-1"></a><span class="co"># para construir el modelo de regresión lineal</span></span>
-<span id="cb188-4"><a href="regresión-lineal.html#cb188-4" tabindex="-1"></a>aux <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">&quot;Temp&quot;</span> <span class="ot">=</span> <span class="fl">90.34</span>) <span class="co"># Solo incluimos la(s) variable(s) independiente(s)</span></span>
-<span id="cb188-5"><a href="regresión-lineal.html#cb188-5" tabindex="-1"></a><span class="fu">predict.lm</span>(modelo, <span class="at">newdata =</span> aux, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="regresión-lineal.html#cb190-1" tabindex="-1"></a><span class="co"># Creamos una nueva base de datos para poder consultar el intervalo de predicción</span></span>
+<span id="cb190-2"><a href="regresión-lineal.html#cb190-2" tabindex="-1"></a><span class="co"># Se debe tener el cuidado de que las columnas tengan el mismo nombre que base usada</span></span>
+<span id="cb190-3"><a href="regresión-lineal.html#cb190-3" tabindex="-1"></a><span class="co"># para construir el modelo de regresión lineal</span></span>
+<span id="cb190-4"><a href="regresión-lineal.html#cb190-4" tabindex="-1"></a>aux <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">&quot;Temp&quot;</span> <span class="ot">=</span> <span class="fl">90.34</span>) <span class="co"># Solo incluimos la(s) variable(s) independiente(s)</span></span>
+<span id="cb190-5"><a href="regresión-lineal.html#cb190-5" tabindex="-1"></a><span class="fu">predict.lm</span>(modelo, <span class="at">newdata =</span> aux, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 72.70312 24.71044 120.6958</code></pre>
 <p>La salida de R indica, que la predicción de la concentración de ozono asociado a una medición de temperatura de 90.34 grados Fahrenheit sería de 72.70312 partes por billón, mientras que, el intervalo de predicción al 95% de confianza es <span class="math inline">\((24.71044, 120.6958)\)</span>.</p>
 <p>Por otro lado, si se desea conocer el intervalo de confianza asociado a un valor promedio (esperado o ajustado) del ozono asociado a una temperatura de 90.34 grados Fahrenheit, se debe efectuar el siguiente comando.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="regresión-lineal.html#cb190-1" tabindex="-1"></a><span class="fu">predict.lm</span>(modelo, <span class="at">newdata =</span> aux, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="regresión-lineal.html#cb192-1" tabindex="-1"></a><span class="fu">predict.lm</span>(modelo, <span class="at">newdata =</span> aux, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 72.70312 65.24199 80.16425</code></pre>
 <p>La salida de R indica, que el valor promedio de la concentración de ozono asociado a una medición de temperatura de 90.34 grados Fahrenheit sería de 72.70312 partes por billón, mientras que, el intervalo de confianza al 95% de confianza es <span class="math inline">\((65.24199, 80.16425)\)</span>.</p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-71" class="exercise"><strong>Ejercicio 3.32  </strong></span>Utilizando la base del ejercicio <a href="regresión-lineal.html#exr:contaminacion">3.31</a> realice lo siguiente:</p>
+<p><span id="exr:unlabeled-div-73" class="exercise"><strong>Ejercicio 3.34  </strong></span>Utilizando la base del ejercicio <a href="regresión-lineal.html#exr:contaminacion">3.33</a> realice lo siguiente:</p>
 <ol style="list-style-type: decimal">
 <li>Ajuste en R un modelo de regresión lineal para estudiar el logaritmo de la tasa máxima de flujo de seis sectores de drenaje después de una tormenta (logq) a través de las pulgadas de lluvia caída.</li>
 <li>Escriba la ecuación de regresión ajustada.</li>
@@ -1863,7 +1893,7 @@ Figura 3.3: Intervalo de confianza y predicción
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-72" class="exercise"><strong>Ejercicio 3.33  </strong></span>Las mujeres ocupan aproximadamente la mitad de la población mundial, pero cuando se trata de la fuerza laboral total de un país, el porcentaje de trabajadores masculinos y femeninos rara vez es similar. Esto es aún más prominente para los países en desarrollo y subdesarrollados. Si bien varias razones, como el acceso insuficiente a la educación, las supersticiones religiosas y la falta de infraestructuras adecuadas, son responsables de esta discrepancia, va mucho más allá. Y para mostrar los efectos de múltiples factores socioeconómicos sobre la participación de la mujer en la fuerza laboral total, se ha considerado el porcentaje de empleo femenino en la fuerza laboral total, entre otros.</p>
+<p><span id="exr:unlabeled-div-74" class="exercise"><strong>Ejercicio 3.35  </strong></span>Las mujeres ocupan aproximadamente la mitad de la población mundial, pero cuando se trata de la fuerza laboral total de un país, el porcentaje de trabajadores masculinos y femeninos rara vez es similar. Esto es aún más prominente para los países en desarrollo y subdesarrollados. Si bien varias razones, como el acceso insuficiente a la educación, las supersticiones religiosas y la falta de infraestructuras adecuadas, son responsables de esta discrepancia, va mucho más allá. Y para mostrar los efectos de múltiples factores socioeconómicos sobre la participación de la mujer en la fuerza laboral total, se ha considerado el porcentaje de empleo femenino en la fuerza laboral total, entre otros.</p>
 <p>El conjunto de datos (<a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Empleo%2Bfemenino.csv">Empleo+femenino.csv</a>) se eligió de una encuesta realizada en la población de Bangladesh. La base de datos contiene los siguientes datos:</p>
 <ul>
 <li>Year: Año de medición.</li>

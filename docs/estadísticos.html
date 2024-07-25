@@ -305,8 +305,8 @@ f(x) = \frac{\Gamma(n_1/2+n_2/2)}{\Gamma(n_1/2)\Gamma(n_2/2)}\left(\frac{n_1}{n_
 Y_{\text{Logro}} = \beta_0 + \beta_1X_{\text{LEN}} + \beta_2X_{\text{NEM}} + \beta_3I_{\text{Sexo=Mujer}} + \epsilon, \text{ } \epsilon \sim N(0,\sigma^2I)
 \]</span></p>
 <p>El modelo ajustado es</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="estadísticos.html#cb192-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN <span class="sc">+</span> NEM <span class="sc">+</span> Sexo, <span class="at">data =</span> datos)</span>
-<span id="cb192-2"><a href="estadísticos.html#cb192-2" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="estadísticos.html#cb194-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN <span class="sc">+</span> NEM <span class="sc">+</span> Sexo, <span class="at">data =</span> datos)</span>
+<span id="cb194-2"><a href="estadísticos.html#cb194-2" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Logro
@@ -318,43 +318,43 @@ Y_{\text{Logro}} = \beta_0 + \beta_1X_{\text{LEN}} + \beta_2X_{\text{NEM}} + \be
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>La tabla anova da cuenta del estadístico <span class="math inline">\(F\)</span> asociado a cada covariable a medida que ingresa en el modelo (en orden descendente). El estadístico asociado a cada covariable se calcula manualmente de la siguiente manera.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="estadísticos.html#cb194-1" tabindex="-1"></a>modelo_nulo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
-<span id="cb194-2"><a href="estadísticos.html#cb194-2" tabindex="-1"></a>modelo_propuesto0 <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN, <span class="at">data =</span> datos)</span>
-<span id="cb194-3"><a href="estadísticos.html#cb194-3" tabindex="-1"></a>modelo_propuesto1 <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN <span class="sc">+</span> NEM, <span class="at">data =</span> datos)</span>
-<span id="cb194-4"><a href="estadísticos.html#cb194-4" tabindex="-1"></a>modelo_propuesto2  <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN <span class="sc">+</span> NEM <span class="sc">+</span> Sexo, <span class="at">data =</span> datos) <span class="co"># Modelo completo</span></span>
-<span id="cb194-5"><a href="estadísticos.html#cb194-5" tabindex="-1"></a></span>
-<span id="cb194-6"><a href="estadísticos.html#cb194-6" tabindex="-1"></a><span class="co"># Estadístico F para la covariable LEN</span></span>
-<span id="cb194-7"><a href="estadísticos.html#cb194-7" tabindex="-1"></a>SCR_modeloprevio <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_nulo)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb194-8"><a href="estadísticos.html#cb194-8" tabindex="-1"></a>SCR_modelopropuesto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto0)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb194-9"><a href="estadísticos.html#cb194-9" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb194-10"><a href="estadísticos.html#cb194-10" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(datos)[<span class="dv">1</span>]</span>
-<span id="cb194-11"><a href="estadísticos.html#cb194-11" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">length</span>(modelo_propuesto2<span class="sc">$</span>coefficients) <span class="co"># Cantidad de parámetros del modelo completo</span></span>
-<span id="cb194-12"><a href="estadísticos.html#cb194-12" tabindex="-1"></a>SCR_modelocompleto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto2)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb194-13"><a href="estadísticos.html#cb194-13" tabindex="-1"></a>F_LEN <span class="ot">=</span> ((SCR_modeloprevio <span class="sc">-</span> SCR_modelopropuesto)<span class="sc">/</span>k)<span class="sc">/</span>(SCR_modelocompleto<span class="sc">/</span>(n <span class="sc">-</span> p))</span>
-<span id="cb194-14"><a href="estadísticos.html#cb194-14" tabindex="-1"></a>F_LEN</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="estadísticos.html#cb196-1" tabindex="-1"></a>modelo_nulo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
+<span id="cb196-2"><a href="estadísticos.html#cb196-2" tabindex="-1"></a>modelo_propuesto0 <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN, <span class="at">data =</span> datos)</span>
+<span id="cb196-3"><a href="estadísticos.html#cb196-3" tabindex="-1"></a>modelo_propuesto1 <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN <span class="sc">+</span> NEM, <span class="at">data =</span> datos)</span>
+<span id="cb196-4"><a href="estadísticos.html#cb196-4" tabindex="-1"></a>modelo_propuesto2  <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> LEN <span class="sc">+</span> NEM <span class="sc">+</span> Sexo, <span class="at">data =</span> datos) <span class="co"># Modelo completo</span></span>
+<span id="cb196-5"><a href="estadísticos.html#cb196-5" tabindex="-1"></a></span>
+<span id="cb196-6"><a href="estadísticos.html#cb196-6" tabindex="-1"></a><span class="co"># Estadístico F para la covariable LEN</span></span>
+<span id="cb196-7"><a href="estadísticos.html#cb196-7" tabindex="-1"></a>SCR_modeloprevio <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_nulo)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb196-8"><a href="estadísticos.html#cb196-8" tabindex="-1"></a>SCR_modelopropuesto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto0)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb196-9"><a href="estadísticos.html#cb196-9" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb196-10"><a href="estadísticos.html#cb196-10" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">dim</span>(datos)[<span class="dv">1</span>]</span>
+<span id="cb196-11"><a href="estadísticos.html#cb196-11" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">length</span>(modelo_propuesto2<span class="sc">$</span>coefficients) <span class="co"># Cantidad de parámetros del modelo completo</span></span>
+<span id="cb196-12"><a href="estadísticos.html#cb196-12" tabindex="-1"></a>SCR_modelocompleto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto2)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb196-13"><a href="estadísticos.html#cb196-13" tabindex="-1"></a>F_LEN <span class="ot">=</span> ((SCR_modeloprevio <span class="sc">-</span> SCR_modelopropuesto)<span class="sc">/</span>k)<span class="sc">/</span>(SCR_modelocompleto<span class="sc">/</span>(n <span class="sc">-</span> p))</span>
+<span id="cb196-14"><a href="estadísticos.html#cb196-14" tabindex="-1"></a>F_LEN</span></code></pre></div>
 <pre><code>## [1] 99.04031</code></pre>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="estadísticos.html#cb196-1" tabindex="-1"></a><span class="co"># Estadístico F para la covariable NEM</span></span>
-<span id="cb196-2"><a href="estadísticos.html#cb196-2" tabindex="-1"></a>SCR_modeloprevio <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto0)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb196-3"><a href="estadísticos.html#cb196-3" tabindex="-1"></a>SCR_modelopropuesto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto1)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb196-4"><a href="estadísticos.html#cb196-4" tabindex="-1"></a>F_NEM <span class="ot">=</span> ((SCR_modeloprevio <span class="sc">-</span> SCR_modelopropuesto)<span class="sc">/</span>k)<span class="sc">/</span>(SCR_modelocompleto<span class="sc">/</span>(n <span class="sc">-</span> p))</span>
-<span id="cb196-5"><a href="estadísticos.html#cb196-5" tabindex="-1"></a>F_NEM</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="estadísticos.html#cb198-1" tabindex="-1"></a><span class="co"># Estadístico F para la covariable NEM</span></span>
+<span id="cb198-2"><a href="estadísticos.html#cb198-2" tabindex="-1"></a>SCR_modeloprevio <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto0)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb198-3"><a href="estadísticos.html#cb198-3" tabindex="-1"></a>SCR_modelopropuesto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto1)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb198-4"><a href="estadísticos.html#cb198-4" tabindex="-1"></a>F_NEM <span class="ot">=</span> ((SCR_modeloprevio <span class="sc">-</span> SCR_modelopropuesto)<span class="sc">/</span>k)<span class="sc">/</span>(SCR_modelocompleto<span class="sc">/</span>(n <span class="sc">-</span> p))</span>
+<span id="cb198-5"><a href="estadísticos.html#cb198-5" tabindex="-1"></a>F_NEM</span></code></pre></div>
 <pre><code>## [1] 17.17213</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="estadísticos.html#cb198-1" tabindex="-1"></a><span class="co"># Estadístico F para la covariable Sexo</span></span>
-<span id="cb198-2"><a href="estadísticos.html#cb198-2" tabindex="-1"></a>SCR_modeloprevio <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto1)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb198-3"><a href="estadísticos.html#cb198-3" tabindex="-1"></a>SCR_modelopropuesto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto2)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb198-4"><a href="estadísticos.html#cb198-4" tabindex="-1"></a>F_Sexo <span class="ot">=</span> ((SCR_modeloprevio <span class="sc">-</span> SCR_modelopropuesto)<span class="sc">/</span>k)<span class="sc">/</span>(SCR_modelocompleto<span class="sc">/</span>(n <span class="sc">-</span> p))</span>
-<span id="cb198-5"><a href="estadísticos.html#cb198-5" tabindex="-1"></a>F_Sexo</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="estadísticos.html#cb200-1" tabindex="-1"></a><span class="co"># Estadístico F para la covariable Sexo</span></span>
+<span id="cb200-2"><a href="estadísticos.html#cb200-2" tabindex="-1"></a>SCR_modeloprevio <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto1)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb200-3"><a href="estadísticos.html#cb200-3" tabindex="-1"></a>SCR_modelopropuesto <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(modelo_propuesto2)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb200-4"><a href="estadísticos.html#cb200-4" tabindex="-1"></a>F_Sexo <span class="ot">=</span> ((SCR_modeloprevio <span class="sc">-</span> SCR_modelopropuesto)<span class="sc">/</span>k)<span class="sc">/</span>(SCR_modelocompleto<span class="sc">/</span>(n <span class="sc">-</span> p))</span>
+<span id="cb200-5"><a href="estadísticos.html#cb200-5" tabindex="-1"></a>F_Sexo</span></code></pre></div>
 <pre><code>## [1] 2.627705</code></pre>
 <p>Cada uno de estos estadísticos distribuye <span class="math inline">\(F_{1,196}\)</span>. El criterio de rechazo es:</p>
 <p><span class="math display">\[
 F \geq F_{k, n-p}^{1-\alpha}
 \]</span></p>
 <p>El valor-p de cada estadístico es:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="estadísticos.html#cb200-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F_LEN,<span class="dv">1</span>,<span class="dv">196</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="estadísticos.html#cb202-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F_LEN,<span class="dv">1</span>,<span class="dv">196</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="estadísticos.html#cb202-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F_NEM,<span class="dv">1</span>,<span class="dv">196</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="estadísticos.html#cb204-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F_NEM,<span class="dv">1</span>,<span class="dv">196</span>)</span></code></pre></div>
 <pre><code>## [1] 5.07611e-05</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="estadísticos.html#cb204-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F_Sexo,<span class="dv">1</span>,<span class="dv">196</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="estadísticos.html#cb206-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(F_Sexo,<span class="dv">1</span>,<span class="dv">196</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1066211</code></pre>
 <p>, los cuales, son los mismo a los visualizados en la salida del comando <code>anova()</code>.</p>
 </div>
