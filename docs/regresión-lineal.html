@@ -166,7 +166,6 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
-<li class="chapter" data-level="" data-path="modalidad.html"><a href="modalidad.html"><i class="fa fa-check"></i>Modalidad</a></li>
 <li class="chapter" data-level="" data-path="talleres-de-práctica.html"><a href="talleres-de-práctica.html"><i class="fa fa-check"></i>Talleres de práctica</a></li>
 <li class="chapter" data-level="1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>1</b> Intervalos de confianza</a>
 <ul>
@@ -361,7 +360,7 @@ div.csl-indent {
 <span id="cb113-12"><a href="regresión-lineal.html#cb113-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histograma EUR/USD&quot;</span>, <span class="co"># Título del gráfico</span></span>
 <span id="cb113-13"><a href="regresión-lineal.html#cb113-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Tasa de cierre&quot;</span>, <span class="co"># Título del eje X</span></span>
 <span id="cb113-14"><a href="regresión-lineal.html#cb113-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="co"># Título del eje Y</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-88-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-89-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Para interpretar un histograma, basta con indicar los siguientes aspectos:</p>
 <ul>
 <li>Forma visual de la distribución de las barras (en general).</li>
@@ -439,7 +438,7 @@ div.csl-indent {
 <span id="cb116-24"><a href="regresión-lineal.html#cb116-24" tabindex="-1"></a><span class="fu">grid.arrange</span>(g, <span class="co"># Gráfico</span></span>
 <span id="cb116-25"><a href="regresión-lineal.html#cb116-25" tabindex="-1"></a>             g1, <span class="co"># Gráfico</span></span>
 <span id="cb116-26"><a href="regresión-lineal.html#cb116-26" tabindex="-1"></a>             <span class="at">ncol =</span> <span class="dv">2</span>) <span class="co"># Despliegue en a dos columnas </span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-90-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-91-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Para interpretar un gráfico de caja es recomendable utilizar la opción 2 mostrada anteriormente, ya que, se debe mencionar uno de los puntos relevantes del gráfico. En el ejemplo recién dado, se observa que, el primer, segundo y tercer cuartil están en 1.135, 1.233 y 1.335 respectivamente, mientras que el valor mínimo y máximo están en 0.96 y 1.559 respectivamente. Adicionalmente, se puede mencionar que los datos superiores en comparación a los inferiores, se encuentran más alejados de la mediana.</p>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-44" class="exercise"><strong>Ejercicio 3.2  </strong></span>Utilizando la base de datos de <a href="regresión-lineal.html#PreciosElectricidad">Precios</a>, elabore un gráfico de caja de los precios de la electricidad. Interprete.</p>
@@ -473,7 +472,7 @@ div.csl-indent {
 <span id="cb117-16"><a href="regresión-lineal.html#cb117-16" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(), <span class="co"># Elimina las regletas del eje X</span></span>
 <span id="cb117-17"><a href="regresión-lineal.html#cb117-17" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="co"># Elimina los números del eje X</span></span>
 <span id="cb117-18"><a href="regresión-lineal.html#cb117-18" tabindex="-1"></a>g <span class="co"># Desplegamos el gráfico en el visualizador</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-91-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-92-1.png" width="384" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="regresión-lineal.html#cb118-1" tabindex="-1"></a><span class="co"># Agregamos otros elementos al gráfico guardado</span></span>
 <span id="cb118-2"><a href="regresión-lineal.html#cb118-2" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_boxplot</span>( <span class="co"># Objeto a graficar: gráfico de caja</span></span>
 <span id="cb118-3"><a href="regresión-lineal.html#cb118-3" tabindex="-1"></a>  <span class="at">width =</span> <span class="fl">0.1</span>, <span class="co"># Anchura proporcional del nuevo gráfico de caja</span></span>
@@ -485,7 +484,7 @@ div.csl-indent {
 <span id="cb118-9"><a href="regresión-lineal.html#cb118-9" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>, <span class="co"># Tamaño</span></span>
 <span id="cb118-10"><a href="regresión-lineal.html#cb118-10" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="co"># Color</span></span>
 <span id="cb118-11"><a href="regresión-lineal.html#cb118-11" tabindex="-1"></a>    <span class="at">orientation =</span> <span class="st">&quot;x&quot;</span>) <span class="co"># Orientación</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-92-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-93-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>Para interpretar un gráfico de violín con caja y promedio se deben mencionar tres aspectos relevantes:</p>
 <ul>
 <li>Ubicación de la(s) mayor(es) concentración(es) de datos, utilizando como referencia los cuartiles.</li>
@@ -528,7 +527,7 @@ div.csl-indent {
 <span id="cb119-27"><a href="regresión-lineal.html#cb119-27" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="co"># Segregación del gráfico</span></span>
 <span id="cb119-28"><a href="regresión-lineal.html#cb119-28" tabindex="-1"></a>    <span class="fu">vars</span>(Ano), <span class="co"># Variable que se utiliza para segregar el gráfico</span></span>
 <span id="cb119-29"><a href="regresión-lineal.html#cb119-29" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">1</span>) <span class="co"># Disposición visual: una fila</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-93-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-94-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Para interpretar este tipo de gráficos, se debe realizar un interpretación uno a uno, siguiendo la recomendación antes dada. También, es posible comprar los gráficos a través de la media y coeficiente de variabilidad. Para este ejemplo, queda como trabajo del estudiante realizar esta comparación.</p>
 </div>
 </div>
@@ -565,7 +564,7 @@ div.csl-indent {
 <span id="cb120-12"><a href="regresión-lineal.html#cb120-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Barras EUR/USD&quot;</span>, <span class="co"># Título del gráfico</span></span>
 <span id="cb120-13"><a href="regresión-lineal.html#cb120-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Tasa de cierre&quot;</span>, <span class="co"># Título del eje X</span></span>
 <span id="cb120-14"><a href="regresión-lineal.html#cb120-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="co"># Título del eje Y</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-94-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-95-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>La interpretación de este tipo de gráfico (gráfico de barras no apiladas) es bastante intuitiva, ya que consiste en mencionar cuál categoría tiene un mayor frecuencia. En caso de graficar una variable con más de 2 categorías, se debe mencionar a que altura del eje vertical se encuentra la altura de cada una de las barras. Para obtener mayor detalles respecto a las frecuencias por categoría, suele apoyarse con un tabla de frecuencias absolutas o relativas porcentuales.</p>
 <p>En el ejemplo, la frecuencia de la cantidad de tasas de cierre que se encuentran por sobre 1.1 es mayor a las que se encuentran por debajo, con una frecuencia sobre 4000 y menor a 1000 respectivamente.</p>
 <div class="exercise">
@@ -597,7 +596,7 @@ div.csl-indent {
 <span id="cb121-10"><a href="regresión-lineal.html#cb121-10" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Tasa de apertura y cierre del EUR/USD&quot;</span>, <span class="co"># Título del gráfico</span></span>
 <span id="cb121-11"><a href="regresión-lineal.html#cb121-11" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Tasa de apertura&quot;</span>, <span class="co"># Título del eje X</span></span>
 <span id="cb121-12"><a href="regresión-lineal.html#cb121-12" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Tasa de cierre&quot;</span>) <span class="co"># Título del eje Y</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-95-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-96-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Tal como se menciona al inicio, la interpretación de este tipo de gráficos radica en describir la tendencia de los puntos. En el ejemplo anterior, el gráfico muestra una tendencia al alza, es decir, que cuando la tasa de apertura del EUR/USD aumenta, entonces, la tasa de cierre tiende a aumentar.</p>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-51" class="exercise"><strong>Ejercicio 3.9  </strong></span>Utilizando la base de datos <a href="regresión-lineal.html#Pacientes">Pacientes</a>, realice un gráfico de dispersión entre la variable <em>age</em> (eje X) y la variable <em>thalachh</em> (eje Y). Interprete.</p>
@@ -621,14 +620,14 @@ div.csl-indent {
 <span id="cb122-12"><a href="regresión-lineal.html#cb122-12" tabindex="-1"></a><span class="at">x =</span> <span class="st">&quot;Año&quot;</span>, <span class="co"># Título del eje X</span></span>
 <span id="cb122-13"><a href="regresión-lineal.html#cb122-13" tabindex="-1"></a><span class="at">y =</span> <span class="st">&quot;Tasa de apertura&quot;</span>) <span class="co"># Título del eje Y</span></span>
 <span id="cb122-14"><a href="regresión-lineal.html#cb122-14" tabindex="-1"></a>g <span class="co"># Desplegamos el gráfico guardado</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-96-1.png" width="768" style="display: block; margin: auto;" /></p></li>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-97-1.png" width="768" style="display: block; margin: auto;" /></p></li>
 <li><p>Añadir al gráfico un formato de líneas entre los puntos. Interprete.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="regresión-lineal.html#cb123-1" tabindex="-1"></a>g <span class="ot">=</span> g <span class="sc">+</span> <span class="co"># Añadimos otro gráfico</span></span>
 <span id="cb123-2"><a href="regresión-lineal.html#cb123-2" tabindex="-1"></a>  <span class="fu">geom_line</span>( <span class="co"># Objeto a graficar: lineas</span></span>
 <span id="cb123-3"><a href="regresión-lineal.html#cb123-3" tabindex="-1"></a><span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>, <span class="co"># Tipo de información a graficar: resumen</span></span>
 <span id="cb123-4"><a href="regresión-lineal.html#cb123-4" tabindex="-1"></a><span class="at">fun =</span> <span class="st">&quot;mean&quot;</span>) <span class="co"># Tipo de resumen: promedio de la variable Y</span></span>
 <span id="cb123-5"><a href="regresión-lineal.html#cb123-5" tabindex="-1"></a>g <span class="co"># Desplegamos el gráfico guardado</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-97-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-98-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Hasta el 2008 la tasa promedio de apertura estuvo en alza, posteriormente, la tasa decayó a un valor inferior a 1.1.</p></li>
 <li><p>Grafique el valor de la tasa de apertura del EUR/USD desde el 2020 hasta el 2022 separadamente. Interprete.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="regresión-lineal.html#cb124-1" tabindex="-1"></a>datos<span class="sc">$</span>Date <span class="ot">=</span> <span class="fu">as.Date</span>(datos<span class="sc">$</span>Date) <span class="co"># Fechas en formato fecha de R</span></span>
@@ -651,7 +650,7 @@ div.csl-indent {
 <span id="cb124-18"><a href="regresión-lineal.html#cb124-18" tabindex="-1"></a><span class="at">x =</span> <span class="st">&quot;Fecha&quot;</span>, <span class="co"># Título del eje X</span></span>
 <span id="cb124-19"><a href="regresión-lineal.html#cb124-19" tabindex="-1"></a><span class="at">y =</span> <span class="st">&quot;Tasa de apertura&quot;</span>) <span class="co"># Título del eje Y</span></span>
 <span id="cb124-20"><a href="regresión-lineal.html#cb124-20" tabindex="-1"></a>g <span class="co"># Desplegamos el gráfico guardado</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-98-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-99-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Durante los 3 años consecutivos, se observa que únicamente en el 2020 la tendencia de la tasa de apertura es al alza, mientra que para los otros dos años hubo un decaimiento en el valor de esta.</p></li>
 <li><p>Grafique el valor de la tasa de apertura del EUR/USD diferenciando por año. Interprete.</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="regresión-lineal.html#cb125-1" tabindex="-1"></a>g <span class="ot">=</span> <span class="fu">ggplot</span>( <span class="co"># Ambiente gráfico</span></span>
@@ -674,7 +673,7 @@ div.csl-indent {
 <span id="cb125-18"><a href="regresión-lineal.html#cb125-18" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="dv">1</span>, <span class="co"># Opacidad de los puntos</span></span>
 <span id="cb125-19"><a href="regresión-lineal.html#cb125-19" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>))) <span class="co"># Tamaño de los puntos</span></span>
 <span id="cb125-20"><a href="regresión-lineal.html#cb125-20" tabindex="-1"></a>g <span class="co"># Desplegamos el gráfico guardado</span></span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-99-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-100-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Al observar la evolución histórica de la tasa de apertura diferenciada por año, se aprecia que el periodo 2008 - 2010 es aquel con predominancia de valores más altos. Por otro lado, desde el 2016, se registraron pro primera vez valores menores a 1.1. En años posteriores, no ha observado que la tasa supere los 1.3 puntos.</p></li>
 </ol>
 </div>
@@ -724,7 +723,7 @@ S_{XY} = \displaystyle\frac{\displaystyle\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}
 </div>
 </div>
 <p>A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.</p>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-100-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-101-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>En este caso, la mayoría de los puntos están en los cuadrantes ‘<span class="math inline">\(+ +\)</span>’ y ‘<span class="math inline">\(- -\)</span>’, y en estos cuadrantes la expresión <span class="math inline">\((x_i-\bar{x})(y_i-\bar{y})\)</span> es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). <strong>¿Es pronunciada la relación lineal?</strong></p>
 </div>
 <div id="correlación" class="section level3 hasAnchor" number="3.1.3">
@@ -755,7 +754,7 @@ r_{XY} = \frac{S_{XY}}{S_{X}S_{Y}}
 </div>
 </div>
 <p>A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).</p>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-101-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-102-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><strong>Nota:</strong> En R, se utiliza el comando <code>cor()</code> para calcular la correlación entre dos variables.</p>
 <p><strong>¿Cómo se comportan los puntos al rededor de la línea azul?</strong></p>
 <div class="exercise">
@@ -850,14 +849,14 @@ Y_i = \beta_0 + \beta_1X_i + \epsilon_i
 <span id="cb128-3"><a href="regresión-lineal.html#cb128-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb128-4"><a href="regresión-lineal.html#cb128-4" tabindex="-1"></a><span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">orientation =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
 <span id="cb128-5"><a href="regresión-lineal.html#cb128-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Pesos&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Valor Cuota&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-104-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-105-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="regresión-lineal.html#cb129-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="at">x =</span> Valor.Patrimonio)) <span class="sc">+</span> </span>
 <span id="cb129-2"><a href="regresión-lineal.html#cb129-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> F) <span class="sc">+</span></span>
 <span id="cb129-3"><a href="regresión-lineal.html#cb129-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb129-4"><a href="regresión-lineal.html#cb129-4" tabindex="-1"></a><span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">orientation =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
 <span id="cb129-5"><a href="regresión-lineal.html#cb129-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Miles de millones de pesos&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Valor Patrimonio&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-105-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-106-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Estudie la correlación entre ambas variables.</li>
@@ -895,7 +894,7 @@ Y_i = \beta_0 + \beta_1X_i + \epsilon_i
 <span id="cb134-7"><a href="regresión-lineal.html#cb134-7" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Ecuación de regresión ajustada&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb134-8"><a href="regresión-lineal.html#cb134-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb134-9"><a href="regresión-lineal.html#cb134-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-108-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-109-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <p>Para interpretar cada uno de los beta estimados se debe hacer en función de la variable de estudio (variable dependiente). En este sentido,</p>
@@ -1050,7 +1049,7 @@ R^2 = \frac{\text{SCReg}}{\text{SCT}}
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="regresión-lineal.html#cb139-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos) <span class="sc">+</span></span>
 <span id="cb139-2"><a href="regresión-lineal.html#cb139-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Valor.Cuota, <span class="at">y =</span> Valor.Patrimonio)) <span class="sc">+</span></span>
 <span id="cb139-3"><a href="regresión-lineal.html#cb139-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valor Cuota (pesos)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Valor Patrimonio </span><span class="sc">\n</span><span class="st"> (miles de millones de pesos)&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-111-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-112-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.</p>
 </div>
 <div id="normalidad" class="section level4 hasAnchor" number="3.2.5.2">
@@ -1115,7 +1114,7 @@ H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
 <span id="cb146-4"><a href="regresión-lineal.html#cb146-4" tabindex="-1"></a>                 <span class="at">y =</span> residuos_estandarizados)) <span class="sc">+</span></span>
 <span id="cb146-5"><a href="regresión-lineal.html#cb146-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb146-6"><a href="regresión-lineal.html#cb146-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores predichos&quot;</span>, <span class="at">y  =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-115-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-116-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.</p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="regresión-lineal.html#cb147-1" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
 <span id="cb147-2"><a href="regresión-lineal.html#cb147-2" tabindex="-1"></a><span class="fu">bptest</span>(<span class="at">formula =</span> Valor.Patrimonio <span class="sc">~</span> Valor.Cuota,</span>
@@ -1598,7 +1597,7 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <span id="cb171-2"><a href="regresión-lineal.html#cb171-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Residuos, <span class="at">y =</span> Y_Gorro)) <span class="sc">+</span></span>
 <span id="cb171-3"><a href="regresión-lineal.html#cb171-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb171-4"><a href="regresión-lineal.html#cb171-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Valores </span><span class="sc">\n</span><span class="st"> ajustados&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-133-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-134-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Normalidad</strong></li>
@@ -1632,7 +1631,7 @@ H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
 <span id="cb174-2"><a href="regresión-lineal.html#cb174-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Valores.ajustados, <span class="at">y =</span> r_e)) <span class="sc">+</span></span>
 <span id="cb174-3"><a href="regresión-lineal.html#cb174-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
 <span id="cb174-4"><a href="regresión-lineal.html#cb174-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores ajustados&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
-<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-135-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-136-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="regresión-lineal.html#cb175-1" tabindex="-1"></a><span class="fu">bptest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
 <pre><code>## 

@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 05-08-2024}
+\date{Actualizado al 06-08-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -171,47 +171,6 @@
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
-\chapter*{Presentación}\label{presentaciuxf3n}
-\addcontentsline{toc}{chapter}{Presentación}
-
-El curso de Estadística II \& Inferencia Estadística, es el segundo curso estadístico de una serie de dos. Estos cursos tienen un enfoque práctico con un fuerte énfasis en la capacidad inferir a partir de conjuntos datos mediante la aplicación de distintas técnicas estadísticas. Este segundo documento, se concentra en pruebas de hipótesis, modelos de regresión lineal simple y múltiple, haciendo uso del entorno de software R.
-
-\href{https://dfranzani.github.io/Estadistica_I/}{Enlace al documento del primer curso de Estadística: Estadística I \& Estadística Descriptiva}.
-
-\chapter*{Modalidad}\label{modalidad}
-\addcontentsline{toc}{chapter}{Modalidad}
-
-La modalidad de trabajo consta de los siguientes elementos:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  El \textbf{documento} web cuenta con el desarrollo de todos los tópicos de curso, además de ejemplificaciones y ejercicios.
-\item
-  En su mayoría, los ejemplos y ejercicios presentes en el documento fueron extraídos de la bibliografía obligatoria, sin embargo, a algunos de estos se ha incorporado el \textbf{uso de R} como programa de análisis estadístico. El desarrollo de los ejercicios por parte del estudiante se recomienda que sea en Google Colab R. Esta plataforma cuenta con una opción de configuración interna para R (desde Google Drive: Nuevo -\textgreater{} Más -\textgreater{} Google Collaboratory, dentro del archivo: Entorno de ejecución -\textgreater{} Cambiar tipo de entorno de ejecución -\textgreater{} Tipo de entorno de ejecución -\textgreater{} R -\textgreater{} Guardar). En el siguiente \href{https://colab.research.google.com/notebook\#create=true&language=r}{enlace} se puede acceder a un documento con una configuración preestablecida para este lenguaje. El archivo generado se guardará automáticamente en la cuenta de Gmail predeterminada; otra opción en caso de no querer modificar su cuenta predeterminada (si es que debiese hacerlo) es descargar el archivo y cargarlo manualmente en la carpeta de Drive que estime conveniente. Los aspectos relacionados con el uso de R serán abordados en el Taller Introductorio.
-\item
-  Se cuenta con \textbf{talleres de práctica}, lo cuales, cuentan con ejercicios propuestos para desarrollar en clases y ejercicios para el trabajo independiente del estudiante.
-\item
-  El curso cuenta con \textbf{bibliografía} obligatoria y complementaria:
-
-  \begin{itemize}
-  \item
-    (Obligatoria) \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos/blob/main/Libros/Anderson\%2C\%20Estad\%C3\%ADstica.pdf}{\emph{``Estadística para Administración y Economía''}} \citep{anderson}
-  \item
-    (Obligatoria,) \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos/blob/main/Libros/Devore\%2C\%20Probabilidad\%20y\%20Estad\%C3\%ADstica.pdf}{\emph{``Probabilidad y Estadística para Ingeniería y Ciencias''}} \citep{Devore}
-  \item
-    (Complementaria) \href{https://bookdown.org/rdpeng/rprogdatascience/}{\emph{``R Programming for Data Science''}} \citep{peng2016r}
-  \item
-    (Complementaria) \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos/blob/main/Libros/Micheaux\%2C\%20Manual\%20de\%20R.pdf}{\emph{``The R Software: Fundamentals of Programming and Statistical Analysis''}} \citep{deMicheaux2013}
-  \item
-    (Complementaria) \href{https://ggplot2-book.org/}{\emph{``ggplot2: Elegant Graphics for Data Analysis''}} \citep{wickham_ggplot2_2009}
-  \end{itemize}
-
-  Además, se añaden citas que refuerzan el contenido presentando, las cuales se encuentra en detalle al final de cada sección.
-\item
-  Las \textbf{bases de datos} a utilizar en el curso se encuentran disponibles en un \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos}{repositorio web} público.
-\end{enumerate}
-
 \chapter{Intervalos de confianza}\label{intervalos-de-confianza}
 
 Las bases de datos que se trabajarán en esta unidad son las siguientes:
@@ -327,7 +286,7 @@ A continuación, se dan a conocer intervalos de confianza para estimar la media 
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-8}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
+\caption{\label{tab:unnamed-chunk-9}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -378,7 +337,7 @@ Obtener los intervalos con las confianzas al 90\% y 95\% asociados al ejemplo \r
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-10}Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida}
+\caption{\label{tab:unnamed-chunk-11}Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -443,7 +402,7 @@ Utilizando la base de datos del \hyperref[Imacec1]{Imacec}:
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-12}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
+\caption{\label{tab:unnamed-chunk-13}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -507,7 +466,7 @@ Estudiar si el valor promedio del dólar de Julio es mayor al de Junio por más 
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-15}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
+\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -566,7 +525,7 @@ Utilizando la base de datos \hyperref[Cuotas]{Control cuotas}, estudiar si la me
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
+\caption{\label{tab:unnamed-chunk-17}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -2804,7 +2763,7 @@ Para generar un histograma en R a partir de un conjunto de datos, se utiliza el 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 Para interpretar un histograma, basta con indicar los siguientes aspectos:
 
@@ -2921,7 +2880,7 @@ Para generar un gráfico de caja en R a partir de un conjunto de datos, se utili
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-91-1} \end{center}
 
 Para interpretar un gráfico de caja es recomendable utilizar la opción 2 mostrada anteriormente, ya que, se debe mencionar uno de los puntos relevantes del gráfico. En el ejemplo recién dado, se observa que, el primer, segundo y tercer cuartil están en 1.135, 1.233 y 1.335 respectivamente, mientras que el valor mínimo y máximo están en 0.96 y 1.559 respectivamente. Adicionalmente, se puede mencionar que los datos superiores en comparación a los inferiores, se encuentran más alejados de la mediana.
 
@@ -2971,7 +2930,7 @@ Para generar un gráfico de violín en R a partir de un conjunto de datos, se ut
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-91-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-92-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2989,7 +2948,7 @@ Para generar un gráfico de violín en R a partir de un conjunto de datos, se ut
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-92-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Para interpretar un gráfico de violín con caja y promedio se deben mencionar tres aspectos relevantes:
 
@@ -3046,7 +3005,7 @@ El siguiente código, crea una nueva columna en la base de datos que identifica 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 Para interpretar este tipo de gráficos, se debe realizar un interpretación uno a uno, siguiendo la recomendación antes dada. También, es posible comprar los gráficos a través de la media y coeficiente de variabilidad. Para este ejemplo, queda como trabajo del estudiante realizar esta comparación.
 \end{example}
@@ -3099,7 +3058,7 @@ Para generar un gráfico de barras en R a partir de un conjunto de datos, se uti
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-95-1} \end{center}
 
 La interpretación de este tipo de gráfico (gráfico de barras no apiladas) es bastante intuitiva, ya que consiste en mencionar cuál categoría tiene un mayor frecuencia. En caso de graficar una variable con más de 2 categorías, se debe mencionar a que altura del eje vertical se encuentra la altura de cada una de las barras. Para obtener mayor detalles respecto a las frecuencias por categoría, suele apoyarse con un tabla de frecuencias absolutas o relativas porcentuales.
 
@@ -3149,7 +3108,7 @@ Para generar un gráfico de dispersión en R a partir de un conjunto de datos, s
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-96-1} \end{center}
 
 Tal como se menciona al inicio, la interpretación de este tipo de gráficos radica en describir la tendencia de los puntos. En el ejemplo anterior, el gráfico muestra una tendencia al alza, es decir, que cuando la tasa de apertura del EUR/USD aumenta, entonces, la tasa de cierre tiende a aumentar.
 
@@ -3185,7 +3144,7 @@ En los siguiente gráficos se toma como ejemplo la base de datos \hyperref[TasaE
 \end{Highlighting}
 \end{Shaded}
 
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-96-1} \end{center}
+  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
 \item
   Añadir al gráfico un formato de líneas entre los puntos. Interprete.
 
@@ -3199,7 +3158,7 @@ En los siguiente gráficos se toma como ejemplo la base de datos \hyperref[TasaE
 \end{Highlighting}
 \end{Shaded}
 
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
+  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-98-1} \end{center}
 
   Hasta el 2008 la tasa promedio de apertura estuvo en alza, posteriormente, la tasa decayó a un valor inferior a 1.1.
 \item
@@ -3230,7 +3189,7 @@ En los siguiente gráficos se toma como ejemplo la base de datos \hyperref[TasaE
 \end{Highlighting}
 \end{Shaded}
 
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-98-1} \end{center}
+  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-99-1} \end{center}
 
   Durante los 3 años consecutivos, se observa que únicamente en el 2020 la tendencia de la tasa de apertura es al alza, mientra que para los otros dos años hubo un decaimiento en el valor de esta.
 \item
@@ -3261,7 +3220,7 @@ En los siguiente gráficos se toma como ejemplo la base de datos \hyperref[TasaE
 \end{Highlighting}
 \end{Shaded}
 
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-99-1} \end{center}
+  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
 
   Al observar la evolución histórica de la tasa de apertura diferenciada por año, se aprecia que el periodo 2008 - 2010 es aquel con predominancia de valores más altos. Por otro lado, desde el 2016, se registraron pro primera vez valores menores a 1.1. En años posteriores, no ha observado que la tasa supere los 1.3 puntos.
 \end{enumerate}
@@ -3342,7 +3301,7 @@ La relación entre las variables es inversa. No podemos decir nada acerca de qu�
 
 A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-101-1} \end{center}
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
@@ -3390,7 +3349,7 @@ Por ejemplo, si \(r_{XY} = -0.96\), ¿qué podemos decir acerca de la relación 
 
 A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-101-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-102-1} \end{center}
 
 \textbf{Nota:} En R, se utiliza el comando \texttt{cor()} para calcular la correlación entre dos variables.
 
@@ -3550,7 +3509,7 @@ Luego, realizamos el gráfico de violín con caja y promedio.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-104-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-105-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3564,7 +3523,7 @@ Se observa, que la mayor concentración de datos se encuentra entre el primer y 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-105-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-106-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3647,7 +3606,7 @@ El valor de la correlación indica que la relación lineal entre las dos variabl
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-108-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-109-1} \end{center}
 
 \end{example}
 
@@ -3900,7 +3859,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-111-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-112-1} \end{center}
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
@@ -4005,7 +3964,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-115-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-116-1} \end{center}
 
 Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.
 
@@ -4797,7 +4756,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-133-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-134-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -4859,7 +4818,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-135-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-136-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 
