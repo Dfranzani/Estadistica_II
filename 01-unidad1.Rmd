@@ -69,7 +69,7 @@ En la expresión \@ref(eq:IC1), $Z_{\alpha/2}$ y $Z_{1-\alpha/2}$ son los puntos
 $$Z_{\alpha/2} = x : P(Z \leq x) = \alpha/2$$
 $$Z_{1-\alpha/2} = x : P(Z \leq x) = 1-\alpha/2$$
 
-```{r normalestandar, fig.width=4, fig.height=2.5, fig.cap="Curva Z, Normal Estándar", fig.align='center', echo = F}
+```{r normalestandar, fig.width=4, fig.height=2.5, fig.cap="Curva Z, Normal Estándar", fig.align='center', echo = F, warning=FALSE}
 x = seq(-3,3, by = 0.01)
 f = dnorm(x,0,1)
 df = data.frame("x" = x, "f" = f)

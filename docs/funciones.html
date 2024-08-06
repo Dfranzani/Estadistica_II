@@ -384,9 +384,9 @@ n\widehat{\beta}_0 + j\widehat{\beta}_1 &amp;= j\widehat{\beta}_1&#39; + n\wideh
 \widehat{Y}_{\text{Sepal.Length}} = \widehat{\beta}_0 + \widehat{\beta}_1I_{\text{Species = versicolor}}
 \tag{C.15}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="funciones.html#cb208-1" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
-<span id="cb208-2"><a href="funciones.html#cb208-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">subset</span>(datos, Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>))</span>
-<span id="cb208-3"><a href="funciones.html#cb208-3" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="funciones.html#cb206-1" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
+<span id="cb206-2"><a href="funciones.html#cb206-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">subset</span>(datos, Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>))</span>
+<span id="cb206-3"><a href="funciones.html#cb206-3" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Sepal.Length ~ Species, data = datos)
@@ -399,7 +399,7 @@ n\widehat{\beta}_0 + j\widehat{\beta}_1 &amp;= j\widehat{\beta}_1&#39; + n\wideh
 \widehat{Y}_{\text{Sepal.Length}} = \widehat{\beta}_1&#39;I_{\text{Species = versicolor}} +  \widehat{\beta}_2&#39;I_{\text{Species = setosa}}
 \tag{C.16}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="funciones.html#cb210-1" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="funciones.html#cb208-1" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Sepal.Length ~ -1 + Species, data = datos)
