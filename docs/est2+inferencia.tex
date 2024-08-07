@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 06-08-2024}
+\date{Actualizado al 07-08-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2709,554 +2709,6 @@ En general, las bases de datos que se trabajarán en esta sección son las sigui
 
 \section{Análisis descriptivo de datos}\label{descriptiva}
 
-\subsection{Gráficos descriptivos}\label{gruxe1ficos-descriptivos}
-
-En este apartado, se considera la representación de un conjunto de datos por medio de técnicas visuales. A continuación, se hará mención de algunas de las técnicas más útiles y pertinentes a la estadística de descriptiva. Los ejemplos presentados en esta sección hacen uso de la base de datos de la unidad (sección \ref{descriptiva}).
-
-\subsubsection{Histograma}\label{histograma}
-
-Algunos datos numéricos se obtienen contando para determinar el valor de una variable (cuántas veces se repite un hecho), mientras que otro datos se obtienen tomando mediciones (peso, altura, tiempo de reacción). Usualmente, este tipo de gráfico se utiliza con datos continuos (aunque tiene una versión para datos discretos), para lo cual, se debe hacer lo siguiente \citep[página 12]{Devore}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Subdividir los datos en \textbf{intervalos de clase} o \textbf{clases}, de tal manera que cada observación quede contenida en exactamente una clase. Para esto, se hace uso de la regla de Sturges \citeyearpar{sturges1926choice}, la cual, consiste en calcular la expresión \(1+\log_2(n)\), aproximando hacia el entero más próximo, dónde \(n\) corresponde a la cantidad de datos (existen otra variedad de técnicas).
-\item
-  Determinar la frecuencia y la frecuencia relativa de cada clase, es decir, cuántas observaciones hay en cada uno de los intervalos.
-\item
-  Se marcan los límite de clase sobre el eje horizontal del plano cartesiano.
-\item
-  Se traza un rectángulo cuya altura es la frecuencia absoluta (o relativa) correspondiente a cada intervalo de clase.
-\end{enumerate}
-
-Para generar un histograma en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2) }\CommentTok{\# Librería de ggplot2}
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-       \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-         \AttributeTok{x =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje X y variable asociada }
-  \FunctionTok{geom\_histogram}\NormalTok{( }\CommentTok{\# Objeto a graficar: histograma}
-    \AttributeTok{bins =} \FunctionTok{round}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{log2}\NormalTok{(}\FunctionTok{dim}\NormalTok{(datos)[}\DecValTok{1}\NormalTok{])), }\CommentTok{\# Cantidad de intervalos del histograma: regla de Sturges}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color del borde de las barras del histograma}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{, }\CommentTok{\# Color de relleno de las barras}
-    \AttributeTok{closed =} \StringTok{"left"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tipo de intervalo del histograma}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Histograma EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{"Tasa de cierre"}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-89-1} \end{center}
-
-Para interpretar un histograma, basta con indicar los siguientes aspectos:
-
-\begin{itemize}
-\tightlist
-\item
-  Forma visual de la distribución de las barras (en general).
-\item
-  Mencionar si existe una concentración fuera del comportamiento general, y en dónde se encuentra.
-\end{itemize}
-
-En el caso del histograma de la tasa de cierre del EUR/USD, se observa una forma de campana centrada cerca del 1.3, además, se evidencia la presencia de una frecuencia superior al resto que se encuentra la izquierda del gráfico cerca del 1.1.
-
-Cabe mencionar, que existen otros aspectos que son posibles mencionar, para ello consulte la bibliografía del curso.
-
-Es útil recordar que el histograma está asociado a una tabla de frecuencia por intervalos. Para obtener la tabla asociada a un histograma se puede utilizar el siguiente código.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Datos del histograma guardados}
-\NormalTok{h }\OtherTok{=} \FunctionTok{hist}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Close, }\CommentTok{\# Datos a graficar en el histograma}
-         \AttributeTok{breaks =} \DecValTok{13}\NormalTok{, }\CommentTok{\# Cantidad de intervalos: regla de Sturges}
-         \AttributeTok{right =}\NormalTok{ F, }\CommentTok{\# Cerrado por la izquierda}
-         \AttributeTok{plot =}\NormalTok{ F) }\CommentTok{\# No desplegar el gráfico en consola}
-\FunctionTok{library}\NormalTok{(agricolae) }\CommentTok{\# Librería para generar la tabla de frecuencias}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{table.freq}\NormalTok{(h)) }\CommentTok{\# Imprime en consola la tabla de frecuencias}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    Lower Upper  Main Frequency Percentage   CF   CPF
-## 1   0.95  1.00 0.975        46        0.9   46   0.9
-## 2   1.00  1.05 1.025        89        1.8  135   2.7
-## 3   1.05  1.10 1.075       444        8.9  579  11.7
-## 4   1.10  1.15 1.125       839       16.9 1418  28.6
-## 5   1.15  1.20 1.175       591       11.9 2009  40.5
-## 6   1.20  1.25 1.225       634       12.8 2643  53.2
-## 7   1.25  1.30 1.275       614       12.4 3257  65.6
-## 8   1.30  1.35 1.325       654       13.2 3911  78.8
-## 9   1.35  1.40 1.375       510       10.3 4421  89.0
-## 10  1.40  1.45 1.425       257        5.2 4678  94.2
-## 11  1.45  1.50 1.475       166        3.3 4844  97.5
-## 12  1.50  1.55 1.525        38        0.8 4882  98.3
-## 13  1.55  1.60 1.575        84        1.7 4966 100.0
-\end{verbatim}
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, elabore un histograma de los precios de la electricidad. Interprete.
-\end{exercise}
-
-\subsubsection{Gráfico de Caja}\label{gruxe1fico-de-caja}
-
-El gráfico de caja se utiliza para describir las siguiente características de un conjunto de datos \citep[página 35]{Devore}:
-
-\begin{itemize}
-\tightlist
-\item
-  El centro.
-\item
-  La dispersión.
-\item
-  El grado y naturaleza de cualquier alejamiento de la simetría.
-\item
-  La identificación de las observaciones ``extremas'' (atípicas) inusualmente alejadas del cuerpo principal de los datos.
-\end{itemize}
-
-Los pasos para elaborar un gráfico de caja son los siguiente \citep[página 106]{anderson}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Se dibuja una caja cuyos extremos se localicen en primer y tercer cuartiles. Esta caja contiene 50\% de los datos centrales.
-\item
-  En el punto donde se localiza la mediana se traza una linea horizontal.
-\item
-  Usando el rango intercuartílico (\(RIC = Q_3-Q_1\)), se localizan los límites. En un gráfico de caja los límites se encuentra a \(1.5RIC\) abajo y arriba de \(Q_1\) y \(Q_3\) respectivamente. Los datos que quedan fuera de estos límites se consideran observaciones atípicas \citep{Tukey}. La razón por la cual se considera 1.5 veces el rango intercuartílico es convencional, no obstante, hay argumento relacionados a la cantidad de datos dentro de los limites inferior y superior, los cuales indican que debe ser de 99.7\% \citep{James2013}.
-\item
-  Las lineas que se extienden verticalmente desde la caja se les llaman \emph{`bigotes'}. Los bigotes van desde los extremos de la caja hasta los valores menor y mayor de los límites calculados en el paso 3.
-\item
-  Mediante puntos se indica la localización de las observaciones atípicas.
-\end{enumerate}
-
-Para generar un gráfico de caja en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_boxplot}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de caja}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color del borde del gráfico}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos }
-    \AttributeTok{title =} \StringTok{"Caja EUR/USD (opción 1)"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-    \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(), }\CommentTok{\# Elimina las regletas del eje X}
-    \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\CommentTok{\# Elimina los números del eje X}
-\NormalTok{info }\OtherTok{=} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{ggplot\_build}\NormalTok{(g)[[}\DecValTok{1}\NormalTok{]]) }\CommentTok{\# Guardamos los valores del gráfico}
-\NormalTok{values }\OtherTok{=} \FunctionTok{round}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(info[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]), }\DecValTok{3}\NormalTok{) }\CommentTok{\# Extraemos los valores de construcción}
-\NormalTok{g1 }\OtherTok{=}\NormalTok{ g }\SpecialCharTok{+} \CommentTok{\# Creamos un nuevo gráfico a partir del anterior}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{( }\CommentTok{\# Modificar el eje Y}
-    \AttributeTok{breaks =}\NormalTok{ values, }\CommentTok{\# Modificamos los puntos a considerar en el eje Y}
-    \AttributeTok{labels =}\NormalTok{ values) }\SpecialCharTok{+} \CommentTok{\# Modificamos los valores mostrados en el eje Y}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Caja EUR/USD (opción 2)"}\NormalTok{) }\CommentTok{\# Título del gráfico}
-\FunctionTok{library}\NormalTok{(gridExtra) }\CommentTok{\# Librería para juntar gráficos de ggplot2}
-\FunctionTok{grid.arrange}\NormalTok{(g, }\CommentTok{\# Gráfico}
-\NormalTok{             g1, }\CommentTok{\# Gráfico}
-             \AttributeTok{ncol =} \DecValTok{2}\NormalTok{) }\CommentTok{\# Despliegue en a dos columnas }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-91-1} \end{center}
-
-Para interpretar un gráfico de caja es recomendable utilizar la opción 2 mostrada anteriormente, ya que, se debe mencionar uno de los puntos relevantes del gráfico. En el ejemplo recién dado, se observa que, el primer, segundo y tercer cuartil están en 1.135, 1.233 y 1.335 respectivamente, mientras que el valor mínimo y máximo están en 0.96 y 1.559 respectivamente. Adicionalmente, se puede mencionar que los datos superiores en comparación a los inferiores, se encuentran más alejados de la mediana.
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, elabore un gráfico de caja de los precios de la electricidad. Interprete.
-\end{exercise}
-
-\subsubsection{Gráfico de Violín}\label{gruxe1fico-de-violuxedn}
-
-El gráfico de violín proporciona una representación más completa y precisa de la distribución de los datos que las técnicas anteriores, ya que muestra tanto la forma de la distribución como su concentración \citep{hintze1998violin}. La utilidad de este gráfico recae en la comparación de la distribución de los datos entre distintos grupos y/o categorías.
-
-El proceso de construcción del gráfico es el siguiente:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Dibujo de la traza de densidad: la traza de densidad se dibuja sobre el eje vertical en el gráfico de violín (``forma suavizada del histograma'').
-\item
-  Creación de la sección central simétrica: se crea una sección central simétrica que representa la mitad de la traza de densidad.
-\end{enumerate}
-
-Adicionalmente, es común agregar un gráfico de caja junto al de violín con el fin de incorporar la visualización de las medidas de posición.
-
-Para generar un gráfico de violín en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Se guarda el gráfico en una variable para posteriormente}
-\CommentTok{\# integrar otros gráficos dentro de este.}
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{x =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Se fija el valor horizontal del gráfico (a elección)}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_violin}\NormalTok{( }\CommentTok{\# Objeto a graficar: violín}
-    \AttributeTok{trim =}\NormalTok{ F, }\CommentTok{\# Modifica las terminaciones visuales superior e inferior}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Violín EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-    \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(), }\CommentTok{\# Elimina las regletas del eje X}
-    \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\CommentTok{\# Elimina los números del eje X}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico en el visualizador}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-92-1} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Agregamos otros elementos al gráfico guardado}
-\NormalTok{g }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de caja}
-  \AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\CommentTok{\# Anchura proporcional del nuevo gráfico de caja}
-  \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color de borde del gráfico}
-  \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{stat\_summary}\NormalTok{( }\CommentTok{\# Función para agregar información de resumen}
-    \AttributeTok{fun =}\NormalTok{ mean, }\CommentTok{\# Tipo de información: promedio}
-    \AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\CommentTok{\# Forma visual}
-    \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Tamaño}
-    \AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\CommentTok{\# Color}
-    \AttributeTok{orientation =} \StringTok{"x"}\NormalTok{) }\CommentTok{\# Orientación}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
-
-Para interpretar un gráfico de violín con caja y promedio se deben mencionar tres aspectos relevantes:
-
-\begin{itemize}
-\tightlist
-\item
-  Ubicación de la(s) mayor(es) concentración(es) de datos, utilizando como referencia los cuartiles.
-\item
-  Ubicación del promedio respecto a la mediana.
-\item
-  Posibles razones por las cuales se explica la ubicación anteriormente mencionada del promedio respecto a la mediana.
-\end{itemize}
-
-En el ejemplo anterior, la principal concentración se encuentra por debajo del primer cuartil, aunque destacan otras dos concentraciones que están por debajo del segundo cuartil y alrededor del tercer cuartil respectivamente. El promedio se encuentra sutilmente por encima de la mediana, esto se puede explicar debido a que los datos superiores del gráfico se encuentra más lejos de la mediana en comparación a los datos inferiores.
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, elabore un gráfico de violín con caja y promedio de los precios de la electricidad. Interprete.
-\end{exercise}
-
-\begin{example}
-El siguiente código, crea una nueva columna en la base de datos que identifica el año en el que se realizó la medición de las tasas. A continuación, elabore un gráfico de violín (más gráfico de caja y promedio) de la variable \textbf{Close} en el periodo de años 2006-2010, diferenciando por año.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Extraemos el año de la variable Date, y la guardamos en un nueva columna}
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Ano }\OtherTok{=} \FunctionTok{substr}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Date, }\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{)}
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Ano }\SpecialCharTok{\%in\%} \DecValTok{2006}\SpecialCharTok{:}\DecValTok{2010}\NormalTok{,], }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{x =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Se fija el valor horizontal del gráfico (a elección)}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_violin}\NormalTok{( }\CommentTok{\# Objeto a graficar: violín}
-    \AttributeTok{trim =}\NormalTok{ F, }\CommentTok{\# Modifica las terminaciones visuales superior e inferior}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{geom\_boxplot}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de caja}
-    \AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\CommentTok{\# Anchura proporcional del nuevo gráfico de caja}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color de borde del gráfico}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{stat\_summary}\NormalTok{( }\CommentTok{\# Función para agregar información de resumen}
-    \AttributeTok{fun =}\NormalTok{ mean, }\CommentTok{\# Tipo de información: promedio}
-    \AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\CommentTok{\# Forma visual}
-    \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Tamaño}
-    \AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Violín EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-    \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(), }\CommentTok{\# Elimina las regletas del eje X}
-    \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+} \CommentTok{\# Elimina los números del eje X}
-  \FunctionTok{facet\_wrap}\NormalTok{( }\CommentTok{\# Segregación del gráfico}
-    \FunctionTok{vars}\NormalTok{(Ano), }\CommentTok{\# Variable que se utiliza para segregar el gráfico}
-    \AttributeTok{nrow =} \DecValTok{1}\NormalTok{) }\CommentTok{\# Disposición visual: una fila}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
-
-Para interpretar este tipo de gráficos, se debe realizar un interpretación uno a uno, siguiendo la recomendación antes dada. También, es posible comprar los gráficos a través de la media y coeficiente de variabilidad. Para este ejemplo, queda como trabajo del estudiante realizar esta comparación.
-\end{example}
-
-\begin{exercise}
-\protect\hypertarget{exr:violin-colesterol-azucar}{}\label{exr:violin-colesterol-azucar}Utilizando la base de datos de \hyperref[Pacientes]{Paciente} Realice un gráfico de violín con caja y promedio del nivel de colesterol de los paciente, diferenciando por el nivel de azúcar en sangre en ayunas. Interprete.
-\end{exercise}
-
-\begin{exercise}
-Agregue una diferenciación por sexo a lo realizado en el ejercicio \ref{exr:violin-colesterol-azucar}. Entienda que para cada nivel de azúcar en sangre se debe ver un desglose por sexo. Interprete.
-\end{exercise}
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, realice un gráfico de violín con caja y promedio para el precio de la electricidad, diferenciado por año. Interprete.
-\end{exercise}
-
-\subsubsection{Gráfico de Barras}\label{gruxe1fico-de-barras}
-
-Una gráfico de barras, es una gráfica para representar los datos cualitativos de una distribución de frecuencia. El procedimiento de construcción es el siguiente \citep[página 29]{anderson}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  En uno de los ejes de la gráfica (por lo general en el horizontal), se especifican las etiquetas empleadas para las clases (categorías).
-\item
-  Para el otro eje de la gráfica (el vertical) se usa una escala para frecuencia, frecuencia relativa o frecuencia porcentual.
-\item
-  Finalmente, se emplea un ancho de barra fijo y se dibuja sobre cada etiqueta de las clases una barra que se extiende hasta la frecuencia de la clase (a diferencia del histograma, las barras deben estar separadas notoriamente).
-\end{enumerate}
-
-Para generar un gráfico de barras en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Nueva variable para dicotomizar la tasa de cierre del EUR/USD}
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Close2 }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Close }\SpecialCharTok{\textgreater{}} \FloatTok{1.1}\NormalTok{, }\CommentTok{\# Criterio}
-                      \StringTok{"Mayor a 1.1"}\NormalTok{, }\CommentTok{\# Valor asignado si se cumple el criterio}
-                      \StringTok{"Menor a  1.1"}\NormalTok{) }\CommentTok{\# Valor asignado si no se cumple el criterio}
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{x =}\NormalTok{ Close2)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_bar}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de barras}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno y borde}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Barras EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{"Tasa de cierre"}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-95-1} \end{center}
-
-La interpretación de este tipo de gráfico (gráfico de barras no apiladas) es bastante intuitiva, ya que consiste en mencionar cuál categoría tiene un mayor frecuencia. En caso de graficar una variable con más de 2 categorías, se debe mencionar a que altura del eje vertical se encuentra la altura de cada una de las barras. Para obtener mayor detalles respecto a las frecuencias por categoría, suele apoyarse con un tabla de frecuencias absolutas o relativas porcentuales.
-
-En el ejemplo, la frecuencia de la cantidad de tasas de cierre que se encuentran por sobre 1.1 es mayor a las que se encuentran por debajo, con una frecuencia sobre 4000 y menor a 1000 respectivamente.
-
-\begin{exercise}
-Utilizando la base de datos \hyperref[Pacientes]{Pacientes}, elabore un gráfico de barras de la variable \emph{fbs}. Interprete, apoyado de una tabla de frecuencias absolutas.
-\end{exercise}
-
-\begin{exercise}
-Utilizando la base de datos \hyperref[Pacientes]{Pacientes}, elabore un gráfico de barras (no apiladas) de la variable \emph{cp}, diferenciado por sexo. Interprete, apoyado de una tabla de frecuencias relativas porcentuales. Haga el contraste visual con el gráfico de barras apiladas.
-\end{exercise}
-
-\subsubsection{Gráfico de Dispersión}\label{gruxe1fico-de-dispersiuxf3n}
-
-El gráfico de dispersión es útil para estudiar la relación entre dos variables continuas. Muestra cómo varía un variable en función de la otra y puede ayudar a identificar patrones y tendencias \citep{rowlingson2016data}.
-
-Los pasos para elaborar un gráfico de caja son los siguiente \citep{healy2019data}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Elegir dos variables continuas de la base de datos a trabajar. Cada fila corresponde a una observación, por lo cual, hay una correspondencia entre los valores de una misma fila.
-\item
-  Elegir la variable estará en el eje X y Y.
-\item
-  Representar cada par ordenado con un punto.
-\end{enumerate}
-
-Para generar un gráfico de dispersión en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-    \AttributeTok{x =}\NormalTok{ Open, }\CommentTok{\# Eje X y variable asociada}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar: Gráfico de dispersión}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color}
-    \AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Opacidad}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Tasa de apertura y cierre del EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{"Tasa de apertura"}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-96-1} \end{center}
-
-Tal como se menciona al inicio, la interpretación de este tipo de gráficos radica en describir la tendencia de los puntos. En el ejemplo anterior, el gráfico muestra una tendencia al alza, es decir, que cuando la tasa de apertura del EUR/USD aumenta, entonces, la tasa de cierre tiende a aumentar.
-
-\begin{exercise}
-Utilizando la base de datos \hyperref[Pacientes]{Pacientes}, realice un gráfico de dispersión entre la variable \emph{age} (eje X) y la variable \emph{thalachh} (eje Y). Interprete.
-\end{exercise}
-
-\begin{example}
-
-En los siguiente gráficos se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Es posible utilizar el gráfico de dispersión con variables que en su naturaleza son discretas. En este sentido, elabore un gráfico de dispersión entre el año de medición y el valor promedio de tasa de apertura del EUR/USD (guarde el gráfico en una variable).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-\AttributeTok{x =}\NormalTok{ Ano, }\CommentTok{\# Eje X y variable asociada}
-\AttributeTok{y =}\NormalTok{ Open, }\CommentTok{\# Eje Y y variable asociada}
-\AttributeTok{group =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+} \CommentTok{\# Comando únicamente necesario para la pregunta 2}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar}
-\AttributeTok{stat =} \StringTok{"summary"}\NormalTok{, }\CommentTok{\# Tipo de información a graficar: resumen}
-\AttributeTok{fun =} \StringTok{"mean"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tipo de resumen: promedio de la variable Y}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-\AttributeTok{title =} \StringTok{"Tasa de apertura promedio del EUR/USD por año"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-\AttributeTok{x =} \StringTok{"Año"}\NormalTok{, }\CommentTok{\# Título del eje X}
-\AttributeTok{y =} \StringTok{"Tasa de apertura"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
-\item
-  Añadir al gráfico un formato de líneas entre los puntos. Interprete.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=}\NormalTok{ g }\SpecialCharTok{+} \CommentTok{\# Añadimos otro gráfico}
-  \FunctionTok{geom\_line}\NormalTok{( }\CommentTok{\# Objeto a graficar: lineas}
-\AttributeTok{stat =} \StringTok{"summary"}\NormalTok{, }\CommentTok{\# Tipo de información a graficar: resumen}
-\AttributeTok{fun =} \StringTok{"mean"}\NormalTok{) }\CommentTok{\# Tipo de resumen: promedio de la variable Y}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-98-1} \end{center}
-
-  Hasta el 2008 la tasa promedio de apertura estuvo en alza, posteriormente, la tasa decayó a un valor inferior a 1.1.
-\item
-  Grafique el valor de la tasa de apertura del EUR/USD desde el 2020 hasta el 2022 separadamente. Interprete.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Date }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Date) }\CommentTok{\# Fechas en formato fecha de R}
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Ano }\SpecialCharTok{\%in\%} \DecValTok{2020}\SpecialCharTok{:}\DecValTok{2022}\NormalTok{,], }\CommentTok{\# Datos de los años 2020 al 2022}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-\AttributeTok{x =}\NormalTok{ Date, }\CommentTok{\# Comandos estéticos: Eje X y variable asociada}
-\AttributeTok{y =}\NormalTok{ Open)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar}
-\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\CommentTok{\# Opacidad}
-\AttributeTok{size =} \FloatTok{0.6}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tamaño}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+} \CommentTok{\# Eliminamos el texto del eje X}
-  \FunctionTok{facet\_wrap}\NormalTok{( }\CommentTok{\# Segregación del gráfico}
-\FunctionTok{vars}\NormalTok{(Ano), }\CommentTok{\# Variable que se utiliza para segregar el gráfico}
-\AttributeTok{nrow =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Disposición visual: una fila}
-\AttributeTok{scales =} \StringTok{"free\_x"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# La escala del eje X es independiente para gráfico}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-\AttributeTok{title =} \StringTok{"Tasa de apertura del EUR/USD desde el 2020 hasta el 2022"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-\AttributeTok{x =} \StringTok{"Fecha"}\NormalTok{, }\CommentTok{\# Título del eje X}
-\AttributeTok{y =} \StringTok{"Tasa de apertura"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-99-1} \end{center}
-
-  Durante los 3 años consecutivos, se observa que únicamente en el 2020 la tendencia de la tasa de apertura es al alza, mientra que para los otros dos años hubo un decaimiento en el valor de esta.
-\item
-  Grafique el valor de la tasa de apertura del EUR/USD diferenciando por año. Interprete.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-\AttributeTok{x =}\NormalTok{ Date, }\CommentTok{\# Comandos estéticos: Eje X y variable asociada}
-\AttributeTok{y =}\NormalTok{ Open, }\CommentTok{\# Eje Y y variable asociada}
-\AttributeTok{color =}\NormalTok{ Ano)) }\SpecialCharTok{+} \CommentTok{\# Color según el año}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar}
-\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\CommentTok{\# Opacidad}
-\AttributeTok{size =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tamaño}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-\AttributeTok{color =} \StringTok{"Año"}\NormalTok{, }\CommentTok{\# Título de la leyenda}
-\AttributeTok{title =} \StringTok{"Tasa de apertura del EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-\AttributeTok{x =} \StringTok{"Fecha"}\NormalTok{, }\CommentTok{\# Título del eje X}
-\AttributeTok{y =} \StringTok{"Tasa de apertura"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{guides}\NormalTok{( }\CommentTok{\# Edición de escalas}
-\AttributeTok{color =} \FunctionTok{guide\_legend}\NormalTok{( }\CommentTok{\# Escala de color de la leyenda}
-  \AttributeTok{override.aes =} \FunctionTok{list}\NormalTok{( }\CommentTok{\# Comando estéticos asociados}
-    \AttributeTok{alpha =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Opacidad de los puntos}
-    \AttributeTok{size =} \DecValTok{3}\NormalTok{))) }\CommentTok{\# Tamaño de los puntos}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
-
-  Al observar la evolución histórica de la tasa de apertura diferenciada por año, se aprecia que el periodo 2008 - 2010 es aquel con predominancia de valores más altos. Por otro lado, desde el 2016, se registraron pro primera vez valores menores a 1.1. En años posteriores, no ha observado que la tasa supere los 1.3 puntos.
-\end{enumerate}
-
-\end{example}
-
-\begin{exercise}
-
-Utilizando la base de datos de la \hyperref[TasaEURUSD]{Tasa Euro/Dólar}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Elabore un gráfico de dispersión entre el año de medición y el valor promedio de tasa de cierre del EUR/USD (guarde el gráfico en una variable).
-\item
-  Añadir al gráfico un formato de líneas entre los puntos. Interprete.
-\item
-  Grafique el valor de la tasa de cierre del EUR/USD desde el 2010 hasta el 2013 separadamente. Interprete.
-\item
-  Grafique el valor de la tasa de cierre del EUR/USD diferenciando por año. Interprete.
-\end{enumerate}
-
-\end{exercise}
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios de electricidad}, elabore un gráfico de dispersión del precio de la electricidad a través del tiempo (considere año, mes y día). Interprete.
-\end{exercise}
-
-\begin{exercise}
-
-Utilizando la base de datos de \hyperref[Pacientes]{Pacientes}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Elabore un histograma del nivel de colesterol de los pacientes. Interprete.
-\item
-  Elabore un gráfico de caja del nivel de colesterol de los pacientes, diferenciando por sexo. Interprete y compare.
-\item
-  Elabore un gráfico de violín (más caja y promedio) del nivel de colesterol de los pacientes, diferenciado por tipo de dolor en el pecho. Interprete y compare.
-\item
-  Elabore un gráfico de dispersión entre la edad (eje X) y el nivel de colesterol (eje Y) de los pacientes, coloreando por sexo. Interprete.
-\end{enumerate}
-
-\end{exercise}
-
 \subsection{Covarianza}\label{covarianza}
 
 Es posible entender las relaciones entre dos o más variables, gráficamente y a través de estadísticos. En esta sección seabarcarán las relaciones lineales entre dos variables cuantitativas, utilizando la Covarianza y la Correlación. El gráfico que apoya a estas dos medidas es el gráfico de dispersión.
@@ -3289,7 +2741,7 @@ La relación entre las variables es inversa. No podemos decir nada acerca de qu�
 
 A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-101-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
@@ -3337,7 +2789,7 @@ Por ejemplo, si \(r_{XY} = -0.96\), ¿qué podemos decir acerca de la relación 
 
 A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-102-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 \textbf{Nota:} En R, se utiliza el comando \texttt{cor()} para calcular la correlación entre dos variables.
 
@@ -3497,7 +2949,7 @@ Luego, realizamos el gráfico de violín con caja y promedio.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-105-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3511,7 +2963,7 @@ Se observa, que la mayor concentración de datos se encuentra entre el primer y 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-106-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3594,7 +3046,7 @@ El valor de la correlación indica que la relación lineal entre las dos variabl
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-109-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 \end{example}
 
@@ -3847,7 +3299,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-112-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
@@ -3952,7 +3404,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-116-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-104-1} \end{center}
 
 Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.
 
@@ -4744,7 +4196,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-134-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-122-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -4806,7 +4258,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-136-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-124-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 
