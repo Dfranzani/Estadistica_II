@@ -58,8 +58,6 @@ if (knitr::is_html_output()){
                 link(talleres_pruebas, "Taller de práctica Evaluación "),
                 link(taller_examen, "Taller de práctica Examen "))
    
-   cat(" - [Taller introductorio](material/talleres/Taller introductorio/Taller_Introductorio_a_R.ipynb) \n")
-   
    if(length(talleres) != 0){
       for (i in 1:length(talleres)) {
          cat(paste(" -", talleres[i]), "\n")
