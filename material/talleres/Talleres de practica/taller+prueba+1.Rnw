@@ -181,12 +181,50 @@ t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891)
 
 \item  Los datos que a continuación se dan son las edades de 20 estudiantes de una determinada universidad: 19,20,21,21,24,21,20,25,18,17,23,28,29,27,25,25,28,20,25,28. Si las edades de los estudiantes de dicha universidad es una variable aleatoria normal con una desviación estándar poblacional de 4 años. 
 
-Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice alguna de las tablas al final del documento, según estime conveniente (al buscar, utilice el valor que más se aproxime).
-  \begin{enumerate}
-    \item Obtener el intervalo de confianza al 98\% para la media de la edad de los estudiantes.
-    \item Estudie si la media de la edades de los estudiantes es menor a 20 años. Utilice una confianza del 90\%.
-    \item Estudie si la media de la edades de los estudiantes es cuando menos de 21 años. Utilice una confianza del 90\%.
-  \end{enumerate}
+Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
+
+\begin{enumerate}
+  \item Obtener el intervalo de confianza al 98\% para la media de la edad de los estudiantes.
+  \item Estudie si la media de la edades de los estudiantes es menor a 20 años. Utilice una confianza del 90\%.
+  \item Estudie si la media de la edades de los estudiantes es cuando menos de 21 años. Utilice una confianza del 90\%.
+\end{enumerate}
+
+<<echo = F, message = F>>=
+library(kableExtra)
+p = seq(0.90,0.99, by = 0.01)
+q = round(qnorm(p),4)
+df = data.frame("Probabilidad" = p, "Cuantil" = q)
+df = as.matrix(df)
+@
+
+<<results='asis', echo = F>>=
+kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+      caption = "Distribución Z") |>
+    kable_styling(latex_options = c("striped","HOLD_position"))
+@
+
+Ahora, considere que la desviación estándar poblacional es desconocida. Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
+
+\begin{enumerate}
+\setcounter{enumii}{3}
+  \item Obtener el intervalo de confianza al 96\% para la media de la edad de los estudiantes.
+  \item Estudie si la media de la edades de los estudiantes es no mayor a 22 años. Utilice una confianza del 94\%.
+  \item Estudie si la media de la edades de los estudiantes es no menor a 27 años. Utilice una confianza del 98\%.
+\end{enumerate}
+
+<<echo = F, message = F>>=
+library(kableExtra)
+p = seq(0.90,0.99, by = 0.01)
+q = round(qt(p, df = 19),4)
+df = data.frame("Probabilidad" = p, "Cuantil" = q)
+df = as.matrix(df)
+@
+
+<<results='asis', echo = F>>=
+kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+      caption = "Distribución t-Student con df = 19 ") |>
+    kable_styling(latex_options = c("striped","HOLD_position"))
+@
 
 \end{enumerate}
 
@@ -463,19 +501,7 @@ cat(c("\\begin{table}[H]
 @
 
 % \begin{minipage}{0.5\linewidth}
-<<echo = F, message = F>>=
-library(kableExtra)
-p = seq(0.90,0.99, by = 0.01)
-q = round(qnorm(p),4)
-df = data.frame("Probabilidad" = p, "Cuantil" = q)
-df = as.matrix(df)
-@
 
-<<results='asis', echo = F>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
-      caption = "Cuantiles Z") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
 % \end{minipage}
 % \begin{minipage}{0.5\linewidth}
 % <<echo = F, message = F>>=
