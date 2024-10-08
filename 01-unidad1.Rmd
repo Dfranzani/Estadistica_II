@@ -69,7 +69,7 @@ En la expresión \@ref(eq:IC1), $Z_{\alpha/2}$ y $Z_{1-\alpha/2}$ son los puntos
 $$Z_{\alpha/2} = x : P(Z \leq x) = \alpha/2$$
 $$Z_{1-\alpha/2} = x : P(Z \leq x) = 1-\alpha/2$$
 
-```{r normalestandar, fig.width=4, fig.height=2.5, fig.cap="Curva Z, Normal Estándar", fig.align='center', echo = F}
+```{r normalestandar, fig.width=4, fig.height=2.5, fig.cap="Curva Z, Normal Estándar", fig.align='center', echo = F, warning=FALSE}
 x = seq(-3,3, by = 0.01)
 f = dnorm(x,0,1)
 df = data.frame("x" = x, "f" = f)
@@ -154,6 +154,39 @@ El resultado indica que, la probabilidad de que el intervalo $(500.5, 506.9)$ (e
 ::: {.exercise}
 Obtener los intervalos con las confianzas al 90\% y 95\% asociados al ejemplo \@ref(exm:ejemplo1IC). Comente las diferencias e interprete.
 :::
+
+
+Dado lo expuesto en el ejercicio anterior, la figura \@ref(fig:simulacionIC) muestra la relación que existe entre la confianza y el rango del intervalo, en la cual, es posible observar que a mayor confianza es mayor el rango del intervalo.
+
+```{r simulacionIC, echo=FALSE, fig.width=5, fig.height=4, fig.cap="Simulación de intervalos de confianza", fig.align='center', echo = F, warning=FALSE}
+library(ggplot2)
+set.seed(2024)
+valores = round(runif(n = 200, min = 19, max = 29))
+limites = function(confianza){
+  alfa = 1- confianza
+  li = mean(valores) - qnorm(1-alfa/2)*6/sqrt(length(valores))
+  ls = mean(valores) + qnorm(1-alfa/2)*6/sqrt(length(valores))
+  return(c(li,ls))
+}
+confianzas = 80:99/100
+ICs = apply(as.matrix(confianzas), MARGIN = 1, FUN = function(x){
+  return(limites(x))
+})
+ICs = as.data.frame(t(ICs))
+colnames(ICs) = c("Li","Ls")
+ICs$N = 1:(dim(ICs)[1])
+ICs$Confianza = confianzas
+
+ggplot(data = ICs) +
+  geom_segment(aes(x = Li, y = N, xend = Ls, yend = N), color = "darkred", linetype = 1) +
+  geom_point(aes(x = Li, y = N)) +
+  geom_point(aes(x = Ls, y = N)) +
+  labs(y = "Confianza", x = "Intervalos",
+       title = "IC para la media y varianza conocida (36),\n proveniente de una distribución normal") +
+  scale_y_continuous(breaks = ICs$N, labels = ICs$Confianza)
+```
+
+
 
 ### Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida
 

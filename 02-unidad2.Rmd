@@ -381,7 +381,7 @@ H_1&: \mu < 64
     
     ```{r}
     # Cálculo del valor-p
-    valor_p = 1-pnorm(z0)
+    valor_p = pnorm(z0)
     valor_p
     ```
     
@@ -391,7 +391,7 @@ H_1&: \mu < 64
     ```
     
     
-    **Interpretación utilizando el método del valor-p**: El valor-p de 0.0012 es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
+    **Interpretación utilizando el método del valor-p**: El valor-p cercano a 0 es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
 
 2.  **Método del valor crítico**
 
@@ -410,7 +410,7 @@ H_1&: \mu < 64
     z0 <= valor_critico
     ```
   
-    **Interpretación utilizando el método del valor crítico**: El valor absoluto del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
+    **Interpretación utilizando el método del valor crítico**: El valor del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
 
 3.  **Método del intervalo de confianza**
 

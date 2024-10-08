@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 04-06-2024}
+\date{Actualizado al 08-10-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -171,47 +171,6 @@
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
-\chapter*{Presentación}\label{presentaciuxf3n}
-\addcontentsline{toc}{chapter}{Presentación}
-
-El curso de Estadística II \& Inferencia Estadística, es el segundo curso estadístico de una serie de dos. Estos cursos tienen un enfoque práctico con un fuerte énfasis en la capacidad inferir a partir de conjuntos datos mediante la aplicación de distintas técnicas estadísticas. Este segundo documento, se concentra en pruebas de hipótesis, modelos de regresión lineal simple y múltiple, haciendo uso del entorno de software R.
-
-\href{https://dfranzani.github.io/Estadistica_I/}{Enlace al documento del primer curso de Estadística: Estadística I \& Estadística Descriptiva}.
-
-\chapter*{Modalidad}\label{modalidad}
-\addcontentsline{toc}{chapter}{Modalidad}
-
-La modalidad de trabajo consta de los siguientes elementos:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  El \textbf{documento} web cuenta con el desarrollo de todos los tópicos de curso, además de ejemplificaciones y ejercicios.
-\item
-  En su mayoría, los ejemplos y ejercicios presentes en el documento fueron extraídos de la bibliografía obligatoria, sin embargo, a algunos de estos se ha incorporado el \textbf{uso de R} como programa de análisis estadístico. El desarrollo de los ejercicios por parte del estudiante se recomienda que sea en Google Colab R. Esta plataforma cuenta con una opción de configuración interna para R (desde Google Drive: Nuevo -\textgreater{} Más -\textgreater{} Google Collaboratory, dentro del archivo: Entorno de ejecución -\textgreater{} Cambiar tipo de entorno de ejecución -\textgreater{} Tipo de entorno de ejecución -\textgreater{} R -\textgreater{} Guardar). En el siguiente \href{https://colab.research.google.com/notebook\#create=true&language=r}{enlace} se puede acceder a un documento con una configuración preestablecida para este lenguaje. El archivo generado se guardará automáticamente en la cuenta de Gmail predeterminada; otra opción en caso de no querer modificar su cuenta predeterminada (si es que debiese hacerlo) es descargar el archivo y cargarlo manualmente en la carpeta de Drive que estime conveniente. Los aspectos relacionados con el uso de R serán abordados en el Taller Introductorio.
-\item
-  Se cuenta con \textbf{talleres de práctica}, lo cuales, cuentan con ejercicios propuestos para desarrollar en clases y ejercicios para el trabajo independiente del estudiante.
-\item
-  El curso cuenta con \textbf{bibliografía} obligatoria y complementaria:
-
-  \begin{itemize}
-  \item
-    (Obligatoria) \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos/blob/main/Libros/Anderson\%2C\%20Estad\%C3\%ADstica.pdf}{\emph{``Estadística para Administración y Economía''}} \citep{anderson}
-  \item
-    (Obligatoria,) \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos/blob/main/Libros/Devore\%2C\%20Probabilidad\%20y\%20Estad\%C3\%ADstica.pdf}{\emph{``Probabilidad y Estadística para Ingeniería y Ciencias''}} \citep{Devore}
-  \item
-    (Complementaria) \href{https://bookdown.org/rdpeng/rprogdatascience/}{\emph{``R Programming for Data Science''}} \citep{peng2016r}
-  \item
-    (Complementaria) \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos/blob/main/Libros/Micheaux\%2C\%20Manual\%20de\%20R.pdf}{\emph{``The R Software: Fundamentals of Programming and Statistical Analysis''}} \citep{deMicheaux2013}
-  \item
-    (Complementaria) \href{https://ggplot2-book.org/}{\emph{``ggplot2: Elegant Graphics for Data Analysis''}} \citep{wickham_ggplot2_2009}
-  \end{itemize}
-
-  Además, se añaden citas que refuerzan el contenido presentando, las cuales se encuentra en detalle al final de cada sección.
-\item
-  Las \textbf{bases de datos} a utilizar en el curso se encuentran disponibles en un \href{https://github.com/Dfranzani/Bases-de-datos-para-cursos}{repositorio web} público.
-\end{enumerate}
-
 \chapter{Intervalos de confianza}\label{intervalos-de-confianza}
 
 Las bases de datos que se trabajarán en esta unidad son las siguientes:
@@ -278,18 +237,6 @@ En la expresión \eqref{eq:IC1}, \(Z_{\alpha/2}\) y \(Z_{1-\alpha/2}\) son los p
 \[Z_{\alpha/2} = x : P(Z \leq x) = \alpha/2\]
 \[Z_{1-\alpha/2} = x : P(Z \leq x) = 1-\alpha/2\]
 
-\begin{verbatim}
-## Warning in geom_segment(aes(x = -2, y = 0, xend = -2, yend = dnorm(-2, 0, : All aesthetics have length 1, but the data has 601 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 2, y = 0, xend = 2, yend = dnorm(2, 0, 1)), : All aesthetics have length 1, but the data has 601 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
 \begin{figure}
 
 {\centering \includegraphics{est2+inferencia_files/figure-latex/normalestandar-1} 
@@ -327,7 +274,7 @@ A continuación, se dan a conocer intervalos de confianza para estimar la media 
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-8}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
+\caption{\label{tab:unnamed-chunk-9}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -374,11 +321,22 @@ El resultado indica que, la probabilidad de que el intervalo \((500.5, 506.9)\) 
 Obtener los intervalos con las confianzas al 90\% y 95\% asociados al ejemplo \ref{exm:ejemplo1IC}. Comente las diferencias e interprete.
 \end{exercise}
 
+Dado lo expuesto en el ejercicio anterior, la figura \ref{fig:simulacionIC} muestra la relación que existe entre la confianza y el rango del intervalo, en la cual, es posible observar que a mayor confianza es mayor el rango del intervalo.
+
+\begin{figure}
+
+{\centering \includegraphics{est2+inferencia_files/figure-latex/simulacionIC-1} 
+
+}
+
+\caption{Simulación de intervalos de confianza}\label{fig:simulacionIC}
+\end{figure}
+
 \subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida}\label{intervalo-de-confianza-para-la-media-de-una-distribuciuxf3n-normal-y-varianza-poblacional-desconocida}
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-10}Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida}
+\caption{\label{tab:unnamed-chunk-11}Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -443,7 +401,7 @@ Utilizando la base de datos del \hyperref[Imacec1]{Imacec}:
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-12}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
+\caption{\label{tab:unnamed-chunk-13}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -507,7 +465,7 @@ Estudiar si el valor promedio del dólar de Julio es mayor al de Junio por más 
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-15}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
+\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -566,7 +524,7 @@ Utilizando la base de datos \hyperref[Cuotas]{Control cuotas}, estudiar si la me
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
+\caption{\label{tab:unnamed-chunk-17}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -1083,13 +1041,13 @@ H_1&: \mu < 64
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Cálculo del valor{-}p}
-\NormalTok{valor\_p }\OtherTok{=} \DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pnorm}\NormalTok{(z0)}
+\NormalTok{valor\_p }\OtherTok{=} \FunctionTok{pnorm}\NormalTok{(z0)}
 \NormalTok{valor\_p}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 3.882018e-09
 \end{verbatim}
 
 \begin{Shaded}
@@ -1100,10 +1058,10 @@ H_1&: \mu < 64
 \end{Shaded}
 
 \begin{verbatim}
-## [1] FALSE
+## [1] TRUE
 \end{verbatim}
 
-  \textbf{Interpretación utilizando el método del valor-p}: El valor-p de 0.0012 es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99\%.
+  \textbf{Interpretación utilizando el método del valor-p}: El valor-p cercano a 0 es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99\%.
 \item
   \textbf{Método del valor crítico}
 
@@ -1134,7 +1092,7 @@ H_1&: \mu < 64
 ## [1] TRUE
 \end{verbatim}
 
-  \textbf{Interpretación utilizando el método del valor crítico}: El valor absoluto del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99\%.
+  \textbf{Interpretación utilizando el método del valor crítico}: El valor del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99\%.
 \item
   \textbf{Método del intervalo de confianza}
 
@@ -2762,554 +2720,6 @@ En general, las bases de datos que se trabajarán en esta sección son las sigui
 
 \section{Análisis descriptivo de datos}\label{descriptiva}
 
-\subsection{Gráficos descriptivos}\label{gruxe1ficos-descriptivos}
-
-En este apartado, se considera la representación de un conjunto de datos por medio de técnicas visuales. A continuación, se hará mención de algunas de las técnicas más útiles y pertinentes a la estadística de descriptiva. Los ejemplos presentados en esta sección hacen uso de la base de datos de la unidad (sección \ref{descriptiva}).
-
-\subsubsection{Histograma}\label{histograma}
-
-Algunos datos numéricos se obtienen contando para determinar el valor de una variable (cuántas veces se repite un hecho), mientras que otro datos se obtienen tomando mediciones (peso, altura, tiempo de reacción). Usualmente, este tipo de gráfico se utiliza con datos continuos (aunque tiene una versión para datos discretos), para lo cual, se debe hacer lo siguiente \citep[página 12]{Devore}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Subdividir los datos en \textbf{intervalos de clase} o \textbf{clases}, de tal manera que cada observación quede contenida en exactamente una clase. Para esto, se hace uso de la regla de Sturges \citeyearpar{sturges1926choice}, la cual, consiste en calcular la expresión \(1+\log_2(n)\), aproximando hacia el entero más próximo, dónde \(n\) corresponde a la cantidad de datos (existen otra variedad de técnicas).
-\item
-  Determinar la frecuencia y la frecuencia relativa de cada clase, es decir, cuántas observaciones hay en cada uno de los intervalos.
-\item
-  Se marcan los límite de clase sobre el eje horizontal del plano cartesiano.
-\item
-  Se traza un rectángulo cuya altura es la frecuencia absoluta (o relativa) correspondiente a cada intervalo de clase.
-\end{enumerate}
-
-Para generar un histograma en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2) }\CommentTok{\# Librería de ggplot2}
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-       \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-         \AttributeTok{x =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje X y variable asociada }
-  \FunctionTok{geom\_histogram}\NormalTok{( }\CommentTok{\# Objeto a graficar: histograma}
-    \AttributeTok{bins =} \FunctionTok{round}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{log2}\NormalTok{(}\FunctionTok{dim}\NormalTok{(datos)[}\DecValTok{1}\NormalTok{])), }\CommentTok{\# Cantidad de intervalos del histograma: regla de Sturges}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color del borde de las barras del histograma}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{, }\CommentTok{\# Color de relleno de las barras}
-    \AttributeTok{closed =} \StringTok{"left"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tipo de intervalo del histograma}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Histograma EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{"Tasa de cierre"}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-88-1} \end{center}
-
-Para interpretar un histograma, basta con indicar los siguientes aspectos:
-
-\begin{itemize}
-\tightlist
-\item
-  Forma visual de la distribución de las barras (en general).
-\item
-  Mencionar si existe una concentración fuera del comportamiento general, y en dónde se encuentra.
-\end{itemize}
-
-En el caso del histograma de la tasa de cierre del EUR/USD, se observa una forma de campana centrada cerca del 1.3, además, se evidencia la presencia de una frecuencia superior al resto que se encuentra la izquierda del gráfico cerca del 1.1.
-
-Cabe mencionar, que existen otros aspectos que son posibles mencionar, para ello consulte la bibliografía del curso.
-
-Es útil recordar que el histograma está asociado a una tabla de frecuencia por intervalos. Para obtener la tabla asociada a un histograma se puede utilizar el siguiente código.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Datos del histograma guardados}
-\NormalTok{h }\OtherTok{=} \FunctionTok{hist}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Close, }\CommentTok{\# Datos a graficar en el histograma}
-         \AttributeTok{breaks =} \DecValTok{13}\NormalTok{, }\CommentTok{\# Cantidad de intervalos: regla de Sturges}
-         \AttributeTok{right =}\NormalTok{ F, }\CommentTok{\# Cerrado por la izquierda}
-         \AttributeTok{plot =}\NormalTok{ F) }\CommentTok{\# No desplegar el gráfico en consola}
-\FunctionTok{library}\NormalTok{(agricolae) }\CommentTok{\# Librería para generar la tabla de frecuencias}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{table.freq}\NormalTok{(h)) }\CommentTok{\# Imprime en consola la tabla de frecuencias}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    Lower Upper  Main Frequency Percentage   CF   CPF
-## 1   0.95  1.00 0.975        46        0.9   46   0.9
-## 2   1.00  1.05 1.025        89        1.8  135   2.7
-## 3   1.05  1.10 1.075       444        8.9  579  11.7
-## 4   1.10  1.15 1.125       839       16.9 1418  28.6
-## 5   1.15  1.20 1.175       591       11.9 2009  40.5
-## 6   1.20  1.25 1.225       634       12.8 2643  53.2
-## 7   1.25  1.30 1.275       614       12.4 3257  65.6
-## 8   1.30  1.35 1.325       654       13.2 3911  78.8
-## 9   1.35  1.40 1.375       510       10.3 4421  89.0
-## 10  1.40  1.45 1.425       257        5.2 4678  94.2
-## 11  1.45  1.50 1.475       166        3.3 4844  97.5
-## 12  1.50  1.55 1.525        38        0.8 4882  98.3
-## 13  1.55  1.60 1.575        84        1.7 4966 100.0
-\end{verbatim}
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, elabore un histograma de los precios de la electricidad. Interprete.
-\end{exercise}
-
-\subsubsection{Gráfico de Caja}\label{gruxe1fico-de-caja}
-
-El gráfico de caja se utiliza para describir las siguiente características de un conjunto de datos \citep[página 35]{Devore}:
-
-\begin{itemize}
-\tightlist
-\item
-  El centro.
-\item
-  La dispersión.
-\item
-  El grado y naturaleza de cualquier alejamiento de la simetría.
-\item
-  La identificación de las observaciones ``extremas'' (atípicas) inusualmente alejadas del cuerpo principal de los datos.
-\end{itemize}
-
-Los pasos para elaborar un gráfico de caja son los siguiente \citep[página 106]{anderson}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Se dibuja una caja cuyos extremos se localicen en primer y tercer cuartiles. Esta caja contiene 50\% de los datos centrales.
-\item
-  En el punto donde se localiza la mediana se traza una linea horizontal.
-\item
-  Usando el rango intercuartílico (\(RIC = Q_3-Q_1\)), se localizan los límites. En un gráfico de caja los límites se encuentra a \(1.5RIC\) abajo y arriba de \(Q_1\) y \(Q_3\) respectivamente. Los datos que quedan fuera de estos límites se consideran observaciones atípicas \citep{Tukey}. La razón por la cual se considera 1.5 veces el rango intercuartílico es convencional, no obstante, hay argumento relacionados a la cantidad de datos dentro de los limites inferior y superior, los cuales indican que debe ser de 99.7\% \citep{James2013}.
-\item
-  Las lineas que se extienden verticalmente desde la caja se les llaman \emph{`bigotes'}. Los bigotes van desde los extremos de la caja hasta los valores menor y mayor de los límites calculados en el paso 3.
-\item
-  Mediante puntos se indica la localización de las observaciones atípicas.
-\end{enumerate}
-
-Para generar un gráfico de caja en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_boxplot}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de caja}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color del borde del gráfico}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos }
-    \AttributeTok{title =} \StringTok{"Caja EUR/USD (opción 1)"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-    \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(), }\CommentTok{\# Elimina las regletas del eje X}
-    \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\CommentTok{\# Elimina los números del eje X}
-\NormalTok{info }\OtherTok{=} \FunctionTok{unlist}\NormalTok{(}\FunctionTok{ggplot\_build}\NormalTok{(g)[[}\DecValTok{1}\NormalTok{]]) }\CommentTok{\# Guardamos los valores del gráfico}
-\NormalTok{values }\OtherTok{=} \FunctionTok{round}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(info[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]), }\DecValTok{3}\NormalTok{) }\CommentTok{\# Extraemos los valores de construcción}
-\NormalTok{g1 }\OtherTok{=}\NormalTok{ g }\SpecialCharTok{+} \CommentTok{\# Creamos un nuevo gráfico a partir del anterior}
-  \FunctionTok{scale\_y\_continuous}\NormalTok{( }\CommentTok{\# Modificar el eje Y}
-    \AttributeTok{breaks =}\NormalTok{ values, }\CommentTok{\# Modificamos los puntos a considerar en el eje Y}
-    \AttributeTok{labels =}\NormalTok{ values) }\SpecialCharTok{+} \CommentTok{\# Modificamos los valores mostrados en el eje Y}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Caja EUR/USD (opción 2)"}\NormalTok{) }\CommentTok{\# Título del gráfico}
-\FunctionTok{library}\NormalTok{(gridExtra) }\CommentTok{\# Librería para juntar gráficos de ggplot2}
-\FunctionTok{grid.arrange}\NormalTok{(g, }\CommentTok{\# Gráfico}
-\NormalTok{             g1, }\CommentTok{\# Gráfico}
-             \AttributeTok{ncol =} \DecValTok{2}\NormalTok{) }\CommentTok{\# Despliegue en a dos columnas }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-90-1} \end{center}
-
-Para interpretar un gráfico de caja es recomendable utilizar la opción 2 mostrada anteriormente, ya que, se debe mencionar uno de los puntos relevantes del gráfico. En el ejemplo recién dado, se observa que, el primer, segundo y tercer cuartil están en 1.135, 1.233 y 1.335 respectivamente, mientras que el valor mínimo y máximo están en 0.96 y 1.559 respectivamente. Adicionalmente, se puede mencionar que los datos superiores en comparación a los inferiores, se encuentran más alejados de la mediana.
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, elabore un gráfico de caja de los precios de la electricidad. Interprete.
-\end{exercise}
-
-\subsubsection{Gráfico de Violín}\label{gruxe1fico-de-violuxedn}
-
-El gráfico de violín proporciona una representación más completa y precisa de la distribución de los datos que las técnicas anteriores, ya que muestra tanto la forma de la distribución como su concentración \citep{hintze1998violin}. La utilidad de este gráfico recae en la comparación de la distribución de los datos entre distintos grupos y/o categorías.
-
-El proceso de construcción del gráfico es el siguiente:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Dibujo de la traza de densidad: la traza de densidad se dibuja sobre el eje vertical en el gráfico de violín (``forma suavizada del histograma'').
-\item
-  Creación de la sección central simétrica: se crea una sección central simétrica que representa la mitad de la traza de densidad.
-\end{enumerate}
-
-Adicionalmente, es común agregar un gráfico de caja junto al de violín con el fin de incorporar la visualización de las medidas de posición.
-
-Para generar un gráfico de violín en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Se guarda el gráfico en una variable para posteriormente}
-\CommentTok{\# integrar otros gráficos dentro de este.}
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{x =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Se fija el valor horizontal del gráfico (a elección)}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_violin}\NormalTok{( }\CommentTok{\# Objeto a graficar: violín}
-    \AttributeTok{trim =}\NormalTok{ F, }\CommentTok{\# Modifica las terminaciones visuales superior e inferior}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Violín EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-    \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(), }\CommentTok{\# Elimina las regletas del eje X}
-    \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\CommentTok{\# Elimina los números del eje X}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico en el visualizador}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-91-1} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Agregamos otros elementos al gráfico guardado}
-\NormalTok{g }\SpecialCharTok{+} \FunctionTok{geom\_boxplot}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de caja}
-  \AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\CommentTok{\# Anchura proporcional del nuevo gráfico de caja}
-  \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color de borde del gráfico}
-  \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{stat\_summary}\NormalTok{( }\CommentTok{\# Función para agregar información de resumen}
-    \AttributeTok{fun =}\NormalTok{ mean, }\CommentTok{\# Tipo de información: promedio}
-    \AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\CommentTok{\# Forma visual}
-    \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Tamaño}
-    \AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\CommentTok{\# Color}
-    \AttributeTok{orientation =} \StringTok{"x"}\NormalTok{) }\CommentTok{\# Orientación}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-92-1} \end{center}
-
-Para interpretar un gráfico de violín con caja y promedio se deben mencionar tres aspectos relevantes:
-
-\begin{itemize}
-\tightlist
-\item
-  Ubicación de la(s) mayor(es) concentración(es) de datos, utilizando como referencia los cuartiles.
-\item
-  Ubicación del promedio respecto a la mediana.
-\item
-  Posibles razones por las cuales se explica la ubicación anteriormente mencionada del promedio respecto a la mediana.
-\end{itemize}
-
-En el ejemplo anterior, la principal concentración se encuentra por debajo del primer cuartil, aunque destacan otras dos concentraciones que están por debajo del segundo cuartil y alrededor del tercer cuartil respectivamente. El promedio se encuentra sutilmente por encima de la mediana, esto se puede explicar debido a que los datos superiores del gráfico se encuentra más lejos de la mediana en comparación a los datos inferiores.
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, elabore un gráfico de violín con caja y promedio de los precios de la electricidad. Interprete.
-\end{exercise}
-
-\begin{example}
-El siguiente código, crea una nueva columna en la base de datos que identifica el año en el que se realizó la medición de las tasas. A continuación, elabore un gráfico de violín (más gráfico de caja y promedio) de la variable \textbf{Close} en el periodo de años 2006-2010, diferenciando por año.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Extraemos el año de la variable Date, y la guardamos en un nueva columna}
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Ano }\OtherTok{=} \FunctionTok{substr}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Date, }\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{)}
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Ano }\SpecialCharTok{\%in\%} \DecValTok{2006}\SpecialCharTok{:}\DecValTok{2010}\NormalTok{,], }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{x =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Se fija el valor horizontal del gráfico (a elección)}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_violin}\NormalTok{( }\CommentTok{\# Objeto a graficar: violín}
-    \AttributeTok{trim =}\NormalTok{ F, }\CommentTok{\# Modifica las terminaciones visuales superior e inferior}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{geom\_boxplot}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de caja}
-    \AttributeTok{width =} \FloatTok{0.1}\NormalTok{, }\CommentTok{\# Anchura proporcional del nuevo gráfico de caja}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color de borde del gráfico}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno del gráfico}
-  \FunctionTok{stat\_summary}\NormalTok{( }\CommentTok{\# Función para agregar información de resumen}
-    \AttributeTok{fun =}\NormalTok{ mean, }\CommentTok{\# Tipo de información: promedio}
-    \AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\CommentTok{\# Forma visual}
-    \AttributeTok{size =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Tamaño}
-    \AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Violín EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{""}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-    \AttributeTok{axis.ticks.x =} \FunctionTok{element\_blank}\NormalTok{(), }\CommentTok{\# Elimina las regletas del eje X}
-    \AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+} \CommentTok{\# Elimina los números del eje X}
-  \FunctionTok{facet\_wrap}\NormalTok{( }\CommentTok{\# Segregación del gráfico}
-    \FunctionTok{vars}\NormalTok{(Ano), }\CommentTok{\# Variable que se utiliza para segregar el gráfico}
-    \AttributeTok{nrow =} \DecValTok{1}\NormalTok{) }\CommentTok{\# Disposición visual: una fila}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
-
-Para interpretar este tipo de gráficos, se debe realizar un interpretación uno a uno, siguiendo la recomendación antes dada. También, es posible comprar los gráficos a través de la media y coeficiente de variabilidad. Para este ejemplo, queda como trabajo del estudiante realizar esta comparación.
-\end{example}
-
-\begin{exercise}
-\protect\hypertarget{exr:violin-colesterol-azucar}{}\label{exr:violin-colesterol-azucar}Utilizando la base de datos de \hyperref[Pacientes]{Paciente} Realice un gráfico de violín con caja y promedio del nivel de colesterol de los paciente, diferenciando por el nivel de azúcar en sangre en ayunas. Interprete.
-\end{exercise}
-
-\begin{exercise}
-Agregue una diferenciación por sexo a lo realizado en el ejercicio \ref{exr:violin-colesterol-azucar}. Entienda que para cada nivel de azúcar en sangre se debe ver un desglose por sexo. Interprete.
-\end{exercise}
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios}, realice un gráfico de violín con caja y promedio para el precio de la electricidad, diferenciado por año. Interprete.
-\end{exercise}
-
-\subsubsection{Gráfico de Barras}\label{gruxe1fico-de-barras}
-
-Una gráfico de barras, es una gráfica para representar los datos cualitativos de una distribución de frecuencia. El procedimiento de construcción es el siguiente \citep[página 29]{anderson}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  En uno de los ejes de la gráfica (por lo general en el horizontal), se especifican las etiquetas empleadas para las clases (categorías).
-\item
-  Para el otro eje de la gráfica (el vertical) se usa una escala para frecuencia, frecuencia relativa o frecuencia porcentual.
-\item
-  Finalmente, se emplea un ancho de barra fijo y se dibuja sobre cada etiqueta de las clases una barra que se extiende hasta la frecuencia de la clase (a diferencia del histograma, las barras deben estar separadas notoriamente).
-\end{enumerate}
-
-Para generar un gráfico de barras en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Nueva variable para dicotomizar la tasa de cierre del EUR/USD}
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Close2 }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Close }\SpecialCharTok{\textgreater{}} \FloatTok{1.1}\NormalTok{, }\CommentTok{\# Criterio}
-                      \StringTok{"Mayor a 1.1"}\NormalTok{, }\CommentTok{\# Valor asignado si se cumple el criterio}
-                      \StringTok{"Menor a  1.1"}\NormalTok{) }\CommentTok{\# Valor asignado si no se cumple el criterio}
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comandos estéticos}
-    \AttributeTok{x =}\NormalTok{ Close2)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_bar}\NormalTok{( }\CommentTok{\# Objeto a graficar: gráfico de barras}
-    \AttributeTok{fill =} \StringTok{"white"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Color de relleno y borde}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Barras EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{"Tasa de cierre"}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
-
-La interpretación de este tipo de gráfico (gráfico de barras no apiladas) es bastante intuitiva, ya que consiste en mencionar cuál categoría tiene un mayor frecuencia. En caso de graficar una variable con más de 2 categorías, se debe mencionar a que altura del eje vertical se encuentra la altura de cada una de las barras. Para obtener mayor detalles respecto a las frecuencias por categoría, suele apoyarse con un tabla de frecuencias absolutas o relativas porcentuales.
-
-En el ejemplo, la frecuencia de la cantidad de tasas de cierre que se encuentran por sobre 1.1 es mayor a las que se encuentran por debajo, con una frecuencia sobre 4000 y menor a 1000 respectivamente.
-
-\begin{exercise}
-Utilizando la base de datos \hyperref[Pacientes]{Pacientes}, elabore un gráfico de barras de la variable \emph{fbs}. Interprete, apoyado de una tabla de frecuencias absolutas.
-\end{exercise}
-
-\begin{exercise}
-Utilizando la base de datos \hyperref[Pacientes]{Pacientes}, elabore un gráfico de barras (no apiladas) de la variable \emph{cp}, diferenciado por sexo. Interprete, apoyado de una tabla de frecuencias relativas porcentuales. Haga el contraste visual con el gráfico de barras apiladas.
-\end{exercise}
-
-\subsubsection{Gráfico de Dispersión}\label{gruxe1fico-de-dispersiuxf3n}
-
-El gráfico de dispersión es útil para estudiar la relación entre dos variables continuas. Muestra cómo varía un variable en función de la otra y puede ayudar a identificar patrones y tendencias \citep{rowlingson2016data}.
-
-Los pasos para elaborar un gráfico de caja son los siguiente \citep{healy2019data}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Elegir dos variables continuas de la base de datos a trabajar. Cada fila corresponde a una observación, por lo cual, hay una correspondencia entre los valores de una misma fila.
-\item
-  Elegir la variable estará en el eje X y Y.
-\item
-  Representar cada par ordenado con un punto.
-\end{enumerate}
-
-Para generar un gráfico de dispersión en R a partir de un conjunto de datos, se utiliza el siguiente código (se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}):
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-    \AttributeTok{x =}\NormalTok{ Open, }\CommentTok{\# Eje X y variable asociada}
-    \AttributeTok{y =}\NormalTok{ Close)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar: Gráfico de dispersión}
-    \AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\CommentTok{\# Color}
-    \AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Opacidad}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-    \AttributeTok{title =} \StringTok{"Tasa de apertura y cierre del EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-    \AttributeTok{x =} \StringTok{"Tasa de apertura"}\NormalTok{, }\CommentTok{\# Título del eje X}
-    \AttributeTok{y =} \StringTok{"Tasa de cierre"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-95-1} \end{center}
-
-Tal como se menciona al inicio, la interpretación de este tipo de gráficos radica en describir la tendencia de los puntos. En el ejemplo anterior, el gráfico muestra una tendencia al alza, es decir, que cuando la tasa de apertura del EUR/USD aumenta, entonces, la tasa de cierre tiende a aumentar.
-
-\begin{exercise}
-Utilizando la base de datos \hyperref[Pacientes]{Pacientes}, realice un gráfico de dispersión entre la variable \emph{age} (eje X) y la variable \emph{thalachh} (eje Y). Interprete.
-\end{exercise}
-
-\begin{example}
-
-En los siguiente gráficos se toma como ejemplo la base de datos \hyperref[TasaEURUSD]{Tasa Euro/Dólar}.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Es posible utilizar el gráfico de dispersión con variables que en su naturaleza son discretas. En este sentido, elabore un gráfico de dispersión entre el año de medición y el valor promedio de tasa de apertura del EUR/USD (guarde el gráfico en una variable).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-\AttributeTok{x =}\NormalTok{ Ano, }\CommentTok{\# Eje X y variable asociada}
-\AttributeTok{y =}\NormalTok{ Open, }\CommentTok{\# Eje Y y variable asociada}
-\AttributeTok{group =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+} \CommentTok{\# Comando únicamente necesario para la pregunta 2}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar}
-\AttributeTok{stat =} \StringTok{"summary"}\NormalTok{, }\CommentTok{\# Tipo de información a graficar: resumen}
-\AttributeTok{fun =} \StringTok{"mean"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tipo de resumen: promedio de la variable Y}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-\AttributeTok{title =} \StringTok{"Tasa de apertura promedio del EUR/USD por año"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-\AttributeTok{x =} \StringTok{"Año"}\NormalTok{, }\CommentTok{\# Título del eje X}
-\AttributeTok{y =} \StringTok{"Tasa de apertura"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-96-1} \end{center}
-\item
-  Añadir al gráfico un formato de líneas entre los puntos. Interprete.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=}\NormalTok{ g }\SpecialCharTok{+} \CommentTok{\# Añadimos otro gráfico}
-  \FunctionTok{geom\_line}\NormalTok{( }\CommentTok{\# Objeto a graficar: lineas}
-\AttributeTok{stat =} \StringTok{"summary"}\NormalTok{, }\CommentTok{\# Tipo de información a graficar: resumen}
-\AttributeTok{fun =} \StringTok{"mean"}\NormalTok{) }\CommentTok{\# Tipo de resumen: promedio de la variable Y}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
-
-  Hasta el 2008 la tasa promedio de apertura estuvo en alza, posteriormente, la tasa decayó a un valor inferior a 1.1.
-\item
-  Grafique el valor de la tasa de apertura del EUR/USD desde el 2020 hasta el 2022 separadamente. Interprete.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{datos}\SpecialCharTok{$}\NormalTok{Date }\OtherTok{=} \FunctionTok{as.Date}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Date) }\CommentTok{\# Fechas en formato fecha de R}
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos[datos}\SpecialCharTok{$}\NormalTok{Ano }\SpecialCharTok{\%in\%} \DecValTok{2020}\SpecialCharTok{:}\DecValTok{2022}\NormalTok{,], }\CommentTok{\# Datos de los años 2020 al 2022}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-\AttributeTok{x =}\NormalTok{ Date, }\CommentTok{\# Comandos estéticos: Eje X y variable asociada}
-\AttributeTok{y =}\NormalTok{ Open)) }\SpecialCharTok{+} \CommentTok{\# Eje Y y variable asociada}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar}
-\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\CommentTok{\# Opacidad}
-\AttributeTok{size =} \FloatTok{0.6}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tamaño}
-  \FunctionTok{theme}\NormalTok{( }\CommentTok{\# Aspectos visuales del gráfico}
-\AttributeTok{axis.text.x =} \FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+} \CommentTok{\# Eliminamos el texto del eje X}
-  \FunctionTok{facet\_wrap}\NormalTok{( }\CommentTok{\# Segregación del gráfico}
-\FunctionTok{vars}\NormalTok{(Ano), }\CommentTok{\# Variable que se utiliza para segregar el gráfico}
-\AttributeTok{nrow =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Disposición visual: una fila}
-\AttributeTok{scales =} \StringTok{"free\_x"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# La escala del eje X es independiente para gráfico}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-\AttributeTok{title =} \StringTok{"Tasa de apertura del EUR/USD desde el 2020 hasta el 2022"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-\AttributeTok{x =} \StringTok{"Fecha"}\NormalTok{, }\CommentTok{\# Título del eje X}
-\AttributeTok{y =} \StringTok{"Tasa de apertura"}\NormalTok{) }\CommentTok{\# Título del eje Y}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-98-1} \end{center}
-
-  Durante los 3 años consecutivos, se observa que únicamente en el 2020 la tendencia de la tasa de apertura es al alza, mientra que para los otros dos años hubo un decaimiento en el valor de esta.
-\item
-  Grafique el valor de la tasa de apertura del EUR/USD diferenciando por año. Interprete.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{g }\OtherTok{=} \FunctionTok{ggplot}\NormalTok{( }\CommentTok{\# Ambiente gráfico}
-  \AttributeTok{data =}\NormalTok{ datos, }\CommentTok{\# Base de datos a utilizar}
-  \FunctionTok{aes}\NormalTok{( }\CommentTok{\# Comando estéticos}
-\AttributeTok{x =}\NormalTok{ Date, }\CommentTok{\# Comandos estéticos: Eje X y variable asociada}
-\AttributeTok{y =}\NormalTok{ Open, }\CommentTok{\# Eje Y y variable asociada}
-\AttributeTok{color =}\NormalTok{ Ano)) }\SpecialCharTok{+} \CommentTok{\# Color según el año}
-  \FunctionTok{geom\_point}\NormalTok{( }\CommentTok{\# Objeto a graficar}
-\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\CommentTok{\# Opacidad}
-\AttributeTok{size =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Tamaño}
-  \FunctionTok{labs}\NormalTok{( }\CommentTok{\# Títulos}
-\AttributeTok{color =} \StringTok{"Año"}\NormalTok{, }\CommentTok{\# Título de la leyenda}
-\AttributeTok{title =} \StringTok{"Tasa de apertura del EUR/USD"}\NormalTok{, }\CommentTok{\# Título del gráfico}
-\AttributeTok{x =} \StringTok{"Fecha"}\NormalTok{, }\CommentTok{\# Título del eje X}
-\AttributeTok{y =} \StringTok{"Tasa de apertura"}\NormalTok{) }\SpecialCharTok{+} \CommentTok{\# Título del eje Y}
-  \FunctionTok{guides}\NormalTok{( }\CommentTok{\# Edición de escalas}
-\AttributeTok{color =} \FunctionTok{guide\_legend}\NormalTok{( }\CommentTok{\# Escala de color de la leyenda}
-  \AttributeTok{override.aes =} \FunctionTok{list}\NormalTok{( }\CommentTok{\# Comando estéticos asociados}
-    \AttributeTok{alpha =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Opacidad de los puntos}
-    \AttributeTok{size =} \DecValTok{3}\NormalTok{))) }\CommentTok{\# Tamaño de los puntos}
-\NormalTok{g }\CommentTok{\# Desplegamos el gráfico guardado}
-\end{Highlighting}
-\end{Shaded}
-
-  \begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-99-1} \end{center}
-
-  Al observar la evolución histórica de la tasa de apertura diferenciada por año, se aprecia que el periodo 2008 - 2010 es aquel con predominancia de valores más altos. Por otro lado, desde el 2016, se registraron pro primera vez valores menores a 1.1. En años posteriores, no ha observado que la tasa supere los 1.3 puntos.
-\end{enumerate}
-
-\end{example}
-
-\begin{exercise}
-
-Utilizando la base de datos de la \hyperref[TasaEURUSD]{Tasa Euro/Dólar}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Elabore un gráfico de dispersión entre el año de medición y el valor promedio de tasa de cierre del EUR/USD (guarde el gráfico en una variable).
-\item
-  Añadir al gráfico un formato de líneas entre los puntos. Interprete.
-\item
-  Grafique el valor de la tasa de cierre del EUR/USD desde el 2010 hasta el 2013 separadamente. Interprete.
-\item
-  Grafique el valor de la tasa de cierre del EUR/USD diferenciando por año. Interprete.
-\end{enumerate}
-
-\end{exercise}
-
-\begin{exercise}
-Utilizando la base de datos de \hyperref[PreciosElectricidad]{Precios de electricidad}, elabore un gráfico de dispersión del precio de la electricidad a través del tiempo (considere año, mes y día). Interprete.
-\end{exercise}
-
-\begin{exercise}
-
-Utilizando la base de datos de \hyperref[Pacientes]{Pacientes}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Elabore un histograma del nivel de colesterol de los pacientes. Interprete.
-\item
-  Elabore un gráfico de caja del nivel de colesterol de los pacientes, diferenciando por sexo. Interprete y compare.
-\item
-  Elabore un gráfico de violín (más caja y promedio) del nivel de colesterol de los pacientes, diferenciado por tipo de dolor en el pecho. Interprete y compare.
-\item
-  Elabore un gráfico de dispersión entre la edad (eje X) y el nivel de colesterol (eje Y) de los pacientes, coloreando por sexo. Interprete.
-\end{enumerate}
-
-\end{exercise}
-
 \subsection{Covarianza}\label{covarianza}
 
 Es posible entender las relaciones entre dos o más variables, gráficamente y a través de estadísticos. En esta sección seabarcarán las relaciones lineales entre dos variables cuantitativas, utilizando la Covarianza y la Correlación. El gráfico que apoya a estas dos medidas es el gráfico de dispersión.
@@ -3342,7 +2752,7 @@ La relación entre las variables es inversa. No podemos decir nada acerca de qu�
 
 A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
@@ -3390,7 +2800,7 @@ Por ejemplo, si \(r_{XY} = -0.96\), ¿qué podemos decir acerca de la relación 
 
 A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-101-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-90-1} \end{center}
 
 \textbf{Nota:} En R, se utiliza el comando \texttt{cor()} para calcular la correlación entre dos variables.
 
@@ -3550,7 +2960,7 @@ Luego, realizamos el gráfico de violín con caja y promedio.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-104-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3564,7 +2974,7 @@ Se observa, que la mayor concentración de datos se encuentra entre el primer y 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-105-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3647,7 +3057,7 @@ El valor de la correlación indica que la relación lineal entre las dos variabl
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-108-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
 
 \end{example}
 
@@ -3773,7 +3183,7 @@ El detalle por columna es el siguiente.
 
   El estadístico para cada uno de los beta se obtiene dividiendo el valor estimado (\textbf{Estimate}) por la desviación estándar (\textbf{Std. Error}). El resultado de estos valores, se puede apreciar en la columna \textbf{t value}.
 \item
-  Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula \(2\cdot(1-pt(|t_0|, n-1))\). El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna \textbf{Pr(\textgreater\textbar t\textbar)}. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.
+  Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula \(2\cdot(1-pt(|t_0|, n-2))\). El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna \textbf{Pr(\textgreater\textbar t\textbar)}. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.
 \end{itemize}
 
 En el ejemplo \ref{exm:AFPUNO}, al no rechazarse la hipótesis nula asociada a cada beta estimado, se tiene que cada variable (intercepto y valor cuota) son relevantes para explicar la variable respuesta (valor del patrimonio). Sin embargo, esto no es un regla decidora respecto a si una variable debe o no considerarse en el modelo, es decir,
@@ -3900,7 +3310,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-111-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
@@ -4005,7 +3415,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-115-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-104-1} \end{center}
 
 Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.
 
@@ -4559,7 +3969,18 @@ H_1:&\beta_j \neq 0\\
 \end{split}
 \end{equation}
 
-Se observa, que todos lo betas estimados son significativos considerando una confianza del 95\%. De manera similar, se aprecia que el valor-p (0.01405) asociado a la prueba de hipótesis de nulidad conjunta es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero.
+El criterio de rechazo es:
+
+\begin{equation}
+|t_0| \geq t_{1-\alpha/2, n-k-1}
+\label{eq:valor-critico-cada-beta-RLM}
+\end{equation}
+
+donde \(n\) es el tamaño de la muestra y \(k\) es la cantidad de covariables del modelo.
+
+Para el ejemplo planteado, se observa que todos lo betas estimados son significativos para una confianza del 95\%.
+
+Respecto a la prueba de hipótesis de no nulidad conjunta, se aprecia que el valor-p (0.01405) es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero. Las hipótesis involucradas son las siguientes:
 
 \begin{equation}
 \notag
@@ -4569,10 +3990,10 @@ H_1:&\text{ Al menos uno de los beta es distinto de 0}\\
 \end{split}
 \end{equation}
 
-A diferencia del estadístico expresado en la ecuación \eqref{eq:estadistico-F-RLS}, la expresión es:
+A diferencia del estadístico expresado en la ecuación \eqref{eq:estadistico-F-RLS}, la expresión del criterio de rechazo para esta prueba es:
 
 \begin{equation}
-F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-2},
+F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},
 \label{eq:estadistico-F-RLM}
 \end{equation}
 
@@ -4646,7 +4067,7 @@ En términos de la ecuación \eqref{eq:descomposicion-sct} se tienen las siguien
   Residual standard error: a diferencia de lo mostrado en \eqref{eq:sigma2-estimador}, la cantidad de parámetros es variable y se denota con la letra \(k\), por lo cual, el estimador es el siguiente.
 
   \begin{equation}
-  \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k} = \text{MCE},
+  \widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1} = \text{MCE},
   \label{eq:error-estandar-residual-RLM}
   \end{equation}
 
@@ -4655,7 +4076,7 @@ En términos de la ecuación \eqref{eq:descomposicion-sct} se tienen las siguien
   Adjusted R-squared: se agrega una penalización respecto a la cantidad de covariables (\(k\)) incluidas en el modelo. Luego, la expresión correspondiente es la siguiente.
 
   \begin{equation}
-  \bar{R}^2 = \frac{\text{SCReg}/(n-k-1)}{\text{SCT}/n}
+  \bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
   \label{eq:r2-ajustado}
   \end{equation}
 \end{itemize}
@@ -4685,6 +4106,62 @@ Respecto al ejemplo \ref{exm:MultipleManual}, la salida de resumen del modelo en
 
 \begin{exercise}
 Interprete las métricas del modelo desarrollado en el ejercicio \ref{exr:calidad-aire}.
+\end{exercise}
+
+\begin{exercise}
+A continuación, se trabaja con una base (de 607 filas) que contiene datos referentes a salarios de trabajos de ciencia de datos. Las columnas de la base de datos son las siguientes:
+
+\begin{itemize}
+\tightlist
+\item
+  workYear: El año en que se pagó el salario.
+\item
+  experienceLevel: El nivel de experiencia en el trabajo durante el año con los siguientes valores posibles: EN (Entry-level/Junior), MI (Mid-level/Intermedio), SE (Senior-level/Experto), EX (Executive-level/Director).
+\item
+  salaryInUSD: El salario en USD (tasa de cambio dividida por la tasa promedio de USD para el año respectivo a través de fxdata.foorilla.com).
+\item
+  companySize: El número promedio de personas que trabajaron para la empresa durante el año: S menos de 50 empleados (pequeño), M de 50 a 250 empleados (mediano), L más de 250 empleados (grande).
+\end{itemize}
+
+Se ejecutó en R el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{lm}\NormalTok{(salaryInUSD }\SpecialCharTok{\textasciitilde{}}\NormalTok{ workYear }\SpecialCharTok{+}\NormalTok{ companySize, }\AttributeTok{data =}\NormalTok{ datos)}
+\end{Highlighting}
+\end{Shaded}
+
+Los valores de SCT y SCReg son \(\ensuremath{3.0511692\times 10^{12}}\) y \(\ensuremath{1.7439024\times 10^{11}}\), respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule el R cuadrado ajustado y \(F_0\).
+\end{exercise}
+
+\begin{exercise}
+Considera una base que contiene datos (de 303 filas) respecto a los ataques al corazón de distintos pacientes hospitalarios. Las columnas de la base de datos son las siguientes:
+
+\begin{itemize}
+\tightlist
+\item
+  sex: sexo del paciente (Hombre: H y Mujer: M).
+\item
+  trtbps: presión arterial en reposo (en mm Hg).
+\item
+  thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).
+\item
+  oldpeak: tiempo de duración del último ataque al corazón (en minutos).
+\end{itemize}
+
+Se ejecutó en R el comando:
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = oldpeak ~ trtbps + sex, data = datos)
+## 
+## Coefficients:
+## (Intercept)       trtbps         sexH  
+##     -0.8800       0.0132       0.2676
+\end{verbatim}
+
+Los valores de SCT y SCReg son \(407\) y \(20\), respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule MCE, MCReg y \(F_0\).
 \end{exercise}
 
 \subsection{Supuestos}\label{supuestos-1}
@@ -4730,7 +4207,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-129-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-122-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -4792,7 +4269,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-131-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-124-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 
@@ -5639,7 +5116,7 @@ El valor-p de cada estadístico es:
 
 \section{Esquema de la función indicatriz}\label{funcion-indicatriz}
 
-Al trabajar con variables cualitativas, existen distintas maneras de esquematizar esta variable en la matriz de diseño. Considerando una muestra de dos observaciones, para la cual se labora un modelo de regresión lineal con una sola variable independiente cualitativa de 2 categorías, entonces, la matriz de diseño \(X\), tentativamente, sería de la siguiente forma.
+Al trabajar con variables cualitativas, existen distintas maneras de esquematizar este tipo de variable en la matriz de diseño. Considerando una muestra de dos observaciones, para la cual se labora un modelo de regresión lineal con una sola variable independiente cualitativa de dos categorías, entonces, la matriz de diseño \(X\), tentativamente, sería de la siguiente forma.
 
 \begin{equation}
 X = \begin{pmatrix}
@@ -5649,7 +5126,7 @@ X = \begin{pmatrix}
 \label{eq:matriz-colineal}
 \end{equation}
 
-donde, la primera está asociada a \(\beta_0\), y la segunda y tercera columna están asociadas a la variable cualitativa. La segunda columna toma el valor de 1 cuando la observación está asociada a una determinada categoría y 0 si está asociada a otra. Lo mismo ocurre para la tercera columna, que es para referirse a la otra categoría de la variable. Esta forma de ordenar las columnas para los distintos valores de la variable se denomina \textbf{función indicatriz}, que se especifica de la siguiente manera:
+donde, la primera columna está asociada a \(\beta_0\), y la segunda y tercera están asociadas a las categorías de la variable cualitativa. La segunda columna toma el valor de 1 cuando la observación está asociada a una determinada categoría y 0 si está asociada a otra. Lo mismo ocurre para la tercera columna (que es para referirse a la otra categoría de la variable). Esta forma de ordenar las columnas para los distintos valores de la variable se denomina \textbf{función indicatriz}, que se especifica de la siguiente manera:
 
 \begin{equation}
 I(x) = \left\lbrace\begin{matrix}
@@ -5667,16 +5144,16 @@ Luego, el modelo ajustado (incorrecto) sería el siguiente.
 \label{eq:matriz-colineal-modelo}
 \end{equation}
 
-Sin embargo, la matriz \eqref{eq:matriz-colineal} tiene columnas linealmente dependientes, es decir, al menos una de ellas puede ser expresada como combinación lineal de las otras. En este caso, y a modo de ejemplo, es fácil ver qué
+La matriz \eqref{eq:matriz-colineal} tiene columnas linealmente dependientes, es decir, al menos una de ellas puede ser expresada como combinación lineal de las otras. En este caso, y a modo de ejemplo, es fácil ver qué
 
 \begin{equation}
 C_1 = C_2 + C_3, 
 \label{eq:colinealidad}
 \end{equation}
 
-donde \(C_i\) indica la columna de la matriz. Esto implica, que no es posible calcular los estimadores de EMC expresados en la ecuación \eqref{eq:betasmultiple3-demostracion}, ya que, la matriz \((X^tX)\) no es invertible al darse este fenómeno de dependencia, y por ende, el modelo ajustado planteado en \eqref{eq:matriz-colineal-modelo} es incorrecto.
+donde \(C_i\) indica la columna de la matriz. Esto implica, que no es posible calcular los EMC expresados en la ecuación \eqref{eq:betasmultiple3-demostracion}, ya que, la matriz \((X^tX)\) no es invertible al darse este fenómeno de dependencia, y por ende, el modelo ajustado \eqref{eq:matriz-colineal-modelo} es incorrecto.
 
-Para corregir esto, una de las soluciones más intuitivas es plantear una nueva matriz de diseño eliminando una de las columnas involucradas en la ecuación \eqref{eq:colinealidad}. Así, ninguna de las columnas de la matriz \(X\) podría ser expresada como combinación lineal de las otras. Sin embargo, nace la siguiente pregunta, ¿que sucede con el parámetro asociado a la columna que se elimina?
+Para corregir esto, una de las soluciones más intuitivas es plantear una nueva matriz de diseño eliminando una de las columnas involucradas en la ecuación \eqref{eq:colinealidad}. Así, ninguna de las columnas de la matriz \(X\) podría ser expresada como combinación lineal de las otras, sin embargo, ¿que sucede con el parámetro asociado a la columna que se elimina?
 
 Como se explica en la sección \ref{covariables-cualitativas}, la variable que no se observa en el modelo es la denominada categoría de referencia, que en otras palabras, es la columna que se ha eliminado de la matriz de diseño para poder calcular los EMC. Ahora, el beta asociado a la categoría (columna) que se elimina de la matriz de diseño será ``absorbido'' por el intercepto, es decir, \(\beta_0\). Para estudiar esto, considere dos matrices de diseño, \(X_1\) y \(X_2\), en la primera se ha eliminado la segunda columna, y en la segunda se ha eliminado la primera columna (la asociada al intercepto).
 
@@ -5695,71 +5172,74 @@ X_2 = \begin{pmatrix}
 \label{eq:matriz-corregidas}
 \end{equation}
 
-Se procede a escribir las ecuaciones de regresión para cada matriz (se omite la inclusión de los errores para facilitar la lectura), diferenciando simbólicamente los betas para cada ecuación. Tener en cuenta que los betas de cada ecuación dependen de las columnas consideradas, ya que al observar la matriz \eqref{eq:matriz-colineal}, se tienen tres betas ``originalmente'' (esto solo debe ser considerado como notación).
+Las ecuaciones \eqref{eq:ecuacion-x1} y \eqref{eq:ecuacion-x2} corresponde a las ecuación de regresión poblacional para matriz de diseño. El superíndice sobre los residuos indica a qué modelo pertenecen.
 
 \begin{equation}
-Y = X_1\beta = 
-\begin{pmatrix}
-1 & 1 \\
-1 & 0 \\
-\end{pmatrix}
-\begin{pmatrix}
-\beta_0\\
-\beta_1\\
-\end{pmatrix}
+Y = X_1\beta + \epsilon^1
 \label{eq:ecuacion-x1}
 \end{equation}
 
 \begin{equation}
-Y = X_2\beta = 
-\begin{pmatrix}
-1 & 0 \\
-0 & 1 \\
-\end{pmatrix}
-\begin{pmatrix}
-\beta_1'\\
-\beta_2'\\
-\end{pmatrix}
+Y = X_2\beta + \epsilon^2 
 \label{eq:ecuacion-x2}
 \end{equation}
 
-Cómo se puede observar, ambos esquemas deben dar como resultado la misma variable \(Y\). Esto es lo único similar entre ambos modelos, por lo cual, debe existir una relación entre ellos. El modelo correspondiente a la ecuación \eqref{eq:ecuacion-x1} expresa el efecto tanto del intercepto como el de la primera categoría de la variable cualitativa, mientras que el modelo asociado a la ecuación \eqref{eq:ecuacion-x2} expresa el efecto de la primera y segunda categoría de la variable cualitativa. Desarrollando las matrices de ambas ecuaciones se tiene lo siguiente.
+Las ecuaciones \eqref{eq:ecuacion-x1-lineal} y \eqref{eq:ecuacion-x2-lineal} corresponde a la forma lineal de las ecuaciones anteriores. El subíndice 1 bajo la función indicatriz indica que la variable cualitativa está asociada a la primera categoría, y el subíndice 2 indica que está asociada a la segunda categoría.
 
 \begin{equation}
-Y = 
-\begin{pmatrix}
-\beta_0 + \beta_1 \\
-\beta_0 \\
-\end{pmatrix}
-\label{eq:ecuacion-x1-1}
+Y_i = \beta_0 + \beta_1I_1 + \epsilon_i^1
+\label{eq:ecuacion-x1-lineal}
 \end{equation}
 
 \begin{equation}
-Y = 
-\begin{pmatrix}
-\beta_1' \\
-\beta_2' \\
-\end{pmatrix}
-\label{eq:ecuacion-x2-1}
+Y_i = \beta_1I_1 + \beta_2I_2 + \epsilon_i^2
+\label{eq:ecuacion-x2-lineal}
 \end{equation}
 
-Luego, igualando las matrices, y por ende, elemento con elemento, se tienen las expresiones \eqref{eq:ecuacion-x1-x2-1} y \eqref{eq:ecuacion-x1-x2-2}. Se puede observar, que en la ecuación \eqref{eq:ecuacion-x1-x2-2} el valor del intercepto asociado al modelo \eqref{eq:ecuacion-x1} es igual (``absorbe'') al efecto (``beta'') correspondiente a la segunda categoría de la variable cualitativa del modelo \eqref{eq:ecuacion-x2}, es decir, la categoría de referencia.
+Las ecuaciones \eqref{eq:ecuacion-x1-lineal-ajustado} corresponden a las ecuaciones \eqref{eq:ecuacion-x2-lineal-ajustado} ajustadas al reemplazar los EMC en las ecuaciones anteriores. Cabe mencionar, que si bien el parámetro \(\beta_1\) está presente en ambas ecuaciones, el EMC será distinto en cada modelo, es por ello, que lo diferenciamos con comilla, además, los residuos serán diferenciados de la misma forma los errores.
+
+\begin{equation}
+Y_i = \widehat{\beta}_0 + \widehat{\beta}_1I_1 + e_i^1
+\label{eq:ecuacion-x1-lineal-ajustado}
+\end{equation}
+
+\begin{equation}
+Y_i = \widehat{\beta}_1'I_1 + \widehat{\beta}_2'I_2 + e_i^2
+\label{eq:ecuacion-x2-lineal-ajustado}
+\end{equation}
+
+Luego, igualando las ecuaciones \eqref{eq:ecuacion-x1-lineal-ajustado} y \eqref{eq:ecuacion-x2-lineal-ajustado} se tiene que
 
 \begin{equation}
 \begin{split}
-\beta_0 + \beta_1  &= \beta_1'\\
+\widehat{\beta}_0 + \widehat{\beta}_1I_1 + e_i^1 &= \widehat{\beta}_1'I_1 + \widehat{\beta}_2'I_2 + e_i^2\\
+\sum_{i=1}^n\widehat{\beta}_0 + \sum_{i=1}^n\widehat{\beta}_1I_1 + \sum_{i=1}^ne_i^1 &= \sum_{i=1}^n\widehat{\beta}_1'I_1 + \sum_{i=1}^n\widehat{\beta}_2'I_2 + \sum_{i=1}^ne_i^2\\
+\sum_{i=1}^n\widehat{\beta}_0 + \sum_{i=1}^n\widehat{\beta}_1I_1 &= \sum_{i=1}^n\widehat{\beta}_1'I_1 + \sum_{i=1}^n\widehat{\beta}_2'I_2\\
+n\widehat{\beta}_0 + j\widehat{\beta}_1 &= j\widehat{\beta}_1' + (n-j)\widehat{\beta}_2'\\
+n\widehat{\beta}_0 + j\widehat{\beta}_1 &= j\widehat{\beta}_1' + n\widehat{\beta}_2'-j\widehat{\beta}_2'\\
+\end{split}
+\label{eq:igualando-x1-x2}
+\end{equation}
+
+donde, \(j\) es la cantidad de veces que la variable cualitativa toma el valor de la primera categoría, por ende, \(n-j\) es la cantidad de veces que la variable cualitativa toma el valor de la segunda categoría. Luego, igualando los elementos que acompañan a \(n\) y \(j\) respectivamente, se tiene las siguiente igualdades:
+
+\begin{equation}
+\begin{split}
+\widehat{\beta}_0 &= \widehat{\beta}_2'\\
 \end{split}
 \label{eq:ecuacion-x1-x2-1}
 \end{equation}
 
 \begin{equation}
 \begin{split}
-\beta_0 &= \beta_2' \\
+\widehat{\beta}_1 &= \widehat{\beta}_1' - \widehat{\beta}_2'\\
+\widehat{\beta}_1 &= \widehat{\beta}_1' - \widehat{\beta}_0\\
+\widehat{\beta}_1 + \widehat{\beta}_0 &= \widehat{\beta}_1'\\
 \end{split}
 \label{eq:ecuacion-x1-x2-2}
 \end{equation}
 
-Por otro lado, considerando a la ecuación \eqref{eq:ecuacion-x1-x2-1} y, reemplazando \eqref{eq:ecuacion-x1-x2-2}, se tiene que \(\beta_2' + \beta_1 = \beta_1'\), por ende, el efecto propio de la primera categoría de la variable cualitativa (\(\beta_1'\)) es igual al valor del efecto propio de la segunda categoría más una diferencia, es decir, como afecta la primera categoría a la variable \(Y\) respecto a la categoría de referencia (que es la segunda categoría). Esta igualdad se puede expresar como el efecto superior o inferior (\(\beta_1\)) que tiene la primera categoría sobre el efecto directo de la segunda (\(\beta_2'\)). (\textbf{Nota:} estas relaciones son válidas tanto para los parámetros como para sus estimadores).
+Considerando la ecuación \eqref{eq:ecuacion-x1-x2-1} y, reemplazando \eqref{eq:ecuacion-x1-x2-2}, se tiene que \(\widehat{\beta}_2' + \widehat{\beta}_1 = \widehat{\beta}_1'\), por lo cual, el efecto propio de la primera categoría de la variable cualitativa (\(\widehat{\beta}_1'\)) es igual al valor del efecto propio de la segunda categoría más una diferencia, es decir, es el efecto de la primera categoría sobre la variable \(Y\) respecto a la categoría de referencia. Esta igualdad se puede expresar como el efecto superior o inferior (\(\widehat{\beta}_1\)) que tiene la primera categoría sobre el efecto directo de la segunda (\(\widehat{\beta}_2'\)).
 
 A continuación, se muestra un ejemplo práctico para entender estas relaciones. La base de datos \texttt{iris} tiene la siguiente descripción en la documentación de R: ``Este famoso conjunto de datos de iris (de Fisher o Anderson) proporciona las medidas en centímetros de las variables longitud y ancho del sépalo y longitud y ancho de los pétalos, respectivamente, para 50 flores de cada una de las 3 especies de iris. Las especies son Iris setosa, versicolor y virginica.''.
 
@@ -5816,7 +5296,7 @@ La tabla \ref{tab:tablaxx}, muestra la asociación de estos valores según lo ex
 \begin{itemize}
 \tightlist
 \item
-  Observando el modelo modelo \eqref{eq:modelo-x1-ejemplo}:
+  Observando el modelo \eqref{eq:modelo-x1-ejemplo}:
 
   \begin{itemize}
   \tightlist
@@ -5862,7 +5342,7 @@ X_3 = \begin{pmatrix}
 \label{eq:matriz-corregida3}
 \end{equation}
 
-la cual, debería ser implementada manualmente en R, aunque existen ciertos softwares como \href{https://www.sas.com/es_cl/home.html}{SAS}, que tiene opciones para implementar este tipo de matrices de diseño.
+la cual, debería ser implementada manualmente en R.
 
 Si bien existe libertad a la hora de elegir cómo trabajar la matriz de diseño, se debe tener en cuenta, que todas las matrices de diseño que evitan el problema de colinealidad implican estilos de interpretación distintos.
 
