@@ -341,7 +341,7 @@ tabla = data.frame(rep("$H_0: \\mu = \\mu_0$", 3),
 
 kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE,
                 col.names = c("Hipótesis nula", "Estadístico de prueba", "Hipótesis alternativa", "Criterio de rechazo"),
-                caption = "Criterios de rechazo para la prueba de una media con varianza poblacional conocida") |>
+                caption = "Método del valor crítico para la prueba de una media con varianza poblacional conocida") |>
   collapse_rows(columns = 1:2, valign = "middle") |>
   kable_styling(full_width = FALSE,
                 bootstrap_options = c("condensed"),
@@ -381,7 +381,7 @@ H_1&: \mu < 64
     
     ```{r}
     # Cálculo del valor-p
-    valor_p = 1-pnorm(z0)
+    valor_p = pnorm(z0)
     valor_p
     ```
     
@@ -391,7 +391,7 @@ H_1&: \mu < 64
     ```
     
     
-    **Interpretación utilizando el método del valor-p**: El valor-p de 0.0012 es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
+    **Interpretación utilizando el método del valor-p**: El valor-p de 3.88 $\times 10^{-9}$ es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
 
 2.  **Método del valor crítico**
 
@@ -410,7 +410,7 @@ H_1&: \mu < 64
     z0 <= valor_critico
     ```
   
-    **Interpretación utilizando el método del valor crítico**: El valor absoluto del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
+    **Interpretación utilizando el método del valor crítico**: El valor del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.
 
 3.  **Método del intervalo de confianza**
 
@@ -499,7 +499,7 @@ tabla = data.frame(rep("$H_0: \\mu = \\mu_0$", 3),
 
 kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE,
                 col.names = c("Hipótesis nula", "Estadístico de prueba", "Hipótesis alternativa", "Criterio de rechazo"),
-                caption = "Criterios de rechazo para la prueba de una media con varianza poblacional desconocida") |>
+                caption = "Método del valor crítico para la prueba de una media con varianza poblacional desconocida") |>
   collapse_rows(columns = 1:2, valign = "middle") |>
   kable_styling(full_width = FALSE,
                 bootstrap_options = c("condensed"),
@@ -557,7 +557,7 @@ t.test( # Prueba de hipótesis para el estadístico con distribución t-student
     valor_p <= 0.1
     ```
     
-    **Interpretación utilizando el método del valor-p**: El valor-p de 0.8965 es menor o igual a la significancia del 0.1, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, no existe suficiente evidencia para apoyar la afirmación de que el valor promedio del Imacec del sector de Minería es mayor a 98.54167. Considerando una confianza del 90%.
+    **Interpretación utilizando el método del valor-p**: El valor-p de 0.8965 no es menor o igual a la significancia del 0.1, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, no existe suficiente evidencia para apoyar la afirmación de que el valor promedio del Imacec del sector de Minería es mayor a 98.54167. Considerando una confianza del 90%.
 
 2.  **Método del valor crítico**
 
@@ -710,7 +710,7 @@ tabla = data.frame(rep("$H_0: \\mu_X - \\mu_Y = \\delta_0$", 3),
 
 kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE,
                 col.names = c("Hipótesis nula", "Estadístico de prueba", "Hipótesis alternativa", "Criterio de rechazo"),
-                caption = "Criterios de rechazo para la prueba de de diferencia de medias con varianzas poblacionales conocidas") |>
+                caption = "Método del valor crítico para la prueba de diferencia de medias con varianzas poblacionales conocidas") |>
   collapse_rows(columns = 1:2, valign = "middle") |>
   kable_styling(full_width = FALSE,
                 bootstrap_options = c("condensed"),
@@ -856,7 +856,7 @@ tabla = data.frame(rep("$H_0: \\mu_X - \\mu_Y = \\delta_0$", 3),
 
 kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE,
                 col.names = c("Hipótesis nula", "Estadístico de prueba", "Hipótesis alternativa", "Criterio de rechazo"),
-                caption = "Criterios de rechazo para la prueba de de diferencia de medias con varianzas poblacionales desconocidas e iguales") |>
+                caption = "Método del valor crítico para la prueba de diferencia de medias con varianzas poblacionales desconocidas e iguales") |>
   collapse_rows(columns = 1:2, valign = "middle") |>
   kable_styling(full_width = FALSE,
                 bootstrap_options = c("condensed"),
@@ -1000,7 +1000,7 @@ tabla = data.frame(rep("$H_0: \\mu_X - \\mu_Y = \\delta_0$", 3),
 
 kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE,
                 col.names = c("Hipótesis nula", "Estadístico de prueba", "Hipótesis alternativa", "Criterio de rechazo"),
-                caption = "Criterios de rechazo para la prueba de de diferencia de medias con varianzas poblacionales desconocidas y distintas") |>
+                caption = "Método del valor crítico para la prueba de diferencia de medias con varianzas poblacionales desconocidas y distintas") |>
   collapse_rows(columns = 1:2, valign = "middle") |>
   kable_styling(full_width = FALSE,
                 bootstrap_options = c("condensed"),
@@ -1144,7 +1144,7 @@ tabla = data.frame(rep("$H_0: \\sigma_X^2 = \\sigma_Y^2$", 4),
 
 kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE,
                 col.names = c("Hipótesis nula", "Estadístico de prueba", "Hipótesis alternativa", "Criterio de rechazo"),
-                caption = "Criterios de rechazo para la prueba de comparación de varianzas") |>
+                caption = "Método del valor crítico para la prueba de comparación de varianzas") |>
   collapse_rows(columns = 1:3, valign = "middle", 
                 latex_hline = 'custom', custom_latex_hline = 1:3) |>
   kable_styling(full_width = FALSE,

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Unidad 2 Pruebas de hipótesis | Estadística II &amp; Inferencia Estadística</title>
   <meta name="description" content="Curso básico de Estadística para ingeniería." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Unidad 2 Pruebas de hipótesis | Estadística II &amp; Inferencia Estadística" />
   <meta property="og:type" content="book" />
@@ -630,7 +630,7 @@ Tipo de intervalo de confianza
 <div style="border: 0px; overflow-x: auto; ">
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unamedia1">Tabla 2.4: </span>Criterios de rechazo para la prueba de una media con varianza poblacional conocida
+<span id="tab:unamedia1">Tabla 2.4: </span>Método del valor crítico para la prueba de una media con varianza poblacional conocida
 </caption>
 <thead>
 <tr>
@@ -704,13 +704,13 @@ H_1&amp;: \mu &lt; 64
 <span id="cb15-3"><a href="PH.html#cb15-3" tabindex="-1"></a>z0</span></code></pre></div>
 <pre><code>## [1] -5.773503</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="PH.html#cb17-1" tabindex="-1"></a><span class="co"># Cálculo del valor-p</span></span>
-<span id="cb17-2"><a href="PH.html#cb17-2" tabindex="-1"></a>valor_p <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(z0)</span>
+<span id="cb17-2"><a href="PH.html#cb17-2" tabindex="-1"></a>valor_p <span class="ot">=</span> <span class="fu">pnorm</span>(z0)</span>
 <span id="cb17-3"><a href="PH.html#cb17-3" tabindex="-1"></a>valor_p</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 3.882018e-09</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="PH.html#cb19-1" tabindex="-1"></a><span class="co"># Verificación el criterio</span></span>
 <span id="cb19-2"><a href="PH.html#cb19-2" tabindex="-1"></a>valor_p <span class="sc">&lt;=</span> <span class="fl">0.01</span></span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<p><strong>Interpretación utilizando el método del valor-p</strong>: El valor-p de 0.0012 es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.</p></li>
+<pre><code>## [1] TRUE</code></pre>
+<p><strong>Interpretación utilizando el método del valor-p</strong>: El valor-p de 3.88 <span class="math inline">\(\times 10^{-9}\)</span> es menor o igual a la significancia del 0.01, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.</p></li>
 <li><p><strong>Método del valor crítico</strong></p>
 <p>En caso de que deseemos utilizar el método del valor-p, es necesario apoyarnos en R para realizar el calculo de este. El comando necesario para calcular el valor depende la prueba que estemos llevando a cabo, por lo que en el siguiente <a href="material/resumenes/Rechazo.pdf">documento</a> podrán encontrar un resumen para las distintas pruebas.</p>
 <p>Verificación del criterio de rechazo: <span class="math inline">\(Z_0 \leq Z_{\alpha}\)</span>.</p>
@@ -721,7 +721,7 @@ H_1&amp;: \mu &lt; 64
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="PH.html#cb23-1" tabindex="-1"></a><span class="co"># Verificación del criterio</span></span>
 <span id="cb23-2"><a href="PH.html#cb23-2" tabindex="-1"></a>z0 <span class="sc">&lt;=</span> valor_critico</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p><strong>Interpretación utilizando el método del valor crítico</strong>: El valor absoluto del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.</p></li>
+<p><strong>Interpretación utilizando el método del valor crítico</strong>: El valor del estadístico de prueba de -5.7735 es menor o igual al valor crítico de -2.3263, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que la media del índice de dureza de la aleación de acero es menor a 64. Considerando una confianza del 99%.</p></li>
 <li><p><strong>Método del intervalo de confianza</strong></p>
 <p>Al igual que el valor-p, la forma en la que se debe usar el intervalo de confianza varía dependiendo del tipo de prueba de hipótesis que se realiza, por lo que en el siguiente <a href="material/resumenes/hipotesis+ic.pdf">documento</a> podrán encontrar un resumen para las distintas pruebas, dicho documento incluye los distintos comando en R para obtener los resultados de una prueba de hipótesis de manera automática.</p>
 <p>Verificación del criterio de rechazo: <span class="math inline">\(\mu_0 \notin\)</span> IC.</p>
@@ -780,7 +780,7 @@ H_1&amp;: \mu &lt; 64
 <div style="border: 0px; overflow-x: auto; ">
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unamedia2">Tabla 2.5: </span>Criterios de rechazo para la prueba de una media con varianza poblacional desconocida
+<span id="tab:unamedia2">Tabla 2.5: </span>Método del valor crítico para la prueba de una media con varianza poblacional desconocida
 </caption>
 <thead>
 <tr>
@@ -876,7 +876,7 @@ Criterio de rechazo
 <span id="cb31-3"><a href="PH.html#cb31-3" tabindex="-1"></a><span class="co"># Verificación el criterio</span></span>
 <span id="cb31-4"><a href="PH.html#cb31-4" tabindex="-1"></a>valor_p <span class="sc">&lt;=</span> <span class="fl">0.1</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<p><strong>Interpretación utilizando el método del valor-p</strong>: El valor-p de 0.8965 es menor o igual a la significancia del 0.1, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, no existe suficiente evidencia para apoyar la afirmación de que el valor promedio del Imacec del sector de Minería es mayor a 98.54167. Considerando una confianza del 90%.</p></li>
+<p><strong>Interpretación utilizando el método del valor-p</strong>: El valor-p de 0.8965 no es menor o igual a la significancia del 0.1, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, no existe suficiente evidencia para apoyar la afirmación de que el valor promedio del Imacec del sector de Minería es mayor a 98.54167. Considerando una confianza del 90%.</p></li>
 <li><p><strong>Método del valor crítico</strong></p>
 <p>Verificación del criterio de rechazo: <span class="math inline">\(t_0 \geq t_{1-\alpha,n-1}\)</span>.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="PH.html#cb33-1" tabindex="-1"></a><span class="co"># Cálculo del valor crítico</span></span>
@@ -993,7 +993,7 @@ Criterio de rechazo
 <div style="border: 0px; overflow-x: auto; ">
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:dosmedias1">Tabla 2.6: </span>Criterios de rechazo para la prueba de de diferencia de medias con varianzas poblacionales conocidas
+<span id="tab:dosmedias1">Tabla 2.6: </span>Método del valor crítico para la prueba de diferencia de medias con varianzas poblacionales conocidas
 </caption>
 <thead>
 <tr>
@@ -1132,7 +1132,7 @@ Criterio de rechazo
 <div style="border: 0px; overflow-x: auto; ">
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:dosmedias2">Tabla 2.7: </span>Criterios de rechazo para la prueba de de diferencia de medias con varianzas poblacionales desconocidas e iguales
+<span id="tab:dosmedias2">Tabla 2.7: </span>Método del valor crítico para la prueba de diferencia de medias con varianzas poblacionales desconocidas e iguales
 </caption>
 <thead>
 <tr>
@@ -1285,7 +1285,7 @@ S_p^2 = \frac{(n_X-1)S_X^2 + (n_Y-1)S_Y^2}{n_X+n_Y-2}
 <div style="border: 0px; overflow-x: auto; ">
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:dosmedias3">Tabla 2.8: </span>Criterios de rechazo para la prueba de de diferencia de medias con varianzas poblacionales desconocidas y distintas
+<span id="tab:dosmedias3">Tabla 2.8: </span>Método del valor crítico para la prueba de diferencia de medias con varianzas poblacionales desconocidas y distintas
 </caption>
 <thead>
 <tr>
@@ -1440,7 +1440,7 @@ Criterio de rechazo
 <div style="border: 0px; overflow-x: auto; ">
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:varianzas">Tabla 2.9: </span>Criterios de rechazo para la prueba de comparación de varianzas
+<span id="tab:varianzas">Tabla 2.9: </span>Método del valor crítico para la prueba de comparación de varianzas
 </caption>
 <thead>
 <tr>

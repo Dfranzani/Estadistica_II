@@ -1,152 +1,266 @@
 
 \begin{center}
-{\bf \Large{Taller de práctica Prueba 2}}\\Regresión Lineal Simple\\ (Sección 3.2)
+% {\bf \Large{Taller de práctica Prueba 2}}\\Regresión Lineal Simple\\ (Sección 3.2)
+{\bf \Large{Taller de práctica Prueba 2}}\\Pruebas de hipótesis para la diferencia de medias, y comparación de varianzas
 \end{center}
 
-\section*{Parte 1}
+% \section*{Parte 1}
+% 
+% Sean $X$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal simple:
+% 
+% $$
+% Y_i = \beta_0 + \beta_1X_i + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+% $$
+% 
+% Demuestre que:
+% 
+% \begin{enumerate}
+%   % \item El estimador de mínimos cuadrados de $\beta_1$ es $\hat{\beta}_1 = \displaystyle\frac{\sum_{i=1}^n(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n(X_i - \bar{X})^2}$.
+%   \item El estimador de mínimos cuadrados de $\beta_0$ es $\widehat{\beta}_0 = \bar{Y} - \beta_1\bar{X}$.
+%   \item $\widehat{Y}_i = \bar{Y} + r_{XY}\displaystyle\frac{S_Y}{S_X}(X_i-\bar{X})$
+%   \item $R^2 = 1 - \displaystyle\frac{\text{SCE}}{\text{SCT}}$
+%   \item $R^2 = r_{XY}^2$
+%   % \item $\bar{R}^2 = 1 - \displaystyle\frac{(1-R^2)(n-1)}{n-p-1}$
+% \end{enumerate}
+% 
+% \section*{Parte 2}
+% 
+% La siguiente base de datos extraída del Banco Central, contiene datos sobre indicadores de producción de electricidad, gas y agua. La generación eléctrica corresponde a la medición mensual de la generación real de las centrales generadoras del sistema eléctrico nacional. Por otro lado, la Producción de Electricidad, Gas y Agua (IPEGA) corresponde a un índice coyuntural cuyo objetivo es estimar, en términos de volumen, la evolución mensual de la actividad productiva de este sector.
+% 
+% Las columnas de la base de datos son las siguientes:
+% 
+% \begin{itemize}
+% \item \texttt{Periodo}: Año, Mes y Día (yyyy-mm-dd) de medición.
+% \item \texttt{Generacion}: Generación de energía eléctrica, CDEC (GWh).
+% \item \texttt{Indice}: Índice de Producción de Electricidad, Gas y Agua, INE (2018=100).
+% \item \texttt{Electricidad}: Índice de Producción de Electricidad, INE (2018=100).
+% \item \texttt{Gas}: Índice de Producción de Gas, INE (2018=100).
+% \item \texttt{Agua}: Índice de Producción de Agua, INE (2018=100).
+% \item \texttt{IndiceDesestacionalizado}: Índice de Producción de Electricidad, Gas y Agua, desestacionalizado, INE (2018=100).
+% \end{itemize}
+% 
+% <<echo=FALSE>>=
+% datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Indicadores%20sectoriales%20de%20energ%C3%ADa.csv")
+% @
+% 
+% \begin{enumerate}
+% 
+% \item Considere el siguiente modelo de regresión lineal simple:
+% 
+% $$
+% Y_{\text{Gas}} = \beta_0 + \beta_1X_{\text{Agua}} + \epsilon, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2) \text{ ,} i = 1, \ldots, n = 74
+% $$
+% 
+% Utilizando los datos que se muestran a continuación, calcule lo siguiente: $R^2$, Error estándar residual, $F_0$ de la prueba de no nulidad conjunta y los EMC de $\beta_0$ y $\beta_1$. Trabaje con 4 decimales.
+% 
+% <<echo=FALSE, results='asis'>>=
+% library(kableExtra)
+% 
+% modelo = lm(Gas ~ Agua, data = datos)
+% 
+% sum.y.gorro = sum(modelo$fitted.values)
+% sum.y.gorro2 = sum(modelo$fitted.values^2)
+% sum.y.por.y.gorro = sum(datos$Gas*modelo$fitted.values)
+% sum.y2 = sum(datos$Gas^2)
+% sum.x.por.y = sum(datos$Agua*datos$Gas)
+% sum.x = sum(datos$Agua)
+% sum.y = sum(datos$Gas)
+% sum.x2 = sum(datos$Agua^2)
+% 
+% mat_latex = function(x,y){
+% 	return(paste("$", x, round(y, 2), "$"))
+% }
+% 
+% tabla = c(
+%   mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i = ", sum.y.gorro),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i^2 = ", sum.y.gorro2),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n y_i\\widehat{y}_i = ", sum.y.por.y.gorro),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n y_i^2 = ", sum.y2),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n y_ix_i = ", sum.x.por.y),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n x_i = ", sum.x),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n y_i = ", sum.y),
+%   mat_latex("\\displaystyle\\sum_{i=1}^n x_i^2 = ", sum.x2)
+% )
+% 
+% tabla = structure(tabla, .Dim = c(2,4))
+% 
+% cat(kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex") |>
+%   kable_styling(full_width = FALSE,
+%                 bootstrap_options = c("condensed"),
+%                 latex_options = c("HOLD_position", "scale_down")))
+% @
+% 
+% \item La siguiente salida de código está asociada a un modelo de regresión lineal. 
+% 
+% <<echo=F>>=
+% modelo = lm(Electricidad ~ Gas, data = datos)
+% summary(modelo)
+% @
+% 
+% A continuación,
+% 
+% \begin{enumerate}
+%   \item Escriba la ecuación de regresión verdadera.
+%   \item Escriba la ecuación de regresión ajustada.
+%   \item Interprete de los parámetros estimados.
+%   \item Estudie de las hipótesis de no nulidad de cada parámetro y conjunta. Utilice una confianza del 95\% y escriba las hipótesis involucradas.
+%   \item Interprete del $R^2$ del modelo.
+% \end{enumerate}
+% 
+% \item Seleccione los gráficos y/o salidas de R necesarios para estudiar los supuestos del modelo del enunciado anterior. Escriba las hipótesis involucradas cuando corresponda e, interprete utilizando una confianza del 95\%. Justifique la elección de gráficos y códigos a utilizar. Trabaje con 4 decimales.
+% 
+% <<echo=FALSE, fig.width=6, fig.height=3, fig.align='center'>>=
+% datos$ajustados = modelo$fitted.values
+% datos$residuos = residuals(modelo)
+% datos$residuos_estandarizados = rstandard(modelo)
+% library(gridExtra)
+% library(ggplot2)
+% library(lmtest)
+% g1 = ggplot(data = datos, aes(x = Gas, y = ajustados)) + geom_point(size = 1, alpha = 0.8) +
+%   labs(y = "Valores ajustados", title = "Gráfico 1")
+% g2 = ggplot(data = datos, aes(x = Gas, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
+%   labs(title = "Gráfico 2")
+% g3 = ggplot(data = datos, aes(x = residuos, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
+%   labs(title = "Gráfico 3")
+% g4 = ggplot(data = datos, aes(x = residuos, y = Gas)) + geom_point(size = 1, alpha = 0.5) + 
+%   labs(title = "Gráfico 4")
+% grid.arrange(g1,g2,g3,g4)
+% @
+% 
+% \newpage
+% 
+% <<echo=FALSE, warning=FALSE>>=
+% shapiro.test(x = resid(modelo))
+% ks.test(rstandard(modelo), "pnorm",0 ,1)
+% shapiro.test(x = modelo$fitted.values)
+% @
+% 
+% <<echo=FALSE>>=
+% bptest(formula = Electricidad ~ Gas, data = datos)
+% bptest(formula = Electricidad ~ Generacion, data = datos)
+% bptest(formula = Electricidad ~ Indice, data = datos)
+% @
+% 
+% <<echo=FALSE>>=
+% dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "greater")
+% dwtest(formula = Gas ~ Electricidad, data = datos, alternative = "two.sided")
+% dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "two.sided")
+% @
+% 
+% \end{enumerate}
 
-Sean $X$ y $Y$ variables aleatorias de un muestra de tamaño $n$. Considere el siguiente modelo de regresión lineal simple:
-
-$$
-Y_i = \beta_0 + \beta_1X_i + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
-$$
-
-Demuestre que:
-
-\begin{enumerate}
-  % \item El estimador de mínimos cuadrados de $\beta_1$ es $\hat{\beta}_1 = \displaystyle\frac{\sum_{i=1}^n(X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n(X_i - \bar{X})^2}$.
-  \item El estimador de mínimos cuadrados de $\beta_0$ es $\widehat{\beta}_0 = \bar{Y} - \beta_1\bar{X}$.
-  \item $\widehat{Y}_i = \bar{Y} + r_{XY}\displaystyle\frac{S_Y}{S_X}(X_i-\bar{X})$
-  \item $R^2 = 1 - \displaystyle\frac{\text{SCE}}{\text{SCT}}$
-  \item $R^2 = r_{XY}^2$
-  % \item $\bar{R}^2 = 1 - \displaystyle\frac{(1-R^2)(n-1)}{n-p-1}$
-\end{enumerate}
-
-\section*{Parte 2}
-
-La siguiente base de datos extraída del Banco Central, contiene datos sobre indicadores de producción de electricidad, gas y agua. La generación eléctrica corresponde a la medición mensual de la generación real de las centrales generadoras del sistema eléctrico nacional. Por otro lado, la Producción de Electricidad, Gas y Agua (IPEGA) corresponde a un índice coyuntural cuyo objetivo es estimar, en términos de volumen, la evolución mensual de la actividad productiva de este sector.
-
-Las columnas de la base de datos son las siguientes:
+La siguiente base de datos contiene datos sobre el PIB (expresado en miles de millones de pesos) de las distintas regiones de Chile en el periodo de años 2013 - 2021. El detalle de las columnas es el siguiente:
 
 \begin{itemize}
-\item \texttt{Periodo}: Año, Mes y Día (yyyy-mm-dd) de medición.
-\item \texttt{Generacion}: Generación de energía eléctrica, CDEC (GWh).
-\item \texttt{Indice}: Índice de Producción de Electricidad, Gas y Agua, INE (2018=100).
-\item \texttt{Electricidad}: Índice de Producción de Electricidad, INE (2018=100).
-\item \texttt{Gas}: Índice de Producción de Gas, INE (2018=100).
-\item \texttt{Agua}: Índice de Producción de Agua, INE (2018=100).
-\item \texttt{IndiceDesestacionalizado}: Índice de Producción de Electricidad, Gas y Agua, desestacionalizado, INE (2018=100).
+\item \texttt{Reg}: numeración de la región.
+\item \texttt{Region}: nombre de la región.
+\item \texttt{X...}: PIB regional en el año determinado (ejemplo: X2013 corresponde al PIB regional del año 2013).
 \end{itemize}
 
-<<echo=FALSE>>=
-datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Indicadores%20sectoriales%20de%20energ%C3%ADa.csv")
+<<>>=
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
+str(datos)
 @
+
+A continuación, se presentan diversos códigos asociados a pruebas de hipótesis; especifique: la(s) media(s) (y las varianzas cuando corresponda), las hipótesis ($H_0$ y $H_1$), el tipo de prueba, la(s) regla(s) de rechazo a utilizar y la confianza. Interprete el resultado de la prueba de hipótesis utilizando tanto método del valor p como el método del intervalo de confianza.
 
 \begin{enumerate}
 
-\item Considere el siguiente modelo de regresión lineal simple:
+\item Prueba de hipótesis:
 
-$$
-Y_{\text{Gas}} = \beta_0 + \beta_1X_{\text{Agua}} + \epsilon, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2) \text{ ,} i = 1, \ldots, n = 74
-$$
+<<>>=
+t.test(x = datos$X2013, y = datos$X2021, alternative = "greater", conf.level = 0.971,
+       mu = 1102, var.equal = F)
+@
 
-Utilizando los datos que se muestran a continuación, calcule lo siguiente: $R^2$, Error estándar residual, $F_0$ de la prueba de no nulidad conjunta y los EMC de $\beta_0$ y $\beta_1$. Trabaje con 4 decimales.
+\item Prueba de hipótesis::
 
-<<echo=FALSE, results='asis'>>=
-library(kableExtra)
+<<>>=
+t.test(x = datos[3,-c(1,2)], y = datos[5,-c(1,2)], alternative = "less",
+       conf.level = 0.891, mu = 12300, var.equal = T)
+@
 
-modelo = lm(Gas ~ Agua, data = datos)
+\item Prueba de hipótesis:
 
-sum.y.gorro = sum(modelo$fitted.values)
-sum.y.gorro2 = sum(modelo$fitted.values^2)
-sum.y.por.y.gorro = sum(datos$Gas*modelo$fitted.values)
-sum.y2 = sum(datos$Gas^2)
-sum.x.por.y = sum(datos$Agua*datos$Gas)
-sum.x = sum(datos$Agua)
-sum.y = sum(datos$Gas)
-sum.x2 = sum(datos$Agua^2)
-
-mat_latex = function(x,y){
-	return(paste("$", x, round(y, 2), "$"))
-}
-
-tabla = c(
-  mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i = ", sum.y.gorro),
-  mat_latex("\\displaystyle\\sum_{i=1}^n \\widehat{y}_i^2 = ", sum.y.gorro2),
-  mat_latex("\\displaystyle\\sum_{i=1}^n y_i\\widehat{y}_i = ", sum.y.por.y.gorro),
-  mat_latex("\\displaystyle\\sum_{i=1}^n y_i^2 = ", sum.y2),
-  mat_latex("\\displaystyle\\sum_{i=1}^n y_ix_i = ", sum.x.por.y),
-  mat_latex("\\displaystyle\\sum_{i=1}^n x_i = ", sum.x),
-  mat_latex("\\displaystyle\\sum_{i=1}^n y_i = ", sum.y),
-  mat_latex("\\displaystyle\\sum_{i=1}^n x_i^2 = ", sum.x2)
+<<>>=
+t.test(
+  x = datos$X2017,
+  y = datos$X2020,
+  alternative = "less",
+  conf.level = 0.97,
+  mu = 11430,
+  var.equal = T
 )
-
-tabla = structure(tabla, .Dim = c(2,4))
-
-cat(kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex") |>
-  kable_styling(full_width = FALSE,
-                bootstrap_options = c("condensed"),
-                latex_options = c("HOLD_position", "scale_down")))
 @
 
-\item La siguiente salida de código está asociada a un modelo de regresión lineal. 
+\item Prueba de hipótesis:
 
-<<echo=F>>=
-modelo = lm(Electricidad ~ Gas, data = datos)
-summary(modelo)
+<<>>=
+t.test(
+  x = datos$X2014[datos$Reg %in% 1:10],
+  y = datos$X2018[datos$Reg %in% 1:10],
+  alternative = "two.sided",
+  conf.level = 0.946,
+  mu = 20200,
+  var.equal = F
+)
 @
 
-A continuación,
+\item Prueba de hipótesis:
 
-\begin{enumerate}
-  \item Escriba la ecuación de regresión verdadera.
-  \item Escriba la ecuación de regresión ajustada.
-  \item Interprete de los parámetros estimados.
-  \item Estudie de las hipótesis de no nulidad de cada parámetro y conjunta. Utilice una confianza del 95\% y escriba las hipótesis involucradas.
-  \item Interprete del $R^2$ del modelo.
+<<>>=
+var.test(
+  x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+  y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+  conf.level = 0.81
+)
+@
+
+<<>>=
+t.test(
+  x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+  y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+  alternative = "less",
+  conf.level = 0.81,
+  mu = 1710,
+  var.equal = T
+)
+@
 \end{enumerate}
+% \end{enumerate}
 
-\item Seleccione los gráficos y/o salidas de R necesarios para estudiar los supuestos del modelo del enunciado anterior. Escriba las hipótesis involucradas cuando corresponda e, interprete utilizando una confianza del 95\%. Justifique la elección de gráficos y códigos a utilizar. Trabaje con 4 decimales.
+% \newpage
+% 
+% \subsection*{Parte 2: Conceptos de pruebas de hipótesis}
+% 
+% % \textbf{Observación}: Los intervalos que se pide construir corresponden únicamente a intervalos de confianza para una media.
+% 
+% Para todos las pruebas de hipótesis plantee la media, $H_0$ y $H_1$, y tipo de prueba.
+% 
+% \begin{enumerate}
+% \item En la Western University, la media histórica poblacional en las puntuaciones de los solicitantes de una beca es 900. La desviación estándar poblacional histórica que se considera conocida es $\sigma = 180$. Cada año se toma una muestra de los solicitantes para determinar si esta media ha cambiado.
+%   \begin{enumerate}
+%     \item Establezca las hipótesis.
+%     \item Escriba una conclusión apropiada en caso de cometer un Error Tipo I en el estudio (haga notar que se comete un Error Tipo I).
+%     % \item ¿Cuál es el intervalo de 94\% de confianza para la estimación de la media poblacional de las puntuaciones en el examen, si en una muestra de 200 estudiantes la media muestral es $\bar{x} = 935$? \textbf{Nota}: utilice la tabla de cuantiles.
+%   \end{enumerate}
+% 
+%   \item \textit{Playbill} es una revista que se distribuye entre las personas que asisten a conciertos y al teatro. El ingreso medio anual por familia en la población de lectores de \textit{Playbill} es $\$119155$ (\textit{Playbill}, enero de 2006). Suponga que la desviación estándar es $\sigma = \$20700$. Un grupo de San Francisco asegura que entre las personas de la zona de la Bahía que van al teatro el ingreso medio es más alto. En una muestra de 60 personas de la Bahía que suelen ir al teatro, el ingreso medio por hogar fue $\$126100$.
+%   \begin{enumerate}
+%     \item Establezca las hipótesis para determinar si los datos muestrales apoyan la conclusión de que las personas de la zona de la Bahía que suelen asistir al teatro tienen un ingreso medio por familia más alto que los demás lectores de \textit{Playbill}.
+%     \item Escriba una conclusión apropiada en caso de cometer un Error Tipo II en el estudio (haga notar que se comete un Error Tipo II).
+%     % \item ¿Cuál es el intervalo de 98\% de confianza para la estimación del ingreso medio por familia de las personas de la zona de la Bahía? \textbf{Nota}: utilice la tabla de cuantiles.
+%   \end{enumerate}
+% 
+%   \item La cámara de comercio de una comunidad de Florida anuncia en su publicidad que el costo medio de un terreno residencial es $\$125000$ o menos por lote. Suponga que en una muestra de 32 lotes se encuentra que la media muestral es $\$130000$ por lote y que la desviación estándar muestral es $\$12500$.
+% 
+%   \begin{enumerate}
+%     \item Establezca las hipótesis para probar si la media el costo medio real de un terreno residencial en Florida es mayor al comunicado por la cámara de comercio de la comunidad de Florida que emitió la publicidad.
+%     \item Establezca una conclusión apropiada en caso de rechazar la hipótesis nula.
+%     % \item Elabore un intervalo de 96\% de confianza para estudiar el costo medio de un terreno residencial. \textbf{Nota}: utilice la tabla de cuantiles.
+%   \end{enumerate}
 
-<<echo=FALSE, fig.width=6, fig.height=3, fig.align='center'>>=
-datos$ajustados = modelo$fitted.values
-datos$residuos = residuals(modelo)
-datos$residuos_estandarizados = rstandard(modelo)
-library(gridExtra)
-library(ggplot2)
-library(lmtest)
-g1 = ggplot(data = datos, aes(x = Gas, y = ajustados)) + geom_point(size = 1, alpha = 0.8) +
-  labs(y = "Valores ajustados", title = "Gráfico 1")
-g2 = ggplot(data = datos, aes(x = Gas, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
-  labs(title = "Gráfico 2")
-g3 = ggplot(data = datos, aes(x = residuos, y = Electricidad)) + geom_point(size = 1, alpha = 0.5) + 
-  labs(title = "Gráfico 3")
-g4 = ggplot(data = datos, aes(x = residuos, y = Gas)) + geom_point(size = 1, alpha = 0.5) + 
-  labs(title = "Gráfico 4")
-grid.arrange(g1,g2,g3,g4)
-@
-
-\newpage
-
-<<echo=FALSE, warning=FALSE>>=
-shapiro.test(x = resid(modelo))
-ks.test(rstandard(modelo), "pnorm",0 ,1)
-shapiro.test(x = modelo$fitted.values)
-@
-
-<<echo=FALSE>>=
-bptest(formula = Electricidad ~ Gas, data = datos)
-bptest(formula = Electricidad ~ Generacion, data = datos)
-bptest(formula = Electricidad ~ Indice, data = datos)
-@
-
-<<echo=FALSE>>=
-dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "greater")
-dwtest(formula = Gas ~ Electricidad, data = datos, alternative = "two.sided")
-dwtest(formula = Electricidad ~ Gas, data = datos, alternative = "two.sided")
-@
-
-\end{enumerate}
+% \end{enumerate}
 
 
 
