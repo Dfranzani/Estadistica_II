@@ -42,6 +42,8 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
     \item \texttt{charges}: costos médicos (en dólares) individuales facturados por el seguro de salud.
 \end{itemize}
 
+Considere que la base de datos está almacenada en el objeto \texttt{data}.
+
 \begin{enumerate}
   <<echo=F>>=
   library(kableExtra)
@@ -54,12 +56,14 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
   SCReg = round(sum((modelo$fitted.values - mean(data$charges))^2))
   @
   
-  \item Se ejecutó en R el comando: \texttt{lm(charges $\sim$ age + children + sex, data = data)}. Los valores de SCT y SCReg son \Sexpr{SCT} y \Sexpr{SCReg}, respectivamente.
+  % \item Se ejecutó en R el comando: \texttt{lm(charges $\sim$ age + children + sex, data = data)}. Los valores de SCT y SCReg son \Sexpr{SCT} y \Sexpr{SCReg}, respectivamente.
+  
+  \item Se ejecutó en R el comando: \texttt{lm(charges $\sim$ age, data = data)}. Los valores de SCT y SCReg son \Sexpr{SCT} y \Sexpr{SCReg}, respectivamente.
   
   \begin{enumerate}
     \item Calcule SCE.
     \item Calcule $R^2$.
-    \item Calcule $R^2$ ajustado.
+    % \item Calcule $R^2$ ajustado.
   \end{enumerate}
   
   <<echo=F>>=
@@ -71,15 +75,19 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
   SCReg = round(sum((modelo$fitted.values - mean(data$bmi))^2))
   @
 
-  \item Se ejecutó en R el comando: \texttt{lm(bmi $\sim$ age + smoker, data = data)}. Aquí SCT = \Sexpr{SCT}, SCReg = \Sexpr{SCReg}, $S_{\widehat{\beta}_0} =$ \Sexpr{sds[1]}, $S_{\widehat{\beta}_1} =$ \Sexpr{sds[2]} y $S_{\widehat{\beta}_2} =$ \Sexpr{sds[3]}. Además, la ecuación de regresión ajustada es 
+  % \item Se ejecutó en R el comando: \texttt{lm(bmi $\sim$ age + smoker, data = data)}. Aquí SCT = \Sexpr{SCT}, SCReg = \Sexpr{SCReg}, $S_{\widehat{\beta}_0} =$ \Sexpr{sds[1]}, $S_{\widehat{\beta}_1} =$ \Sexpr{sds[2]} y $S_{\widehat{\beta}_2} =$ \Sexpr{sds[3]}. Además, la ecuación de regresión ajustada es 
   
-  $$\widehat{Y}_{\text{bmi}} = 28.8790 + 0.0475X_{\text{age}} - 0.0980I_{\text{smoker = no}}$$
+   % $$\widehat{Y}_{\text{bmi}} = 28.8790 + 0.0475X_{\text{age}} - 0.0980I_{\text{smoker = no}}$$
+  
+  \item Se ejecutó en R el comando: \texttt{lm(bmi $\sim$ age, data = data)}. Aquí SCT = \Sexpr{SCT}, SCReg = \Sexpr{SCReg}, $S_{\widehat{\beta}_0} =$ \Sexpr{sds[1]} y $S_{\widehat{\beta}_1} =$ \Sexpr{sds[2]}. Además, la ecuación de regresión ajustada es 
+  
+  $$\widehat{Y}_{\text{bmi}} = 28.8790 + 0.0475X_{\text{age}}$$
 
   \begin{enumerate}
     \item Calcule MCE y MCReg.
-    \item Calcule el estadístico $F_0$. Estudie la prueba de hipótesis asociada al 95\% de confianza, para ello, utilice la siguiente tabla.
+    % \item Calcule el estadístico $F_0$. Estudie la prueba de hipótesis asociada al 95\% de confianza, para ello, utilice la siguiente tabla.
     
-    <<echo=F>>=
+    <<echo=F, include=F>>=
     alfa = seq(0.01, 0.1, 0.01)
     tabla = matrix(c(qf(seq(0.01, 0.1, 0.01), 2, 1335, lower.tail = F),
                      qf(seq(0.01, 0.1, 0.01), 2, 1335)), byrow = T, ncol = length(alfa))
@@ -94,12 +102,24 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
     
     \item Estudie la prueba de no nulidad para cada uno de los parámetros de la regresión al 98\% de confianza. Interprete utilizando la siguiente tabla.
     
-    <<echo=F>>=
+    <<echo=F, include = F>>=
     alfa = seq(0.01, 0.1, 0.01)
     tabla = matrix(c(qt(1-alfa/2, 1335),qt(alfa, 1335)), byrow = T, ncol = length(alfa))
       
     tabla = structure(round(tabla, 4), dim = c(dim(tabla)))
     row.names(tabla) = c("$t_{1-\\alpha/2,n-k-1}$","$t_{\\alpha,n-k-1}$")
+    kbl(tabla, align = 'c', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex",
+        col.names = round(alfa, 4),
+        caption = "Valores críticos según significancia") |>
+      kable_styling(latex_options = c("HOLD_position"))
+    @
+    
+    <<echo=F>>=
+    alfa = seq(0.01, 0.1, 0.01)
+    tabla = matrix(c(qt(1-alfa/2, 1335),qt(alfa, 1335)), byrow = T, ncol = length(alfa))
+      
+    tabla = structure(round(tabla, 4), dim = c(dim(tabla)))
+    row.names(tabla) = c("$t_{1-\\alpha/2,n-2}$","$t_{\\alpha,n-2}$")
     kbl(tabla, align = 'c', booktabs = TRUE, linesep = "", escape = FALSE, format = "latex",
         col.names = round(alfa, 4),
         caption = "Valores críticos según significancia") |>
@@ -113,12 +133,18 @@ La siguiente base contiene 1338 observaciones respecto a la contratación de seg
     
 \section*{Parte 2}
 
-A continuación, haciendo uso de la base de datos explicada en la Parte 1, se despliega una salida de R asociada a un modelo de regresión lineal múltiple.
+A continuación, haciendo uso de la base de datos explicada en la Parte 1, se despliega una salida de R asociada a un modelo de regresión lineal simple. Considere que el modelo se ha guardado en el objeto \texttt{modelo}.
 
-<<echo=F>>=
+<<echo=F, include = F>>=
 modelo = lm(charges ~ age + sex + region + smoker, data = data)
 summary(modelo)
 @
+
+<<echo=F>>=
+modelo = lm(charges ~ bmi, data = data)
+summary(modelo)
+@
+
 
 Luego,
 
@@ -126,13 +152,15 @@ Luego,
 \item Escriba la ecuación de regresión poblacional.
 \item Escriba la ecuación de regresión ajustada.
 \item Interprete los parámetros estimados.
-\item Estudie las pruebas de hipótesis de no nulidad y no nulidad conjunta. Utilice una confianza del 95\%. Escriba las hipótesis involucradas.
-\item Interprete el $R^2$ ajustado, y comente porque no es adecuado usar el $R^2$ para interpretar un modelo de regresión lineal múltiple.
+% \item Estudie las pruebas de hipótesis de no nulidad y no nulidad conjunta. Utilice una confianza del 95\%. Escriba las hipótesis involucradas.
+\item Estudie las pruebas de hipótesis de no nulidad de cada parámetro. Utilice una confianza del 95\%. Escriba las hipótesis involucradas.
+% \item Interprete el $R^2$ ajustado, y comente porque no es adecuado usar el $R^2$ para interpretar un modelo de regresión lineal múltiple.
+\item Interprete las métricas del modelo.
 %\item Explique el principio de la parsimonia.
 
-\item Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudiar los supuestos de Homocedasticidad, Independencia y Normalidad del modelo de la pregunta anterior. Indique la fila del código seleccionado para cada supuesto, justificando su elección, además, escriba las pruebas de hipótesis involucradas e interprete utilizando una confianza del 95\%. 
+\item Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudiar los supuestos de Homocedasticidad, Independencia y Normalidad del modelo de la pregunta anterior. Indique la fila del código seleccionado para cada supuesto, justificando su elección, además, escriba las pruebas de hipótesis involucradas e interprete utilizando una confianza del 96\%. 
     
-<<echo=FALSE, results='asis',message=F>>=
+<<echo=FALSE, results='asis',message=F, include=F>>=
 library(lmtest)
 library(nortest)
 
@@ -180,25 +208,73 @@ cat(kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "",
   kable_styling(latex_options = c("HOLD_position","striped")))
 @
 
+<<echo=FALSE, results='asis',message=F>>=
+library(lmtest)
+library(nortest)
 
-\item Explique los siguientes códigos asociados a la base de datos. Sea riguroso en su explicación, escriba toda la terminología estadística involucrada. En particular explique/defina lo siguiente:
-\begin{itemize}
-    \item Prueba de hipótesis ($H_0$ y $H_1$).
-    \item Explique las variables involucradas en las pruebas (incluyendo los filtros aplicados).
-    \item Interprete el valor-p y el intervalo de confianza como criterio de rechazo. Elabore una conclusión asociada a la prueba. Utilice una confianza del 95\%.
-\end{itemize}
-\begin{enumerate}
 
-\item Código 1
-<<>>=
+test_latex = function(prueba){
+    type = ifelse(is.null(prueba$alternative), "-", prueba$alternative)
+    words = strsplit(prueba$data.name,"~")
+    if(length(words[[1]]) == 2){
+        words = paste0("$\\text{", words[[1]][1], "}\\sim \\text{", words[[1]][2],"}$")
+    }
+    if(grepl("fitted.values", words)){
+        words = "modelo\\$fitted.values"
+    }
+    
+    test = sub(" test", "", prueba$method)
+    test = sub("studentized", "", test)
+    test = sub("One-sample", "", test)
+    test = sub("normality", "", test)
+    return(c(test, round(prueba$p.value,7), words, type))
+}
+
+tabla = matrix(c(
+    test_latex(shapiro.test(x = modelo$fitted.values)),
+    test_latex(shapiro.test(x = rstandard(modelo))),
+    test_latex(ad.test(x = modelo$fitted.values)),
+    # test_latex(ks.test(data$charges, "pnorm", 0, 1)),
+    test_latex(dwtest(formula = age ~ charges , data = data, alternative = "two.sided")),
+    test_latex(dwtest(formula = charges ~ bmi, data = data, alternative = "two.sided")),
+    test_latex(dwtest(formula = charges ~ age, data = data, alternative = "two.sided")),
+    test_latex(bptest(formula = age ~ charges, data = data)),
+    test_latex(bptest(formula = charges ~ bmi, data = data)),
+    test_latex(bptest(formula = charges ~ region, data = data))
+), byrow = T, ncol = 4)
+
+tabla = cbind(1:dim(tabla)[1], tabla)
+
+set.seed(2024)
+tabla[,3] = round(runif(n=dim(tabla)[1], min=0, max=0.1), 4)
+
+tabla = structure(tabla, .Dim = c(dim(tabla)))
+
+cat(kableExtra::kbl(tabla, align = 'l', booktabs = TRUE, linesep = "",
+    escape = FALSE, format = "latex",
+    col.names = c("","Prueba de hipótesis", "Valor-p", "Datos utilizados", "Hipótesis alternativa")) |>
+  kable_styling(latex_options = c("HOLD_position","striped")))
+@
+
+
+% \item Explique los siguientes códigos asociados a la base de datos. Sea riguroso en su explicación, escriba toda la terminología estadística involucrada. En particular explique/defina lo siguiente:
+% \begin{itemize}
+%     \item Prueba de hipótesis ($H_0$ y $H_1$).
+%     \item Explique las variables involucradas en las pruebas (incluyendo los filtros aplicados).
+%     \item Interprete el valor-p y el intervalo de confianza como criterio de rechazo. Elabore una conclusión asociada a la prueba. Utilice una confianza del 95\%.
+% \end{itemize}
+% \begin{enumerate}
+
+% \item Código 1
+<<include=F>>=
 var.test(x = data$charges[data$smoker == "yes"], 
          y = data$charges[data$smoker == "no"],
          conf.level = 0.932,
          alternative = "two.sided")
 @
 
-\item Código 2
-<<>>=
+% \item Código 2
+<<include=F>>=
 t.test(x = data$charges[data$smoker == "yes"], 
          y = data$charges[data$smoker == "no"],
          conf.level = 0.932,
@@ -207,7 +283,7 @@ t.test(x = data$charges[data$smoker == "yes"],
          var.equal = T)
 @
 
-\item ¿Que relación tiene el código 1 con el 2 del ítem \textit{a)} y \textit{b)} respectivamente? ¿Habría que corregir algo para que estuviesen bien planteados ambos en un mismo análisis?
+% \item ¿Que relación tiene el código 1 con el 2 del ítem \textit{a)} y \textit{b)} respectivamente? ¿Habría que corregir algo para que estuviesen bien planteados ambos en un mismo análisis?
 
 % \item Interprete las siguientes salidas asociadas a intervalos de confianza y predicción.
 % 
@@ -221,5 +297,20 @@ t.test(x = data$charges[data$smoker == "yes"],
 % predict.lm(modelo, newdata = new.df, interval = "confidence")
 % @
 
+% \end{enumerate}
 \end{enumerate}
+
+\section*{Parte 3}
+
+Considere el siguiente modelo de regresión lineal simple:
+
+$$
+Y_i = \beta_0 + \beta_1X_i + \epsilon_i, \epsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+$$
+
+
+\begin{enumerate}
+  \item Obtenga el estimador de mínimos cuadrados de $\beta_0$ y $\beta_1$.
+  \item Muestre que SCT = SCReg + SCE.
+
 \end{enumerate}
