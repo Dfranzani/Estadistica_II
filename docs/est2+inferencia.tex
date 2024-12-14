@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 01-12-2024}
+\date{Actualizado al 14-12-2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2718,7 +2718,7 @@ En general, las bases de datos que se trabajarán en esta sección son las sigui
   \end{itemize}
 \end{itemize}
 
-\section{Análisis descriptivo de datos}\label{descriptiva}
+\section{Medidas de asociación lineal}\label{medidas-de-asociaciuxf3n-lineal}
 
 \subsection{Covarianza}\label{covarianza}
 
@@ -3585,7 +3585,7 @@ y_i = \beta_0 + \sum_{j=1}^k x_{ij}\beta_j +\epsilon_i\text{, } i = 1,\dots,n \t
 \label{eq:multiple3}
 \end{equation}
 
-\subsection{Estimadores de mínimos cuadrados}\label{estimadores-de-muxednimos-cuadrados}
+\subsection{Estimadores de mínimos cuadrados}\label{EMC-RLM-CUERPO}
 
 Al igual que el una regresión lineal simple, se busca minimizar la \textbf{suma cuadrática de los errores} (SCE). Sin embargo, al trabajar con matrices, el proceso de minimización de la SCE da como resultado los siguientes estimadores de mínimos cuadrados (EMC), valores ajustados y residuos.
 
@@ -4079,6 +4079,8 @@ En términos de la ecuación \eqref{eq:descomposicion-sct} se tienen las siguien
   \bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
   \label{eq:r2-ajustado}
   \end{equation}
+
+  Una característica importante de esta métrica de ajuste es que, tanto el \(R^2\) como el \(\bar{R}^2\) aumentan a medida que se incluyen más covariables en el modelo (consulte el anexo \ref{R2-no-decreciente} para estudiar esta característica). Sin embargo, este último penaliza el valor del \(R^2\) en función de la cantidad de covariables incluidas en este.
 \end{itemize}
 
 Respecto al ejemplo \ref{exm:MultipleManual}, la salida de resumen del modelo en R es:
@@ -4752,7 +4754,7 @@ A continuación:
 
 \chapter{Estimadores}\label{estimadores}
 
-\section{EMC en RLS}\label{RLS-EMC}
+\section{EMC en Regresión Lineal Simple}\label{RLS-EMC}
 
 El proceso de obtención de los estimadores de mínimos cuadrado en una regresión lineal simple es el siguiente:
 
@@ -4920,7 +4922,7 @@ Reemplazando el estimador de mínimos cuadrados de \(\beta_1\) obtenido en \eqre
 
 Quedando así demostrada la descomposición de las Suma de Cuadrados Total.
 
-\section{EMC en RLM}\label{RLM-EMC}
+\section{EMC en Regresión Lineal Múltiple}\label{RLM-EMC}
 
 El proceso de obtención de los estimadores de mínimos cuadrado en una regresión lineal múltiple corresponde a la minimización de la suma cuadrática de los errores.
 
@@ -4954,6 +4956,132 @@ X^tX\beta &= X^tY\\
 \end{split}
 \label{eq:betasmultiple3-demostracion}
 \end{equation}
+
+\chapter{Métricas}\label{muxe9tricas}
+
+\section{\texorpdfstring{\(R^2\) y \(R^2\) ajustado no decreciente}{R\^{}2 y R\^{}2 ajustado no decreciente}}\label{R2-no-decreciente}
+
+El coeficiente de determinación no decrece al añadir covariables al modelo de regresión lineal múltiple, es decir, la Suma Cuadrática de Errores no incrementa al aumentar la cantidad de covariables en el modelo.
+
+En primer lugar, considere la propiedad \(e^tX = 0\), donde, \(e\) es la matriz de residuos y \(X\) es la matriz de diseño de un modelo de regresión lineal múltiple ajustado. La demostración de esta propiedad es la siguiente:
+
+\begin{equation}
+\begin{split}
+e^tX &= (Y - \widehat{Y})^tX\\
+&= (Y - X\widehat{\beta})^tX\\
+&= (Y - X(X^tX)^{-1}X^tY)^tX\\
+&= (Y^t - Y^tX(X^tX)^{-1}X^t)X\\
+&= Y^tX - Y^tX(X^tX)^{-1}X^tX\\
+&= Y^tX - Y^tXI\\
+&= Y^tX - Y^tX\\
+&= 0\\
+\end{split}
+\label{eq:propiedad-residuos}
+\end{equation}
+
+Esto implica, que la suma de la multiplicación de los residuos de un modelo ajustado por cualquier columna de la matriz de diseño es igual a cero. Ahora, considere dos modelos de regresión lineal múltiple.
+
+\begin{equation}
+\begin{split}
+\text{Modelo 1: } Y &= X_0\widehat{\beta} + a\\
+\text{Modelo 2: } Y &= X_0\widehat{\beta}_0 + X_1\widehat{\beta}_1 + b,\\
+\end{split}
+\label{eq:R2-RLM1y2}
+\end{equation}
+
+donde, \(X_0\) y \(X_1\) son matrices de diseño, \(\widehat{\beta}\), \(\widehat{\beta}_0\) y \(\widehat{\beta}_1\) son las matrices de los EMC de parámetros y, \(a\) y \(b\) son las matrices de los residuos de cada modelo ajustado. Como se observa, el segundo modelo tiene una segunda matriz de covariables, por lo cual, el valor del \(R^2\) de este modelo no puede ser menor al del primero. Para demostrar esto, considere la igualdad entre los modelos \eqref{eq:R2-RLM1y2}.
+
+\begin{equation}
+\begin{split}
+X_0\beta + a &= X_0\beta_0 + X_1\beta_1 + b\\
+b^tX_0\beta + b^ta &= b^tX_0\beta_0 + b^tX_1\beta_1 + b^tb\\
+\end{split}
+\label{eq:igualacion-modelos1}
+\end{equation}
+
+Luego, por el resultado obtenido en la ecuación \eqref{eq:propiedad-residuos}, se tiene que
+
+\begin{equation}
+\begin{split}
+0 + b^ta &= 0 + 0 + b^tb\\
+b^ta &=b^tb\\
+\end{split}
+\label{eq:igualacion-modelos2}
+\end{equation}
+
+Considerando la suma cuadrática de las diferencias residuales entre ambos modelos y, utilizando el resultado obtenido en \eqref{eq:igualacion-modelos2} se tiene que
+
+\begin{equation}
+\begin{split}
+0 &\leq (a-b)^t(a-b)\\
+&= (a^t-b^t)(a-b)\\
+&= a^ta - a^tb - b^ta + b^tb\\
+&= a^ta - a^tb - b^ta + b^ta\\
+&= a^ta - a^tb\\
+&= a^ta - b^tb\\
+b^tb &\leq a^ta\\
+\text{SCE}_{\text{Modelo 2}} &\leq \text{SCE}_{\text{Modelo 1}}\\
+\text{SCT} - \text{SCE}_{\text{Modelo 2}} &\geq \text{SCT} - \text{SCE}_{\text{Modelo 1}}\\
+\frac{\text{SCReg}_{\text{Modelo 2}}}{\text{SCT}} &\geq \frac{\text{SCReg}_{\text{Modelo 1}}}{\text{SCT}}\\
+R^2_{\text{Modelo 2}} &\geq R^2_{\text{Modelo 1}}\\
+\end{split}
+\label{eq:igualacion-modelos3}
+\end{equation}
+
+Esta conclusión es la misma para el \(R^2\) ajustado (\(\bar{R}^2\)), para ello, observe el siguiente desarrollo a partir de la ecuación \eqref{eq:igualacion-modelos3}.
+
+\begin{equation}
+\begin{split}
+R^2_{\text{Modelo 2}} &\geq R^2_{\text{Modelo 1}}\\
+1 - R^2_{\text{Modelo 2}} &\leq 1 - R^2_{\text{Modelo 1}}\\
+\left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 2}}) &\leq \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 1}}), \ n > k+1\\
+1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 2}}) &\geq 1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 1}})\\
+\bar{R}^2_{\text{Modelo 2}} &\geq \bar{R}^2_{\text{Modelo 1}}\\
+\end{split}
+\label{eq:igualacion-modelos4}
+\end{equation}
+
+Un punto interesante, es que a diferencia del \(R^2\), el \(\bar{R}^2\) puede tomar valores negativos, para ello observe el siguiente desarrollo a partir de los posibles valores de \(R^2\).
+
+\begin{gather*}
+0 \leq R^2 \leq 1\\
+0 \leq 1 - R^2 \leq 1\\
+0 \leq \left( \frac{n-1}{n-k-1} \right) (1 - R^2) \leq \left( \frac{n-1}{n-k-1} \right), \ n > k+1\\
+1 - \left( \frac{n-1}{n-k-1} \right) \leq 1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2) \leq 1\\
+1 - \left( \frac{n-1}{n-k-1} \right) \leq \bar{R}^2 \leq 1\\
+\label{eq:igualacion-modelos5}
+\end{gather*}
+
+El miembro izquierdo de la desigualdad es negativo cuando \(n > k+1\) (la cantidad parámetros del modelo), lo cual, implica que \(1-(n-1)/(n-k-1) < 0\). Por lo tanto, el \(\bar{R}^2\) puede llegar a tomar valores negativos.
+
+Por otro lado, cuando \(n < k+1\) ocurre que no es posible estimar los parámetros del modelo, y por ende, no es posible calcular nada referente a este (incluyendo las métricas). Para estudiar esta situación es necesario estudiar el rango de una matriz:
+
+\begin{itemize}
+\item
+  El rango de una matriz \(A\) denotado por \(\text{rank}(A)\) es la cantidad de columnas linealmente independientes de la matriz. Para una matriz producto se tiene que
+
+  \[\text{rank}(AB) \leq \min(\text{rank}(A), \text{rank}(B)).\]
+
+  Aplicando esto a la expresión para determinar \(\widehat{\beta} = X(X^tX)^{-1}X^tY\), en particular a la matriz \(X^tX\), se tiene que
+
+  \[\text{rank}(X^tX) \leq \min(\text{rank}(X^t), \text{rank}(X)).\]
+
+  Dado que \(\text{rank}(X) = \text{rank}(X^t)\), se tiene que \(\text{rank}(X^tX) \leq \text{rank}(X)\). Como la matriz \(X\) tiene dimensión \(n \times k+1\), el rango de \(X\) está delimitado, es decir, \(\text{rank}(X) = \min(n,k+1)\). Por lo tanto, si \(n < k+1\), entonces \(\text{rank}(X) = n\) y \(\text{rank}(X^tX) \leq n\).
+\item
+  Se sabe que la matriz \(X^tX\) tiene dimensión \(k+1 \times k+1\). Para poder calcular \((X^tX)^{-1}\), debe tener rango completo, es decir \(\text{rank}(X^tX) = k+1\) (el rango debe ser igual a la dimensión). Sin embargo, del punto anterior se tiene que \(\text{rank}(X^tX) \leq n\), y sabemos que \(n < k+1\), entonces \(\text{rank}(X^tX) < k+1\) y por ende, no es posible calcular \((X^tX)^{-1}\).
+\end{itemize}
+
+Finalmente, cuando \(n=k+1\) es posible estimar los parámetros del modelo mediante los EMC \eqref{eq:betasmultiple3-demostracion}, ya que la matriz \((X^tX)^{-1}\) es invertible, sin embargo, no es posible determinar la varianza de los estimadores. Una extensión de lo presentado en la sección \ref{EMC-RLM-CUERPO} es que, la distribución de lo estimadores de mínimos cuadrados es
+
+\[
+\widehat{\beta} \sim N(\beta, (X^tX)^{-1}\sigma^2)
+\]
+Luego, para calcular la varianza de los estimadores, se estima \(\sigma^2\) por
+
+\[
+\widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1}
+\]
+Se observa, que el denominador de la expresión es 0, por lo cual, la varianza de los estimadores no puede ser calculada, impidiendo ir más allá de la estimación de los coeficientes.
 
 \chapter{Estadísticos}\label{estaduxedsticos}
 
@@ -5110,7 +5238,7 @@ El valor-p de cada estadístico es:
 ## [1] 0.1066211
 \end{verbatim}
 
-, los cuales, son los mismo a los visualizados en la salida del comando \texttt{anova()}.
+Estos resultados son los mismos a los visualizados en la salida del comando \texttt{anova()}.
 
 \chapter{Funciones}\label{funciones}
 
