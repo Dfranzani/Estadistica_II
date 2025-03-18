@@ -30,7 +30,11 @@ if (is.null(webshot:::find_phantom())) webshot::install_phantomjs()
 
 ```{r echo = F, results='asis'}
 if (knitr::is_html_output()){
-cat("# Presentación {-}","\n","El documento de Estadística II es el segundo de una serie de dos, el cual tiene un enfoque en la inferencia de información a partir de conjuntos datos, mediante la aplicación de distintas técnicas estadísticas. Este segundo documento aborda los tópicos de pruebas de hipótesis, modelos de regresión lineal simple y múltiple, haciendo uso del entorno de software R.","\n","\n","[Enlace al documento del primer curso de Estadística: Estadística I & Estadística Descriptiva](https://dfranzani.github.io/Estadistica_I/).")
+cat("# Presentación {-}","\n","El documento de Estadística II es el segundo de una serie de dos, el cual tiene un enfoque en la inferencia de información a partir de conjuntos datos, mediante la aplicación de distintas técnicas estadísticas. Este segundo documento aborda los tópicos de pruebas de hipótesis, modelos de regresión lineal simple y múltiple, haciendo uso del entorno de software R.","\n","\n")
+
+cat("Adicionalmente, se preparó una [aplición web](https://dfranzani.github.io/App_Estadistica/) para la visualización los conceptos estadísticos de las tres unidades. Pueden dejar los comentarios y sugerencias en el [foro de la aplicación](https://github.com/Dfranzani/App_Estadistica/discussions).","\n","\n")
+
+cat("[Enlace al documento del primer curso de Estadística: Estadística I & Estadística Descriptiva](https://dfranzani.github.io/Estadistica_I/).")
 }
 ```
 
