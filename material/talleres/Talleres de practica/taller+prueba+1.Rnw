@@ -2,503 +2,503 @@
 {\bf \Large{Taller de práctica Prueba 1}}%\\Pruebas de hipótesis (secciones 2.2.2, 2.3.2, 2.3.3 y 2.4)\\Conceptos de pruebas de hipótesis (sección 2.1)
 \end{center}
 
-\subsection*{Parte 1: Distribuciones muestrales}
+% \subsection*{Parte 1: Distribuciones muestrales}
 
-\begin{enumerate}
-  \item Suponga que la edad (en años) de las personas de una determinada ciudad distribuye $N(\mu = 28, \sigma^2 = \text{Desconocida})$. Si para una muestra de 120 personas, la varianza de la edad es de 28 años, calcule la probabilidad de que el valor promedio muestral de la edad se encuentre entre 27 y 29 años. Escriba todo el procedimiento de cálculo y las propiedades utilizadas. Utilice la tabla adecuada de las que se presentan a continuación.
-
-\begin{minipage}{0.45\textwidth}
-\centering
-<<echo = F, message = F>>=
-library(kableExtra)
-q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
-q = q[order(q)]
-p = round(pt(q, df = 28), 4)
-df = data.frame("Cuantil" = q, "Probabilidad" = p)
-df = as.matrix(df)
-@
-
-<<echo=FALSE>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-          caption = "Distribución t-student, df = 28") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-\centering
-<<echo = F, message = F>>=
-q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
-q = q[order(q)]
-p = round(pt(q, df = 119),4)
-df = data.frame("Cuantil" = q, "Probabilidad" = p)
-df = as.matrix(df)
-@
-
-<<echo=FALSE>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-          caption = "Distribución t-student, df = 119") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
-\end{minipage}
-  \item Se toma una muestra aleatoria de tamaño 67 proveniente de una población normal con desviación estándar $\sigma =3.05$. Calcular la probabilidad de que la varianza muestral $s^{2}$ sea como mínimo 8.21? Utilice la tabla adecuada de las que se presentan a continuación.
-
-\begin{minipage}{0.45\textwidth}
-\centering
-<<echo = F, message = F>>=
-library(kableExtra)
-q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
-q = q[order(q)]
-p = round(pchisq(q, df = 66), 4)
-df = data.frame("Cuantil" = q, "Probabilidad" = p)
-df = as.matrix(df)
-@
-
-<<echo=FALSE>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-          caption = "Distribución Ji-Cuadrado, df = 66") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-\centering
-<<echo = F, message = F>>=
-q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
-q = q[order(q)]
-p = round(pchisq(q, df = 65),4)
-df = data.frame("Cuantil" = q, "Probabilidad" = p)
-df = as.matrix(df)
-@
-
-<<echo=FALSE>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-          caption = "Distribución Ji-Cuadrado, df = 65") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
-\end{minipage}
-  \item El tiempo que demoran en hacerse efectivas las transferencias bancarias internacionales, distribuye normal con media 15 (segundos) y desviación estándar de 4 (segundos). Utilice alguna de las tablas al final del documento, según estime conveniente (al buscar, utilice el valor que más se aproxime). Responda.
-
-\begin{enumerate}
-\item Considerando una muestra de tamaño 29, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 14.1 segundos? Mencione con rigurosidad todos los pasos de su solución.
-\item Considerando una muestra de tamaño 56, y que los datos del enunciado NO distribuyen normal, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 15.8 segundos? Mencione con rigurosidad todos los pasos de su solución.
-\end{enumerate}
-\end{enumerate}
-
-
-\subsection*{Parte 2: Intervalos de confianza}
-% \subsection*{Parte 1: Pruebas de hipótesis}
-
-La siguiente base de datos contiene datos sobre el PIB (expresado en miles de millones de pesos) de las distintas regiones de Chile en el periodo de años 2013 - 2021. El detalle de las columnas es el siguiente:
-
-\begin{itemize}
-\item \texttt{Reg}: numeración de la región.
-\item \texttt{Region}: nombre de la región.
-\item \texttt{X...}: PIB regional en el año determinado (ejemplo: X2013 corresponde al PIB regional del año 2013).
-\end{itemize}
-
-<<>>=
-datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
-str(datos)
-@
-
-\begin{enumerate}
-
-\item Para los siguientes códigos en R realice lo siguiente:
-
-\begin{itemize}
-\item Señale el tipo de intervalo de confianza y exprese la probabilidad asociada a este.
-\item Explique (y justifique cuando corresponda) cada uno de los valores para los comandos de R utilizados para construir el intervalo de confianza (incluyendo los filtros).
-\item Interprete la salida de cada uno de los intervalos de confianza, dando una conclusión según la probabilidad planteada anteriormente.
-\end{itemize}
-
-\begin{enumerate}
-
-\item Intervalo de confianza:
-
-<<>>=
-t.test(x = datos$X2013, alternative = "two.sided", conf.level = 0.971)
-@
-
-\textbf{Nota}: considere que el punto de comparación en la probabilidad es 0.
-
-\item Intervalo de confianza:
-
-<<>>=
-t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891)
-@
-
-\textbf{Nota}: considere que el punto de comparación en la probabilidad es 12501.
-
-% \item Intervalo de confianza:
+% \begin{enumerate}
+%   \item Suponga que la edad (en años) de las personas de una determinada ciudad distribuye $N(\mu = 28, \sigma^2 = \text{Desconocida})$. Si para una muestra de 120 personas, la varianza de la edad es de 28 años, calcule la probabilidad de que el valor promedio muestral de la edad se encuentre entre 27 y 29 años. Escriba todo el procedimiento de cálculo y las propiedades utilizadas. Utilice la tabla adecuada de las que se presentan a continuación.
 % 
-% <<>>=
-% t.test(
-%   x = datos$X2017,
-%   y = datos$X2020,
-%   alternative = "less",
-%   conf.level = 0.97,
-%   var.equal = T
-% )
+% \begin{minipage}{0.45\textwidth}
+% \centering
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
+% q = q[order(q)]
+% p = round(pt(q, df = 28), 4)
+% df = data.frame("Cuantil" = q, "Probabilidad" = p)
+% df = as.matrix(df)
 % @
 % 
-% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 11430.
+% <<echo=FALSE>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+%           caption = "Distribución t-student, df = 28") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+% \begin{minipage}{0.45\textwidth}
+% \centering
+% <<echo = F, message = F>>=
+% q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
+% q = q[order(q)]
+% p = round(pt(q, df = 119),4)
+% df = data.frame("Cuantil" = q, "Probabilidad" = p)
+% df = as.matrix(df)
+% @
+% 
+% <<echo=FALSE>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+%           caption = "Distribución t-student, df = 119") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+%   \item Se toma una muestra aleatoria de tamaño 67 proveniente de una población normal con desviación estándar $\sigma =3.05$. Calcular la probabilidad de que la varianza muestral $s^{2}$ sea como mínimo 8.21? Utilice la tabla adecuada de las que se presentan a continuación.
+% 
+% \begin{minipage}{0.45\textwidth}
+% \centering
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
+% q = q[order(q)]
+% p = round(pchisq(q, df = 66), 4)
+% df = data.frame("Cuantil" = q, "Probabilidad" = p)
+% df = as.matrix(df)
+% @
+% 
+% <<echo=FALSE>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+%           caption = "Distribución Ji-Cuadrado, df = 66") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+% \begin{minipage}{0.45\textwidth}
+% \centering
+% <<echo = F, message = F>>=
+% q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
+% q = q[order(q)]
+% p = round(pchisq(q, df = 65),4)
+% df = data.frame("Cuantil" = q, "Probabilidad" = p)
+% df = as.matrix(df)
+% @
+% 
+% <<echo=FALSE>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+%           caption = "Distribución Ji-Cuadrado, df = 65") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+%   \item El tiempo que demoran en hacerse efectivas las transferencias bancarias internacionales, distribuye normal con media 15 (segundos) y desviación estándar de 4 (segundos). Utilice alguna de las tablas al final del documento, según estime conveniente (al buscar, utilice el valor que más se aproxime). Responda.
+% 
+% \begin{enumerate}
+% \item Considerando una muestra de tamaño 29, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 14.1 segundos? Mencione con rigurosidad todos los pasos de su solución.
+% \item Considerando una muestra de tamaño 56, y que los datos del enunciado NO distribuyen normal, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 15.8 segundos? Mencione con rigurosidad todos los pasos de su solución.
+% \end{enumerate}
+% \end{enumerate}
+% 
+% 
+% \subsection*{Parte 2: Intervalos de confianza}
+% % \subsection*{Parte 1: Pruebas de hipótesis}
+% 
+% La siguiente base de datos contiene datos sobre el PIB (expresado en miles de millones de pesos) de las distintas regiones de Chile en el periodo de años 2013 - 2021. El detalle de las columnas es el siguiente:
+% 
+% \begin{itemize}
+% \item \texttt{Reg}: numeración de la región.
+% \item \texttt{Region}: nombre de la región.
+% \item \texttt{X...}: PIB regional en el año determinado (ejemplo: X2013 corresponde al PIB regional del año 2013).
+% \end{itemize}
+% 
+% <<>>=
+% datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
+% str(datos)
+% @
+% 
+% \begin{enumerate}
+% 
+% \item Para los siguientes códigos en R realice lo siguiente:
+% 
+% \begin{itemize}
+% \item Señale el tipo de intervalo de confianza y exprese la probabilidad asociada a este.
+% \item Explique (y justifique cuando corresponda) cada uno de los valores para los comandos de R utilizados para construir el intervalo de confianza (incluyendo los filtros).
+% \item Interprete la salida de cada uno de los intervalos de confianza, dando una conclusión según la probabilidad planteada anteriormente.
+% \end{itemize}
+% 
+% \begin{enumerate}
 % 
 % \item Intervalo de confianza:
 % 
 % <<>>=
-% t.test(
-%   x = datos$X2014[datos$Reg %in% 1:10],
-%   y = datos$X2018[datos$Reg %in% 1:10],
-%   alternative = "two.sided",
-%   conf.level = 0.946,
-%   var.equal = F
-% )
+% t.test(x = datos$X2013, alternative = "two.sided", conf.level = 0.971)
 % @
 % 
-% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 20200.
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 0.
 % 
-% \item Intervalos de confianza:
+% \item Intervalo de confianza:
 % 
 % <<>>=
-% var.test(
-%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
-%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
-%   conf.level = 0.81
-% )
+% t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891)
 % @
 % 
-% <<>>=
-% t.test(
-%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
-%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
-%   alternative = "less",
-%   conf.level = 0.81,
-%   var.equal = T
-% )
-% @
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 12501.
 % 
-% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 2000.
-\end{enumerate}
-
-\item  Los datos que a continuación se dan son las edades de 20 estudiantes de una determinada universidad: 19,20,21,21,24,21,20,25,18,17,23,28,29,27,25,25,28,20,25,28. Si las edades de los estudiantes de dicha universidad es una variable aleatoria normal con una desviación estándar poblacional de 4 años. 
-
-Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
-
-\begin{enumerate}
-  \item Obtener el intervalo de confianza al 98\% para la media de la edad de los estudiantes.
-  \item Estudie si la media de la edades de los estudiantes es menor a 20 años. Utilice una confianza del 90\%.
-  \item Estudie si la media de la edades de los estudiantes es cuando menos de 21 años. Utilice una confianza del 90\%.
-\end{enumerate}
-
-<<echo = F, message = F>>=
-library(kableExtra)
-p = seq(0.90,0.99, by = 0.01)
-q = round(qnorm(p),4)
-df = data.frame("Probabilidad" = p, "Cuantil" = q)
-df = as.matrix(df)
-@
-
-<<results='asis', echo = F>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
-      caption = "Distribución Z") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
-
-Ahora, considere que la desviación estándar poblacional es desconocida. Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
-
-\begin{enumerate}
-\setcounter{enumii}{3}
-  \item Obtener el intervalo de confianza al 96\% para la media de la edad de los estudiantes.
-  \item Estudie si la media de la edades de los estudiantes es no mayor a 22 años. Utilice una confianza del 94\%.
-  \item Estudie si la media de la edades de los estudiantes es no menor a 27 años. Utilice una confianza del 98\%.
-\end{enumerate}
-
-<<echo = F, message = F>>=
-library(kableExtra)
-p = seq(0.90,0.99, by = 0.01)
-q = round(qt(p, df = 19),4)
-df = data.frame("Probabilidad" = p, "Cuantil" = q)
-df = as.matrix(df)
-@
-
-<<results='asis', echo = F>>=
-kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
-      caption = "Distribución t-Student con df = 19 ") |>
-    kable_styling(latex_options = c("striped","HOLD_position"))
-@
-
-\end{enumerate}
-
-% \begin{enumerate}
+% % \item Intervalo de confianza:
+% % 
+% % <<>>=
+% % t.test(
+% %   x = datos$X2017,
+% %   y = datos$X2020,
+% %   alternative = "less",
+% %   conf.level = 0.97,
+% %   var.equal = T
+% % )
+% % @
+% % 
+% % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 11430.
+% % 
+% % \item Intervalo de confianza:
+% % 
+% % <<>>=
+% % t.test(
+% %   x = datos$X2014[datos$Reg %in% 1:10],
+% %   y = datos$X2018[datos$Reg %in% 1:10],
+% %   alternative = "two.sided",
+% %   conf.level = 0.946,
+% %   var.equal = F
+% % )
+% % @
+% % 
+% % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 20200.
+% % 
+% % \item Intervalos de confianza:
+% % 
+% % <<>>=
+% % var.test(
+% %   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+% %   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+% %   conf.level = 0.81
+% % )
+% % @
+% % 
+% % <<>>=
+% % t.test(
+% %   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+% %   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+% %   alternative = "less",
+% %   conf.level = 0.81,
+% %   var.equal = T
+% % )
+% % @
+% % 
+% % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 2000.
+% \end{enumerate}
 % 
-% \item A continuación, se presentan diversos códigos asociados a pruebas de hipótesis; especifique: la(s) media(s) (y las varianzas cuando corresponda), las hipótesis ($H_0$ y $H_1$), el tipo de prueba, la(s) regla(s) de rechazo a utilizar y la confianza. Interprete el resultado de la prueba de hipótesis utilizando tanto método del valor p como el método del intervalo de confianza.
+% \item  Los datos que a continuación se dan son las edades de 20 estudiantes de una determinada universidad: 19,20,21,21,24,21,20,25,18,17,23,28,29,27,25,25,28,20,25,28. Si las edades de los estudiantes de dicha universidad es una variable aleatoria normal con una desviación estándar poblacional de 4 años. 
+% 
+% Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
 % 
 % \begin{enumerate}
-% 
-% \item Prueba de hipótesis:
-% 
-% <<>>=
-% t.test(x = datos$X2013, alternative = "two.sided", conf.level = 0.971, mu = 0)
-% @
-% 
-% \item Prueba de hipótesis:: 
-% 
-% <<>>=
-% t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891, mu = 12501)
-% @
-% 
-% \item Prueba de hipótesis:
-% 
-% <<>>=
-% t.test(
-%   x = datos$X2017, 
-%   y = datos$X2020, 
-%   alternative = "less", 
-%   conf.level = 0.97, 
-%   mu = 11430,
-%   var.equal = T
-% )
-% @
-% 
-% \item Prueba de hipótesis:
-% 
-% <<>>=
-% t.test(
-%   x = datos$X2014[datos$Reg %in% 1:10], 
-%   y = datos$X2018[datos$Reg %in% 1:10], 
-%   alternative = "two.sided", 
-%   conf.level = 0.946, 
-%   mu = 20200,
-%   var.equal = F
-% )
-% @
-% 
-% \item Prueba de hipótesis:
-% 
-% <<>>=
-% var.test(
-%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
-%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
-%   conf.level = 0.81
-% )
-% @
-% 
-% <<>>=
-% t.test(
-%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)], 
-%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
-%   alternative = "less", 
-%   conf.level = 0.81, 
-%   mu = 2000,
-%   var.equal = T
-% )
-% @
+%   \item Obtener el intervalo de confianza al 98\% para la media de la edad de los estudiantes.
+%   \item Estudie si la media de la edades de los estudiantes es menor a 20 años. Utilice una confianza del 90\%.
+%   \item Estudie si la media de la edades de los estudiantes es cuando menos de 21 años. Utilice una confianza del 90\%.
 % \end{enumerate}
+% 
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qnorm(p),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Distribución Z") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% 
+% Ahora, considere que la desviación estándar poblacional es desconocida. Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
+% 
+% \begin{enumerate}
+% \setcounter{enumii}{3}
+%   \item Obtener el intervalo de confianza al 96\% para la media de la edad de los estudiantes.
+%   \item Estudie si la media de la edades de los estudiantes es no mayor a 22 años. Utilice una confianza del 94\%.
+%   \item Estudie si la media de la edades de los estudiantes es no menor a 27 años. Utilice una confianza del 98\%.
 % \end{enumerate}
+% 
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 19),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Distribución t-Student con df = 19 ") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% 
+% \end{enumerate}
+% 
+% % \begin{enumerate}
+% % 
+% % \item A continuación, se presentan diversos códigos asociados a pruebas de hipótesis; especifique: la(s) media(s) (y las varianzas cuando corresponda), las hipótesis ($H_0$ y $H_1$), el tipo de prueba, la(s) regla(s) de rechazo a utilizar y la confianza. Interprete el resultado de la prueba de hipótesis utilizando tanto método del valor p como el método del intervalo de confianza.
+% % 
+% % \begin{enumerate}
+% % 
+% % \item Prueba de hipótesis:
+% % 
+% % <<>>=
+% % t.test(x = datos$X2013, alternative = "two.sided", conf.level = 0.971, mu = 0)
+% % @
+% % 
+% % \item Prueba de hipótesis:: 
+% % 
+% % <<>>=
+% % t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891, mu = 12501)
+% % @
+% % 
+% % \item Prueba de hipótesis:
+% % 
+% % <<>>=
+% % t.test(
+% %   x = datos$X2017, 
+% %   y = datos$X2020, 
+% %   alternative = "less", 
+% %   conf.level = 0.97, 
+% %   mu = 11430,
+% %   var.equal = T
+% % )
+% % @
+% % 
+% % \item Prueba de hipótesis:
+% % 
+% % <<>>=
+% % t.test(
+% %   x = datos$X2014[datos$Reg %in% 1:10], 
+% %   y = datos$X2018[datos$Reg %in% 1:10], 
+% %   alternative = "two.sided", 
+% %   conf.level = 0.946, 
+% %   mu = 20200,
+% %   var.equal = F
+% % )
+% % @
+% % 
+% % \item Prueba de hipótesis:
+% % 
+% % <<>>=
+% % var.test(
+% %   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+% %   y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
+% %   conf.level = 0.81
+% % )
+% % @
+% % 
+% % <<>>=
+% % t.test(
+% %   x = datos$X2015[datos$Reg %in% c(1:5,8:10)], 
+% %   y = datos$X2019[datos$Reg %in% c(1:5,8:10)], 
+% %   alternative = "less", 
+% %   conf.level = 0.81, 
+% %   mu = 2000,
+% %   var.equal = T
+% % )
+% % @
+% % \end{enumerate}
+% % \end{enumerate}
+% % 
+% % \newpage
+% % 
+% % \subsection*{Parte 2: Conceptos de pruebas de hipótesis}
+% % 
+% % % \textbf{Observación}: Los intervalos que se pide construir corresponden únicamente a intervalos de confianza para una media.
+% % 
+% % Para todos las pruebas de hipótesis plantee la media, $H_0$ y $H_1$, y tipo de prueba.
+% % 
+% % \begin{enumerate}
+% % \item En la Western University, la media histórica poblacional en las puntuaciones de los solicitantes de una beca es 900. La desviación estándar poblacional histórica que se considera conocida es $\sigma = 180$. Cada año se toma una muestra de los solicitantes para determinar si esta media ha cambiado.
+% %   \begin{enumerate}
+% %     \item Establezca las hipótesis.
+% %     \item Escriba una conclusión apropiada en caso de cometer un Error Tipo I en el estudio (haga notar que se comete un Error Tipo I).
+% %     % \item ¿Cuál es el intervalo de 94\% de confianza para la estimación de la media poblacional de las puntuaciones en el examen, si en una muestra de 200 estudiantes la media muestral es $\bar{x} = 935$? \textbf{Nota}: utilice la tabla de cuantiles.
+% %   \end{enumerate}
+% %     
+% %   \item \textit{Playbill} es una revista que se distribuye entre las personas que asisten a conciertos y al teatro. El ingreso medio anual por familia en la población de lectores de \textit{Playbill} es $\$119155$ (\textit{Playbill}, enero de 2006). Suponga que la desviación estándar es $\sigma = \$20700$. Un grupo de San Francisco asegura que entre las personas de la zona de la Bahía que van al teatro el ingreso medio es más alto. En una muestra de 60 personas de la Bahía que suelen ir al teatro, el ingreso medio por hogar fue $\$126100$.
+% %   \begin{enumerate}
+% %     \item Establezca las hipótesis para determinar si los datos muestrales apoyan la conclusión de que las personas de la zona de la Bahía que suelen asistir al teatro tienen un ingreso medio por familia más alto que los demás lectores de \textit{Playbill}.
+% %     \item Escriba una conclusión apropiada en caso de cometer un Error Tipo II en el estudio (haga notar que se comete un Error Tipo II).
+% %     % \item ¿Cuál es el intervalo de 98\% de confianza para la estimación del ingreso medio por familia de las personas de la zona de la Bahía? \textbf{Nota}: utilice la tabla de cuantiles.
+% %   \end{enumerate}
+% %   
+% %   \item La cámara de comercio de una comunidad de Florida anuncia en su publicidad que el costo medio de un terreno residencial es $\$125000$ o menos por lote. Suponga que en una muestra de 32 lotes se encuentra que la media muestral es $\$130000$ por lote y que la desviación estándar muestral es $\$12500$.
+% %   
+% %   \begin{enumerate}
+% %     \item Establezca las hipótesis para probar si la media el costo medio real de un terreno residencial en Florida es mayor al comunicado por la cámara de comercio de la comunidad de Florida que emitió la publicidad.
+% %     \item Establezca una conclusión apropiada en caso de rechazar la hipótesis nula.
+% %     % \item Elabore un intervalo de 96\% de confianza para estudiar el costo medio de un terreno residencial. \textbf{Nota}: utilice la tabla de cuantiles.
+% %   \end{enumerate}
+% % 
+% % \end{enumerate}
 % 
 % \newpage
 % 
-% \subsection*{Parte 2: Conceptos de pruebas de hipótesis}
 % 
-% % \textbf{Observación}: Los intervalos que se pide construir corresponden únicamente a intervalos de confianza para una media.
+% \newpage
 % 
-% Para todos las pruebas de hipótesis plantee la media, $H_0$ y $H_1$, y tipo de prueba.
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% q = seq(-2,2, by = 0.01)
+% p = pnorm(q)
+% df = data.frame("Cuantil" = q, "Prob" = p)
+% library(dplyr)
+% df = as.matrix(df)
+% @
 % 
-% \begin{enumerate}
-% \item En la Western University, la media histórica poblacional en las puntuaciones de los solicitantes de una beca es 900. La desviación estándar poblacional histórica que se considera conocida es $\sigma = 180$. Cada año se toma una muestra de los solicitantes para determinar si esta media ha cambiado.
-%   \begin{enumerate}
-%     \item Establezca las hipótesis.
-%     \item Escriba una conclusión apropiada en caso de cometer un Error Tipo I en el estudio (haga notar que se comete un Error Tipo I).
-%     % \item ¿Cuál es el intervalo de 94\% de confianza para la estimación de la media poblacional de las puntuaciones en el examen, si en una muestra de 200 estudiantes la media muestral es $\bar{x} = 935$? \textbf{Nota}: utilice la tabla de cuantiles.
-%   \end{enumerate}
-%     
-%   \item \textit{Playbill} es una revista que se distribuye entre las personas que asisten a conciertos y al teatro. El ingreso medio anual por familia en la población de lectores de \textit{Playbill} es $\$119155$ (\textit{Playbill}, enero de 2006). Suponga que la desviación estándar es $\sigma = \$20700$. Un grupo de San Francisco asegura que entre las personas de la zona de la Bahía que van al teatro el ingreso medio es más alto. En una muestra de 60 personas de la Bahía que suelen ir al teatro, el ingreso medio por hogar fue $\$126100$.
-%   \begin{enumerate}
-%     \item Establezca las hipótesis para determinar si los datos muestrales apoyan la conclusión de que las personas de la zona de la Bahía que suelen asistir al teatro tienen un ingreso medio por familia más alto que los demás lectores de \textit{Playbill}.
-%     \item Escriba una conclusión apropiada en caso de cometer un Error Tipo II en el estudio (haga notar que se comete un Error Tipo II).
-%     % \item ¿Cuál es el intervalo de 98\% de confianza para la estimación del ingreso medio por familia de las personas de la zona de la Bahía? \textbf{Nota}: utilice la tabla de cuantiles.
-%   \end{enumerate}
-%   
-%   \item La cámara de comercio de una comunidad de Florida anuncia en su publicidad que el costo medio de un terreno residencial es $\$125000$ o menos por lote. Suponga que en una muestra de 32 lotes se encuentra que la media muestral es $\$130000$ por lote y que la desviación estándar muestral es $\$12500$.
-%   
-%   \begin{enumerate}
-%     \item Establezca las hipótesis para probar si la media el costo medio real de un terreno residencial en Florida es mayor al comunicado por la cámara de comercio de la comunidad de Florida que emitió la publicidad.
-%     \item Establezca una conclusión apropiada en caso de rechazar la hipótesis nula.
-%     % \item Elabore un intervalo de 96\% de confianza para estudiar el costo medio de un terreno residencial. \textbf{Nota}: utilice la tabla de cuantiles.
-%   \end{enumerate}
+% <<results='asis', echo = F>>=
+% df = df[c(1:120),]
+% n = ceiling(dim(df)[1]/3)
+% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
 % 
-% \end{enumerate}
-
-\newpage
-
-
-\newpage
-
-<<echo = F, message = F>>=
-library(kableExtra)
-q = seq(-2,2, by = 0.01)
-p = pnorm(q)
-df = data.frame("Cuantil" = q, "Prob" = p)
-library(dplyr)
-df = as.matrix(df)
-@
-
-<<results='asis', echo = F>>=
-df = df[c(1:120),]
-n = ceiling(dim(df)[1]/3)
-k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-cat(c("\\begin{table}[H]
-\\centering
-\\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k33,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k44,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k55,
-    "\\end{minipage}
-\\end{table}"
-))
-@
-
-\newpage
-
-<<echo = F, message = F>>=
-library(kableExtra)
-q = seq(-2,2, by = 0.01)
-p = pnorm(q)
-df = data.frame("Cuantil" = q, "Prob" = p)
-library(dplyr)
-df = as.matrix(df)
-@
-
-<<results='asis', echo = F>>=
-df = df[c(121:243),]
-n = ceiling(dim(df)[1]/3)
-k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-cat(c("\\begin{table}[H]
-\\centering
-\\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k33,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k44,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k55,
-    "\\end{minipage}
-\\end{table}"
-))
-@
-
-\newpage
-
-<<echo = F, message = F>>=
-library(kableExtra)
-q = seq(-2,2, by = 0.01)
-p = pnorm(q)
-df = data.frame("Cuantil" = q, "Prob" = p)
-library(dplyr)
-df = as.matrix(df)
-@
-
-<<results='asis', echo = F>>=
-df = df[c(244:366),]
-n = ceiling(dim(df)[1]/3)
-
-k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "")%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-cat(c("\\begin{table}[H]
-\\centering
-\\caption{Tablas de probabilidades acumulada de una ditribución N(0,1)}
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k33,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k44,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k55,
-    "\\end{minipage}
-\\end{table}"
-))
-@
-
-\newpage
-
-<<echo = F, message = F>>=
-library(kableExtra)
-q = seq(-2,2, by = 0.01)
-p = pnorm(q)
-df = data.frame("Cuantil" = q, "Prob" = p)
-library(dplyr)
-df = as.matrix(df)
-@
-
-<<results='asis', echo = F>>=
-df = df[c(367:401),]
-n = ceiling(dim(df)[1]/3)
-k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-    kable_styling(latex_options = c("striped","HOLD_position"))
-
-cat(c("\\begin{table}[H]
-\\centering
-\\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k33,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k44,
-    "\\end{minipage}%
-    \\begin{minipage}[t]{.3\\linewidth}
-      \\centering",
-        k55,
-    "\\end{minipage}
-\\end{table}"
-))
-@
+% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% cat(c("\\begin{table}[H]
+% \\centering
+% \\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k33,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k44,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k55,
+%     "\\end{minipage}
+% \\end{table}"
+% ))
+% @
+% 
+% \newpage
+% 
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% q = seq(-2,2, by = 0.01)
+% p = pnorm(q)
+% df = data.frame("Cuantil" = q, "Prob" = p)
+% library(dplyr)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% df = df[c(121:243),]
+% n = ceiling(dim(df)[1]/3)
+% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% cat(c("\\begin{table}[H]
+% \\centering
+% \\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k33,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k44,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k55,
+%     "\\end{minipage}
+% \\end{table}"
+% ))
+% @
+% 
+% \newpage
+% 
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% q = seq(-2,2, by = 0.01)
+% p = pnorm(q)
+% df = data.frame("Cuantil" = q, "Prob" = p)
+% library(dplyr)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% df = df[c(244:366),]
+% n = ceiling(dim(df)[1]/3)
+% 
+% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "")%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% cat(c("\\begin{table}[H]
+% \\centering
+% \\caption{Tablas de probabilidades acumulada de una ditribución N(0,1)}
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k33,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k44,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k55,
+%     "\\end{minipage}
+% \\end{table}"
+% ))
+% @
+% 
+% \newpage
+% 
+% <<echo = F, message = F>>=
+% library(kableExtra)
+% q = seq(-2,2, by = 0.01)
+% p = pnorm(q)
+% df = data.frame("Cuantil" = q, "Prob" = p)
+% library(dplyr)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% df = df[c(367:401),]
+% n = ceiling(dim(df)[1]/3)
+% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% 
+% cat(c("\\begin{table}[H]
+% \\centering
+% \\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k33,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k44,
+%     "\\end{minipage}%
+%     \\begin{minipage}[t]{.3\\linewidth}
+%       \\centering",
+%         k55,
+%     "\\end{minipage}
+% \\end{table}"
+% ))
+% @
 
 % \begin{minipage}{0.5\linewidth}
 
@@ -548,9 +548,99 @@ cat(c("\\begin{table}[H]
 % @
 % \end{minipage}
 
+\section*{Inferencia}
 
+La siguiente base de datos contiene datos sobre el PIB (expresado en miles de millones de pesos) de las distintas regiones de Chile en el periodo de años 2013 - 2021. El detalle de las columnas es el siguiente:
 
+\begin{itemize}
+\item \texttt{Reg}: numeración de la región.
+\item \texttt{Region}: nombre de la región.
+\item \texttt{X...}: PIB regional en el año determinado (ejemplo: X2013 corresponde al PIB regional del año 2013).
+\end{itemize}
 
+<<>>=
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
+str(datos)
+@
+
+\begin{enumerate}
+
+\item A continuación, se presentan diversos códigos asociados a pruebas de hipótesis; especifique: la(s) media(s) (y las varianzas cuando corresponda), las hipótesis ($H_0$ y $H_1$), el tipo de prueba, la(s) regla(s) de rechazo a utilizar y la confianza. Interprete el resultado de la prueba de hipótesis utilizando tanto método del valor p como el método del intervalo de confianza.
+
+\begin{enumerate}
+
+\item Prueba de hipótesis:
+
+<<>>=
+t.test(x = datos$X2013, y = datos$X2021, alternative = "greater", conf.level = 0.971,
+       mu = 1102, var.equal = F)
+@
+
+% \item Prueba de hipótesis::
+% 
+% <<>>=
+% t.test(x = datos[3,-c(1,2)], y = datos[5,-c(1,2)], alternative = "less",
+%        conf.level = 0.891, mu = 12300, var.equal = T)
+% @
+
+% \item Prueba de hipótesis:
+% 
+% <<>>=
+% t.test(
+%   x = datos$X2017,
+%   y = datos$X2020,
+%   alternative = "less",
+%   conf.level = 0.97,
+%   mu = 11430,
+%   var.equal = T
+% )
+% @
+
+\item (Trabajo independiente) Prueba de hipótesis:
+
+<<>>=
+t.test(
+  x = datos$X2014[datos$Reg %in% 1:10],
+  y = datos$X2018[datos$Reg %in% 1:10],
+  alternative = "two.sided",
+  conf.level = 0.946,
+  mu = 20200,
+  var.equal = F
+)
+@
+
+\item Prueba de hipótesis:
+
+<<>>=
+var.test(
+  x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+  y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+  conf.level = 0.81
+)
+@
+
+<<>>=
+t.test(
+  x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+  y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+  alternative = "less",
+  conf.level = 0.81,
+  mu = 1710,
+  var.equal = T
+)
+@
+\end{enumerate}
+
+\item Con la siguiente salida es de 10 valores aleatorios de la base de datos. Asumiendo que las variables tiene distribución normal y son independientes, realice lo siguiente:
+<<>>=
+head(datos[1:10, c(3,4)], 10)
+@
+  \begin{enumerate}
+    \item Una prueba de hipótesis para determinar si la media del 2013 es diferente a la media del 2014, considerando desviaciones estándar poblacionales de 16922.05 17210.14 respectivamente. Utilice un nivel de significancia del 5\%. Interprete utilizando el método del intervalo de confianza (asuma que $Z_{1-0.05/2} = 1.9599$).
+    \item (Trabajo independiente) Una prueba de hipótesis para determinar si la media del 2013 es mayor a 9000 miles de millones de pesos. Utilice un nivel de significancia del 10\%.  Interprete utilizando el método del valor crítico (asuma que $t_{1-0.1, k = 9} = 1.3830$).
+    \item (Trabajo independiente) Una prueba de hipótesis para determinar si la diferencia entre media del 2013 y la media del 2014 es menor a 5 miles de millones de pesos. Utilice un nivel de significancia del 3\%. Considere varianzas poblacionales desconocidas e iguales. Interprete utilizando el método del intervalo de confianza (asuma que $t_{0.03, k = 18} = -2.0070$).
+  \end{enumerate}
+\end{enumerate}
 
 
 

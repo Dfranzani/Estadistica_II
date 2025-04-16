@@ -1,0 +1,30 @@
+\begin{thebibliography}{}
+
+\bibitem[Anderson et~al., 2008]{anderson}
+Anderson, D.~R., Sweeney, D.~J., and Williams, T.~A. (2008).
+\newblock {\em Estadística para administración y economía}.
+\newblock Cengage Learning, México, 10a ed edition.
+
+\bibitem[Devore, 2008]{Devore}
+Devore, J.~L. (2008).
+\newblock {\em Probability and statistics for engineering and the sciences}.
+\newblock Thomson/Brooks/Cole, Belmont, CA, 7th ed edition.
+
+\bibitem[Fahrmeir, 2013]{fahrmeir_regression_2013}
+Fahrmeir, L. (2013).
+\newblock {\em Regression: models, methods and applications}.
+\newblock Springer, New York.
+
+\bibitem[Kutner et~al., 2004]{neter}
+Kutner, M.~H., Nachtsheim, C.~J., Neter, J., and Wasserman, W. (2004).
+\newblock {\em Applied linear regression models}, volume~4.
+\newblock McGraw-Hill/Irwin New York.
+
+\bibitem[Ratner, 2009]{ratner_correlation_2009}
+Ratner, B. (2009).
+\newblock The correlation coefficient: {Its} values range between +1/−1, or
+  do they?
+\newblock {\em Journal of Targeting, Measurement and Analysis for Marketing},
+  17(2):139--142.
+
+\end{thebibliography}
