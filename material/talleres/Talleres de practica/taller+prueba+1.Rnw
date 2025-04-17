@@ -2,88 +2,89 @@
 {\bf \Large{Taller de práctica Prueba 1}}%\\Pruebas de hipótesis (secciones 2.2.2, 2.3.2, 2.3.3 y 2.4)\\Conceptos de pruebas de hipótesis (sección 2.1)
 \end{center}
 
-% \subsection*{Parte 1: Distribuciones muestrales}
+\section*{Estadística II}
+\subsection*{Parte 1: Distribuciones muestrales}
 
-% \begin{enumerate}
-%   \item Suponga que la edad (en años) de las personas de una determinada ciudad distribuye $N(\mu = 28, \sigma^2 = \text{Desconocida})$. Si para una muestra de 120 personas, la varianza de la edad es de 28 años, calcule la probabilidad de que el valor promedio muestral de la edad se encuentre entre 27 y 29 años. Escriba todo el procedimiento de cálculo y las propiedades utilizadas. Utilice la tabla adecuada de las que se presentan a continuación.
-% 
-% \begin{minipage}{0.45\textwidth}
-% \centering
-% <<echo = F, message = F>>=
-% library(kableExtra)
-% q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
-% q = q[order(q)]
-% p = round(pt(q, df = 28), 4)
-% df = data.frame("Cuantil" = q, "Probabilidad" = p)
-% df = as.matrix(df)
-% @
-% 
-% <<echo=FALSE>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-%           caption = "Distribución t-student, df = 28") |>
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
-% \begin{minipage}{0.45\textwidth}
-% \centering
-% <<echo = F, message = F>>=
-% q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
-% q = q[order(q)]
-% p = round(pt(q, df = 119),4)
-% df = data.frame("Cuantil" = q, "Probabilidad" = p)
-% df = as.matrix(df)
-% @
-% 
-% <<echo=FALSE>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-%           caption = "Distribución t-student, df = 119") |>
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
-%   \item Se toma una muestra aleatoria de tamaño 67 proveniente de una población normal con desviación estándar $\sigma =3.05$. Calcular la probabilidad de que la varianza muestral $s^{2}$ sea como mínimo 8.21? Utilice la tabla adecuada de las que se presentan a continuación.
-% 
-% \begin{minipage}{0.45\textwidth}
-% \centering
-% <<echo = F, message = F>>=
-% library(kableExtra)
-% q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
-% q = q[order(q)]
-% p = round(pchisq(q, df = 66), 4)
-% df = data.frame("Cuantil" = q, "Probabilidad" = p)
-% df = as.matrix(df)
-% @
-% 
-% <<echo=FALSE>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-%           caption = "Distribución Ji-Cuadrado, df = 66") |>
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
-% \begin{minipage}{0.45\textwidth}
-% \centering
-% <<echo = F, message = F>>=
-% q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
-% q = q[order(q)]
-% p = round(pchisq(q, df = 65),4)
-% df = data.frame("Cuantil" = q, "Probabilidad" = p)
-% df = as.matrix(df)
-% @
-% 
-% <<echo=FALSE>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
-%           caption = "Distribución Ji-Cuadrado, df = 65") |>
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
-%   \item El tiempo que demoran en hacerse efectivas las transferencias bancarias internacionales, distribuye normal con media 15 (segundos) y desviación estándar de 4 (segundos). Utilice alguna de las tablas al final del documento, según estime conveniente (al buscar, utilice el valor que más se aproxime). Responda.
-% 
-% \begin{enumerate}
-% \item Considerando una muestra de tamaño 29, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 14.1 segundos? Mencione con rigurosidad todos los pasos de su solución.
-% \item Considerando una muestra de tamaño 56, y que los datos del enunciado NO distribuyen normal, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 15.8 segundos? Mencione con rigurosidad todos los pasos de su solución.
-% \end{enumerate}
-% \end{enumerate}
-% 
-% 
+\begin{enumerate}
+  \item Suponga que la edad (en años) de las personas de una determinada ciudad distribuye $N(\mu = 28, \sigma^2 = \text{Desconocida})$. Si para una muestra de 120 personas, la varianza de la edad es de 28 años, calcule la probabilidad de que el valor promedio muestral de la edad se encuentre entre 27 y 29 años. Escriba todo el procedimiento de cálculo y las propiedades utilizadas. Utilice la tabla adecuada de las que se presentan a continuación.
+
+\begin{minipage}{0.45\textwidth}
+\centering
+<<echo = F, message = F>>=
+library(kableExtra)
+q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
+q = q[order(q)]
+p = round(pt(q, df = 28), 4)
+df = data.frame("Cuantil" = q, "Probabilidad" = p)
+df = as.matrix(df)
+@
+
+<<echo=FALSE>>=
+kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+          caption = "Distribución t-student, df = 28") |>
+    kable_styling(latex_options = c("striped","HOLD_position"))
+@
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+<<echo = F, message = F>>=
+q = c( -2.070197, -2.828427, 0, 2.728427, 5.566854,1.828427, 4.656854,1.828427, 2.070197)
+q = q[order(q)]
+p = round(pt(q, df = 119),4)
+df = data.frame("Cuantil" = q, "Probabilidad" = p)
+df = as.matrix(df)
+@
+
+<<echo=FALSE>>=
+kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+          caption = "Distribución t-student, df = 119") |>
+    kable_styling(latex_options = c("striped","HOLD_position"))
+@
+\end{minipage}
+  \item Se toma una muestra aleatoria de tamaño 67 proveniente de una población normal con desviación estándar $\sigma =3.05$. Calcular la probabilidad de que la varianza muestral $s^{2}$ sea como mínimo 8.21? Utilice la tabla adecuada de las que se presentan a continuación.
+
+\begin{minipage}{0.45\textwidth}
+\centering
+<<echo = F, message = F>>=
+library(kableExtra)
+q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
+q = q[order(q)]
+p = round(pchisq(q, df = 66), 4)
+df = data.frame("Cuantil" = q, "Probabilidad" = p)
+df = as.matrix(df)
+@
+
+<<echo=FALSE>>=
+kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+          caption = "Distribución Ji-Cuadrado, df = 66") |>
+    kable_styling(latex_options = c("striped","HOLD_position"))
+@
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+<<echo = F, message = F>>=
+q = c(58.24886, 58.54886,55.24886,56.24816,59.24886)
+q = q[order(q)]
+p = round(pchisq(q, df = 65),4)
+df = data.frame("Cuantil" = q, "Probabilidad" = p)
+df = as.matrix(df)
+@
+
+<<echo=FALSE>>=
+kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df), format = "latex",
+          caption = "Distribución Ji-Cuadrado, df = 65") |>
+    kable_styling(latex_options = c("striped","HOLD_position"))
+@
+\end{minipage}
+  \item El tiempo que demoran en hacerse efectivas las transferencias bancarias internacionales, distribuye normal con media 15 (segundos) y desviación estándar de 4 (segundos). Utilice alguna de las tablas al final del documento, según estime conveniente (al buscar, utilice el valor que más se aproxime). Responda.
+
+\begin{enumerate}
+\item Considerando una muestra de tamaño 29, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 14.1 segundos? Mencione con rigurosidad todos los pasos de su solución.
+\item (Trabajo independiente) Considerando una muestra de tamaño 56, y que los datos del enunciado NO distribuyen normal, ¿cuál es la probabilidad de que la media muestral de los tiempos de demora de transacción sea menor a 15.8 segundos? Mencione con rigurosidad todos los pasos de su solución.
+\end{enumerate}
+\end{enumerate}
+
+
 % \subsection*{Parte 2: Intervalos de confianza}
 % % \subsection*{Parte 1: Pruebas de hipótesis}
 % 
@@ -120,28 +121,28 @@
 % 
 % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 0.
 % 
-% \item Intervalo de confianza:
-% 
-% <<>>=
-% t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891)
-% @
-% 
-% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 12501.
-% 
 % % \item Intervalo de confianza:
 % % 
 % % <<>>=
-% % t.test(
-% %   x = datos$X2017,
-% %   y = datos$X2020,
-% %   alternative = "less",
-% %   conf.level = 0.97,
-% %   var.equal = T
-% % )
+% % t.test(x = datos[3,-c(1,2)], alternative = "greater", conf.level = 0.891)
 % % @
 % % 
-% % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 11430.
-% % 
+% % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 12501.
+% 
+% \item Intervalo de confianza: (Trabajo independiente) 
+% 
+% <<>>=
+% t.test(
+%   x = datos$X2017,
+%   y = datos$X2020,
+%   alternative = "less",
+%   conf.level = 0.97,
+%   var.equal = T
+% )
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 11430.
+% 
 % % \item Intervalo de confianza:
 % % 
 % % <<>>=
@@ -155,40 +156,54 @@
 % % @
 % % 
 % % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 20200.
-% % 
-% % \item Intervalos de confianza:
-% % 
-% % <<>>=
-% % var.test(
-% %   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
-% %   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
-% %   conf.level = 0.81
-% % )
-% % @
-% % 
-% % <<>>=
-% % t.test(
-% %   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
-% %   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
-% %   alternative = "less",
-% %   conf.level = 0.81,
-% %   var.equal = T
-% % )
-% % @
-% % 
-% % \textbf{Nota}: considere que el punto de comparación en la probabilidad es 2000.
+% 
+% \item Intervalos de confianza:
+% 
+% <<>>=
+% var.test(
+%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+%   conf.level = 0.81
+% )
+% @
+% 
+% <<>>=
+% t.test(
+%   x = datos$X2015[datos$Reg %in% c(1:5,8:10)],
+%   y = datos$X2019[datos$Reg %in% c(1:5,8:10)],
+%   alternative = "less",
+%   conf.level = 0.81,
+%   var.equal = T
+% )
+% @
+% 
+% \textbf{Nota}: considere que el punto de comparación en la probabilidad es 2000.
 % \end{enumerate}
-% 
-% \item  Los datos que a continuación se dan son las edades de 20 estudiantes de una determinada universidad: 19,20,21,21,24,21,20,25,18,17,23,28,29,27,25,25,28,20,25,28. Si las edades de los estudiantes de dicha universidad es una variable aleatoria normal con una desviación estándar poblacional de 4 años. 
-% 
+% \end{enumerate}
+
+\subsection*{Parte 2: Pruebas de hipótesis}
+
+Con la siguiente salida es de 10 valores aleatorios de la base de datos explicada en la sección de \textbf{Inferencia}. Asumiendo que las variables tiene distribución normal y son independientes, realice lo siguiente:
+<<>>=
+head(datos[1:10, c(3,4)], 10)
+@
+  \begin{enumerate}
+    \item Una prueba de hipótesis para determinar si la media del 2014 es menor a 13000 miles de millones de pesos. Utilice un nivel de significancia del 5\%, y considere una desviación estándar poblacional 17210.14. Interprete utilizando el método del valor crítico (asuma que $Z_{0.05, k = 9} = -1.6448$).
+    \item (Trabajo independiente) Una prueba de hipótesis para determinar si la media del 2013 es mayor a 9000 miles de millones de pesos. Utilice un nivel de significancia del 10\%.  Interprete utilizando el método del valor crítico (asuma que $t_{1-0.1, k = 9} = 1.3830$).
+  \end{enumerate}
+
+
+%
+% \item  Los datos que a continuación se dan son las edades de 20 estudiantes de una determinada universidad: 19,20,21,21,24,21,20,25,18,17,23,28,29,27,25,25,28,20,25,28. Si las edades de los estudiantes de dicha universidad es una variable aleatoria normal con una desviación estándar poblacional de 4 años.
+%
 % Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
-% 
+%
 % \begin{enumerate}
 %   \item Obtener el intervalo de confianza al 98\% para la media de la edad de los estudiantes.
 %   \item Estudie si la media de la edades de los estudiantes es menor a 20 años. Utilice una confianza del 90\%.
 %   \item Estudie si la media de la edades de los estudiantes es cuando menos de 21 años. Utilice una confianza del 90\%.
 % \end{enumerate}
-% 
+%
 % <<echo = F, message = F>>=
 % library(kableExtra)
 % p = seq(0.90,0.99, by = 0.01)
@@ -196,22 +211,22 @@
 % df = data.frame("Probabilidad" = p, "Cuantil" = q)
 % df = as.matrix(df)
 % @
-% 
+%
 % <<results='asis', echo = F>>=
 % kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
 %       caption = "Distribución Z") |>
 %     kable_styling(latex_options = c("striped","HOLD_position"))
 % @
-% 
+%
 % Ahora, considere que la desviación estándar poblacional es desconocida. Para los siguiente enunciados, construya e interprete el intervalo de confianza correspondiente. Utilice la tabla que se presenta a continuación.
-% 
+%
 % \begin{enumerate}
 % \setcounter{enumii}{3}
 %   \item Obtener el intervalo de confianza al 96\% para la media de la edad de los estudiantes.
 %   \item Estudie si la media de la edades de los estudiantes es no mayor a 22 años. Utilice una confianza del 94\%.
 %   \item Estudie si la media de la edades de los estudiantes es no menor a 27 años. Utilice una confianza del 98\%.
 % \end{enumerate}
-% 
+%
 % <<echo = F, message = F>>=
 % library(kableExtra)
 % p = seq(0.90,0.99, by = 0.01)
@@ -219,13 +234,13 @@
 % df = data.frame("Probabilidad" = p, "Cuantil" = q)
 % df = as.matrix(df)
 % @
-% 
+%
 % <<results='asis', echo = F>>=
 % kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
 %       caption = "Distribución t-Student con df = 19 ") |>
 %     kable_styling(latex_options = c("striped","HOLD_position"))
 % @
-% 
+%
 % \end{enumerate}
 % 
 % % \begin{enumerate}
@@ -331,222 +346,6 @@
 % \newpage
 % 
 % 
-% \newpage
-% 
-% <<echo = F, message = F>>=
-% library(kableExtra)
-% q = seq(-2,2, by = 0.01)
-% p = pnorm(q)
-% df = data.frame("Cuantil" = q, "Prob" = p)
-% library(dplyr)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% df = df[c(1:120),]
-% n = ceiling(dim(df)[1]/3)
-% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% cat(c("\\begin{table}[H]
-% \\centering
-% \\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k33,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k44,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k55,
-%     "\\end{minipage}
-% \\end{table}"
-% ))
-% @
-% 
-% \newpage
-% 
-% <<echo = F, message = F>>=
-% library(kableExtra)
-% q = seq(-2,2, by = 0.01)
-% p = pnorm(q)
-% df = data.frame("Cuantil" = q, "Prob" = p)
-% library(dplyr)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% df = df[c(121:243),]
-% n = ceiling(dim(df)[1]/3)
-% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% cat(c("\\begin{table}[H]
-% \\centering
-% \\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k33,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k44,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k55,
-%     "\\end{minipage}
-% \\end{table}"
-% ))
-% @
-% 
-% \newpage
-% 
-% <<echo = F, message = F>>=
-% library(kableExtra)
-% q = seq(-2,2, by = 0.01)
-% p = pnorm(q)
-% df = data.frame("Cuantil" = q, "Prob" = p)
-% library(dplyr)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% df = df[c(244:366),]
-% n = ceiling(dim(df)[1]/3)
-% 
-% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "")%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% cat(c("\\begin{table}[H]
-% \\centering
-% \\caption{Tablas de probabilidades acumulada de una ditribución N(0,1)}
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k33,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k44,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k55,
-%     "\\end{minipage}
-% \\end{table}"
-% ))
-% @
-% 
-% \newpage
-% 
-% <<echo = F, message = F>>=
-% library(kableExtra)
-% q = seq(-2,2, by = 0.01)
-% p = pnorm(q)
-% df = data.frame("Cuantil" = q, "Prob" = p)
-% library(dplyr)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% df = df[c(367:401),]
-% n = ceiling(dim(df)[1]/3)
-% k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>% 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% 
-% cat(c("\\begin{table}[H]
-% \\centering
-% \\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k33,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k44,
-%     "\\end{minipage}%
-%     \\begin{minipage}[t]{.3\\linewidth}
-%       \\centering",
-%         k55,
-%     "\\end{minipage}
-% \\end{table}"
-% ))
-% @
-
-% \begin{minipage}{0.5\linewidth}
-
-% \end{minipage}
-% \begin{minipage}{0.5\linewidth}
-% <<echo = F, message = F>>=
-% p = seq(0.90,0.99, by = 0.01)
-% q = round(qt(p, df = 199),4)
-% df = data.frame("Probabilidad" = p, "Cuantil" = q)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
-%       caption = "Cuantiles t-student, df = 199") |> 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
-% 
-% 
-% \begin{minipage}{0.5\linewidth}
-% <<echo = F, message = F>>=
-% p = seq(0.90,0.99, by = 0.01)
-% q = round(qt(p, df = 59),4)
-% df = data.frame("Probabilidad" = p, "Cuantil" = q)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
-%       caption = "Cuantiles t-student, df = 59") |> 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
-% \begin{minipage}{0.5\linewidth}
-% <<echo = F, message = F>>=
-% p = seq(0.90,0.99, by = 0.01)
-% q = round(qt(p, df = 31),4)
-% df = data.frame("Probabilidad" = p, "Cuantil" = q)
-% df = as.matrix(df)
-% @
-% 
-% <<results='asis', echo = F>>=
-% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
-%       caption = "Cuantiles t-student, df = 31") |> 
-%     kable_styling(latex_options = c("striped","HOLD_position"))
-% @
-% \end{minipage}
 
 \section*{Inferencia}
 
@@ -642,7 +441,222 @@ head(datos[1:10, c(3,4)], 10)
   \end{enumerate}
 \end{enumerate}
 
+\newpage
 
+<<echo = F, message = F>>=
+library(kableExtra)
+q = seq(-2,2, by = 0.01)
+p = pnorm(q)
+df = data.frame("Cuantil" = q, "Prob" = p)
+library(dplyr)
+df = as.matrix(df)
+@
+
+<<results='asis', echo = F>>=
+df = df[c(1:120),]
+n = ceiling(dim(df)[1]/3)
+k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+cat(c("\\begin{table}[H]
+\\centering
+\\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k33,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k44,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k55,
+    "\\end{minipage}
+\\end{table}"
+))
+@
+
+\newpage
+
+<<echo = F, message = F>>=
+library(kableExtra)
+q = seq(-2,2, by = 0.01)
+p = pnorm(q)
+df = data.frame("Cuantil" = q, "Prob" = p)
+library(dplyr)
+df = as.matrix(df)
+@
+
+<<results='asis', echo = F>>=
+df = df[c(121:243),]
+n = ceiling(dim(df)[1]/3)
+k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+cat(c("\\begin{table}[H]
+\\centering
+\\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k33,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k44,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k55,
+    "\\end{minipage}
+\\end{table}"
+))
+@
+
+\newpage
+
+<<echo = F, message = F>>=
+library(kableExtra)
+q = seq(-2,2, by = 0.01)
+p = pnorm(q)
+df = data.frame("Cuantil" = q, "Prob" = p)
+library(dplyr)
+df = as.matrix(df)
+@
+
+<<results='asis', echo = F>>=
+df = df[c(244:366),]
+n = ceiling(dim(df)[1]/3)
+
+k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "")%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+cat(c("\\begin{table}[H]
+\\centering
+\\caption{Tablas de probabilidades acumulada de una ditribución N(0,1)}
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k33,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k44,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k55,
+    "\\end{minipage}
+\\end{table}"
+))
+@
+
+\newpage
+
+<<echo = F, message = F>>=
+library(kableExtra)
+q = seq(-2,2, by = 0.01)
+p = pnorm(q)
+df = data.frame("Cuantil" = q, "Prob" = p)
+library(dplyr)
+df = as.matrix(df)
+@
+
+<<results='asis', echo = F>>=
+df = df[c(367:401),]
+n = ceiling(dim(df)[1]/3)
+k33 = kable(df[1:n,], booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k44 = kable(df[(n+1):(2*n),], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+k55 = kable(df[(2*n+1):dim(df)[1],], booktabs = TRUE, escape = F, align = "c", linesep = "", col.names = colnames(df))%>%
+    kable_styling(latex_options = c("striped","HOLD_position"))
+
+cat(c("\\begin{table}[H]
+\\centering
+\\caption{Tablas de probabilidades acumuladas de una ditribución N(0,1)}
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k33,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k44,
+    "\\end{minipage}%
+    \\begin{minipage}[t]{.3\\linewidth}
+      \\centering",
+        k55,
+    "\\end{minipage}
+\\end{table}"
+))
+@
+
+% \begin{minipage}{0.5\linewidth}
+% 
+% \end{minipage}
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 199),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles t-student, df = 199") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+
+
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 59),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles t-student, df = 59") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
+% \begin{minipage}{0.5\linewidth}
+% <<echo = F, message = F>>=
+% p = seq(0.90,0.99, by = 0.01)
+% q = round(qt(p, df = 31),4)
+% df = data.frame("Probabilidad" = p, "Cuantil" = q)
+% df = as.matrix(df)
+% @
+% 
+% <<results='asis', echo = F>>=
+% kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = colnames(df),
+%       caption = "Cuantiles t-student, df = 31") |>
+%     kable_styling(latex_options = c("striped","HOLD_position"))
+% @
+% \end{minipage}
 
 
 
