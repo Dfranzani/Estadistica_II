@@ -183,17 +183,28 @@ kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = co
 
 \subsection*{Parte 2: Pruebas de hipótesis}
 
-<<>>=
+La siguiente base de datos contiene datos sobre el PIB (expresado en miles de millones de pesos) de las distintas regiones de Chile en el periodo de años 2013 - 2021. El detalle de las columnas es el siguiente:
+
+\begin{itemize}
+\item \texttt{Reg}: numeración de la región.
+\item \texttt{Region}: nombre de la región.
+\item \texttt{X...}: PIB regional en el año determinado (ejemplo: X2013 corresponde al PIB regional del año 2013).
+\end{itemize}
+
+
+<<echo=F>>=
 datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
 @
 
 Con la siguiente salida es de 10 valores aleatorios de la base de datos explicada en la sección de \textbf{Inferencia}. Asumiendo que las variables tiene distribución normal y son independientes, realice lo siguiente:
+
 <<>>=
 head(datos[1:10, c(3,4)], 10)
 @
+
   \begin{enumerate}
-    \item Una prueba de hipótesis para determinar si la media del 2014 es menor a 13000 miles de millones de pesos. Utilice un nivel de significancia del 5\%, y considere una desviación estándar poblacional 17210.14. Interprete utilizando el método del valor crítico (asuma que $Z_{0.05, k = 9} = -1.6448$).
-    \item (Trabajo independiente) Una prueba de hipótesis para determinar si la media del 2013 es mayor a 9000 miles de millones de pesos. Utilice un nivel de significancia del 10\%.  Interprete utilizando el método del valor crítico (asuma que $t_{1-0.1, k = 9} = 1.3830$).
+    \item Una prueba de hipótesis para determinar si la media del 2014 es menor a 13000 miles de millones de pesos. Utilice un nivel de significancia del 5\%, y considere una desviación estándar poblacional 17210.14. Interprete utilizando el método del valor crítico (asuma que $Z_{0.05} = -1.6448$).
+    \item Una prueba de hipótesis para determinar si la media del 2013 es mayor a 9000 miles de millones de pesos. Utilice un nivel de significancia del 10\%, y considerando una varianza poblacional de 453794323.  Interprete utilizando el método del valor crítico (asuma que $Z_{1-0.1} = 1.2815$).
   \end{enumerate}
 
 
