@@ -183,6 +183,10 @@ kable(df, booktabs = TRUE, align = "c", linesep = "", escape = F, col.names = co
 
 \subsection*{Parte 2: Pruebas de hipótesis}
 
+<<>>=
+datos = read.csv("https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/PIB%2BRegional%2B2013%2B2021.csv")
+@
+
 Con la siguiente salida es de 10 valores aleatorios de la base de datos explicada en la sección de \textbf{Inferencia}. Asumiendo que las variables tiene distribución normal y son independientes, realice lo siguiente:
 <<>>=
 head(datos[1:10, c(3,4)], 10)
