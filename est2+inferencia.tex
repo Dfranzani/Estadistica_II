@@ -145,7 +145,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 26-05-2025}
+\date{Actualizado al 31-05-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4080,7 +4080,7 @@ En términos de la ecuación \eqref{eq:descomposicion-sct} se tienen las siguien
   \label{eq:r2-ajustado}
   \end{equation}
 
-  Una característica importante de esta métrica de ajuste es que, tanto el \(R^2\) como el \(\bar{R}^2\) aumentan a medida que se incluyen más covariables en el modelo (consulte el anexo \ref{R2-no-decreciente} para estudiar esta característica). Sin embargo, este último penaliza el valor del \(R^2\) en función de la cantidad de covariables incluidas en este.
+  Una característica importante de esta métrica de ajuste es que, solo el \(R^2\) aumenta a medida que se incluyen más covariables en el modelo, mientras que el \(\bar{R}^2\) no necesariamente (consulte el anexo \ref{R2-no-decreciente} para estudiar esta característica).
 \end{itemize}
 
 Respecto al ejemplo \ref{exm:MultipleManual}, la salida de resumen del modelo en R es:
@@ -4959,7 +4959,7 @@ X^tX\beta &= X^tY\\
 
 \chapter{Métricas}\label{muxe9tricas}
 
-\section{\texorpdfstring{\(R^2\) y \(R^2\) ajustado no decreciente}{R\^{}2 y R\^{}2 ajustado no decreciente}}\label{R2-no-decreciente}
+\section{\texorpdfstring{\(R^2\) y \(R^2\) ajustado}{R\^{}2 y R\^{}2 ajustado}}\label{R2-no-decreciente}
 
 El coeficiente de determinación no decrece al añadir covariables al modelo de regresión lineal múltiple, es decir, la Suma Cuadrática de Errores no incrementa al aumentar la cantidad de covariables en el modelo.
 
@@ -5028,18 +5028,16 @@ R^2_{\text{Modelo 2}} &\geq R^2_{\text{Modelo 1}}\\
 \label{eq:igualacion-modelos3}
 \end{equation}
 
-Esta conclusión es la misma para el \(R^2\) ajustado (\(\bar{R}^2\)), para ello, observe el siguiente desarrollo a partir de la ecuación \eqref{eq:igualacion-modelos3}.
+Esta conclusión no es la misma para el \(R^2\) ajustado (\(\bar{R}^2\)). Al incluir una variable en el modelo (\(k+1\) un variables en el modelo 2 y \(k\) en el modelo 1), la condición para que el \(R^2\) ajustado aumente es:
 
 \begin{equation}
 \begin{split}
-R^2_{\text{Modelo 2}} &\geq R^2_{\text{Modelo 1}}\\
-1 - R^2_{\text{Modelo 2}} &\leq 1 - R^2_{\text{Modelo 1}}\\
-\left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 2}}) &\leq \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 1}}), \ n > k+1\\
-1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 2}}) &\geq 1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 1}})\\
-\bar{R}^2_{\text{Modelo 2}} &\geq \bar{R}^2_{\text{Modelo 1}}\\
+\bar{R}^2_{\text{Modelo 2}} &> \bar{R}^2_{\text{Modelo 1}} \Leftrightarrow \frac{\text{SCE}_{\text{Modelo 1}}}{n-k-1} < \frac{\text{SCE}_{\text{Modelo 2}}}{n-k}\\
 \end{split}
 \label{eq:igualacion-modelos4}
 \end{equation}
+
+Esta condición es equivalente a verificar si el estadístico t-tudent de la prueba de no nulidad de una variable es mayor a 1 en valor absoluto.
 
 Un punto interesante, es que a diferencia del \(R^2\), el \(\bar{R}^2\) puede tomar valores negativos, para ello observe el siguiente desarrollo a partir de los posibles valores de \(R^2\).
 
@@ -5071,7 +5069,7 @@ Por otro lado, cuando \(n < k+1\) ocurre que no es posible estimar los parámetr
   Se sabe que la matriz \(X^tX\) tiene dimensión \(k+1 \times k+1\). Para poder calcular \((X^tX)^{-1}\), debe tener rango completo, es decir \(\text{rank}(X^tX) = k+1\) (el rango debe ser igual a la dimensión). Sin embargo, del punto anterior se tiene que \(\text{rank}(X^tX) \leq n\), y sabemos que \(n < k+1\), entonces \(\text{rank}(X^tX) < k+1\) y por ende, no es posible calcular \((X^tX)^{-1}\).
 \end{itemize}
 
-Finalmente, cuando \(n=k+1\) es posible estimar los parámetros del modelo mediante los EMC \eqref{eq:betasmultiple3-demostracion}, ya que la matriz \((X^tX)^{-1}\) es invertible, sin embargo, no es posible determinar la varianza de los estimadores. Una extensión de lo presentado en la sección @ref\{EMC-RLM-CUERPO\} es que, la distribución de lo estimadores de mínimos cuadrados es
+Finalmente, cuando \(n=k+1\) es posible estimar los parámetros del modelo mediante los EMC \eqref{eq:betasmultiple3-demostracion}, ya que la matriz \((X^tX)^{-1}\) es invertible, sin embargo, no es posible determinar la varianza de los estimadores. Una extensión de lo presentado en la sección \ref{EMC-RLM-CUERPO} es que, la distribución de lo estimadores de mínimos cuadrados es
 
 \[
 \widehat{\beta} \sim N(\beta, (X^tX)^{-1}\sigma^2)

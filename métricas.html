@@ -248,7 +248,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="B" data-path="métricas.html"><a href="métricas.html"><i class="fa fa-check"></i><b>B</b> Métricas</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html#R2-no-decreciente"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado no decreciente</a></li>
+<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html#R2-no-decreciente"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="estadísticos.html"><a href="estadísticos.html"><i class="fa fa-check"></i><b>C</b> Estadísticos</a>
 <ul>
@@ -282,7 +282,7 @@ div.csl-indent {
 <div id="métricas" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">B</span> Métricas<a href="métricas.html#métricas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="R2-no-decreciente" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">B.1</span> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado no decreciente<a href="métricas.html#R2-no-decreciente" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">B.1</span> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado<a href="métricas.html#R2-no-decreciente" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El coeficiente de determinación no decrece al añadir covariables al modelo de regresión lineal múltiple, es decir, la Suma Cuadrática de Errores no incrementa al aumentar la cantidad de covariables en el modelo.</p>
 <p>En primer lugar, considere la propiedad <span class="math inline">\(e^tX = 0\)</span>, donde, <span class="math inline">\(e\)</span> es la matriz de residuos y <span class="math inline">\(X\)</span> es la matriz de diseño de un modelo de regresión lineal múltiple ajustado. La demostración de esta propiedad es la siguiente:</p>
 <span class="math display" id="eq:propiedad-residuos">\[\begin{equation}
@@ -339,17 +339,14 @@ R^2_{\text{Modelo 2}} &amp;\geq R^2_{\text{Modelo 1}}\\
 \end{split}
 \tag{B.5}
 \end{equation}\]</span>
-<p>Esta conclusión es la misma para el <span class="math inline">\(R^2\)</span> ajustado (<span class="math inline">\(\bar{R}^2\)</span>), para ello, observe el siguiente desarrollo a partir de la ecuación <a href="métricas.html#eq:igualacion-modelos3">(B.5)</a>.</p>
+<p>Esta conclusión no es la misma para el <span class="math inline">\(R^2\)</span> ajustado (<span class="math inline">\(\bar{R}^2\)</span>). Al incluir una variable en el modelo (<span class="math inline">\(k+1\)</span> un variables en el modelo 2 y <span class="math inline">\(k\)</span> en el modelo 1), la condición para que el <span class="math inline">\(R^2\)</span> ajustado aumente es:</p>
 <span class="math display" id="eq:igualacion-modelos4">\[\begin{equation}
 \begin{split}
-R^2_{\text{Modelo 2}} &amp;\geq R^2_{\text{Modelo 1}}\\
-1 - R^2_{\text{Modelo 2}} &amp;\leq 1 - R^2_{\text{Modelo 1}}\\
-\left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 2}}) &amp;\leq \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 1}}), \ n &gt; k+1\\
-1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 2}}) &amp;\geq 1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2_{\text{Modelo 1}})\\
-\bar{R}^2_{\text{Modelo 2}} &amp;\geq \bar{R}^2_{\text{Modelo 1}}\\
+\bar{R}^2_{\text{Modelo 2}} &amp;&gt; \bar{R}^2_{\text{Modelo 1}} \Leftrightarrow \frac{\text{SCE}_{\text{Modelo 1}}}{n-k-1} &lt; \frac{\text{SCE}_{\text{Modelo 2}}}{n-k}\\
 \end{split}
 \tag{B.6}
 \end{equation}\]</span>
+<p>Esta condición es equivalente a verificar si el estadístico t-tudent de la prueba de no nulidad de una variable es mayor a 1 en valor absoluto.</p>
 <p>Un punto interesante, es que a diferencia del <span class="math inline">\(R^2\)</span>, el <span class="math inline">\(\bar{R}^2\)</span> puede tomar valores negativos, para ello observe el siguiente desarrollo a partir de los posibles valores de <span class="math inline">\(R^2\)</span>.</p>
 <span class="math display" id="eq:igualacion-modelos5">\[\begin{gather*}
 0 \leq R^2 \leq 1\\
@@ -369,7 +366,7 @@ R^2_{\text{Modelo 2}} &amp;\geq R^2_{\text{Modelo 1}}\\
 <p>Dado que <span class="math inline">\(\text{rank}(X) = \text{rank}(X^t)\)</span>, se tiene que <span class="math inline">\(\text{rank}(X^tX) \leq \text{rank}(X)\)</span>. Como la matriz <span class="math inline">\(X\)</span> tiene dimensión <span class="math inline">\(n \times k+1\)</span>, el rango de <span class="math inline">\(X\)</span> está delimitado, es decir, <span class="math inline">\(\text{rank}(X) = \min(n,k+1)\)</span>. Por lo tanto, si <span class="math inline">\(n &lt; k+1\)</span>, entonces <span class="math inline">\(\text{rank}(X) = n\)</span> y <span class="math inline">\(\text{rank}(X^tX) \leq n\)</span>.</p></li>
 <li><p>Se sabe que la matriz <span class="math inline">\(X^tX\)</span> tiene dimensión <span class="math inline">\(k+1 \times k+1\)</span>. Para poder calcular <span class="math inline">\((X^tX)^{-1}\)</span>, debe tener rango completo, es decir <span class="math inline">\(\text{rank}(X^tX) = k+1\)</span> (el rango debe ser igual a la dimensión). Sin embargo, del punto anterior se tiene que <span class="math inline">\(\text{rank}(X^tX) \leq n\)</span>, y sabemos que <span class="math inline">\(n &lt; k+1\)</span>, entonces <span class="math inline">\(\text{rank}(X^tX) &lt; k+1\)</span> y por ende, no es posible calcular <span class="math inline">\((X^tX)^{-1}\)</span>.</p></li>
 </ul>
-<p>Finalmente, cuando <span class="math inline">\(n=k+1\)</span> es posible estimar los parámetros del modelo mediante los EMC <a href="estimadores.html#eq:betasmultiple3-demostracion">(A.18)</a>, ya que la matriz <span class="math inline">\((X^tX)^{-1}\)</span> es invertible, sin embargo, no es posible determinar la varianza de los estimadores. Una extensión de lo presentado en la sección @ref{EMC-RLM-CUERPO} es que, la distribución de lo estimadores de mínimos cuadrados es</p>
+<p>Finalmente, cuando <span class="math inline">\(n=k+1\)</span> es posible estimar los parámetros del modelo mediante los EMC <a href="estimadores.html#eq:betasmultiple3-demostracion">(A.18)</a>, ya que la matriz <span class="math inline">\((X^tX)^{-1}\)</span> es invertible, sin embargo, no es posible determinar la varianza de los estimadores. Una extensión de lo presentado en la sección <a href="regresión-lineal.html#EMC-RLM-CUERPO">3.3.1</a> es que, la distribución de lo estimadores de mínimos cuadrados es</p>
 <p><span class="math display">\[
 \widehat{\beta} \sim N(\beta, (X^tX)^{-1}\sigma^2)
 \]</span>

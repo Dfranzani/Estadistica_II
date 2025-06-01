@@ -248,7 +248,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="B" data-path="métricas.html"><a href="métricas.html"><i class="fa fa-check"></i><b>B</b> Métricas</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html#R2-no-decreciente"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado no decreciente</a></li>
+<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html#R2-no-decreciente"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="estadísticos.html"><a href="estadísticos.html"><i class="fa fa-check"></i><b>C</b> Estadísticos</a>
 <ul>
@@ -1166,7 +1166,7 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 \bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
 \tag{3.28}
 \end{equation}\]</span>
-<p>Una característica importante de esta métrica de ajuste es que, tanto el <span class="math inline">\(R^2\)</span> como el <span class="math inline">\(\bar{R}^2\)</span> aumentan a medida que se incluyen más covariables en el modelo (consulte el anexo <a href="métricas.html#R2-no-decreciente">B.1</a> para estudiar esta característica). Sin embargo, este último penaliza el valor del <span class="math inline">\(R^2\)</span> en función de la cantidad de covariables incluidas en este.</p></li>
+<p>Una característica importante de esta métrica de ajuste es que, solo el <span class="math inline">\(R^2\)</span> aumenta a medida que se incluyen más covariables en el modelo, mientras que el <span class="math inline">\(\bar{R}^2\)</span> no necesariamente (consulte el anexo <a href="métricas.html#R2-no-decreciente">B.1</a> para estudiar esta característica).</p></li>
 </ul>
 <p>Respecto al ejemplo <a href="regresión-lineal.html#exm:MultipleManual">3.3</a>, la salida de resumen del modelo en R es:</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="regresión-lineal.html#cb151-1" tabindex="-1"></a><span class="co"># Guardamos el resumen como una variable</span></span>
