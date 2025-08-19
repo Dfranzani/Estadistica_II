@@ -144,7 +144,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 17-08-2025}
+\date{Actualizado al 18-08-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -437,9 +437,9 @@ Acotado por la izquierda & $P(a < \mu_X - \mu_Y) = 1-\alpha$ & $\left(\bar{x} - 
   Valor: tipo de cambio del dólar a pesos (clp).
 \end{itemize}
 
-Elabore un intervalo de confianza para estudiar la diferencia del valor promedio del dólar entre los meses de junio y julio, asumiendo distribución normal de los datos en ambas poblaciones, y varianzas poblacionales de 1250 y 580 para cada mes respectivamente.
+Elabore un intervalo de confianza para estudiar la diferencia del valor promedio del dólar entre los meses de junio y julio, asumiendo distribución normal de los datos en ambas poblaciones, y varianzas poblacionales de 1250 y 580 para cada mes respectivamente. Utilice una confianza del 95\%.
 
-Al conocer las varianzas poblacionales, y querer estudiar la diferencia, corresponde elaborar el siguiente intervalo de confianza. Asumiendo una confianza del 95\%.
+Al conocer las varianzas poblacionales, y querer estudiar la diferencia, corresponde elaborar el siguiente intervalo de confianza.
 
 \[\left(\bar{x} - \bar{y} \pm Z_{1-\alpha/2}\displaystyle\sqrt{\displaystyle\frac{\sigma^2_X}{n_x} + \displaystyle\frac{\sigma^2_Y}{n_y}}\right)\]
 No existe un comando en R que permita generar este intervalo de confianza, por lo que corresponde construirlo manualmente, tal como se muestra a continuación.
@@ -522,11 +522,11 @@ Como el intervalo contiene al cero, no existe suficiente evidencia para indicar 
 \end{example}
 
 \begin{exercise}
-\protect\hypertarget{exr:ICcontrolcuotas}{}\label{exr:ICcontrolcuotas}La base de datos \hyperref[Cuotas]{Control cuotas} contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Se está interesado en saber si el valor promedio de las cuotas de Plan Vital superan al de Provida por más de 30000 pesos, para ello, elabore un intervalo de confianza, considerando una confianza del 90\%. Asuma, que el valor cuota es una variable aleatoria que distribuye normal en ambas poblaciones (independientes), y que las varianzas poblacionales son desconocidas e iguales.
+\protect\hypertarget{exr:ICcontrolcuotas}{}\label{exr:ICcontrolcuotas}La base de datos \hyperref[Cuotas]{Control cuotas} contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Se está interesado en saber si el valor promedio de las cuotas de Plan Vital supera al de Provida por más de 30000 pesos, para ello, elabore un intervalo de confianza con una confianza del 90\%. Asuma, que el valor cuota es una variable aleatoria que distribuye normal en ambas poblaciones (independientes), y que las varianzas poblacionales son desconocidas e iguales.
 \end{exercise}
 
 \begin{exercise}
-Utilizando la base de datos \hyperref[Cuotas]{Control cuotas}, estudiar si la media del valor cuota de Provida es menor a la de Plan Vital. Utilice una confianza del 99.64\% Considere distribución normal de las variables y varianzas poblacionales desconocidas e iguales.
+Utilizando la base de datos \hyperref[Cuotas]{Control cuotas}, estudiar si la media del valor cuota de Provida es menor a la de Plan Vital, utilizando una confianza del 99.64\% Considere distribución normal de las variables y varianzas poblacionales desconocidas e iguales.
 \end{exercise}
 
 \subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-y-distintas}
@@ -586,7 +586,7 @@ El resultado indica que, la probabilidad de que el intervalo \((-104.3,  -65.17)
 \end{example}
 
 \begin{exercise}
-Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor que el del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
+Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor al del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
 \end{exercise}
 
 \section{Intervalo de confianza para la comparación de varianzas}\label{intervalo-de-confianza-para-la-comparaciuxf3n-de-varianzas}
