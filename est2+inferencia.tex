@@ -144,7 +144,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 19-08-2025}
+\date{Actualizado al 21-08-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -211,7 +211,7 @@ Las bases de datos que se trabajarán en esta unidad son las siguientes:
   \end{itemize}
 \end{itemize}
 
-\section{Concepto}\label{concepto}
+\section{Concepto}\label{intervalos-de-confianza-concepto}
 
 La estimación puntual aproxima mediante un número el valor de una característica poblacional o parámetro desconocido (la altura media de los chilenos, la intención de voto a un partido en las próximas elecciones generales, el tiempo medio de ejecución de un algoritmo, el valor del reajuste del IPC del próximo año) pero no nos indica el error que se comete en dicha estimación. \citep[página 254]{Devore}
 
@@ -225,7 +225,7 @@ P(\text{Parámetro} \in (L,U)) = 1-\alpha
 
 En la estimación por intervalos de confianza partimos de una muestra \(x_1,\ldots,x_n\), de lo cuales obtenemos un un intervalo numérico. Por ejemplo, podríamos hablar de que, con una confianza del \(90\%\), la estatura media de los chilenos (parámetro poblacional) está contenida por el intervalo \((1.80, 1.84)\) metros, o , la probabilidad de que el intervalo \((1.80,1.84)\) contenga al valor real de la estatura media de los chilenos en metros es de \(0.9\).
 
-\subsection{Elaboración}\label{elaboraciuxf3n}
+\subsection{Elaboración}\label{intervalos-de-confianza-elaboracion}
 
 Cuando trabajamos con bases de datos (o cualquier conjunto de datos), se supone que las observaciones muestrales reales \(x_1,\ldots , x_n\) son el resultado de una muestra aleatoria \(X_1,\ldots , X_n\) tomada de una distribución normal con valor medio \(\mu\) y desviación estándar \(\sigma\). Los resultados de la última unidad del curso de Estadística I (Distribución de la media) implican que independientemente del tamaño de la muestra (\(n\)), la media muestral \(\bar{X}\) está normalmente distribuida con valor esperado \(\mu\) y desviación estándar \(\sigma/\sqrt{n}\). Si se estandariza el promedio se obtiene la variable normal estándar
 
@@ -279,7 +279,7 @@ A continuación, se dan a conocer intervalos de confianza para estimar la media 
 
 \section{Intervalo de confianza para la media}\label{intervalo-de-confianza-para-la-media}
 
-\subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida}\label{intervalo-de-confianza-para-la-media-de-una-distribuciuxf3n-normal-y-varianza-poblacional-conocida}
+\subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida}\label{intervalo-de-confianza-para-la-media-varianza-conocida}
 
 \begin{table}[H]
 \centering
@@ -341,7 +341,7 @@ Dado lo expuesto en el ejercicio anterior, la figura \ref{fig:simulacionIC} mues
 \caption{Simulación de intervalos de confianza}\label{fig:simulacionIC}
 \end{figure}
 
-\subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida}\label{intervalo-de-confianza-para-la-media-de-una-distribuciuxf3n-normal-y-varianza-poblacional-desconocida}
+\subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida}\label{intervalo-de-confianza-para-media-varianza-desconocida}
 
 \begin{table}[H]
 \centering
@@ -406,7 +406,7 @@ Utilizando la base de datos del \hyperref[Imacec1]{Imacec}:
 
 \section{Intervalo de confianza para la diferencia de medias}\label{intervalo-de-confianza-para-la-diferencia-de-medias}
 
-\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-conocidas}
+\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas}
 
 \begin{table}[H]
 \centering
@@ -470,7 +470,7 @@ El resultado indica que, la probabilidad de que el intervalo \((-103.8,  -65.7)\
 Estudiar si el valor promedio del dólar de Julio es mayor al de Junio por más de 50 pesos (clp). Considere que las variables distribuyen normal, y que las varianzas poblacionales son las mismas que se mencionan en el ejemplo \ref{exm:ICdiferencianormal}. Utilice una confianza del 92.3\%. Interprete.
 \end{exercise}
 
-\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales}\label{intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-e-iguales}
+\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales}
 
 \begin{table}[H]
 \centering
@@ -529,7 +529,7 @@ Como el intervalo contiene al cero, no existe suficiente evidencia para indicar 
 Utilizando la base de datos \hyperref[Cuotas]{Control cuotas}, estudiar si la media del valor cuota de Provida es menor a la de Plan Vital, utilizando una confianza del 99.64\% Considere distribución normal de las variables y varianzas poblacionales desconocidas e iguales.
 \end{exercise}
 
-\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-de-dos-distribuciones-normales-y-varianzas-poblacionales-desconocidas-y-distintas}
+\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas}
 
 \begin{table}[H]
 \centering
@@ -589,7 +589,7 @@ El resultado indica que, la probabilidad de que el intervalo \((-104.3,  -65.17)
 Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor al del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
 \end{exercise}
 
-\section{Intervalo de confianza para la comparación de varianzas}\label{intervalo-de-confianza-para-la-comparaciuxf3n-de-varianzas}
+\section{Intervalo de confianza para la comparación de varianzas}\label{intervalo-de-confianza-comparaciuxf3n-de-varianzas}
 
 En este caso, se estará interesado el siguiente intervalo, ya que, es el fundamental para determinar la igualdad de las varianzas.
 
@@ -691,7 +691,7 @@ Las variables que contiene la base de datos son las siguientes:
   ICC: valor del índice de confianza del consumidor.
 \end{itemize}
 
-\section{Concepto}\label{concepto-1}
+\section{Concepto}\label{prueba-de-hipotesis-concepto}
 
 Una \textbf{hipótesis estadística} o simplemente \emph{hipótesis} es una pretensión o aseveración sobre el valor de un solo parámetro (característica de la población o característica de una distribución de la población) o sobre los valores de varios parámetros \citep[página 285]{Devore} \citep[página 340]{anderson}.
 
@@ -701,7 +701,7 @@ La \textbf{hipótesis nula} denotada por \(H_0\), es la pretensión de que inici
 
 La hipótesis nula será rechazada en favor de la hipótesis alternativa solo si la evidencia muestral sugiere que \(H_0\) es falsa. Si la muestra no contradice fuertemente a \(H_0\), se continuará creyendo en la verdad de la hipótesis nula. Las dos posibles conclusiones derivadas de un análisis de prueba de hipótesis son entonces \emph{rechazar} \(H_0\) o \emph{no rechazar} \(H_0\).
 
-\subsection{Elaboración}\label{elaboraciuxf3n-1}
+\subsection{Elaboración}\label{prueba-de-hipotesis-elaboracion}
 
 En algunas aplicaciones no parece obvio cómo formular la hipótesis nula y alternativa. Se debe tener cuidado en estructurar la hipótesis apropiadamente de manera que la conclusión de la prueba de hipótesis proporcione la información que el investigador o la persona encargada de tomar las decisiones desea. A partir de la situación, las pruebas de hipótesis pueden tomar tres formas (tabla \ref{tab:hipotesis}), las cuales se diferencian en el desigualdad o igualdad empleada en la hipótesis alternativa.
 
@@ -791,7 +791,7 @@ Debido a los costos y al tiempo de adaptación de la producción, un director de
 
 \end{exercise}
 
-\subsection{Errores tipo I y II}\label{errores-tipo-i-y-ii}
+\subsection{Errores tipo I y II}\label{prueba-de-hipotesis-errores}
 
 Las hipótesis nula y alternativa son afirmaciones opuestas acerca de la población. Una de las dos, ya sea la hipótesis nula o la alternativa es verdadera, pero no ambas. Lo ideal es que la prueba de hipótesis lleve a la aceptación de \(H_0\) cuando \(H_0\) sea verdadera y al rechazo de \(H_0\) cuando \(H_1\) sea verdadera. Por desgracia, las conclusiones correctas no siempre son posibles. Como la prueba de hipótesis se basa en una información muestral debe tenerse en cuenta que existe la posibilidad de error.
 
@@ -853,7 +853,7 @@ Suponga que se va a implantar un nuevo método de producción si mediante una pr
 
 \end{exercise}
 
-\subsection{Procedimiento de prueba}\label{procedimiento-de-prueba}
+\subsection{Procedimiento de prueba}\label{prueba-de-hipotesis-procedimiento}
 
 Un procedimiento de prueba es un regla, basada en datos muestrales, para decidir si rechazar \(H_0\). Este proceso consta de dos elementos:
 
@@ -959,7 +959,7 @@ El intervalo de números generado a partir del valor crítico es lo denominado \
 
 Los lineamientos de cómo construir un estadístico de prueba, determinar el varlo crítico y el valor-p asociados a una prueba de hipótesis, se darán a conocer a partir de la sección \ref{pruebas}.
 
-\subsection{Intervalos de confianza}\label{intervalos-de-confianza-1}
+\subsection{Intervalos de confianza \{\#prueba-de-hipotesis-intervalos de confianza\}}\label{intervalos-de-confianza-prueba-de-hipotesis-intervalos-de-confianza}
 
 Existe un relación directa entre las pruebas de hipótesis y los intervalos de confianza, ya que estos pueden ser utilizados para rechazar o no \(H_0\). La tabla \ref{tab:ICpruebas}, da cuenta de del tipo de intervalo de confianza que se debe elaborar para cada tipo de prueba de hipótesis.
 
@@ -984,7 +984,7 @@ A lo largo de las distintas pruebas, se abordarán los distintos métodos de pru
 
 Esta sección se centra en el planteamiento y prueba de hipótesis relacionadas a la parámetro de media. Para cada uno de estos casos, se detalla el procedimiento en R y los distintos métodos de prueba para la decisión de rechazo de \(H_0\). En particular, las pruebas para este parámetro requieren que la distribución poblacional de la variable de estudio es normal, lo cual, se asumirá en los enunciados de los ejercicios y/o ejemplos según corresponda.
 
-\subsection{Prueba de hipótesis para la media de una distribución normal con varianza poblacional conocida}\label{prueba-de-hipuxf3tesis-para-la-media-de-una-distribuciuxf3n-normal-con-varianza-poblacional-conocida}
+\subsection{Prueba de hipótesis para la media de una distribución normal con varianza poblacional conocida}\label{prueba-de-hipotesis-media-varianza-conocida}
 
 Aun cuando la suposición de que el valor de \(\sigma^2\) es conocido, rara vez se cumple en la práctica. Este caso proporciona un buen punto de partida debido a la facilidad con que los procedimientos generales y sus propiedades pueden ser desarrollados. La hipótesis nula en los tres casos propondrá que \(\mu\) tiene un valor numérico particular, el valor nulo, el cual será denotado por \(\mu_0\).
 
@@ -1183,7 +1183,7 @@ Se requiere estudiar si la cantidad promedio de cafeína en una taza de café es
 Se desea evaluar si la altura promedio de una población de girasoles es distinta de 150 cm. Para ello, se selecciona una muestra aleatoria de 30 girasoles y se encuentra que la altura promedio es de 155 cm, con una desviación estándar conocida de 5 cm. ¿Hay suficiente evidencia para rechazar la hipótesis nula al nivel de significancia del 1\%?
 \end{exercise}
 
-\subsection{Prueba de hipótesis para la media de una distribución normal con varianza poblacional desconocida}\label{prueba-de-hipuxf3tesis-para-la-media-de-una-distribuciuxf3n-normal-con-varianza-poblacional-desconocida}
+\subsection{Prueba de hipótesis para la media de una distribución normal con varianza poblacional desconocida}\label{prueba-de-hipotesis-media-varianza-desconocida}
 
 De igual manera a lo expuesto en el primer caso, los pasos a seguir para probar una hipótesis son los mismos, y se mantendrá así para cualquier caso.
 
@@ -1512,11 +1512,11 @@ Establezca las hipótesis respectivas, estadísticos y criterios de rechazo, uti
 Establezca las hipótesis, estadísticos y criterios de rechazo. Utilice una significancia del 12\%. Además, asuma que las variables distribuyen normal y tienen varianza poblacional desconocida. Concluya.
 \end{exercise}
 
-\section{Prueba de hipótesis para la diferencia de medias}\label{prueba-de-hipuxf3tesis-para-la-diferencia-de-medias}
+\section{Prueba de hipótesis para la diferencia de medias}\label{prueba-de-hipotesis-diferencia-de-medias}
 
 En esta sección se continúa con el estudio de la inferencia estadística, específicamente para la diferencia entre dos medias poblacionales. Por ejemplo, quizá desee obtener una estimación por intervalo para la diferencia entre el salario inicial medio de la población de hombres y el salario inicial medio de la población de mujeres \citep[página 395]{anderson}. Para este tipo de pruebas, se requiere que las distribuciones poblacionales de las variables sean normales e independientes, lo cual, se asumirá en los enunciados de ejemplos y/o ejercicios según corresponda.
 
-\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales conocidas}\label{prueba-de-hipuxf3tesis-para-la-diferencia-de-medias-de-dos-distribuciones-normales-con-varianzas-poblacionales-conocidas}
+\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales conocidas}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-conocidas}
 
 El primero de los tres casos corresponde al de varianzas poblacionales conocidas. La tabla \ref{tab:dosmedias1} da cuenta del estadístico de prueba asociado las respectivas hipótesis, además de los criterios asociados al valor crítico correspondiente.
 
@@ -1704,7 +1704,7 @@ Al igual que en la prueba para una media cuando se conoce la varianza poblaciona
 Se está interesado en saber si, la media de los valores cuota de Plan Vital supera al de Provida por más de 30000 pesos. Considere una confianza del 99\%. Plantee y pruebe una hipótesis para la diferencia de medias, considerando \(\sigma^2_{\text{Provida}} = 1165833\) y \(\sigma^2_{\text{Plan Vital}} = 3393141\). Utilice todos los métodos de rechazo.
 \end{exercise}
 
-\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas e iguales}\label{prueba-de-hipuxf3tesis-para-la-diferencia-de-medias-de-dos-distribuciones-normales-con-varianzas-poblacionales-desconocidas-e-iguales}
+\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas e iguales}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-iguales}
 
 Para el segundo caso, las varianzas poblacionales son desconocidas, sin embargo, los valores de estas varianzas poblacionales pueden ser iguales o distintos. La tabla \ref{tab:dosmedias2} refleja el estadístico de prueba y los criterios de rechazo asociados al método del valor crítico, para el caso en que los valores de las varianzas poblacionaes desconocidas son iguales.
 
@@ -1898,7 +1898,7 @@ A continuación elabore las siguiente pruebas.
 
 \end{exercise}
 
-\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas y distintas}\label{prueba-de-hipuxf3tesis-para-la-diferencia-de-medias-de-dos-distribuciones-normales-con-varianzas-poblacionales-desconocidas-y-distintas}
+\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas y distintas}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-distintas}
 
 El último de los casos, las varianzas poblacionales son desconocidas y distintas. El detalle del estadístico de prueba y los criterios del método del valor crítico asociados se encuentran en la tabla \ref{tab:dosmedias3}.
 
@@ -2099,7 +2099,7 @@ A continuación elabore las siguiente pruebas.
 
 \end{exercise}
 
-\section{Prueba de hipótesis para comparación de varianzas}\label{prueba-de-hipuxf3tesis-para-comparaciuxf3n-de-varianzas}
+\section{Prueba de hipótesis para comparación de varianzas}\label{prueba-de-hipotesis-comparacion-varianzas}
 
 En esta sección se extiende el estudio a las varianzas poblacionales, con al finalidad de estableces si estas son iguales o distintas. Para ello, se requiere que las distribuciones poblacionales de las variables de estudios sean normales e independientes, lo cual, se asumirá en los enunciados de los ejemplos y/o ejercicios según corresponda.
 
@@ -2414,7 +2414,7 @@ La base de datos \emph{CO2} (incroporrada en R) contiene datos de un experimento
 A continuación, plantee y pruebe una hipótesis para estudiar si, la diferencia entre el promedio de la tasa de absorción de dióxido de carbono de las dos zonas medidas está a favor de Mississippi. Utilice una confianza del 96\%. Haga uso de todos los métodos de rechazo. Interprete.
 \end{exercise}
 
-\section{Prueba de hipótesis para la diferencia de proporciones}\label{prueba-de-hipuxf3tesis-para-la-diferencia-de-proporciones}
+\section{Prueba de hipótesis para la diferencia de proporciones}\label{prueba-de-hipotesis-diferencia-proporciones}
 
 Después de presentar métodos para comparar las medidas de dos poblaciones diferentes, ahora se presta atención a la comparación de dos proporciones de población. Las proporciones se plantear de la siguiente manera \citep[página 353]{Devore}.
 
@@ -2640,7 +2640,7 @@ A continuación.
 
 \end{exercise}
 
-\chapter{Regresión Lineal}\label{regresiuxf3n-lineal}
+\chapter{Regresión Lineal}\label{regresion-lineal}
 
 En general, las bases de datos que se trabajarán en esta sección son las siguientes:
 
@@ -2727,9 +2727,9 @@ En general, las bases de datos que se trabajarán en esta sección son las sigui
   \end{itemize}
 \end{itemize}
 
-\section{Medidas de asociación lineal}\label{medidas-de-asociaciuxf3n-lineal}
+\section{Medidas de asociación lineal}\label{regresion-lineal-medidas-asociacion}
 
-\subsection{Covarianza}\label{covarianza}
+\subsection{Covarianza}\label{regresion-lineal-covarianza}
 
 Es posible entender las relaciones entre dos o más variables, gráficamente y a través de estadísticos. En esta sección seabarcarán las relaciones lineales entre dos variables cuantitativas, utilizando la Covarianza y la Correlación. El gráfico que apoya a estas dos medidas es el gráfico de dispersión.
 
@@ -2765,7 +2765,7 @@ A continuación, se estudia gráficamente la covarianza entre dos variables. Par
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
-\subsection{Correlación}\label{correlaciuxf3n}
+\subsection{Correlación}\label{regresion-lineal-correlacion}
 
 Aunque con el signo de la covarianza podemos detectar el tipo de relación entre dos variables, al depender de las unidades de \(X\) y de \(Y\), no sabemos si corresponde a un relación fuerte o débil (es decir, la forma lineal es fuertemente o débilmente pronunciada); sólo sabemos el signo. Para solucionar esto, \textbf{estandarizamos} los valores. La fórmula que realiza este proceso utilizando la covarianza es
 
@@ -2840,7 +2840,7 @@ La base de datos \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-dato
 
 \end{exercise}
 
-\section{Regresión lineal simple}\label{regresiuxf3n-lineal-simple}
+\section{Regresión lineal simple}\label{regresion-lineal-simple}
 
 La regresión lineal simple (RLS) consiste en generar un \textbf{modelo de regresión} (ecuación de una recta) que permita explicar la relación lineal que existe entre dos variables. A la variable dependiente, predicha o respuesta se le identifica como \(Y\) y a la variable predictora o independiente como \(X\). \citep[página 450]{Devore}
 
@@ -3303,11 +3303,11 @@ Utilizando la base de datos \hyperref[Ingreso]{Ingreso}:
 
 \end{exercise}
 
-\subsection{Supuestos}\label{supuestos}
+\subsection{Supuestos}\label{regresion-lineal-simple-supuestos}
 
 Cuándo se elabora un modelo de regresión lineal, es necesario verificar el cumplimiento de condiciones para la correcta interpretación y utilización del modelo desarrollado. Las condiciones que se deben cumplir se denominan supuestos. A continuación, se detallan los 4 supuestos que se deben estudiar, utilizando como ejemplo el modelo elaborado en el ejemplo \ref{exm:AFPUNO}.
 
-\subsubsection{Linealidad}\label{linealidad}
+\subsubsection{Linealidad}\label{regresion-lineal-simple-supuestos-linealidad}
 
 La relación entre ambas variables (dependiente e independiente) debe ser lineal. Para observar el comportamiento es posible realizar un gráfico de puntos entre la variable predictora (\(X\)) y la variable de estudio (\(Y\)).
 
@@ -3323,7 +3323,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
-\subsubsection{Normalidad}\label{normalidad}
+\subsubsection{Normalidad}\label{regresion-lineal-simple-supuestos-normalidad}
 
 Los residuos \texttt{estandarizados} deben distribuir Normal con media 0 (\(\mu\)) y varianza 1 (\(\sigma^2\)). Para ello, se pueden ejecutar varios comandos en R para probar esta hipótesis. El más conocido es el comando \texttt{shapiro.test()}. La hipótesis es
 
@@ -3401,7 +3401,7 @@ Una tercera opción es utilizar el comando \texttt{ad.test()} de la librería \t
 ## A = 0.71269, p-value = 0.05962
 \end{verbatim}
 
-\subsubsection{Homocedasticidad}\label{homocedasticidad}
+\subsubsection{Homocedasticidad}\label{regresion-lineal-simple-supuestos-homocedasticidad}
 
 Este supuesto hace referencia a la necesidad de una varianza constante de los residuos. Para verificar esto, se grafican los residuos estandarizados del modelo versus los valores de la variable predictora (o variable predicha, \(\widehat{y}\)). Se busca que las amplitudes verticales en las figuras sean similares en la medida que se recorre el eje de las abscisas. Similarmente, es posible ejecutar una prueba de hipótesis (Breucsh - Pagan) en R con el comando \texttt{bptest()} de la librería \textbf{lmtest}, siendo
 
@@ -3446,7 +3446,7 @@ Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difíci
 
 Considerando una confianza del 95\%, el valor-p de 0.5835 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tienen varianza constante (homocedasticidad).
 
-\subsubsection{Independencia}\label{independencia}
+\subsubsection{Independencia}\label{regresion-lineal-simple-supuestos-independencia}
 
 El último supuesto corresponde a la independencia de los residuos, es decir que, no deben estar correlacionados entre ellos (autocorrelación igual a 0). La prueba de hipótesis de Durbin - Watson está diseñada para detectar autocorrelación en los residuos. Para ejecutar esta prueba en R se debe utilizar la función \texttt{dwtest()} de la librería \textbf{lmtest}. La hipótesis es
 
@@ -3546,7 +3546,7 @@ Luego, para cada modelo:
 
 \end{exercise}
 
-\section{Regresión lineal múltiple}\label{regresiuxf3n-lineal-muxfaltiple}
+\section{Regresión lineal múltiple}\label{regresion-lineal-multiple}
 
 A diferencia de la regresión lineal simple, la regresión lineal múltiple (RLM) hace uso de más de una variable independiente para modelar el comportamiento de variable de estudio \citep[página 528]{Devore}. La expresión de un modelo de regresión múltiple es:
 
@@ -3928,7 +3928,7 @@ Luego,
 
 \end{exercise}
 
-\subsection{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis}
+\subsection{Pruebas de hipótesis}\label{regresion-lineal-multiple-pruebas-hipotesis}
 
 Las hipótesis de no nulidad asociadas a cada uno de los betas se plantean de la misma forma que se ha visto en el caso de regresión lineal simple. La única diferencia radica en el valor- p de la prueba \textbf{F-statistic}, el cual es diferente al valor-p de la prueba asociada a \(\widehat{\beta}_1\).
 
@@ -4175,7 +4175,7 @@ Se ejecutó en R el comando:
 Los valores de SCT y SCReg son \(407\) y \(20\), respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule MCE, MCReg y \(F_0\).
 \end{exercise}
 
-\subsection{Supuestos}\label{supuestos-1}
+\subsection{Supuestos}\label{regresion-lineal-multiple-supuestos}
 
 Al igual que en la regresión lineal simple, lo supuestos a verificar son:
 
@@ -4348,7 +4348,7 @@ Considere los modelos ajustados en:
 Estudie los supuestos del modelo, además escriba las hipótesis asociadas a los supuestos cuando corresponda, utilizando una confianza del 95\%.
 \end{exercise}
 
-\section{Selección de variables}\label{selecciuxf3n-de-variables}
+\section{Selección de variables}\label{regresion-lineal-seleccion-variables}
 
 La selección de métodos le permite especificar cómo se introducen las variables independientes en el análisis. Usando diferentes métodos, puede construir una variedad de modelos de regresión a partir del mismo conjunto de variables.
 
@@ -4364,7 +4364,7 @@ Dentro de las utilidades de usar un método para la selección de variables est�
 
 A continuación se dan a conocer algunos de los métodos de selección de variables.
 
-\subsection{Forward}\label{forward}
+\subsection{Forward}\label{regresion-lineal-seleccion-variables-forward}
 
 Corresponde a un procedimiento de selección de variables paso a paso en el que las variables se ingresan secuencialmente en el modelo. La primera variable considerada para entrar en la ecuación de regresión es la que tiene la mayor correlación positiva o negativa con la variable dependiente. Esta variable se ingresa en la ecuación solo si cumple el criterio de entrada. Si se ingresa la primera variable, la variable independiente que no está en la ecuación y que tiene la mayor correlación parcial se considera a continuación. El procedimiento se detiene cuando no hay variables que cumplan con el criterio de entrada.
 
@@ -4468,7 +4468,7 @@ Considerando el ejercicio \ref{exr:co2}, elabore un modelo para estudiar la tasa
 \protect\hypertarget{exr:forward3}{}\label{exr:forward3}Considerando el ejercicio \ref{exr:calidad-aire}, elabore un modelo para estudiar la concentración de Ozono en el aire, seleccionado las variables independientes mediante el método \emph{forward}. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el \(R^2\) ajustado del modelo.
 \end{exercise}
 
-\subsection{Backward}\label{backward}
+\subsection{Backward}\label{regresion-lineal-seleccion-variables-backward}
 
 Al contrario de la metodología \emph{forward}, la metodología \emph{backward} realiza una eliminación de variables considerando como punto de partida el modelo que contiene todas las covariables. Los pasos detallados son los siguientes:
 
@@ -4572,7 +4572,7 @@ Considerando el ejercicio \ref{exr:calidad-aire}, elabore un modelo para estudia
 Determine dos modelos utilizando las metodologías forward y backward. Compare ambos modelos mediante el \(R^2\) ajustado. ¿Cuál modelo eligiría para estudiar la varible \emph{logq}?
 \end{exercise}
 
-\section{Predicción de observaciones}\label{predicciuxf3n-de-observaciones}
+\section{Predicción de observaciones}\label{regresion-lineal-prediccion-observaciones}
 
 Es natural estar interesado en estudiar nuevas observaciones en un estudio, por ejemplo, si se construye una regresión lineal simple para estudiar el valor de dólar a través del PIB y el ICC, es posible que surja la pregunta ¿cuál será el valor del dólar para una PIB e ICC determinado? (considere que dichos valores del PIB e ICC no se encuentran en la muestra). Para responder a esto, es posible construir un denominado intervalo de predicción. Sin embargo, existe otro tipo de intervalo muy común, denominado intervalo de confianza. La distinción entre estos dos tipos de intervalos es la siguiente \citep[página 125]{fahrmeir_regression_2013}:
 
