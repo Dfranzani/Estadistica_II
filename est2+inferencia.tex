@@ -144,7 +144,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 21-08-2025}
+\date{Actualizado al 02-09-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -959,7 +959,7 @@ El intervalo de números generado a partir del valor crítico es lo denominado \
 
 Los lineamientos de cómo construir un estadístico de prueba, determinar el varlo crítico y el valor-p asociados a una prueba de hipótesis, se darán a conocer a partir de la sección \ref{pruebas}.
 
-\subsection{Intervalos de confianza \{\#prueba-de-hipotesis-intervalos de confianza\}}\label{intervalos-de-confianza-prueba-de-hipotesis-intervalos-de-confianza}
+\subsection{Intervalos de confianza}\label{prueba-de-hipotesis-intervalos-de-confianza}
 
 Existe un relación directa entre las pruebas de hipótesis y los intervalos de confianza, ya que estos pueden ser utilizados para rechazar o no \(H_0\). La tabla \ref{tab:ICpruebas}, da cuenta de del tipo de intervalo de confianza que se debe elaborar para cada tipo de prueba de hipótesis.
 
@@ -1344,7 +1344,7 @@ Luego, haciendo uso de R obtenemos los elementos necesario para rechazar o no \(
 ## [1] FALSE
 \end{verbatim}
 
-  \textbf{Interpretación utilizando el método del intervalo de confianza}: El intervalo de confianza \((98.5416, \infty)\) contiene al valor de \(\mu_0 = 98.54167\), por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, no existe suficiente evidencia para apoyar la afirmación de que el valor promedio del Imacec del sector de Minería es mayor a 98.54167. Considerando una confianza del 90\%.
+  \textbf{Interpretación utilizando el método del intervalo de confianza}: El intervalo de confianza \((96.21024, \infty)\) contiene al valor de \(\mu_0 = 98.54167\), por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, no existe suficiente evidencia para apoyar la afirmación de que el valor promedio del Imacec del sector de Minería es mayor a 98.54167. Considerando una confianza del 90\%.
 \end{enumerate}
 
 La prueba de hipótesis para el sector de industria es la siguiente.
@@ -5065,7 +5065,7 @@ Por otro lado, cuando \(n < k+1\) ocurre que no es posible estimar los parámetr
 
 \begin{itemize}
 \item
-  El rango de una matriz \(A\) denotado por \(\text{rank}(A)\) es la cantidad de columnas linealmente independientes de la matriz. Para una matriz producto se tiene que
+  El rango de una matriz \(A\) denotado por \(\text{rank}(A)\) es el mínimo entre la cantidad de columnas y filas linealmente independientes de la matriz. Para una matriz producto se tiene que
 
   \[\text{rank}(AB) \leq \min(\text{rank}(A), \text{rank}(B)).\]
 
