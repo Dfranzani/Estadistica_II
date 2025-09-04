@@ -125,29 +125,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -166,7 +143,6 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
-<li class="chapter" data-level="" data-path="talleres.html"><a href="talleres.html"><i class="fa fa-check"></i>Talleres de práctica</a></li>
 <li class="chapter" data-level="1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>1</b> Intervalos de confianza</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto"><i class="fa fa-check"></i><b>1.1</b> Concepto</a>
@@ -376,7 +352,7 @@ S(\beta_0,\beta_1) &amp;= \sum_{i=1}^n\epsilon_i^2 = \sum_{i=1}^n (Y_i - [\beta_
 </div>
 <div id="descomposición-de-la-suma-de-cuadrados-total" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">A.2</span> Descomposición de la Suma de Cuadrados Total<a href="#descomposici%C3%B3n-de-la-suma-de-cuadrados-total" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En la sección <a href="regresion-lineal.html#sumascuadraticas">3.2.2</a>, la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a> plantea que la suma de cuadrados total (SCT) se puede descomponer en la suma de cuadrados del modelo (SCReg) y la suma de cuadrados del error (SCE). La demostración es la siguiente:</p>
+<p>En la sección <a href="regresion-lineal.html#sumascuadraticas">3.2.2</a>, la ecuación <a href="#eq:descomposicion-sct">(<strong>??</strong>)</a> plantea que la suma de cuadrados total (SCT) se puede descomponer en la suma de cuadrados del modelo (SCReg) y la suma de cuadrados del error (SCE). La demostración es la siguiente:</p>
 <span class="math display" id="eq:demostracionSCT1">\[\begin{equation}
 \begin{split}
 \sum_{i=1}^n\left( Y_i - \bar{Y} \right)^2 &amp;= \sum_{i=1}^n\left( \left( \widehat{Y}_i - \bar{Y} \right) + \left( Y_i - \widehat{Y}_i \right) \right)^2\\
@@ -450,6 +426,97 @@ X^tX\beta &amp;= X^tY\\
 \end{split}
 \tag{A.18}
 \end{equation}\]</span>
+<p>El resultado de la ecuación <a href="estimadores.html#eq:betasmultiple3-demostracion">(A.18)</a> permite obtener de manera conjunta los EMC de los parámetros de un modelo de regresión lineal múltiple. Sin embargo, es posible obtener un expresión para obtener el estimador de uno de los parámetros o un subconjunto estricto de ellos.</p>
+<p>Considerando el modelo de regresión lineal múltiple clásico</p>
+<span class="math display" id="eq:RLM-clasico">\[\begin{equation}
+\begin{split}
+Y &amp;= X\beta + \epsilon\\
+\end{split}
+\tag{A.19}
+\end{equation}\]</span>
+<p>Es posible desglosar el modelo de la siguiente forma</p>
+<span class="math display" id="eq:RLM-clasico2">\[\begin{equation}
+\begin{split}
+Y &amp;= X_0\beta_0 + X_1\beta_1 + \epsilon,\\
+\end{split}
+\tag{A.20}
+\end{equation}\]</span>
+<p>en el cual, <span class="math inline">\(X_0\)</span> y <span class="math inline">\(X_1\)</span> son subconjutos de columnas de la matriz de diseño <span class="math inline">\(X\)</span>, tal que, <span class="math inline">\(X = [X_1,X_2]\)</span>. Del mismo modo, <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> son subconjutos de la matriz de parámetros <span class="math inline">\(\beta\)</span>, tal que, <span class="math inline">\(\beta = [\beta_1^t,\beta_2^t]^t\)</span>. El objetivo es obtener una expresión para el estimador de <span class="math inline">\(\beta_0\)</span>. Para ello, se minimiza la suma cuadrática de los errores del modelo.</p>
+<span class="math display" id="eq:RLM-clasico3">\[\begin{equation}
+\min\lbrace S(\beta_1, \beta_2) = (Y - X_0\beta_0 + X_1\beta_1)^t(Y - X_0\beta_0 + X_1\beta_1)  \rbrace
+\tag{A.21}
+\end{equation}\]</span>
+<p>Derivando respecto a <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, e igualando a cero.</p>
+<span class="math display" id="eq:RLM-clasico4">\[\begin{equation}
+\begin{split}
+\frac{\partial S}{\partial \beta_0} &amp;= -2X^t_0(Y-X_0\beta_0-X_1\beta_1) = 0\\
+\frac{\partial S}{\partial \beta_1} &amp;= -2X^t_1(Y-X_0\beta_0-X_1\beta_1) = 0\\
+\end{split}
+\tag{A.22}
+\end{equation}\]</span>
+<p>Despejando <span class="math inline">\(\beta_1\)</span> de la derivada respecto a <span class="math inline">\(\beta_1\)</span>.</p>
+<span class="math display" id="eq:RLM-clasico5">\[\begin{equation}
+\begin{split}
+\beta_1 &amp;= -(X_1^tX_1)^{-1}X_1^t(Y-X_0\beta_0)\\
+\end{split}
+\tag{A.23}
+\end{equation}\]</span>
+<p>Reemplazando el resultado en la derivada respecto a <span class="math inline">\(\beta_0\)</span>.</p>
+<span class="math display" id="eq:RLM-clasico6">\[\begin{equation}
+\begin{split}
+-2X^t_0(Y-X_0\beta_0-X_1\beta_1) &amp;= 0\\
+X^t_0(Y-X_0\beta_0+X_1(X_1^tX_1)^{-1}X_1^t(Y-X_0\beta_0)) &amp;= 0\\
+X^t_0Y-X^t_0X_0\beta_0+X^t_0X_1(X_1^tX_1)^{-1}X_1^t(Y-X_0\beta_0) &amp;= 0
+\end{split}
+\tag{A.24}
+\end{equation}\]</span>
+<p>Denotando <span class="math inline">\(H_1 = X_1(X_1^tX_1)^{-1}X_1^t\)</span>.</p>
+<span class="math display" id="eq:RLM-clasico7">\[\begin{equation}
+\begin{split}
+X^t_0Y-X^t_0X_0\beta_0+X^t_0X_1(X_1^tX_1)X_1^t(Y-X_1\beta_1)) &amp;= 0\\
+X^t_0Y-X^t_0X_0\beta_0+X^t_0H_1Y-X^t_0H_1X_0\beta_0 &amp;= 0\\
+\end{split}
+\tag{A.25}
+\end{equation}\]</span>
+<p>Despejando <span class="math inline">\(\beta_0\)</span></p>
+<span class="math display" id="eq:RLM-clasico7">\[\begin{equation}
+\begin{split}
+(-X^t_0X_0-X^t_0H_1X_0)\beta_0 &amp;= -X^t_0Y - X^t_0H_1Y\\
+\beta_0 &amp;= (X^t_0X_0 + X^t_0H_1X_0)^{-1}(X^t_0Y + X^t_0H_1Y)\\
+\widehat{\beta}_0 &amp;= (X^t_0(I-H_1)X_0)^{-1}X^t_0(I-H_1)Y\\
+\end{split}
+\tag{A.25}
+\end{equation}\]</span>
+<p>El resultado obtenido en <a href="estimadores.html#eq:RLM-clasico7">(A.25)</a> permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño <span class="math inline">\(X_0\)</span> y la matriz de proyección <span class="math inline">\(H_1\)</span> asociada a la matriz de diseño <span class="math inline">\(X_1\)</span>.</p>
+<p>A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, utilizado la base de datos <em>iris</em>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="estimadores.html#cb1-1" tabindex="-1"></a><span class="co"># Carga de la base de datos iris</span></span>
+<span id="cb1-2"><a href="estimadores.html#cb1-2" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
+<span id="cb1-3"><a href="estimadores.html#cb1-3" tabindex="-1"></a><span class="co"># Variables de la basede de datos</span></span>
+<span id="cb1-4"><a href="estimadores.html#cb1-4" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="estimadores.html#cb3-1" tabindex="-1"></a><span class="co"># Modelo de regresión lineal múltiple para estudiar el largo del sépalo a partir del resto de variables numéricas.</span></span>
+<span id="cb3-2"><a href="estimadores.html#cb3-2" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> Petal.Width, <span class="at">data =</span> datos)</span>
+<span id="cb3-3"><a href="estimadores.html#cb3-3" tabindex="-1"></a><span class="co"># Coeficientes del modelo</span></span>
+<span id="cb3-4"><a href="estimadores.html#cb3-4" tabindex="-1"></a>modelo<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##  (Intercept)  Sepal.Width Petal.Length  Petal.Width 
+##    1.8559975    0.6508372    0.7091320   -0.5564827</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="estimadores.html#cb5-1" tabindex="-1"></a><span class="co"># Matrices de diseño</span></span>
+<span id="cb5-2"><a href="estimadores.html#cb5-2" tabindex="-1"></a>X0 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(datos<span class="sc">$</span>Sepal.Width, datos<span class="sc">$</span>Petal.Length), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="estimadores.html#cb5-3" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(datos)), datos<span class="sc">$</span>Petal.Width), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="estimadores.html#cb5-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">matrix</span>(datos<span class="sc">$</span>Sepal.Length, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb5-5"><a href="estimadores.html#cb5-5" tabindex="-1"></a>H1 <span class="ot">=</span> <span class="fu">diag</span>(<span class="fu">nrow</span>(X1)) <span class="sc">-</span> X1 <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(X1) <span class="sc">%*%</span> X1) <span class="sc">%*%</span> <span class="fu">t</span>(X1)</span>
+<span id="cb5-6"><a href="estimadores.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="estimadores.html#cb5-7" tabindex="-1"></a><span class="co"># b0 = t(X1) %*% M2 %*% y / (t(X1) %*% M2 %*% X1)</span></span>
+<span id="cb5-8"><a href="estimadores.html#cb5-8" tabindex="-1"></a>b0 <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(X0) <span class="sc">%*%</span> M2 <span class="sc">%*%</span> X0) <span class="sc">%*%</span>  <span class="fu">t</span>(X0) <span class="sc">%*%</span> M2 <span class="sc">%*%</span> y</span>
+<span id="cb5-9"><a href="estimadores.html#cb5-9" tabindex="-1"></a>b0</span></code></pre></div>
+<pre><code>##           [,1]
+## [1,] 0.6508372
+## [2,] 0.7091320</code></pre>
 </div>
 </div>
             </section>
