@@ -125,6 +125,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -143,6 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="talleres.html"><a href="talleres.html"><i class="fa fa-check"></i>Talleres de práctica</a></li>
 <li class="chapter" data-level="1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>1</b> Intervalos de confianza</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto"><i class="fa fa-check"></i><b>1.1</b> Concepto</a>
@@ -363,9 +387,9 @@ n\widehat{\beta}_0 + j\widehat{\beta}_1 &amp;= j\widehat{\beta}_1&#39; + n\wideh
 \widehat{Y}_{\text{Sepal.Length}} = \widehat{\beta}_0 + \widehat{\beta}_1I_{\text{Species = versicolor}}
 \tag{D.15}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="funciones.html#cb21-1" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
-<span id="cb21-2"><a href="funciones.html#cb21-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">subset</span>(datos, Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>))</span>
-<span id="cb21-3"><a href="funciones.html#cb21-3" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="funciones.html#cb199-1" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
+<span id="cb199-2"><a href="funciones.html#cb199-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">subset</span>(datos, Species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;versicolor&quot;</span>))</span>
+<span id="cb199-3"><a href="funciones.html#cb199-3" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Sepal.Length ~ Species, data = datos)
@@ -378,7 +402,7 @@ n\widehat{\beta}_0 + j\widehat{\beta}_1 &amp;= j\widehat{\beta}_1&#39; + n\wideh
 \widehat{Y}_{\text{Sepal.Length}} = \widehat{\beta}_1&#39;I_{\text{Species = versicolor}} +  \widehat{\beta}_2&#39;I_{\text{Species = setosa}}
 \tag{D.16}
 \end{equation}\]</span>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="funciones.html#cb23-1" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="funciones.html#cb201-1" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> Species, <span class="at">data =</span> datos)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Sepal.Length ~ -1 + Species, data = datos)

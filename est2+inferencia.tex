@@ -144,7 +144,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 02-09-2025}
+\date{Actualizado al 03-09-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4965,6 +4965,140 @@ X^tX\beta &= X^tY\\
 \end{split}
 \label{eq:betasmultiple3-demostracion}
 \end{equation}
+
+El resultado de la ecuación \eqref{eq:betasmultiple3-demostracion} permite obtener de manera conjunta los EMC de los parámetros de un modelo de regresión lineal múltiple. Sin embargo, es posible obtener un expresión para obtener el estimador de uno de los parámetros o un subconjunto estricto de ellos.
+
+Considerando el modelo de regresión lineal múltiple clásico
+
+\begin{equation}
+\begin{split}
+Y &= X\beta + \epsilon\\
+\end{split}
+\label{eq:RLM-clasico}
+\end{equation}
+
+Es posible desglosar el modelo de la siguiente forma
+
+\begin{equation}
+\begin{split}
+Y &= X_0\beta_0 + X_1\beta_1 + \epsilon,\\
+\end{split}
+\label{eq:RLM-clasico2}
+\end{equation}
+
+en el cual, \(X_0\) y \(X_1\) son subconjutos de columnas de la matriz de diseño \(X\), tal que, \(X = [X_1,X_2]\). Del mismo modo, \(\beta_0\) y \(\beta_1\) son subconjutos de la matriz de parámetros \(\beta\), tal que, \(\beta = [\beta_1^t,\beta_2^t]^t\). El objetivo es obtener una expresión para el estimador de \(\beta_0\). Para ello, se minimiza la suma cuadrática de los errores del modelo.
+
+\begin{equation}
+\min\lbrace S(\beta_1, \beta_2) = (Y - X_0\beta_0 + X_1\beta_1)^t(Y - X_0\beta_0 + X_1\beta_1)  \rbrace
+\label{eq:RLM-clasico3}
+\end{equation}
+
+Derivando respecto a \(\beta_0\) y \(\beta_1\), e igualando a cero.
+
+\begin{equation}
+\begin{split}
+\frac{\partial S}{\partial \beta_0} &= -2X^t_0(Y-X_0\beta_0-X_1\beta_1) = 0\\
+\frac{\partial S}{\partial \beta_1} &= -2X^t_1(Y-X_0\beta_0-X_1\beta_1) = 0\\
+\end{split}
+\label{eq:RLM-clasico4}
+\end{equation}
+
+Despejando \(\beta_1\) de la derivada respecto a \(\beta_1\).
+
+\begin{equation}
+\begin{split}
+\beta_1 &= -(X_1^tX_1)^{-1}X_1^t(Y-X_0\beta_0)\\
+\end{split}
+\label{eq:RLM-clasico5}
+\end{equation}
+
+Reemplazando el resultado en la derivada respecto a \(\beta_0\).
+
+\begin{equation}
+\begin{split}
+-2X^t_0(Y-X_0\beta_0-X_1\beta_1) &= 0\\
+X^t_0(Y-X_0\beta_0+X_1(X_1^tX_1)^{-1}X_1^t(Y-X_0\beta_0)) &= 0\\
+X^t_0Y-X^t_0X_0\beta_0+X^t_0X_1(X_1^tX_1)^{-1}X_1^t(Y-X_0\beta_0) &= 0
+\end{split}
+\label{eq:RLM-clasico6}
+\end{equation}
+
+Denotando \(H_1 = X_1(X_1^tX_1)^{-1}X_1^t\).
+
+\begin{equation}
+\begin{split}
+X^t_0Y-X^t_0X_0\beta_0+X^t_0X_1(X_1^tX_1)X_1^t(Y-X_1\beta_1)) &= 0\\
+X^t_0Y-X^t_0X_0\beta_0+X^t_0H_1Y-X^t_0H_1X_0\beta_0 &= 0\\
+\end{split}
+\label{eq:RLM-clasico7}
+\end{equation}
+
+Despejando \(\beta_0\)
+
+\begin{equation}
+\begin{split}
+(-X^t_0X_0-X^t_0H_1X_0)\beta_0 &= -X^t_0Y - X^t_0H_1Y\\
+\beta_0 &= (X^t_0X_0 + X^t_0H_1X_0)^{-1}(X^t_0Y + X^t_0H_1Y)\\
+\widehat{\beta}_0 &= (X^t_0(I-H_1)X_0)^{-1}X^t_0(I-H_1)Y\\
+\end{split}
+\label{eq:RLM-clasico8}
+\end{equation}
+
+El resultado obtenido en \eqref{eq:RLM-clasico7} permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño \(X_0\) y la matriz de proyección \(H_1\) asociada a la matriz de diseño \(X_1\).
+
+A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, utilizado la base de datos \emph{iris}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Carga de la base de datos iris}
+\NormalTok{datos }\OtherTok{=}\NormalTok{ iris}
+\CommentTok{\# Variables de la basede de datos}
+\FunctionTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modelo de regresión lineal múltiple para estudiar el largo del sépalo a partir del resto de variables numéricas.}
+\NormalTok{modelo }\OtherTok{=} \FunctionTok{lm}\NormalTok{(Sepal.Length }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Sepal.Width }\SpecialCharTok{+}\NormalTok{ Petal.Length }\SpecialCharTok{+}\NormalTok{ Petal.Width, }\AttributeTok{data =}\NormalTok{ datos)}
+\CommentTok{\# Coeficientes del modelo}
+\NormalTok{modelo}\SpecialCharTok{$}\NormalTok{coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  (Intercept)  Sepal.Width Petal.Length  Petal.Width 
+##    1.8559975    0.6508372    0.7091320   -0.5564827
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Matrices de diseño}
+\NormalTok{X0 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Width, datos}\SpecialCharTok{$}\NormalTok{Petal.Length), }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{X1 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(datos)), datos}\SpecialCharTok{$}\NormalTok{Petal.Width), }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{y }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Length, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\NormalTok{H1 }\OtherTok{=} \FunctionTok{diag}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(X1)) }\SpecialCharTok{{-}}\NormalTok{ X1 }\SpecialCharTok{\%*\%} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X1) }\SpecialCharTok{\%*\%}\NormalTok{ X1) }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(X1)}
+
+\CommentTok{\# b0 = t(X1) \%*\% M2 \%*\% y / (t(X1) \%*\% M2 \%*\% X1)}
+\NormalTok{b0 }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ X0) }\SpecialCharTok{\%*\%}  \FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ y}
+\NormalTok{b0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## [1,] 0.6508372
+## [2,] 0.7091320
+\end{verbatim}
 
 \chapter{Métricas}\label{muxe9tricas}
 

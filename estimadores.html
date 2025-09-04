@@ -125,6 +125,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -143,6 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="talleres.html"><a href="talleres.html"><i class="fa fa-check"></i>Talleres de práctica</a></li>
 <li class="chapter" data-level="1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>1</b> Intervalos de confianza</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto"><i class="fa fa-check"></i><b>1.1</b> Concepto</a>
@@ -352,7 +376,7 @@ S(\beta_0,\beta_1) &amp;= \sum_{i=1}^n\epsilon_i^2 = \sum_{i=1}^n (Y_i - [\beta_
 </div>
 <div id="descomposición-de-la-suma-de-cuadrados-total" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">A.2</span> Descomposición de la Suma de Cuadrados Total<a href="#descomposici%C3%B3n-de-la-suma-de-cuadrados-total" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En la sección <a href="regresion-lineal.html#sumascuadraticas">3.2.2</a>, la ecuación <a href="#eq:descomposicion-sct">(<strong>??</strong>)</a> plantea que la suma de cuadrados total (SCT) se puede descomponer en la suma de cuadrados del modelo (SCReg) y la suma de cuadrados del error (SCE). La demostración es la siguiente:</p>
+<p>En la sección <a href="regresion-lineal.html#sumascuadraticas">3.2.2</a>, la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a> plantea que la suma de cuadrados total (SCT) se puede descomponer en la suma de cuadrados del modelo (SCReg) y la suma de cuadrados del error (SCE). La demostración es la siguiente:</p>
 <span class="math display" id="eq:demostracionSCT1">\[\begin{equation}
 \begin{split}
 \sum_{i=1}^n\left( Y_i - \bar{Y} \right)^2 &amp;= \sum_{i=1}^n\left( \left( \widehat{Y}_i - \bar{Y} \right) + \left( Y_i - \widehat{Y}_i \right) \right)^2\\
@@ -479,41 +503,41 @@ X^t_0Y-X^t_0X_0\beta_0+X^t_0H_1Y-X^t_0H_1X_0\beta_0 &amp;= 0\\
 \tag{A.25}
 \end{equation}\]</span>
 <p>Despejando <span class="math inline">\(\beta_0\)</span></p>
-<span class="math display" id="eq:RLM-clasico7">\[\begin{equation}
+<span class="math display" id="eq:RLM-clasico8">\[\begin{equation}
 \begin{split}
 (-X^t_0X_0-X^t_0H_1X_0)\beta_0 &amp;= -X^t_0Y - X^t_0H_1Y\\
 \beta_0 &amp;= (X^t_0X_0 + X^t_0H_1X_0)^{-1}(X^t_0Y + X^t_0H_1Y)\\
 \widehat{\beta}_0 &amp;= (X^t_0(I-H_1)X_0)^{-1}X^t_0(I-H_1)Y\\
 \end{split}
-\tag{A.25}
+\tag{A.26}
 \end{equation}\]</span>
 <p>El resultado obtenido en <a href="estimadores.html#eq:RLM-clasico7">(A.25)</a> permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño <span class="math inline">\(X_0\)</span> y la matriz de proyección <span class="math inline">\(H_1\)</span> asociada a la matriz de diseño <span class="math inline">\(X_1\)</span>.</p>
 <p>A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, utilizado la base de datos <em>iris</em>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="estimadores.html#cb1-1" tabindex="-1"></a><span class="co"># Carga de la base de datos iris</span></span>
-<span id="cb1-2"><a href="estimadores.html#cb1-2" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
-<span id="cb1-3"><a href="estimadores.html#cb1-3" tabindex="-1"></a><span class="co"># Variables de la basede de datos</span></span>
-<span id="cb1-4"><a href="estimadores.html#cb1-4" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="estimadores.html#cb179-1" tabindex="-1"></a><span class="co"># Carga de la base de datos iris</span></span>
+<span id="cb179-2"><a href="estimadores.html#cb179-2" tabindex="-1"></a>datos <span class="ot">=</span> iris</span>
+<span id="cb179-3"><a href="estimadores.html#cb179-3" tabindex="-1"></a><span class="co"># Variables de la basede de datos</span></span>
+<span id="cb179-4"><a href="estimadores.html#cb179-4" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
 ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
 ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
 ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
 ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 ##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="estimadores.html#cb3-1" tabindex="-1"></a><span class="co"># Modelo de regresión lineal múltiple para estudiar el largo del sépalo a partir del resto de variables numéricas.</span></span>
-<span id="cb3-2"><a href="estimadores.html#cb3-2" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> Petal.Width, <span class="at">data =</span> datos)</span>
-<span id="cb3-3"><a href="estimadores.html#cb3-3" tabindex="-1"></a><span class="co"># Coeficientes del modelo</span></span>
-<span id="cb3-4"><a href="estimadores.html#cb3-4" tabindex="-1"></a>modelo<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="estimadores.html#cb181-1" tabindex="-1"></a><span class="co"># Modelo de regresión lineal múltiple para estudiar el largo del sépalo a partir del resto de variables numéricas.</span></span>
+<span id="cb181-2"><a href="estimadores.html#cb181-2" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> Petal.Width, <span class="at">data =</span> datos)</span>
+<span id="cb181-3"><a href="estimadores.html#cb181-3" tabindex="-1"></a><span class="co"># Coeficientes del modelo</span></span>
+<span id="cb181-4"><a href="estimadores.html#cb181-4" tabindex="-1"></a>modelo<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##  (Intercept)  Sepal.Width Petal.Length  Petal.Width 
 ##    1.8559975    0.6508372    0.7091320   -0.5564827</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="estimadores.html#cb5-1" tabindex="-1"></a><span class="co"># Matrices de diseño</span></span>
-<span id="cb5-2"><a href="estimadores.html#cb5-2" tabindex="-1"></a>X0 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(datos<span class="sc">$</span>Sepal.Width, datos<span class="sc">$</span>Petal.Length), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb5-3"><a href="estimadores.html#cb5-3" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(datos)), datos<span class="sc">$</span>Petal.Width), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb5-4"><a href="estimadores.html#cb5-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">matrix</span>(datos<span class="sc">$</span>Sepal.Length, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb5-5"><a href="estimadores.html#cb5-5" tabindex="-1"></a>H1 <span class="ot">=</span> <span class="fu">diag</span>(<span class="fu">nrow</span>(X1)) <span class="sc">-</span> X1 <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(X1) <span class="sc">%*%</span> X1) <span class="sc">%*%</span> <span class="fu">t</span>(X1)</span>
-<span id="cb5-6"><a href="estimadores.html#cb5-6" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="estimadores.html#cb5-7" tabindex="-1"></a><span class="co"># b0 = t(X1) %*% M2 %*% y / (t(X1) %*% M2 %*% X1)</span></span>
-<span id="cb5-8"><a href="estimadores.html#cb5-8" tabindex="-1"></a>b0 <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(X0) <span class="sc">%*%</span> M2 <span class="sc">%*%</span> X0) <span class="sc">%*%</span>  <span class="fu">t</span>(X0) <span class="sc">%*%</span> M2 <span class="sc">%*%</span> y</span>
-<span id="cb5-9"><a href="estimadores.html#cb5-9" tabindex="-1"></a>b0</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="estimadores.html#cb183-1" tabindex="-1"></a><span class="co"># Matrices de diseño</span></span>
+<span id="cb183-2"><a href="estimadores.html#cb183-2" tabindex="-1"></a>X0 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(datos<span class="sc">$</span>Sepal.Width, datos<span class="sc">$</span>Petal.Length), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb183-3"><a href="estimadores.html#cb183-3" tabindex="-1"></a>X1 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(datos)), datos<span class="sc">$</span>Petal.Width), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb183-4"><a href="estimadores.html#cb183-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">matrix</span>(datos<span class="sc">$</span>Sepal.Length, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb183-5"><a href="estimadores.html#cb183-5" tabindex="-1"></a>H1 <span class="ot">=</span> <span class="fu">diag</span>(<span class="fu">nrow</span>(X1)) <span class="sc">-</span> X1 <span class="sc">%*%</span> <span class="fu">solve</span>(<span class="fu">t</span>(X1) <span class="sc">%*%</span> X1) <span class="sc">%*%</span> <span class="fu">t</span>(X1)</span>
+<span id="cb183-6"><a href="estimadores.html#cb183-6" tabindex="-1"></a></span>
+<span id="cb183-7"><a href="estimadores.html#cb183-7" tabindex="-1"></a><span class="co"># b0 = t(X1) %*% M2 %*% y / (t(X1) %*% M2 %*% X1)</span></span>
+<span id="cb183-8"><a href="estimadores.html#cb183-8" tabindex="-1"></a>b0 <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(X0) <span class="sc">%*%</span> H1 <span class="sc">%*%</span> X0) <span class="sc">%*%</span>  <span class="fu">t</span>(X0) <span class="sc">%*%</span> H1 <span class="sc">%*%</span> y</span>
+<span id="cb183-9"><a href="estimadores.html#cb183-9" tabindex="-1"></a>b0</span></code></pre></div>
 <pre><code>##           [,1]
 ## [1,] 0.6508372
 ## [2,] 0.7091320</code></pre>
