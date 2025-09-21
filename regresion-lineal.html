@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Unidad 3 Regresión Lineal | Estadística II &amp; Inferencia Estadística</title>
+  <meta name="description" content="Curso básico de Estadística para ingeniería." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Unidad 3 Regresión Lineal | Estadística II &amp; Inferencia Estadística" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Curso básico de Estadística para ingeniería." />
+  <meta name="github-repo" content="Dfranzani/Estadistica_II" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unidad 3 Regresión Lineal | Estadística II &amp; Inferencia Estadística" />
+  
+  <meta name="twitter:description" content="Curso básico de Estadística para ingeniería." />
+  
+
+<meta name="author" content="Daniel Franzani" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="PH.html"/>
+<link rel="next" href="estimadores.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a la Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="talleres.html"><a href="talleres.html"><i class="fa fa-check"></i>Talleres de práctica</a></li>
+<li class="chapter" data-level="1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>1</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto"><i class="fa fa-check"></i><b>1.1</b> Concepto</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-elaboracion"><i class="fa fa-check"></i><b>1.1.1</b> Elaboración</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media"><i class="fa fa-check"></i><b>1.2</b> Intervalo de confianza para la media</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media-varianza-conocida"><i class="fa fa-check"></i><b>1.2.1</b> Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-media-varianza-desconocida"><i class="fa fa-check"></i><b>1.2.2</b> Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias"><i class="fa fa-check"></i><b>1.3</b> Intervalo de confianza para la diferencia de medias</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas"><i class="fa fa-check"></i><b>1.3.1</b> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales"><i class="fa fa-check"></i><b>1.3.2</b> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas"><i class="fa fa-check"></i><b>1.3.3</b> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="03-unidad3.html"><a href="#intervalo-de-confianza-comparaci%C3%B3n-de-varianzas"><i class="fa fa-check"></i><b>1.4</b> Intervalo de confianza para la comparación de varianzas</a></li>
+<li class="chapter" data-level="1.5" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejercicios-unidad1"><i class="fa fa-check"></i><b>1.5</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="PH.html"><a href="PH.html"><i class="fa fa-check"></i><b>2</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-concepto"><i class="fa fa-check"></i><b>2.1</b> Concepto</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-elaboracion"><i class="fa fa-check"></i><b>2.1.1</b> Elaboración</a></li>
+<li class="chapter" data-level="2.1.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-errores"><i class="fa fa-check"></i><b>2.1.2</b> Errores tipo I y II</a></li>
+<li class="chapter" data-level="2.1.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-procedimiento"><i class="fa fa-check"></i><b>2.1.3</b> Procedimiento de prueba</a></li>
+<li class="chapter" data-level="2.1.4" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-intervalos-de-confianza"><i class="fa fa-check"></i><b>2.1.4</b> Intervalos de confianza</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="PH.html"><a href="PH.html#pruebas"><i class="fa fa-check"></i><b>2.2</b> Prueba de hipótesis para la media</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-media-varianza-conocida"><i class="fa fa-check"></i><b>2.2.1</b> Prueba de hipótesis para la media de una distribución normal con varianza poblacional conocida</a></li>
+<li class="chapter" data-level="2.2.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-media-varianza-desconocida"><i class="fa fa-check"></i><b>2.2.2</b> Prueba de hipótesis para la media de una distribución normal con varianza poblacional desconocida</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias"><i class="fa fa-check"></i><b>2.3</b> Prueba de hipótesis para la diferencia de medias</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-conocidas"><i class="fa fa-check"></i><b>2.3.1</b> Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales conocidas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-iguales"><i class="fa fa-check"></i><b>2.3.2</b> Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas e iguales</a></li>
+<li class="chapter" data-level="2.3.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-distintas"><i class="fa fa-check"></i><b>2.3.3</b> Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas y distintas</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-comparacion-varianzas"><i class="fa fa-check"></i><b>2.4</b> Prueba de hipótesis para comparación de varianzas</a></li>
+<li class="chapter" data-level="2.5" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-proporciones"><i class="fa fa-check"></i><b>2.5</b> Prueba de hipótesis para la diferencia de proporciones</a></li>
+<li class="chapter" data-level="2.6" data-path="PH.html"><a href="PH.html#ejercicios-unidad2"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regresion-lineal.html"><a href="regresion-lineal.html"><i class="fa fa-check"></i><b>3</b> Regresión Lineal</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-medidas-asociacion"><i class="fa fa-check"></i><b>3.1</b> Medidas de asociación lineal</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-covarianza"><i class="fa fa-check"></i><b>3.1.1</b> Covarianza</a></li>
+<li class="chapter" data-level="3.1.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-correlacion"><i class="fa fa-check"></i><b>3.1.2</b> Correlación</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-simple"><i class="fa fa-check"></i><b>3.2</b> Regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#EMCRLS"><i class="fa fa-check"></i><b>3.2.1</b> Estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="3.2.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#sumascuadraticas"><i class="fa fa-check"></i><b>3.2.2</b> Sumas cuadráticas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#pruebasHipotesisRLS"><i class="fa fa-check"></i><b>3.2.3</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="3.2.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#metricasRLS"><i class="fa fa-check"></i><b>3.2.4</b> Métricas</a></li>
+<li class="chapter" data-level="3.2.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-simple-supuestos"><i class="fa fa-check"></i><b>3.2.5</b> Supuestos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple"><i class="fa fa-check"></i><b>3.3</b> Regresión lineal múltiple</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#EMC-RLM-CUERPO"><i class="fa fa-check"></i><b>3.3.1</b> Estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="3.3.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#covariables-cualitativas"><i class="fa fa-check"></i><b>3.3.2</b> Covariables cualitativas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple-pruebas-hipotesis"><i class="fa fa-check"></i><b>3.3.3</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="3.3.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#metricasRLM"><i class="fa fa-check"></i><b>3.3.4</b> Métricas</a></li>
+<li class="chapter" data-level="3.3.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple-supuestos"><i class="fa fa-check"></i><b>3.3.5</b> Supuestos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables"><i class="fa fa-check"></i><b>3.4</b> Selección de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables-forward"><i class="fa fa-check"></i><b>3.4.1</b> Forward</a></li>
+<li class="chapter" data-level="3.4.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables-backward"><i class="fa fa-check"></i><b>3.4.2</b> Backward</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-prediccion-observaciones"><i class="fa fa-check"></i><b>3.5</b> Predicción de observaciones</a></li>
+<li class="chapter" data-level="3.6" data-path="regresion-lineal.html"><a href="regresion-lineal.html#ejercicios-unidad-3"><i class="fa fa-check"></i><b>3.6</b> Ejercicios</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apéndice</b></span></li>
+<li class="chapter" data-level="A" data-path="estimadores.html"><a href="estimadores.html"><i class="fa fa-check"></i><b>A</b> Estimadores</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="estimadores.html"><a href="estimadores.html#RLS-EMC"><i class="fa fa-check"></i><b>A.1</b> EMC en Regresión Lineal Simple</a></li>
+<li class="chapter" data-level="A.2" data-path="03-unidad3.html"><a href="#descomposici%C3%B3n-de-la-suma-de-cuadrados-total"><i class="fa fa-check"></i><b>A.2</b> Descomposición de la Suma de Cuadrados Total</a></li>
+<li class="chapter" data-level="A.3" data-path="estimadores.html"><a href="estimadores.html#RLM-EMC"><i class="fa fa-check"></i><b>A.3</b> EMC en Regresión Lineal Múltiple</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="03-unidad3.html"><a href="#m%C3%A9tricas"><i class="fa fa-check"></i><b>B</b> Métricas</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="03-unidad3.html"><a href="#estad%C3%ADsticos"><i class="fa fa-check"></i><b>C</b> Estadísticos</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="estadísticos.html"><a href="estadísticos.html"><i class="fa fa-check"></i><b>C.1</b> Estadístico F del método de selección Forward</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>D</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="funciones.html"><a href="funciones.html#funcion-indicatriz"><i class="fa fa-check"></i><b>D.1</b> Esquema de la función indicatriz</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/rmarkdown-cookbook" target="blank">Published with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística II &amp; Inferencia Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regresion-lineal" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Unidad 3</span> Regresión Lineal<a href="regresion-lineal.html#regresion-lineal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En general, las bases de datos que se trabajarán en esta sección son las siguientes:</p>
+<ul>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa%2Beuro%2Bdolar%2Bhistorica2023.csv" id="TasaEURUSD">Tasa Euro/Dólar</a>: Contiene el registro diario histórico de la tasa de cambio del Euro a Dólar durante el 2023. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Date: Fecha de medición (yyyy-mm-dd), desde enero del 2003 hasta enero del 2023.</li>
+<li>Open: tasa de apertura.</li>
+<li>High: tasa más alta alcanzada en el día.</li>
+<li>Low: tasa más baja alcanzada en el día.</li>
+<li>Close: tasa de cierre del día.</li>
+<li>Adj Close: tasa de cierre ajustada del día (precio de cierre sin dividendos).</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="regresion-lineal.html#cb106-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa%2Beuro%2Bdolar%2Bhistorica2023.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Belgian%20Electricity%20Prices.csv" id="PreciosElectricidad">Precios de electricidad</a>: Un conjunto de datos históricos que contiene el precio por hora de la electricidad para Bélgica. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>MTU: Hora de inicio (formato fecha y hora) del coste de la electricidad.</li>
+<li>EUR_MWh: Precio por hora (Euros por MWh).</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="regresion-lineal.html#cb107-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Belgian%20Electricity%20Prices.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart+complete.csv" id="Pacientes">Pacientes</a>: Contiene datos respecto a los ataques al corazón de distintos pacientes hospitalarios. El detalle de algunas de las columnas de la base de datos que utilizaremos son las siguientes:</p>
+<ul>
+<li>age: edad del paciente (en años).</li>
+<li>sex: sexo del paciente (Hombre: 1 y Mujer: 0).</li>
+<li>cp: Tipo de dolor en el pecho, Valor 1: angina típica, Valor 2: angina atípica, Valor 3: dolor no anginoso, Valor 4: asintomático.</li>
+<li>trtbps: presión arterial en reposo (en mm Hg).</li>
+<li>chol: nivel de colestorol (en mg/dl).</li>
+<li>fbs: azúcar en sangre en ayunas <span class="math inline">\(&gt;\)</span> 120 mg/dl (V = 1; F = 0).</li>
+<li>thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).</li>
+<li>oldpeak: tiempo de duración del último ataque al corazón (en minutos).</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="regresion-lineal.html#cb108-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart+complete.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Ingreso%2Buniversidad.csv" id="Ingreso">Ingreso</a>: Contiene datos relacionados a características de ingresos de estudiantes a un determinada universidad. Las columnas de la base de datos son las siguientes.</p>
+<ul>
+<li>Sexo: Hombre o Mujer.</li>
+<li>Ingreso: indica la vía de ingreso del estudiante a la universidad, se clasifica en PTU u Otra.</li>
+<li>Logro: corresponde a la proporción de logro (número entre 0 y 1, un logro de 0.4 indica que el estudiante respondió correctamente un 40% de la prueba) del estudiante en el diagnóstico de “Comunicación escrita” aplicado por la universidad.</li>
+<li>LEN: Puntaje PTU - Lenguaje.</li>
+<li>NEM: Puntaje NEM del estudiante.</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="regresion-lineal.html#cb109-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Ingreso%2Buniversidad.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv" id="Imacec3">Imacec</a>: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Ano: Año de medición del Imacec.</li>
+<li>Mes: Mes de medición del Imacec.</li>
+<li>Mineria: Imacec del sector de minería.</li>
+<li>Industria: Imacec del sector de industria.</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="regresion-lineal.html#cb110-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv&quot;</span>)</span></code></pre></div></li>
+</ul>
+<!-- ## Análisis descriptivo de datos {#descriptiva} -->
+<div id="regresion-lineal-medidas-asociacion" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Medidas de asociación lineal<a href="regresion-lineal.html#regresion-lineal-medidas-asociacion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="regresion-lineal-covarianza" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Covarianza<a href="regresion-lineal.html#regresion-lineal-covarianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es posible entender las relaciones entre dos o más variables, gráficamente y a través de estadísticos. En esta sección seabarcarán las relaciones lineales entre dos variables cuantitativas, utilizando la Covarianza y la Correlación. El gráfico que apoya a estas dos medidas es el gráfico de dispersión.</p>
+<p>La <strong>Covarianza</strong> entre dos variables de la misma muestra, se puede calcular como:</p>
+<span class="math display" id="eq:Covarianza">\[\begin{equation}
+S_{XY} = \displaystyle\frac{\displaystyle\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}
+\tag{3.1}
+\end{equation}\]</span>
+<p>La utilidad radica en el signo de esta expresión, el cual, da a conocer el tipo de relación lineal entre las variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Para interpretar esta expresión se puede usar la siguiente regla.</p>
+<ul>
+<li><p>Si <span class="math inline">\(S_{XY} = 0\)</span>, entonces no existe <em>relación lineal</em> entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(S_{XY} &gt; 0\)</span>, entonces existe una relación lineal directa o positiva entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Esto es, a mayores valores de <span class="math inline">\(X\)</span>, en promedio tenemos mayores valores de <span class="math inline">\(Y\)</span> y viceversa.</p></li>
+<li><p>Si <span class="math inline">\(S_{XY} &lt; 0\)</span>, entonces existe una relación lineal inversa o negativa entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Esto es, a mayores valores de <span class="math inline">\(X\)</span>, en promedio tenemos menores valores de <span class="math inline">\(Y\)</span> y viceversa.</p></li>
+</ul>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-128" class="example"><strong>Ejemplo 3.1  </strong></span>Por ejemplo, si <span class="math inline">\(S_{XY} = -1000\)</span>, ¿qué podemos decir acerca de la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>?</p>
+<p>La relación entre las variables es inversa. No podemos decir nada acerca de qué tan fuerte es la relación; para eso tendríamos calcular el coeficiente de correlación.</p>
+<p><strong>Nota:</strong> En R, se utiliza el comando <code>cov()</code> para calcular la covarianza entre dos variables.</p>
+</div>
+</div>
+<p>A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.</p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-89-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>En este caso, la mayoría de los puntos están en los cuadrantes ‘<span class="math inline">\(+ +\)</span>’ y ‘<span class="math inline">\(- -\)</span>’, y en estos cuadrantes la expresión <span class="math inline">\((x_i-\bar{x})(y_i-\bar{y})\)</span> es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). <strong>¿Es pronunciada la relación lineal?</strong></p>
+</div>
+<div id="regresion-lineal-correlacion" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Correlación<a href="regresion-lineal.html#regresion-lineal-correlacion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Aunque con el signo de la covarianza podemos detectar el tipo de relación entre dos variables, al depender de las unidades de <span class="math inline">\(X\)</span> y de <span class="math inline">\(Y\)</span>, no sabemos si corresponde a un relación fuerte o débil (es decir, la forma lineal es fuertemente o débilmente pronunciada); sólo sabemos el signo. Para solucionar esto, <strong>estandarizamos</strong> los valores. La fórmula que realiza este proceso utilizando la covarianza es</p>
+<span class="math display" id="eq:Correlacion">\[\begin{equation}
+r_{XY} = \frac{S_{XY}}{S_{X}S_{Y}}
+\tag{3.2}
+\end{equation}\]</span>
+<p>Este estadístico, también conocido como <strong>Coeficiente de correlación de Pearson</strong> se encuentra entre -1 y 1.</p>
+<ul>
+<li><p>Si <span class="math inline">\(r_{XY} = 0\)</span>, entonces no hay relación lineal o con relación lineal débil entre las variables.</p></li>
+<li><p>Si <span class="math inline">\(r_{XY}\)</span> es cercano a 1, entonces hay relación lineal directa y fuerte entre variables.</p></li>
+<li><p>Si <span class="math inline">\(r_{XY}\)</span> es cercano a <span class="math inline">\(-1\)</span>, entonces hay relación lineal inversa y fuerte entre las variables.</p></li>
+</ul>
+<p>Una regla más fina sobre la intensidad de la relación es <span class="citation">(<a href="#ref-ratner_correlation_2009">Ratner, 2009</a>)</span>:</p>
+<ul>
+<li><span class="math inline">\(r_{XY} = 0\)</span> indica que no hay relación lineal.</li>
+<li><span class="math inline">\(r_{XY} = 1\)</span> indica una relación lineal positiva perfecta: a medida que una variable aumenta en sus valores, la otra variable también aumenta en sus valores a través de una regla lineal exacta.</li>
+<li><span class="math inline">\(r_{XY} = -1\)</span> indica una relación lineal negativa perfecta: a medida que una variable aumenta en sus valores, la otra variable disminuye en sus valores a través de una regla lineal exacta.</li>
+<li>Los valores entre <span class="math inline">\(0\)</span> y <span class="math inline">\(0.3\)</span> (<span class="math inline">\(0\)</span> y <span class="math inline">\(−0.3\)</span>) indican una relación lineal positiva (negativa) débil a través de una regla lineal inestable.</li>
+<li>Valores entre <span class="math inline">\(0.3\)</span> y <span class="math inline">\(0.7\)</span> (<span class="math inline">\(-0.3\)</span> y <span class="math inline">\(−0.7\)</span>) indican una relación lineal positiva (negativa) moderada a través de una regla lineal difusa-firme.</li>
+<li>Los valores entre <span class="math inline">\(0.7\)</span> y <span class="math inline">\(1.0\)</span> (<span class="math inline">\(−0.7\)</span> y <span class="math inline">\(−1.0\)</span>) indican una fuerte relación lineal positiva (negativa) a través de una regla lineal firme.</li>
+</ul>
+<div class="blackbox">
+<div class="exercise">
+<p><span id="exr:unlabeled-div-129" class="exercise"><strong>Ejercicio 3.1  </strong></span>Por ejemplo, si <span class="math inline">\(r_{XY} = -0.96\)</span>, ¿qué podemos decir acerca de la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>?</p>
+</div>
+</div>
+<p>A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).</p>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-90-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><strong>Nota:</strong> En R, se utiliza el comando <code>cor()</code> para calcular la correlación entre dos variables.</p>
+<p><strong>¿Cómo se comportan los puntos al rededor de la línea azul?</strong></p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-130" class="exercise"><strong>Ejercicio 3.2  </strong></span>La base de datos <a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%202/dolar.csv"><em>graficos+dolar.csv</em></a> contiene el valor del dólar observado de algunos de los días de los meses de junio y julio del 2022, tomados por el el SII. A continuación:</p>
+<ol style="list-style-type: decimal">
+<li>Realice un histograma del valor de dólar.</li>
+<li>Realice un histograma del valor de dólar diferenciado por mes. Utilice el comando <code>facet_grid(~Mes)</code>.</li>
+<li>Reordene los gráficos por mes. Para ello convierta la variable Mes a factor, ordenando los meses como corresponde.</li>
+<li>Realice un gráfico de Violín con caja y promedio del valor de dolar. Interprete lo observado.</li>
+<li>Separe el gráfico anterior por mes. Comente lo observado.</li>
+<li>Estudie las medidas de asociación entre los valores del dólar de los primeros 18 registros de cada mes. Interprete. ¿Por qué no es posible comparar todos los registros de cada uno de los meses?</li>
+<li>Realice un gráfico de dispersión de los para estudiar las medidas de asociación entre las variables de la pregunta 6.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="regresion-lineal-simple" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Regresión lineal simple<a href="regresion-lineal.html#regresion-lineal-simple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La regresión lineal simple (RLS) consiste en generar un <strong>modelo de regresión</strong> (ecuación de una recta) que permita explicar la relación lineal que existe entre dos variables. A la variable dependiente, predicha o respuesta se le identifica como <span class="math inline">\(Y\)</span> y a la variable predictora o independiente como <span class="math inline">\(X\)</span>. <span class="citation">(<a href="#ref-Devore">Devore, 2008</a>, página 450)</span></p>
+<p>El modelo de regresión lineal simple se describe de acuerdo a la ecuación:</p>
+<span class="math display" id="eq:regresion">\[\begin{equation}
+Y_i = \beta_0 + \beta_1X_i + \varepsilon_i \text{ , }i = 1,\ldots ,n \text{ , } \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\tag{3.3}
+\end{equation}\]</span>
+<p>Una ejemplificación de esta ecuación es la siguiente (<a href="regresion-lineal.html#fig:regresion1">3.1</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:regresion1"></span>
+<img src="est2+inferencia_files/figure-html/regresion1-1.png" alt="Ecuación de regresión" width="576" />
+<p class="caption">
+Figura 3.1: Ecuación de regresión
+</p>
+</div>
+<p>Siendo <span class="math inline">\(\beta_0\)</span> la ordenada en el origen, <span class="math inline">\(\beta_1\)</span> la pendiente y <span class="math inline">\(\varepsilon\)</span> el <strong>error aleatorio</strong>. Este último representa la diferencia entre el valor ajustado por la recta y el valor real (línea de color rojo en el gráfico en la figura <a href="regresion-lineal.html#fig:regresion2">3.2</a>), el cual, recoge el efecto de todas aquellas variables que influyen en <span class="math inline">\(Y\)</span> pero que no se incluyen en el modelo como predictores.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:regresion2"></span>
+<img src="est2+inferencia_files/figure-html/regresion2-1.png" alt="Errores de una ecuación de regresión" width="576" />
+<p class="caption">
+Figura 3.2: Errores de una ecuación de regresión
+</p>
+</div>
+<p>La ecuación <a href="regresion-lineal.html#eq:regresion">(3.3)</a> representa la <strong>ecuación de regresión verdadera</strong> (o poblacional). Sin embargo, no es posible conocer el valor de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, ya que son parámetros (de antemano, no se conocen todos los datos de la población), por lo cual, se determinan estimadores que permiten aproximar los valores de los parámetros a partir de una muestra, para así de determinar una ecuación de regresión estimada <a href="regresion-lineal.html#eq:ecuacion-regresion-estimada">(3.4)</a>.</p>
+<span class="math display" id="eq:ecuacion-regresion-estimada">\[\begin{equation}
+Y_i = \widehat{\beta}_0 + \widehat{\beta}_1X_i
+\tag{3.4}
+\end{equation}\]</span>
+<div id="EMCRLS" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Estimadores de mínimos cuadrados<a href="regresion-lineal.html#EMCRLS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una forma intuitiva de abordar el problema de estimar <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> es minimizando los errores aleatorios. Para ello, se hace uso de la ecuación de regresión verdadera:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1X_i + \varepsilon_i
+\]</span></p>
+<p>Luego, es posible escribir el error aleatorio de la siguiente manera:</p>
+<span class="math display" id="eq:funcion-errores">\[\begin{equation}
+\varepsilon_i = Y_i - [\beta_0 + \beta_1X_i]
+\tag{3.5}
+\end{equation}\]</span>
+<p>Para considerar el error en cada uno de los puntos al rededor de la recta de regresión verdadera se considera la suma de los errores. Sin embargo, para tener mayor facilidad en el proceso de determinar los estimadores, se elevan los errores al cuadrado (<strong>suma cuadrática de errores</strong>).</p>
+<span class="math display" id="eq:sumacuadratica-RL">\[\begin{equation}
+\sum_{i=1}^n\varepsilon_i^2 = \sum_{i=1}^n (Y_i - [\beta_0 + \beta_1X_i])^2
+\tag{3.6}
+\end{equation}\]</span>
+<p>Llegado a este punto, es natural minimizar esta función, ya que los valores de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> estimados buscan dar lugar a la recta que “pasa lo más cerca posible de todos los puntos”. Los estimadores de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> se denotan por <span class="math inline">\(\widehat{\beta}_0\)</span> y <span class="math inline">\(\widehat{\beta}_1\)</span> respectivamente, y son denominados como <strong>Estimadores de Mínimos Cuadrados</strong> (EMC).</p>
+<p>Los estimadores de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> son (detalles del desarrollo en el anexo <a href="estimadores.html#RLS-EMC">A.1</a>):</p>
+<span class="math display" id="eq:beta1gorro">\[\begin{equation}
+\widehat{\beta}_1 = \frac{\displaystyle\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\displaystyle\sum_{i=1}^n(x_i-\bar{x})^2} = \frac{S_Y}{S_X}r_{XY}
+\tag{3.7}
+\end{equation}\]</span>
+<span class="math display" id="eq:beta0gorro">\[\begin{equation}
+\widehat{\beta}_0 = \bar{y} - \widehat{\beta}_1\bar{x}
+\tag{3.8}
+\end{equation}\]</span>
+<ul>
+<li>Los valores de <span class="math inline">\(S_y\)</span> y <span class="math inline">\(S_x\)</span> son las desviaciones estándar muestrales de cada variable y <span class="math inline">\(r_{XY}\)</span> el coeficiente de correlación entre estas.</li>
+<li><span class="math inline">\(\widehat{\beta}_0\)</span> es el valor esperado la variable <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X = 0\)</span>, es decir, la intersección de la recta con el eje <span class="math inline">\(y\)</span>. En ocasiones, no tiene interpretación práctica (situaciones en las que <span class="math inline">\(X\)</span> no puede adquirir el valor 0).</li>
+<li><span class="math inline">\(\widehat{\beta}_1\)</span> corresponde al valor de la pendiente. La interpretación de este valor se detalla más adelante.</li>
+<li><span class="math inline">\(\widehat{Y}\)</span> se entiende como el valor esperado, es decir, el valor promedio (muestral) de <span class="math inline">\(Y\)</span>.</li>
+<li>La diferencia entre los valores reales <span class="math inline">\(Y\)</span> (en la base de datos) y los valores de la recta estimada (<span class="math inline">\(\widehat{Y}\)</span>) se denominan residuos, que se denotan por la letra <span class="math inline">\(e\)</span>. Estos se observan de la misma forma que los errores aleatorios (figura <a href="regresion-lineal.html#fig:regresion2">3.2</a>).</li>
+</ul>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:AFPUNO" class="example"><strong>Ejemplo 3.2  </strong></span>El archivo <a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%202/cuota%2Bpatrimonio.csv"><em>cuota+patrimonio.csv</em></a> contiene los valores cuota (pesos) y valor del patrimonio (miles de millones de pesos) de los primeros dos meses del año 2022 de la AFP UNO. En R:</p>
+<ol style="list-style-type: decimal">
+<li>Realice un estudio inicial de los datos, elaborando un gráfico de violín + caja + promedio para cada una de las variables.</li>
+</ol>
+<p>Inspeccionamos la base de datos.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="regresion-lineal.html#cb111-1" tabindex="-1"></a><span class="co"># Cargue previamente la base de datos, guardándola con el nombre &quot;datos&quot;</span></span>
+<span id="cb111-2"><a href="regresion-lineal.html#cb111-2" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    59 obs. of  2 variables:
+##  $ Valor.Cuota     : num  65594 65594 65356 65860 65813 ...
+##  $ Valor.Patrimonio: num  186 186 185 187 187 ...</code></pre>
+<p>Luego, realizamos el gráfico de violín con caja y promedio.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="regresion-lineal.html#cb113-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="at">x =</span> Valor.Cuota)) <span class="sc">+</span> </span>
+<span id="cb113-2"><a href="regresion-lineal.html#cb113-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> F) <span class="sc">+</span></span>
+<span id="cb113-3"><a href="regresion-lineal.html#cb113-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb113-4"><a href="regresion-lineal.html#cb113-4" tabindex="-1"></a><span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">orientation =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb113-5"><a href="regresion-lineal.html#cb113-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Pesos&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Valor Cuota&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-93-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="regresion-lineal.html#cb114-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="at">x =</span> Valor.Patrimonio)) <span class="sc">+</span> </span>
+<span id="cb114-2"><a href="regresion-lineal.html#cb114-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">trim =</span> F) <span class="sc">+</span></span>
+<span id="cb114-3"><a href="regresion-lineal.html#cb114-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb114-4"><a href="regresion-lineal.html#cb114-4" tabindex="-1"></a><span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">orientation =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb114-5"><a href="regresion-lineal.html#cb114-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Miles de millones de pesos&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Valor Patrimonio&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-94-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Estudie la correlación entre ambas variables.</li>
+</ol>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="regresion-lineal.html#cb115-1" tabindex="-1"></a><span class="fu">cor</span>(datos<span class="sc">$</span>Valor.Cuota, datos<span class="sc">$</span>Valor.Patrimonio)</span></code></pre></div>
+<pre><code>## [1] 0.9218759</code></pre>
+<p>El valor de la correlación indica que la relación lineal entre las dos variables es positiva y fuerte. Esto quiere decir que, cuando en promedio el valor cuota aumenta, el promedio el valor del patrimonio también aumenta.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Considerando que desea explicar el valor del patrimonio a partir del valor cuota. Determine los valores de <span class="math inline">\(\widehat{\beta}_0\)</span> y <span class="math inline">\(\widehat{\beta}_1\)</span> utilizando el comando <code>lm()</code>.</li>
+</ol>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="regresion-lineal.html#cb117-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Valor.Patrimonio <span class="sc">~</span> Valor.Cuota, <span class="at">data =</span> datos)</span>
+<span id="cb117-2"><a href="regresion-lineal.html#cb117-2" tabindex="-1"></a>modelo</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Valor.Patrimonio ~ Valor.Cuota, data = datos)
+## 
+## Coefficients:
+## (Intercept)  Valor.Cuota  
+##  -1.353e+02    4.936e-03</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Escriba la ecuación de la recta de regresión ajustada.</li>
+</ol>
+<p><span class="math display">\[
+\widehat{Y}_i = -135.3 + 0.004936X_i
+\]</span></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Realice un gráfico de la la recta de regresión y los residuos del modelo.</li>
+</ol>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="regresion-lineal.html#cb119-1" tabindex="-1"></a><span class="co"># Guardamos los valores de la recta estimada en una nueva columna en la base de datos</span></span>
+<span id="cb119-2"><a href="regresion-lineal.html#cb119-2" tabindex="-1"></a>datos<span class="sc">$</span>Ajustados <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values</span>
+<span id="cb119-3"><a href="regresion-lineal.html#cb119-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="fu">aes</span>(<span class="at">x =</span> Valor.Cuota, <span class="at">y =</span> Valor.Patrimonio)) <span class="sc">+</span></span>
+<span id="cb119-4"><a href="regresion-lineal.html#cb119-4" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> Valor.Cuota, <span class="at">xend =</span> Valor.Cuota,</span>
+<span id="cb119-5"><a href="regresion-lineal.html#cb119-5" tabindex="-1"></a>                   <span class="at">y =</span> Valor.Patrimonio, <span class="at">yend =</span> Ajustados), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb119-6"><a href="regresion-lineal.html#cb119-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valor Cuota&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Valor Patrimonio&quot;</span>,</span>
+<span id="cb119-7"><a href="regresion-lineal.html#cb119-7" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Ecuación de regresión ajustada&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb119-8"><a href="regresion-lineal.html#cb119-8" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb119-9"><a href="regresion-lineal.html#cb119-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> <span class="st">&#39;y ~ x&#39;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-97-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<p>Para interpretar cada uno de los beta estimados se debe hacer en función de la variable de estudio (variable dependiente). En este sentido,</p>
+<ul>
+<li><p><span class="math inline">\(\widehat{\beta}_1\)</span>: corresponde a la pendiente de la ecuación de la recta de regresión ajustada, e indica un avance lineal constante en crecimiento o en decrecimiento dependiendo de su valor. La interpretación de este parámetro, está sujeta a la unidad de medida de la variable predictora <span class="math inline">\(X\)</span>, de tal manera, que una cambio en una unidad de medida de la variable <span class="math inline">\(x\)</span>, afecta en <strong>promedio</strong> <span class="math inline">\(\widehat{\beta}_1\)</span> unidades en la variable <span class="math inline">\(Y\)</span>.</p>
+<p>En el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a>, el valor de <span class="math inline">\(\widehat{\beta}_1\)</span> es de 0.004936 , lo cual indica que por cada unidad de valor cuota (por cada peso), el valor del patrimonio aumenta en promedio 0.004936 miles de millones pesos.</p></li>
+<li><p><span class="math inline">\(\widehat{\beta}_0\)</span>: es el intercepto de la ecuación de la recta de regresión ajustada, y se debe verificar que el valor obtenido tenga sentido con el fenómeno. En el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a>, se obtiene un valor lejano a cero (-135.2584663), por lo que, cuando <span class="math inline">\(\beta_1x\)</span> vale cero (es decir, una cantidad de cuotas igual a 0), el valor del promedio del patrimonio es menor a cero. Esto tiene sentido, ya que las cuotas no constituyen la totalidad del valor del patrimonio de la AFP (en el ejemplo se trabaja con un fondo en específico de los cinco existentes, de un determinado producto de inversión).</p></li>
+</ul>
+<div class="exercise">
+<p><span id="exr:ingreso" class="exercise"><strong>Ejercicio 3.3  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Ingreso">Ingreso</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Realice un estudio inicial de los datos, elaborando un gráfico de violín + caja + promedio para cada una de las variables cuantitativas continuas, mientras que para las variables categóricas elabore tablas de frecuencias relativas.</li>
+<li>Considerando que desea explicar la proporción de logro en el diagnóstico de comunicación escrita a partir del puntaje en la PTU de Lenguaje (considere esto para las siguientes preguntas), estudie la correlación entre ambas variables.</li>
+<li>Determine los valores de <span class="math inline">\(\widehat{\beta}_0\)</span> y <span class="math inline">\(\widehat{\beta}_1\)</span> utilizando el comando <code>lm()</code>. Interprete los valores.</li>
+<li>Escriba la ecuación de la recta de regresión ajustada.</li>
+<li>Realice un gráfico de la la recta de regresión ajustada y los residuos del modelo.</li>
+</ol>
+</div>
+</div>
+<div id="sumascuadraticas" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Sumas cuadráticas<a href="regresion-lineal.html#sumascuadraticas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En un modelo sin variables independientes los valores ajustados o predichos son iguales al promedio de las observaciones, <span class="math inline">\(\bar{Y}\)</span> (tal como se mostró en la interpretación asociada a las estimaciones de los parámetros). Los residuos de dicho modelo corresponden a <span class="math inline">\(Y_i - \bar{Y}\)</span>. La <strong>suma de cuadrados total</strong> (SCT) se define como:</p>
+<span class="math display" id="eq:SCT">\[\begin{equation}
+\text{SCT} = \sum_{i=1}^n\left( Y_i - \bar{Y} \right)^2
+\tag{3.9}
+\end{equation}\]</span>
+<p>¿Cómo se relacionan la SCT y la suma cuadrática de errores (SCE)? Consideremos la siguiente igualdad.</p>
+<span class="math display" id="eq:SCT-SCE-SCReg">\[\begin{equation}
+Y_i - \bar{Y} = \left( \widehat{Y}_i - \bar{Y} \right) + \left( Y_i - \widehat{Y}_i \right)
+\tag{3.10}
+\end{equation}\]</span>
+<p>A partir de esta igualdad se demuestra que:</p>
+<span class="math display" id="eq:descomposicion-sct">\[\begin{equation}
+\underbrace{\sum_{i=1}^n\left( Y_i - \bar{Y} \right)^2}_{\text{SCT}} = \underbrace{\sum_{i=1}^n\left( \widehat{Y}_i - \bar{Y} \right)^2}_{\text{SCReg}} + \underbrace{\sum_{i=1}^n\left( Y_i - \widehat{Y}_i \right)^2}_{\text{SCE}},
+\tag{3.11}
+\end{equation}\]</span>
+<p>donde,</p>
+<ul>
+<li><p><strong>Suma de cuadrados total</strong> (SCT): corresponde a la variabilidad de los datos.</p></li>
+<li><p><strong>Suma de cuadrados de la regresión</strong> (SCReg): corresponde a la variabilidad de los datos que es explicada por el modelo de regresión.</p></li>
+<li><p><strong>Suma de cuadrados del error</strong> (SCE): corresponde a la variabilidad de los datos que no es explicada por el modelo.</p></li>
+</ul>
+<p>En la experimentación, se quiere que SCE sea pequeña y que SCReg sea grande.</p>
+<p>Las expresiones involucradas en la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a> dan lugar a reescribir distintas expresiones, entre las cuales se encuentra, el coeficiente de determinación (<span class="math inline">\(R^2\)</span>) y el error estándar residual explicados en la sección <a href="regresion-lineal.html#metricasRLS">3.2.4</a>, y el estadístico asociado a las pruebas de hipótesis de los parámetros explicado en la sección <a href="regresion-lineal.html#pruebasHipotesisRLS">3.2.3</a>.</p>
+</div>
+<div id="pruebasHipotesisRLS" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Pruebas de hipótesis<a href="regresion-lineal.html#pruebasHipotesisRLS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los modelos de regresión lineal simple incluyen pruebas de hipótesis asociadas a los betas, además de otro tipo de información. En R es posible utilizar el comando <code>summary()</code> para acceder al resumen de información. A continuación, a modo de ejemplo se utiliza el modelo elaborado en el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a>.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="regresion-lineal.html#cb120-1" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Valor.Patrimonio ~ Valor.Cuota, data = datos)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.0070 -2.9085 -0.0636  3.8231  8.5680 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.353e+02  1.695e+01  -7.982 7.37e-11 ***
+## Valor.Cuota  4.936e-03  2.748e-04  17.962  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.215 on 57 degrees of freedom
+## Multiple R-squared:  0.8499, Adjusted R-squared:  0.8472 
+## F-statistic: 322.6 on 1 and 57 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>El detalle por columna es el siguiente.</p>
+<ul>
+<li><p>En primer lugar, ya conocemos los coeficientes del modelo (betas estimados) y cómo se interpretan. Estos valores los podemos encontrar en la columna llamada <strong>Estimate</strong>.</p></li>
+<li><p>La segunda columna (<strong>Std. Error</strong>) corresponde a la desviación estándar de la estimación de cada uno de los betas. Como cada uno de los errores (<span class="math inline">\(\varepsilon_i\)</span>) tiene distribución normal, esto implica que cada uno de los <span class="math inline">\(\beta\)</span> tenga distribución t – Student (no analizaremos esto en profundidad).</p></li>
+<li><p>La tercera y cuarta columna están diseñadas para probar una determinada prueba de hipótesis relacionada a los <span class="math inline">\(\beta\)</span>, llamada <strong>prueba de no nulidad</strong>. En este caso, cada fila aborda la siguiente hipótesis:</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0:&amp;\beta_i = 0\\
+H_1:&amp;\beta_i \neq 0\\
+\end{split}
+\end{equation}\]</span>
+<p>El estadístico para cada uno de los beta se obtiene dividiendo el valor estimado (<strong>Estimate</strong>) por la desviación estándar (<strong>Std. Error</strong>). El resultado de estos valores, se puede apreciar en la columna <strong>t value</strong>.</p></li>
+<li><p>Finalmente, se calcula el valor - p asociado a cada una de las hipótesis del punto anterior, con la fórmula <span class="math inline">\(2\cdot(1-pt(|t_0|, n-2))\)</span>. El valor resultante de esta expresión para cada uno de los betas se encuentra en la columna <strong>Pr(&gt;|t|)</strong>. La interpretación de este valor es mediante el criterio del valor - p presentado en la unidad anterior.</p></li>
+</ul>
+<p>En el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a>, al no rechazarse la hipótesis nula asociada a cada beta estimado, se tiene que cada variable (intercepto y valor cuota) son relevantes para explicar la variable respuesta (valor del patrimonio). Sin embargo, esto no es un regla decidora respecto a si una variable debe o no considerarse en el modelo, es decir,</p>
+<ul>
+<li><p>No rechazar las hipótesis nula de los beta estimados, indica que su “valor” es <strong>cero</strong>, por lo que no “aportarían” al modelo de regresión construido. En este punto, muchas personas eliminarían la variable utilizada para construir el modelo (el valor cuota) (esto es una de tantas técnicas aplicables, pero que no profundizaremos) o, cambiarían la variable explicativa utilizada (no considerarían el valor cuota, sino que utilizarían otra variable).</p></li>
+<li><p>A pesar de que los valores-p puedan no ser significativos (mayores a 0.05), es decir, no rechazar las hipótesis nulas; es posible forzar la permanencia de la variable en el modelo debido al criterio experto del profesional.</p></li>
+</ul>
+<p>Por último, al final de la salida del resumen, encontramos el valor llamado <strong>F-statistic</strong>. Este valor, es un estadístico que prueba de hipótesis llamada <strong>prueba de no nulidad conjunta</strong>,</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0:&amp;\text{ Todos los betas asociados a las covariables valen 0}\\
+H_1:&amp;\text{ Almenos uno de los betas asociados a las covariables es distinto de 0}\\
+\end{split}
+\end{equation}\]</span>
+<p>Se rechaza <span class="math inline">\(H_0\)</span> cuando:</p>
+<span class="math display" id="eq:estadistico-F-RLS">\[\begin{equation}
+F_0 = \frac{\text{SCReg}}{\text{MCE}} \geq F_{1-\alpha, 1, n-2}.
+\tag{3.12}
+\end{equation}\]</span>
+<p>con una significancia <span class="math inline">\(\alpha\)</span>. El valor de MCE se especifica en la sección <a href="regresion-lineal.html#metricasRLS">3.2.4</a>.</p>
+<p><strong>Nota</strong>: esta prueba de hipótesis no considera <span class="math inline">\(\beta_0\)</span>.</p>
+<p>En el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a>, se observa un valor del estadístico igual a 322.6 con 1 y 57 grados de libertad, además de un valor menor a 0.05. Por lo tanto, existe suficiente evidencia estadística para rechazar <span class="math inline">\(H_0\)</span>, es decir, almenos uno de los betas asociados a las covariables es distinto de 0.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-131" class="exercise"><strong>Ejercicio 3.4  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Pacientes">Pacientes</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste un modelo para estudiar el nivel de colesterol de los pacientes a partir de su edad. Luego, estudie las pruebas de hipótesis asociadas utilizando una confianza del 95%.</li>
+<li>Ajuste un modelo para estudiar el tiempo de duración del último ataque al corazón de los pacientes a partir de su edad. Luego, estudie las pruebas de hipótesis asociadas utilizando una confianza del 95%.</li>
+</ol>
+</div>
+</div>
+<div id="metricasRLS" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Métricas<a href="regresion-lineal.html#metricasRLS" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La salida de R nos proporciona dos valores que permiten evaluar al modelo de regresión lineal simple:</p>
+<ul>
+<li><p><strong>Residual standard error</strong> (error estándar residual): corresponde a la desviación estándar de los residuos, es decir, que mientras menor sea este valor, los puntos se alejarán menos de la recta de regresión. Este valor es una estimación de <span class="math inline">\(\sigma\)</span>, que en términos de las expresiones de la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a> se tiene que:</p>
+<span class="math display" id="eq:sigma2-estimador">\[\begin{equation}
+\widehat{\sigma}^2 = \frac{\text{SCE}}{n-2} = \text{MCE},
+\tag{3.13}
+\end{equation}\]</span>
+<p>donde, MCE se denomina <strong>media cuadrática del error</strong>. El denominador de esta expresión corresponde al total de observaciones (<span class="math inline">\(n\)</span>) menos la cantidad de parámetros del modelo (<span class="math inline">\(\beta_1\)</span> y <span class="math inline">\(\beta_2\)</span>). Finalmente, el valor del error estándar residual (<span class="math inline">\(\widehat{\sigma}\)</span>) es igual a <span class="math inline">\(\sqrt{\text{MCE}}\)</span>.</p></li>
+<li><p><strong>Multiple R-squared</strong> o <span class="math inline">\(R^2\)</span>: es un métrica de error de la regresión que mide el rendimiento del modelo, corresponde a la proporción de variabilidad explicada por la regresión sobre la variabilidad total de las observaciones. En términos de las expresiones de la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a> se tiene que:</p>
+<span class="math display" id="eq:R2-RLS">\[\begin{equation}
+R^2 = \frac{\text{SCReg}}{\text{SCT}}
+\tag{3.14}
+\end{equation}\]</span></li>
+</ul>
+<p>En el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a> se obtiene un error estándar residual de 4.2. Sin embargo, <strong>NO EXISTE</strong> un regla que determine cuando un error estándar residual es bueno o malo. En general, este valor se utiliza para comparar don o más modelos que estudian la misma variable respuesta pero con distintas variables predictoras (variables independientes), para saber cual realiza un mejor ajuste.</p>
+<p>Por otro lado, se tiene un valor de <span class="math inline">\(R^2\)</span> igual a 0.84, el cual es muy alto, por lo que se logra explicar gran parte de la variable respuesta. Al igual que el error estándar residual, no existe una regla para determinar cuando un valor de <span class="math inline">\(R^2\)</span> es bueno o malo, aunque valores cercanos a cero indican que el poder explicativo del modelo es extremadamente pobre; y a su vez, valores muy cercanos a 1 son muy buenos, aunque extremadamente sospechosos.</p>
+<p>Lo anteriormente explicado se puede observar mediante los siguientes comandos, aunque es posible observarlos en salida general del comando <code>summary()</code>.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="regresion-lineal.html#cb122-1" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb122-2"><a href="regresion-lineal.html#cb122-2" tabindex="-1"></a>summ <span class="ot">=</span> <span class="fu">summary</span>(modelo)</span>
+<span id="cb122-3"><a href="regresion-lineal.html#cb122-3" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;Error estándar residual&quot;</span> <span class="ot">=</span> summ<span class="sc">$</span>sigma, <span class="st">&quot;R cuadrado&quot;</span> <span class="ot">=</span> summ<span class="sc">$</span>r.squared))</span></code></pre></div>
+<pre><code>## Error estándar residual              R cuadrado 
+##               4.2148482               0.8498553</code></pre>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-132" class="exercise"><strong>Ejercicio 3.5  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Ingreso">Ingreso</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste un modelo para estudiar la proporción de logro a partir el puntaje NEM.</li>
+<li>Ajuste un modelo para estudiar la proporción de logro a partir el puntaje PTU de la prueba de Lenguaje.</li>
+<li>Obtenga de manera manual el estadístico F asociado a la prueba de hipótesis de nulidad conjunta de cada modelo. Interprete, utilizando una confianza del 95%.</li>
+<li>Compare los ajustes de ambos modelos utilizando el error estándar residual y el <span class="math inline">\(R^2\)</span>, obteniendo las métricas de manera manual. Interprete.</li>
+</ol>
+</div>
+</div>
+<div id="regresion-lineal-simple-supuestos" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Supuestos<a href="regresion-lineal.html#regresion-lineal-simple-supuestos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuándo se elabora un modelo de regresión lineal, es necesario verificar el cumplimiento de condiciones para la correcta interpretación y utilización del modelo desarrollado. Las condiciones que se deben cumplir se denominan supuestos. A continuación, se detallan los 4 supuestos que se deben estudiar, utilizando como ejemplo el modelo elaborado en el ejemplo <a href="regresion-lineal.html#exm:AFPUNO">3.2</a>.</p>
+<div id="regresion-lineal-simple-supuestos-linealidad" class="section level4 hasAnchor" number="3.2.5.1">
+<h4><span class="header-section-number">3.2.5.1</span> Linealidad<a href="regresion-lineal.html#regresion-lineal-simple-supuestos-linealidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La relación entre ambas variables (dependiente e independiente) debe ser lineal. Para observar el comportamiento es posible realizar un gráfico de puntos entre la variable predictora (<span class="math inline">\(X\)</span>) y la variable de estudio (<span class="math inline">\(Y\)</span>).</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="regresion-lineal.html#cb124-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos) <span class="sc">+</span></span>
+<span id="cb124-2"><a href="regresion-lineal.html#cb124-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Valor.Cuota, <span class="at">y =</span> Valor.Patrimonio)) <span class="sc">+</span></span>
+<span id="cb124-3"><a href="regresion-lineal.html#cb124-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valor Cuota (pesos)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Valor Patrimonio </span><span class="sc">\n</span><span class="st"> (miles de millones de pesos)&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-100-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.</p>
+</div>
+<div id="regresion-lineal-simple-supuestos-normalidad" class="section level4 hasAnchor" number="3.2.5.2">
+<h4><span class="header-section-number">3.2.5.2</span> Normalidad<a href="regresion-lineal.html#regresion-lineal-simple-supuestos-normalidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Los residuos deben distribuir Normal con media 0 (<span class="math inline">\(\mu\)</span>) y varianza 1 (<span class="math inline">\(\sigma^2\)</span>). Para ello, se pueden ejecutar varios comandos en R para probar esta hipótesis. El más conocido es el comando <code>shapiro.test()</code>. La hipótesis es</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Los residuos estandarizados tienen distribución Normal}\\
+H_1&amp;: \text{Los residuos estandarizados NO tienen distribución Normal}\\
+\end{split}
+\end{equation}\]</span>
+<p>Se definen los residuos estandarizados, <span class="math inline">\(r_i\)</span>, como los residuos, <span class="math inline">\(e_i\)</span>, divididos por su error estándar:</p>
+<span class="math display" id="eq:residuos-estandarizados">\[\begin{equation}
+r_i = \frac{e_i}{\widehat{\text{es}}(e_i)}, i = 1,\ldots,n
+\tag{3.15}
+\end{equation}\]</span>
+<p>Utilizando la definición dada en la ecuación <a href="regresion-lineal.html#eq:sigma2-estimador">(3.13)</a>, se tiene que</p>
+<span class="math display" id="eq:residuos-estandarizados-2">\[\begin{equation}
+r_i = \frac{e_i}{\sqrt{\text{MCE}}}
+\tag{3.16}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="regresion-lineal.html#cb125-1" tabindex="-1"></a>residuos <span class="ot">=</span> <span class="fu">resid</span>(modelo) <span class="co"># Residuos </span></span>
+<span id="cb125-2"><a href="regresion-lineal.html#cb125-2" tabindex="-1"></a>residuos_estandarizados <span class="ot">=</span> <span class="fu">rstandard</span>(modelo) <span class="co"># Residuos estandarizados</span></span>
+<span id="cb125-3"><a href="regresion-lineal.html#cb125-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="at">x =</span> residuos_estandarizados)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuos_estandarizados
+## W = 0.96765, p-value = 0.1177</code></pre>
+<p>Considerando una confianza del 95%, el valor-p de 0.1177 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos (estandarizados) tienen distribución normal.</p>
+<p>En caso de que la cantidad de datos sea mayor a 5000, el comando <code>shapiro.test()</code> fallará. En su lugar, es posible usar el comando <code>ks.test()</code>, un ejemplo con los residuos del ejemplo anterior es</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="regresion-lineal.html#cb127-1" tabindex="-1"></a><span class="fu">ks.test</span>(residuos_estandarizados, <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## 
+##  Asymptotic one-sample Kolmogorov-Smirnov test
+## 
+## data:  residuos_estandarizados
+## D = 0.12515, p-value = 0.3138
+## alternative hypothesis: two-sided</code></pre>
+<p>Una tercera opción es utilizar el comando <code>ad.test()</code> de la librería <strong>nortest</strong></p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="regresion-lineal.html#cb129-1" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb129-2"><a href="regresion-lineal.html#cb129-2" tabindex="-1"></a><span class="fu">ad.test</span>(residuos_estandarizados)</span></code></pre></div>
+<pre><code>## 
+##  Anderson-Darling normality test
+## 
+## data:  residuos_estandarizados
+## A = 0.71269, p-value = 0.05962</code></pre>
+</div>
+<div id="regresion-lineal-simple-supuestos-homocedasticidad" class="section level4 hasAnchor" number="3.2.5.3">
+<h4><span class="header-section-number">3.2.5.3</span> Homocedasticidad<a href="regresion-lineal.html#regresion-lineal-simple-supuestos-homocedasticidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Este supuesto hace referencia a la necesidad de una varianza constante de los residuos. Para verificar esto, se grafican los residuos estandarizados del modelo versus los valores de la variable predictora (o variable predicha, <span class="math inline">\(\widehat{y}\)</span>). Se busca que las amplitudes verticales en las figuras sean similares en la medida que se recorre el eje de las abscisas. Similarmente, es posible ejecutar una prueba de hipótesis (Breucsh - Pagan) en R con el comando <code>bptest()</code> de la librería <strong>lmtest</strong>, siendo</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Los residuos tienen varianza constante}\\
+H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
+\end{split}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="regresion-lineal.html#cb131-1" tabindex="-1"></a>valores_predichos <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values</span>
+<span id="cb131-2"><a href="regresion-lineal.html#cb131-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos) <span class="sc">+</span></span>
+<span id="cb131-3"><a href="regresion-lineal.html#cb131-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> valores_predichos,</span>
+<span id="cb131-4"><a href="regresion-lineal.html#cb131-4" tabindex="-1"></a>                 <span class="at">y =</span> residuos_estandarizados)) <span class="sc">+</span></span>
+<span id="cb131-5"><a href="regresion-lineal.html#cb131-5" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb131-6"><a href="regresion-lineal.html#cb131-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores predichos&quot;</span>, <span class="at">y  =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-104-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="regresion-lineal.html#cb132-1" tabindex="-1"></a><span class="fu">library</span>(lmtest)</span>
+<span id="cb132-2"><a href="regresion-lineal.html#cb132-2" tabindex="-1"></a><span class="fu">bptest</span>(<span class="at">formula =</span> Valor.Patrimonio <span class="sc">~</span> Valor.Cuota,</span>
+<span id="cb132-3"><a href="regresion-lineal.html#cb132-3" tabindex="-1"></a>       <span class="at">data =</span> datos)</span></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  Valor.Patrimonio ~ Valor.Cuota
+## BP = 0.30064, df = 1, p-value = 0.5835</code></pre>
+<p>Considerando una confianza del 95%, el valor-p de 0.5835 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tienen varianza constante (homocedasticidad).</p>
+</div>
+<div id="regresion-lineal-simple-supuestos-independencia" class="section level4 hasAnchor" number="3.2.5.4">
+<h4><span class="header-section-number">3.2.5.4</span> Independencia<a href="regresion-lineal.html#regresion-lineal-simple-supuestos-independencia" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El último supuesto corresponde a la independencia de los residuos, es decir que, no deben estar correlacionados entre ellos (autocorrelación igual a 0). La prueba de hipótesis de Durbin - Watson está diseñada para detectar autocorrelación en los residuos. Para ejecutar esta prueba en R se debe utilizar la función <code>dwtest()</code> de la librería <strong>lmtest</strong>. La hipótesis es</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Autocorrelación de los residuos es igual a 0}\\
+H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
+\end{split}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="regresion-lineal.html#cb134-1" tabindex="-1"></a><span class="co"># Prueba de Durbin Watson</span></span>
+<span id="cb134-2"><a href="regresion-lineal.html#cb134-2" tabindex="-1"></a><span class="fu">dwtest</span>(<span class="at">formula =</span> Valor.Patrimonio <span class="sc">~</span> Valor.Cuota,</span>
+<span id="cb134-3"><a href="regresion-lineal.html#cb134-3" tabindex="-1"></a>       <span class="at">data =</span> datos,</span>
+<span id="cb134-4"><a href="regresion-lineal.html#cb134-4" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  Valor.Patrimonio ~ Valor.Cuota
+## DW = 0.080415, p-value &lt; 2.2e-16
+## alternative hypothesis: true autocorrelation is not 0</code></pre>
+<p>Considerando una confianza del 95%, el valor-p de <span class="math inline">\(2.2 \times 10^{-16}\)</span> es menor o igual a la significancia de 0.05, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos no son independientes (autocorrelación distinta de 0).</p>
+<p><strong>Conclusión</strong>: En resumen, se han cumplido 3 de los 4 supuestos planteados. Esto es muy común que suceda en la realidad, además de existir diversos factores que influyen en los resultados vistos.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-133" class="exercise"><strong>Ejercicio 3.6  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Ingreso">Ingreso</a>, ajuste el modelo:</p>
+<p><span class="math display">\[\widehat{Y}_{\text{Logro}} = \widehat{\beta}_0 + \widehat{\beta}_1X_{\text{NEM}}\]</span>
+Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Verifique los supuestos del modelo, utilizando una confianza del 95% cuando corresponda.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-134" class="exercise"><strong>Ejercicio 3.7  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Pacientes">Pacientes</a>, elabore un modelo para estudiar la variable <em>oldpeak</em> a través de la variable <em>chol</em>. Estudie los supuestos del modelo, utilizando una confianza del 92%.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-135" class="exercise"><strong>Ejercicio 3.8  </strong></span>La base de datos <a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%202/terremotos.csv"><em>terremotos.csv</em></a>, contiene datos sobre los terremotos ocurridos a nivel mundial entre los años 1900 y 2014. Las columnas de la base de datos son:</p>
+<ul>
+<li>Ano: año de ocurrencia del terremoto.</li>
+<li>Latitud: grados decimales de la coordenada de latitud (valores negativos para latitudes del sur).</li>
+<li>Longitud: grados decimales de la coordenada de longitud (valores negativos para longitudes occidentales).</li>
+<li>Profundidad: profundidad del evento en kilómetros.</li>
+<li>Magnitud: magnitud del evento (la escala no es fija, ya que, a través de los años, la escala a cambiado según el método de medición. Sin embargo, todos las magnitudes son comparables, indicando que a mayor magnitud, mayor es la intensidad en movimiento/fuerza del terremoto).</li>
+</ul>
+<p>Ajuste los siguientes modelos:</p>
+<ul>
+<li><p><span class="math inline">\(Y_{\text{Magnitud}} = \beta_0 + \beta_1X_{\text{Profundidad}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\)</span></p></li>
+<li><p><span class="math inline">\(Y_{\text{Magnitud}} = \beta_0 + \beta_1X_{\text{Latitud}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\)</span></p></li>
+</ul>
+<p>Luego, para cada modelo:</p>
+<ol style="list-style-type: decimal">
+<li>Estudie la relación entre la variable dependiente e independiente mediante gráficos de dispersión.</li>
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Interprete los betas estimados.</li>
+<li>Estudie los supuestos del modelo, utilizando una confianza del 98%.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="regresion-lineal-multiple" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Regresión lineal múltiple<a href="regresion-lineal.html#regresion-lineal-multiple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A diferencia de la regresión lineal simple, la regresión lineal múltiple (RLM) hace uso de más de una variable independiente para modelar el comportamiento de variable de estudio <span class="citation">(<a href="#ref-Devore">Devore, 2008</a>, página 528)</span>. La expresión de un modelo de regresión múltiple es:</p>
+<span class="math display" id="eq:multiple1">\[\begin{equation}
+Y = X\beta + \varepsilon
+\tag{3.17}
+\end{equation}\]</span>
+<p>con <span class="math inline">\(\varepsilon \sim N(0,\sigma^2I)\)</span> independientes. El detalles de las matrices es el siguiente,</p>
+<span class="math display" id="eq:multiple2">\[\begin{equation}
+\begin{pmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1k}\\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2k}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nk}\\
+\end{pmatrix}
+\begin{pmatrix}
+\beta_0\\
+\beta_1\\
+\vdots \\
+\beta_k\\
+\end{pmatrix}
++
+\begin{pmatrix}
+\varepsilon_1\\
+\varepsilon_2\\
+\vdots \\
+\varepsilon_n\\
+\end{pmatrix}.
+\tag{3.18}
+\end{equation}\]</span>
+<p>Una expresión equivalente es:</p>
+<span class="math display" id="eq:multiple3">\[\begin{equation}
+y_i = \beta_0 + \sum_{j=1}^k x_{ij}\beta_j +\varepsilon_i\text{, } i = 1,\dots,n \text{, } \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\tag{3.19}
+\end{equation}\]</span>
+<div id="EMC-RLM-CUERPO" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Estimadores de mínimos cuadrados<a href="regresion-lineal.html#EMC-RLM-CUERPO" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al igual que el una regresión lineal simple, se busca minimizar la <strong>suma cuadrática de los errores</strong> (SCE). Sin embargo, al trabajar con matrices, el proceso de minimización de la SCE da como resultado los siguientes estimadores de mínimos cuadrados (EMC), valores ajustados y residuos.</p>
+<span class="math display" id="eq:ecuacionajustadamultiple">\[\begin{equation}
+\widehat{Y} = X\widehat{\beta}
+\tag{3.20}
+\end{equation}\]</span>
+<span class="math display" id="eq:betasestimadosmultiple">\[\begin{equation}
+\widehat{\beta} = (X^tX)^{-1}X^tY
+\tag{3.21}
+\end{equation}\]</span>
+<span class="math display" id="eq:ygorromultiple">\[\begin{equation}
+\widehat{Y} = X(X^tX)^{-1}X^tY
+\tag{3.22}
+\end{equation}\]</span>
+<p>Además, los residuos se calculan como</p>
+<span class="math display" id="eq:residuosmultiple">\[\begin{equation}
+e = Y - \widehat{Y}
+\tag{3.23}
+\end{equation}\]</span>
+<p>Cabe mencionar, que se mantiene la igualdad respecto a la descomposición de la SCT expresada en la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a>.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:MultipleManual" class="example"><strong>Ejemplo 3.3  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Imacec3">Imacec</a> , se debe considerar un modelo que estudie el valor del Imacec de Minería a base del Imacec de Industria y del Año de medición, con el fin de determinar los beta estimados, los valores ajustados y los errores del modelo, mediante las fórmulas explicadas anteriormente.</p>
+<p>Los modelos poblacional y ajustado son:</p>
+<ul>
+<li>Modelo poblacional:</li>
+</ul>
+<span class="math display">\[\begin{equation}
+\notag
+Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Año}} + \beta_2X_{\text{Imacec Industria}} + \varepsilon \text{, } \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\end{equation}\]</span>
+<ul>
+<li>Modelo estimado:</li>
+</ul>
+<span class="math display">\[\begin{equation}
+\notag
+\widehat{Y}_{\text{Imacec Minería}} = \widehat{\beta}_0 + \widehat{\beta}_1X_{\text{Año}} + \widehat{\beta}_2X_{\text{Imacec Industria}}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="regresion-lineal.html#cb136-1" tabindex="-1"></a><span class="co"># Cargamos previamente la base de datos, guardándola previamente con el nombre &quot;df&quot;</span></span>
+<span id="cb136-2"><a href="regresion-lineal.html#cb136-2" tabindex="-1"></a></span>
+<span id="cb136-3"><a href="regresion-lineal.html#cb136-3" tabindex="-1"></a><span class="co"># Para conformar la matriz de covariables (X) extraemos las columnas relevantes de la base de datos</span></span>
+<span id="cb136-4"><a href="regresion-lineal.html#cb136-4" tabindex="-1"></a>X <span class="ot">=</span> df[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)] <span class="co"># Año e Imacec de Industria</span></span>
+<span id="cb136-5"><a href="regresion-lineal.html#cb136-5" tabindex="-1"></a><span class="co"># Agregamos la columna de unos que debe ir antes de las otras</span></span>
+<span id="cb136-6"><a href="regresion-lineal.html#cb136-6" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X)</span>
+<span id="cb136-7"><a href="regresion-lineal.html#cb136-7" tabindex="-1"></a><span class="co"># Cambiamos el formato de X a matriz</span></span>
+<span id="cb136-8"><a href="regresion-lineal.html#cb136-8" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">as.matrix</span>(X)</span>
+<span id="cb136-9"><a href="regresion-lineal.html#cb136-9" tabindex="-1"></a><span class="co"># Extraemos la variable independiente (en formato de matriz)</span></span>
+<span id="cb136-10"><a href="regresion-lineal.html#cb136-10" tabindex="-1"></a>Y <span class="ot">=</span> <span class="fu">as.matrix</span>(df<span class="sc">$</span>Mineria)</span>
+<span id="cb136-11"><a href="regresion-lineal.html#cb136-11" tabindex="-1"></a><span class="co"># Determinemos los estimadores de los beta</span></span>
+<span id="cb136-12"><a href="regresion-lineal.html#cb136-12" tabindex="-1"></a>betas.gorro <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X)<span class="sc">%*%</span><span class="fu">t</span>(X)<span class="sc">%*%</span>Y</span>
+<span id="cb136-13"><a href="regresion-lineal.html#cb136-13" tabindex="-1"></a><span class="co"># El comando solve() calcula la inversa de una matriz.</span></span>
+<span id="cb136-14"><a href="regresion-lineal.html#cb136-14" tabindex="-1"></a><span class="co"># el operador %*% es para multiplicar matrices.</span></span>
+<span id="cb136-15"><a href="regresion-lineal.html#cb136-15" tabindex="-1"></a><span class="co"># El comando t() es para calcular una matriz traspuesta de una matriz.</span></span></code></pre></div>
+<p>Los valores estimados de los beta son:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="regresion-lineal.html#cb137-1" tabindex="-1"></a>betas.gorro</span></code></pre></div>
+<pre><code>##                   [,1]
+## 1         3293.7998054
+## Ano         -1.5984756
+## Industria    0.3224822</code></pre>
+<p>Los valores ajustados son:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="regresion-lineal.html#cb139-1" tabindex="-1"></a>y.gorro <span class="ot">=</span> X<span class="sc">%*%</span>betas.gorro</span>
+<span id="cb139-2"><a href="regresion-lineal.html#cb139-2" tabindex="-1"></a><span class="fu">head</span>(y.gorro)</span></code></pre></div>
+<pre><code>##           [,1]
+## [1,] 100.19527
+## [2,]  98.13138
+## [3,] 101.96892
+## [4,] 102.09791
+## [5,] 102.13016
+## [6,] 100.87248</code></pre>
+<p>Los residuos del modelo son:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="regresion-lineal.html#cb141-1" tabindex="-1"></a>residuos <span class="ot">=</span> Y <span class="sc">-</span> y.gorro</span>
+<span id="cb141-2"><a href="regresion-lineal.html#cb141-2" tabindex="-1"></a><span class="fu">head</span>(residuos)</span></code></pre></div>
+<pre><code>##             [,1]
+## [1,]  -3.6952686
+## [2,]  -5.6313828
+## [3,]  -0.8689205
+## [4,] -10.7979133
+## [5,]  -1.9301616
+## [6,]  -4.6724811</code></pre>
+<p>La ecuación de regresión ajustada es:</p>
+<p><span class="math display">\[
+\widehat{Y}_{\text{Imacec Minería}} = 3293.79 -1.59X_{\text{Año}} + 0.32X_{\text{Imacec Industria}}
+\]</span></p>
+</div>
+</div>
+<p>El modelo ajustado del ejemplo <a href="regresion-lineal.html#exm:MultipleManual">3.3</a> se elabora con el siguiente comando en R:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="regresion-lineal.html#cb143-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span>
+<span id="cb143-2"><a href="regresion-lineal.html#cb143-2" tabindex="-1"></a>modelo</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Mineria ~ Ano + Industria, data = df)
+## 
+## Coefficients:
+## (Intercept)          Ano    Industria  
+##   3293.7998      -1.5985       0.3225</code></pre>
+<p>La interpretación de los beta estimados es similar a la vista en regresión lineal simple, aunque la estructura de la expresión ya no es una recta como tal. Considerando la salida correspondiente al ejemplo <a href="regresion-lineal.html#exm:MultipleManual">3.3</a>:</p>
+<ul>
+<li><p><span class="math inline">\(\widehat{\beta}_0\)</span>: en la salida de R tiene el nombre de <strong>Intercept</strong>, su interpretación es igual a la vista en regresión lineal, es decir, corresponde al valor esperado de <span class="math inline">\(y\)</span> cuando las covariables tienen un valor nulo (igual a 0).</p>
+<p>Respecto al ejemplo, se interpreta que, cuando se está en el año 0 y, el valor del Imacec de industria es de 0 puntos, entonces, el valor promedio (o esperado) del Imacec de Minería es de <span class="math inline">\(\widehat{\beta}_0 = 3293.79\)</span>. Este valor carece de sentido, ya que el Imacec se empezó a utilizar en 1984, por lo que sería recomendable ajustar los años para considerar el tiempo inicial en 0 (1984).</p></li>
+<li><p><span class="math inline">\(\widehat{\beta}_j\)</span>: dado un cambio en una unidad de medida de variable <span class="math inline">\(x_j\)</span> (considerando que el resto de covariables se mantiene constante), en promedio, la variable <span class="math inline">\(y\)</span> se ve afectada (aumenta o disminuye) en <span class="math inline">\(\widehat{\beta}_j\)</span> unidades.</p>
+<p>Respecto al ejemplo:</p></li>
+<li><p><span class="math inline">\(\widehat{\beta}_1 = -1.598\)</span>: Por cada año que transcurre, el Imacec de Minería disminuye en promedio <span class="math inline">\(1.598\)</span> unidades. Considerando que el resto de covariables se mantiene constante.</p></li>
+<li><p><span class="math inline">\(\widehat{\beta}_2 = 0.322\)</span>: Por cada unidad que aumenta el Imacec de Industria, el Imacec de Minería aumenta en promedio <span class="math inline">\(0.322\)</span> unidades. Considerando que el resto de covariables se mantiene constante.</p></li>
+</ul>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-136" class="exercise"><strong>Ejercicio 3.9  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Pacientes">Pacientes</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste un modelo para estudiar la presión arterial en reposo, a partir de la edad, frecuencia cardíaca máxima alcanzada y el nivel de colesterol del paciente.</li>
+<li>Interprete los parámetros estimados.</li>
+<li>Escriba el modelo poblacional y la ecuación de regresión ajustada.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-137" class="exercise"><strong>Ejercicio 3.10  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Ingreso">Ingreso</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste un modelo para estudiar la variable <em>Logro</em> a partir de las variables <em>LEN</em> y <em>NEM</em>.</li>
+<li>Interprete los parámetros estimados.</li>
+<li>Escriba el modelo poblacional y la ecuación de regresión ajustada.</li>
+</ol>
+</div>
+</div>
+<div id="covariables-cualitativas" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Covariables cualitativas<a href="regresion-lineal.html#covariables-cualitativas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En un modelo de regresión lineal es posible utilizar variable cualitativas, para ello es necesario usar variables indicadoras que toman los valores 0 o 1 <span class="citation">(<a href="#ref-neter">Kutner et al., 2004</a>)</span>. Por ejemplo, consideremos un extracto de la base de datos del Imacec del ejemplo <a href="regresion-lineal.html#exm:MultipleManual">3.3</a>, el cual contenga únicamente los valores asociados a los meses de enero y febrero.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="regresion-lineal.html#cb145-1" tabindex="-1"></a>extracto <span class="ot">=</span> df[df<span class="sc">$</span>Mes <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;ene&quot;</span>, <span class="st">&quot;feb&quot;</span>),]</span>
+<span id="cb145-2"><a href="regresion-lineal.html#cb145-2" tabindex="-1"></a><span class="fu">str</span>(extracto)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    10 obs. of  4 variables:
+##  $ Ano      : int  2018 2018 2019 2019 2020 2020 2021 2021 2022 2022
+##  $ Mes      : chr  &quot;ene&quot; &quot;feb&quot; &quot;ene&quot; &quot;feb&quot; ...
+##  $ Mineria  : num  96.5 92.5 92 82.2 94 91.2 92.5 85.9 87.5 81.4
+##  $ Industria: num  99.6 93.2 101.9 93.2 100.8 ...</code></pre>
+<p>Suponiendo que, se desea estudiar el Imacec de Minería a través del Imacec de Industria y el mes de medición, el modelo poblacional es el siguiente:</p>
+<p><span class="math display">\[Y_{\text{Imacec Minería}} = \beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = febrero}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\]</span></p>
+<p>La covariable <span class="math inline">\(I_{\text{Mes = febrero}}\)</span> corresponde a una indicatriz, esta función vale 1 para el mes que se especifica (febrero en este caso) y 0 en otro caso (más detalles en el anexo <a href="funciones.html#funcion-indicatriz">D.1</a>). El valor del <code>Mes</code> que no se observa en el modelo es llamado <strong>categoría de referencia</strong>. Ajustando el modelo en R se obtiene el siguiente resumen.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="regresion-lineal.html#cb147-1" tabindex="-1"></a>modelo_con_categorias <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Industria <span class="sc">+</span> Mes, <span class="at">data =</span> extracto) </span>
+<span id="cb147-2"><a href="regresion-lineal.html#cb147-2" tabindex="-1"></a><span class="fu">summary</span>(modelo_con_categorias)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Mineria ~ Industria + Mes, data = extracto)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.2251 -3.5988 -0.2889  3.3713  5.6703 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  111.086    110.750   1.003    0.349
+## Industria     -0.186      1.108  -0.168    0.871
+## Mesfeb        -6.920      6.945  -0.996    0.352
+## 
+## Residual standard error: 4.563 on 7 degrees of freedom
+## Multiple R-squared:  0.3722, Adjusted R-squared:  0.1929 
+## F-statistic: 2.075 on 2 and 7 DF,  p-value: 0.196</code></pre>
+<p>Es posible apreciar, que de los betas estimados, el que está asociado a la variable <code>Mes</code> solo corresponde al valor de <code>febrero</code>. En este sentido, la interpretación de <span class="math inline">\(\widehat{\beta}_2\)</span> es la siguiente: Cuando el mes de medición es en febrero, el Imacec de Minería es en promedio 6.92 unidades inferior al mes de enero.</p>
+<p>La ecuación de regresión ajustada es:</p>
+<p><span class="math display">\[\widehat{Y}_{\text{Imacec Minería}} = 111.086 - 0.186X_{\text{Imacec Industria}} - 6.920I_{\text{Mes = febrero}}\]</span></p>
+<p>La forma en la que R selecciona la categoría de referencia es alfanumérica, sin embargo, es posible asignarla manualmente mediante el comando <code>as.factor()</code>.</p>
+<p>Para modelos que consideren variables con más opciones de categoría, se debe agregar una indicatriz por cada categoría a excepción de la categoría de referencia. Por ejemplo, si consideramos un modelo que estudie el el Imacec de Minería a través del Imacec de Industria y el Mes, siendo está última una variable con tres opciones (marzo, abril y mayo). El modelo poblacional es el siguiente:</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+Y_{\text{Imacec Minería}} = &amp;\beta_0 + \beta_1X_{\text{Imacec Industria}} + \beta_2I_{\text{Mes = abril}} + \\
+&amp;\beta_3I_{\text{Mes = mayo}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)\\
+\end{split}
+\end{equation}\]</span>
+<p>Se puede observar, que dado el modelo poblacional planteado, la categoría de referencia de la variable Mes corresponde a marzo.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-138" class="exercise"><strong>Ejercicio 3.11  </strong></span>Utilizando la base de datos <a href="regresion-lineal.html#Ingreso">Ingreso</a>, ajuste el siguiente modelo.</p>
+<p><span class="math display">\[
+Y_{\text{Logro}} = \beta_0 + \beta_1I_{\text{Sexo = Hombre}} + \beta_2X_{\text{NEM}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\]</span>
+Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Interprete los betas estimados.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:co2" class="exercise"><strong>Ejercicio 3.12  </strong></span>La base de datos <em>CO2</em> (propia de R) contiene datos de una experimento sobre la tolerancia al frío de la especie de pasto Echinochloa crus-galli. Las columnas son las siguientes:</p>
+<ul>
+<li>Plant: Identificador del tipo de planta.</li>
+<li>Type: Lugar de origen de la planta.</li>
+<li>Treatment: indica si la planta fue refrigerada (chilled) o no (nonchilled).</li>
+<li>conc: Concentraciones ambientales de dióxido de carbono (ml/L).</li>
+<li>uptake: Tasas de absorción de dióxido de carbono (umol/<span class="math inline">\(m^2\)</span> seg) de las plantas.</li>
+</ul>
+<p>Ajuste el siguiente modelo:</p>
+<p><span class="math display">\[
+Y_{\text{uptake}} = \beta_0 + \beta_1I_{\text{Type = Mississippi}} + \beta_2I_{\text{Treatment = chilled}} +  \beta_3X_{\text{conc}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\]</span>
+Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Interprete los betas estimados.</li>
+</ol>
+</div>
+</div>
+<div id="regresion-lineal-multiple-pruebas-hipotesis" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Pruebas de hipótesis<a href="regresion-lineal.html#regresion-lineal-multiple-pruebas-hipotesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Las hipótesis de no nulidad asociadas a cada uno de los betas se plantean de la misma forma que se ha visto en el caso de regresión lineal simple. La única diferencia radica en el valor- p de la prueba <strong>F-statistic</strong>, el cual es diferente al valor-p de la prueba asociada a <span class="math inline">\(\widehat{\beta}_1\)</span>.</p>
+<p>Considerando el modelo ajustado en el ejemplo <a href="regresion-lineal.html#exm:MultipleManual">3.3</a>, la ecuación de regresión ajustada es:</p>
+<p><span class="math display">\[
+\widehat{Y}_{\text{Imacec Minería}} = 3293.79  -1.59X_{\text{Año}} + 0.32X_{\text{Imacec Industria}}
+\]</span></p>
+<p>El resumen del modelo ajustado en R es el siguiente.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="regresion-lineal.html#cb149-1" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Mineria ~ Ano + Industria, data = df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.3329  -4.0632  -0.4713   4.8539  12.2941 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept) 3293.7998  1328.2346   2.480   0.0165 *
+## Ano           -1.5985     0.6590  -2.426   0.0189 *
+## Industria      0.3225     0.1407   2.291   0.0261 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.238 on 51 degrees of freedom
+## Multiple R-squared:  0.154,  Adjusted R-squared:  0.1209 
+## F-statistic: 4.643 on 2 and 51 DF,  p-value: 0.01405</code></pre>
+<p>Respecto a las pruebas de hipótesis de cada uno de los beta,</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0:&amp;\beta_j = 0\\
+H_1:&amp;\beta_j \neq 0\\
+\end{split}
+\end{equation}\]</span>
+<p>El criterio de rechazo es:</p>
+<span class="math display" id="eq:valor-critico-cada-beta-RLM">\[\begin{equation}
+|t_0| \geq t_{1-\alpha/2, n-k-1}
+\tag{3.24}
+\end{equation}\]</span>
+<p>donde <span class="math inline">\(n\)</span> es el tamaño de la muestra y <span class="math inline">\(k\)</span> es la cantidad de covariables del modelo.</p>
+<p>Para el ejemplo planteado, se observa que todos lo betas estimados son significativos para una confianza del 95%.</p>
+<p>Respecto a la prueba de hipótesis de no nulidad conjunta, se aprecia que el valor-p (0.01405) es menor a 0.05, por lo cual, se asume que al menos uno de los beta que acompañan a las covariables es distinto de cero. Las hipótesis involucradas son las siguientes:</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0:&amp; \beta_1 = \ldots  = \beta_k = 0\\
+H_1:&amp;\text{ Al menos uno de los beta es distinto de 0}\\
+\end{split}
+\end{equation}\]</span>
+<p>A diferencia del estadístico expresado en la ecuación <a href="regresion-lineal.html#eq:estadistico-F-RLS">(3.12)</a>, la expresión del criterio de rechazo para esta prueba es:</p>
+<span class="math display" id="eq:estadistico-F-RLM">\[\begin{equation}
+F_0 = \frac{\text{MCReg}}{\text{MCE}} \geq F_{1-\alpha, k, n-k-1},
+\tag{3.25}
+\end{equation}\]</span>
+<p>donde,</p>
+<span class="math display" id="eq:MCReg">\[\begin{equation}
+\text{MCReg} = \frac{\text{SCReg}}{k}
+\tag{3.26}
+\end{equation}\]</span>
+<p>para una significancia <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(k\)</span> variables predictoras. Además, la expresión asociada al MCE también cambia, para ello refiérase a la sección <a href="regresion-lineal.html#metricasRLM">3.3.4</a>.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-139" class="exercise"><strong>Ejercicio 3.13  </strong></span>Plantear y estudiar las hipótesis asociadas al modelo ajustado en el ejercicio <a href="regresion-lineal.html#exr:co2">3.12</a>, utilizando una confianza del 95%.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:calidad-aire" class="exercise"><strong>Ejercicio 3.14  </strong></span>La base de datos <em>airquality</em> (propia de R) contiene mediciones diarias de la calidad del aire en Nueva York, de mayo a septiembre de 1973. Las columnas son las siguientes:</p>
+<ul>
+<li>Ozone: Ozono medio en partes por billón.</li>
+<li>Solar.R: Radiación solar en Langley.</li>
+<li>Wind: Velocidad promedio del viento en millas por hora.</li>
+<li>Temp: Temperatura máxima diaria en grados Fahrenheit.</li>
+<li>Month: Mes de medición.</li>
+<li>Day: Día de medición.</li>
+</ul>
+<p>Elimine los datos faltantes de la base de datos utilizando el comando <code>na.omit()</code>.</p>
+<p>Considere el siguiente modelo</p>
+<p><span class="math display">\[
+Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} + \beta_3X_{\text{Wind}} + \varepsilon, \varepsilon_i \overset{\text{iid}}{\sim} N(0,\sigma^2)
+\]</span></p>
+<p>Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste el modelo R.</li>
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Interprete los beta estimados.</li>
+<li>Estudie las hipótesis asociadas a los betas, utilizando una confianza del 95%.</li>
+</ol>
+</div>
+</div>
+<div id="metricasRLM" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Métricas<a href="regresion-lineal.html#metricasRLM" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al igual que en la regresión lineal simple, contamos con los valores de <strong>Residual standard error</strong> y con el <strong>Multiple R-squared</strong>. Sin embargo, este último no es óptimo es su interpretación, ya que un modelo de regresión lineal múltiple mientras más covariables utilice, mayor será su <span class="math inline">\(R^2\)</span>, aunque estas no sean significativas. Para penalizar esto, se debe observar el <strong>Adjusted R-squared</strong>, el cual corrige este valor, según la cantidad de covariables que se utilizan en el modelo. Y al igual que para el <span class="math inline">\(R^2\)</span>, se desean valores altos, dándose la misma interpretación al valor.</p>
+<p>En términos de la ecuación <a href="regresion-lineal.html#eq:descomposicion-sct">(3.11)</a> se tienen las siguientes igualdades:</p>
+<ul>
+<li><p>Residual standard error: a diferencia de lo mostrado en <a href="regresion-lineal.html#eq:sigma2-estimador">(3.13)</a>, la cantidad de parámetros es variable y se denota con la letra <span class="math inline">\(k\)</span>, por lo cual, el estimador es el siguiente.</p>
+<span class="math display" id="eq:error-estandar-residual-RLM">\[\begin{equation}
+\widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1} = \text{MCE},
+\tag{3.27}
+\end{equation}\]</span>
+<p>Luego, el valor del error estándar residual (<span class="math inline">\(\widehat{\sigma}\)</span>) es igual a <span class="math inline">\(\sqrt{\text{MCE}}\)</span>.</p></li>
+<li><p>Adjusted R-squared: se agrega una penalización respecto a la cantidad de covariables (<span class="math inline">\(k\)</span>) incluidas en el modelo. Luego, la expresión correspondiente es la siguiente.</p>
+<span class="math display" id="eq:r2-ajustado">\[\begin{equation}
+\bar{R}^2 = 1-\left(\frac{n-1}{(n-k-1)}\right)(1-R^2)
+\tag{3.28}
+\end{equation}\]</span>
+<p>Una característica importante de esta métrica de ajuste es que, solo el <span class="math inline">\(R^2\)</span> aumenta a medida que se incluyen más covariables en el modelo, mientras que el <span class="math inline">\(\bar{R}^2\)</span> no necesariamente (consulte el anexo <a href="métricas.html#R2-no-decreciente">B.1</a> para estudiar esta característica).</p></li>
+</ul>
+<p>Respecto al ejemplo <a href="regresion-lineal.html#exm:MultipleManual">3.3</a>, la salida de resumen del modelo en R es:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="regresion-lineal.html#cb151-1" tabindex="-1"></a><span class="co"># Guardamos el resumen como una variable</span></span>
+<span id="cb151-2"><a href="regresion-lineal.html#cb151-2" tabindex="-1"></a>resumen <span class="ot">=</span> <span class="fu">summary</span>(modelo)</span>
+<span id="cb151-3"><a href="regresion-lineal.html#cb151-3" tabindex="-1"></a><span class="co"># Consultamos las métricas de manera directa</span></span>
+<span id="cb151-4"><a href="regresion-lineal.html#cb151-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="st">&quot;Error estándar residual&quot;</span> <span class="ot">=</span> resumen<span class="sc">$</span>sigma, <span class="st">&quot;R cuadrado ajustado&quot;</span> <span class="ot">=</span> resumen<span class="sc">$</span>adj.r.squared))</span></code></pre></div>
+<pre><code>## Error estándar residual     R cuadrado ajustado 
+##               6.2382266               0.1208535</code></pre>
+<ul>
+<li><p><strong>Residual standard error</strong>: corresponde a la desviación estándar de los residuos, la cual, toma una valor de 6.238. Este número se utiliza para comparar modelos, prefiriendo aquel que tenga un menor valor.</p></li>
+<li><p><strong>Adjusted R-squared</strong>: El valor del <span class="math inline">\(R^2\)</span> ajustado toma una valor de 0.1209, lo cual, indica que un 12.09% del comportamiento (variabilidad) del Imacec de Minería (variable independiente) es explicado por las covariables (es decir, el modelo) a través de una relación lineal múltiple. Este valor, también se suele ocupar para comparar modelos, prefiriéndose un modelo con mayor <span class="math inline">\(R^2\)</span> ajustado.</p></li>
+</ul>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-140" class="exercise"><strong>Ejercicio 3.15  </strong></span>Interprete las métricas del modelo desarrollado en el ejercicio <a href="regresion-lineal.html#exr:calidad-aire">3.14</a>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-141" class="exercise"><strong>Ejercicio 3.16  </strong></span>A continuación, se trabaja con una base (de 607 filas) que contiene datos referentes a salarios de trabajos de ciencia de datos. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>workYear: El año en que se pagó el salario.</li>
+<li>experienceLevel: El nivel de experiencia en el trabajo durante el año con los siguientes valores posibles: EN (Entry-level/Junior), MI (Mid-level/Intermedio), SE (Senior-level/Experto), EX (Executive-level/Director).</li>
+<li>salaryInUSD: El salario en USD (tasa de cambio dividida por la tasa promedio de USD para el año respectivo a través de fxdata.foorilla.com).</li>
+<li>companySize: El número promedio de personas que trabajaron para la empresa durante el año: S menos de 50 empleados (pequeño), M de 50 a 250 empleados (mediano), L más de 250 empleados (grande).</li>
+</ul>
+<p>Se ejecutó en R el comando:</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="regresion-lineal.html#cb153-1" tabindex="-1"></a><span class="fu">lm</span>(salaryInUSD <span class="sc">~</span> workYear <span class="sc">+</span> companySize, <span class="at">data =</span> datos)</span></code></pre></div>
+<p>Los valores de SCT y SCReg son <span class="math inline">\(3.0511692\times 10^{12}\)</span> y <span class="math inline">\(1.7439024\times 10^{11}\)</span>, respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule el R cuadrado ajustado y <span class="math inline">\(F_0\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-142" class="exercise"><strong>Ejercicio 3.17  </strong></span>Considera una base que contiene datos (de 303 filas) respecto a los ataques al corazón de distintos pacientes hospitalarios. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>sex: sexo del paciente (Hombre: H y Mujer: M).</li>
+<li>trtbps: presión arterial en reposo (en mm Hg).</li>
+<li>thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).</li>
+<li>oldpeak: tiempo de duración del último ataque al corazón (en minutos).</li>
+</ul>
+<p>Se ejecutó en R el comando:</p>
+<pre><code>## 
+## Call:
+## lm(formula = oldpeak ~ trtbps + sex, data = datos)
+## 
+## Coefficients:
+## (Intercept)       trtbps         sexH  
+##     -0.8800       0.0132       0.2676</code></pre>
+<p>Los valores de SCT y SCReg son <span class="math inline">\(407\)</span> y <span class="math inline">\(20\)</span>, respectivamente. Suponiendo que se ha utilizado la base de datos mencionada, calcule MCE, MCReg y <span class="math inline">\(F_0\)</span>.</p>
+</div>
+</div>
+<div id="regresion-lineal-multiple-supuestos" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Supuestos<a href="regresion-lineal.html#regresion-lineal-multiple-supuestos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al igual que en la regresión lineal simple, lo supuestos a verificar son:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Linealidad</strong>: se requiere que la relación entre la variable de estudio y cada una de las covariables sea lineal. Sin embargo, cuando se tiene una gran cantidad de covariables es mejor estudiar el gráfico de residuos (eje Y) versus los valores ajustados <span class="math inline">\(\widehat{Y}_i\)</span> (eje X); se busca que no existan patrones o formas.</p></li>
+<li><p><strong>Normalidad</strong>: Los residuos estandarizados tiene distribución normal con media 0 y varianza 1. Procedimiento idéntico al utilizado en la regresión lineal simple.</p></li>
+<li><p><strong>Homocedasticidad</strong>: Los residuos estandarizados tienen varianza constante. Procedimiento idéntico al utilizado en la regresión lineal simple.</p></li>
+<li><p><strong>Independencia</strong>: Los residuos estandarizados son independientes. Procedimiento idéntico al utilizado en la regresión lineal simple.</p></li>
+</ol>
+<p>Por otro lado, aparece un nuevo fenómeno llamado colinealidad entre las variables predictoras (multicolinealidad). La colinealidad indica que las covariables están correlacionadas entre si (correlación lineal). Es normal y esperable que esto suceda en alguna medida con las covariables de una base de datos. El problema surge, cuando hay como mínimo dos variables cuya correlación es fuerte, ya que esto provoca que ambas variables traten de explicar la misma “información” (variabilidad) de la variable respuesta. En temas posteriores, se abordarán técnicas para evitar la ocurrencia de este fenómeno.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-143" class="example"><strong>Ejemplo 3.4  </strong></span>Utilizando el modelo ajustado en el ejemplo <a href="regresion-lineal.html#exm:MultipleManual">3.3</a>, verifique los supuestos para la regresión construida, utilizando una confianza del 95%.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="regresion-lineal.html#cb155-1" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><strong>Linealidad</strong></li>
+</ol>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="regresion-lineal.html#cb156-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="st">&quot;Y_Gorro&quot;</span> <span class="ot">=</span> df<span class="sc">$</span>Mineria, <span class="st">&quot;Residuos&quot;</span> <span class="ot">=</span> <span class="fu">residuals</span>(modelo)),</span>
+<span id="cb156-2"><a href="regresion-lineal.html#cb156-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Y_Gorro, <span class="at">y =</span> Residuos)) <span class="sc">+</span></span>
+<span id="cb156-3"><a href="regresion-lineal.html#cb156-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb156-4"><a href="regresion-lineal.html#cb156-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores ajustados&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-122-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Normalidad</strong></li>
+</ol>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Los residuos estandarizados tienen distribución Normal}\\
+H_1&amp;: \text{Los residuos estandarizados NO tienen distribución Normal}\\
+\end{split}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="regresion-lineal.html#cb157-1" tabindex="-1"></a>r_e <span class="ot">=</span> <span class="fu">rstandard</span>(modelo) <span class="co"># residuos estandarizados</span></span>
+<span id="cb157-2"><a href="regresion-lineal.html#cb157-2" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="at">x =</span> r_e)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  r_e
+## W = 0.98827, p-value = 0.8738</code></pre>
+<p>El valor-p de 0.8738 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechaza la hipótesis nula, es decir, se asume que los residuos tienen distribución normal.Considerando una confianza del 95%.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Homocedasticidad</strong></li>
+</ol>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Los residuos tienen varianza constante}\\
+H_1&amp;: \text{Los residuos NO tienen varianza constante}\\
+\end{split}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="regresion-lineal.html#cb159-1" tabindex="-1"></a>df<span class="sc">$</span>Valores.ajustados <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values</span>
+<span id="cb159-2"><a href="regresion-lineal.html#cb159-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Valores.ajustados, <span class="at">y =</span> r_e)) <span class="sc">+</span></span>
+<span id="cb159-3"><a href="regresion-lineal.html#cb159-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb159-4"><a href="regresion-lineal.html#cb159-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores ajustados&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
+<p><img src="est2+inferencia_files/figure-html/unnamed-chunk-124-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="regresion-lineal.html#cb160-1" tabindex="-1"></a><span class="fu">bptest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df)</span></code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  Mineria ~ Ano + Industria
+## BP = 1.4598, df = 2, p-value = 0.482</code></pre>
+<p>El valor-p de 0.482 no es menor o igual a la significancia de 0.05, por lo cual, no existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos tiene varianza constante. Considerando una confianza del 95%.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Independencia</strong></li>
+</ol>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+H_0&amp;: \text{Autocorrelación de los residuos es igual a 0}\\
+H_1&amp;: \text{Autocorrelación de los residuos es distinta de 0}\\
+\end{split}
+\end{equation}\]</span>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="regresion-lineal.html#cb162-1" tabindex="-1"></a><span class="fu">dwtest</span>(<span class="at">formula =</span> Mineria <span class="sc">~</span> Ano <span class="sc">+</span> Industria, <span class="at">data =</span> df, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  Mineria ~ Ano + Industria
+## DW = 1.1949, p-value = 0.0009229
+## alternative hypothesis: true autocorrelation is not 0</code></pre>
+<p>El valor-p de 0.0009 es menor o igual a la significancia de 0.05, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se asume que los residuos no son independientes. Considerando una confianza del 95%.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-144" class="exercise"><strong>Ejercicio 3.18  </strong></span>Considere los modelos ajustados en:</p>
+<ul>
+<li>El ejercicio <a href="regresion-lineal.html#exr:co2">3.12</a>.</li>
+<li>El ejercicio <a href="regresion-lineal.html#exr:calidad-aire">3.14</a>.</li>
+</ul>
+<p>Estudie los supuestos del modelo, además escriba las hipótesis asociadas a los supuestos cuando corresponda, utilizando una confianza del 95%.</p>
+</div>
+</div>
+</div>
+<div id="regresion-lineal-seleccion-variables" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Selección de variables<a href="regresion-lineal.html#regresion-lineal-seleccion-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La selección de métodos le permite especificar cómo se introducen las variables independientes en el análisis. Usando diferentes métodos, puede construir una variedad de modelos de regresión a partir del mismo conjunto de variables.</p>
+<p>Dentro de las utilidades de usar un método para la selección de variables están:</p>
+<ul>
+<li>Evitar la colinealidad entre las covaribles.</li>
+<li>Generar modelos parsimoniosos.</li>
+</ul>
+<p>A continuación se dan a conocer algunos de los métodos de selección de variables.</p>
+<div id="regresion-lineal-seleccion-variables-forward" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Forward<a href="regresion-lineal.html#regresion-lineal-seleccion-variables-forward" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Corresponde a un procedimiento de selección de variables paso a paso en el que las variables se ingresan secuencialmente en el modelo. La primera variable considerada para entrar en la ecuación de regresión es la que tiene la mayor correlación positiva o negativa con la variable dependiente. Esta variable se ingresa en la ecuación solo si cumple el criterio de entrada. Si se ingresa la primera variable, la variable independiente que no está en la ecuación y que tiene la mayor correlación parcial se considera a continuación. El procedimiento se detiene cuando no hay variables que cumplan con el criterio de entrada.</p>
+<p>Los pasos detallados son los siguientes:</p>
+<ol style="list-style-type: decimal">
+<li>Sea <span class="math inline">\(X_1\)</span> la primera variable en ingresar al modelo, la que corresponde al predictor con mayor coeficiente de correlación lineal en valor absoluto con la variable respuesta.</li>
+<li>Ajustar el modelo <span class="math inline">\(Y \sim X_1\)</span>. Si el modelo es significativo, continuar la selección. En caso contrario, reportar el modelo <span class="math inline">\(Y = \beta_0\)</span>.</li>
+<li>Ajustar el modelo <span class="math inline">\(Y \sim X_1 + X_j\)</span> para todo <span class="math inline">\(j = 2, \ldots , (p -1)\)</span>. Ingresar al modelo la variable con el mayor estadístico <span class="math inline">\(F\)</span> parcial dado <span class="math inline">\(X_1\)</span> (el menor valor-p) que sea significativo. Si no existen predictores significativos, reportar el modelo <span class="math inline">\(Y \sim X_1\)</span>.</li>
+<li>Proseguir hasta que:
+<ul>
+<li>Se llegue a un número predeterminado de predictores en el modelo, o</li>
+<li>No se obtengan estadísticos <span class="math inline">\(F\)</span> significativos.</li>
+</ul></li>
+</ol>
+<p>El estadístico <span class="math inline">\(F\)</span> mencionado en la metodología <em>forward</em> prueba la siguiente hipótesis:</p>
+<span class="math display" id="eq:forward">\[\begin{equation}
+\begin{split}
+H_0 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados } X_1, \ldots , X_{j-1}, \text{ es igual a cero}\\
+H_1 &amp;: \text{ La correlación parcial entre } X_j \text{ e } Y, \text{ dados } X_1, \ldots , X_{j-1}, \text{ es distinta cero}
+\end{split}
+\tag{3.29}
+\end{equation}\]</span>
+<p>Más detalles del funcionamiento de este estadístico en el anexo <a href="estadísticos.html#F-forward">C.1</a>.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:forward1" class="example"><strong>Ejemplo 3.5  </strong></span>Considerando el ejercicio <a href="regresion-lineal.html#exr:ingreso">3.3</a>, elabore un modelo para estudiar la proporción de logro obtenida en el diagnóstico de lenguaje, seleccionado las variables independientes mediante el método <em>forward</em>.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="regresion-lineal.html#cb164-1" tabindex="-1"></a><span class="co"># Cargamos la base de datos previamente, guardándola con el nombre &quot;datos&quot;</span></span>
+<span id="cb164-2"><a href="regresion-lineal.html#cb164-2" tabindex="-1"></a></span>
+<span id="cb164-3"><a href="regresion-lineal.html#cb164-3" tabindex="-1"></a><span class="co"># Planteamos un modelo vacío sin covariables, solo intercepto</span></span>
+<span id="cb164-4"><a href="regresion-lineal.html#cb164-4" tabindex="-1"></a>modelo.nulo <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
+<span id="cb164-5"><a href="regresion-lineal.html#cb164-5" tabindex="-1"></a><span class="co"># Planteamos un modelo con todas las covariables</span></span>
+<span id="cb164-6"><a href="regresion-lineal.html#cb164-6" tabindex="-1"></a>modelo.total <span class="ot">=</span> <span class="fu">lm</span>(Logro <span class="sc">~</span> ., <span class="at">data =</span> datos)</span>
+<span id="cb164-7"><a href="regresion-lineal.html#cb164-7" tabindex="-1"></a>modelo.final <span class="ot">=</span> <span class="fu">step</span>(modelo.nulo, <span class="co"># Modelo nulo</span></span>
+<span id="cb164-8"><a href="regresion-lineal.html#cb164-8" tabindex="-1"></a>                    <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="fu">formula</span>(modelo.nulo), <span class="co"># Rango inicial de modelos examinados</span></span>
+<span id="cb164-9"><a href="regresion-lineal.html#cb164-9" tabindex="-1"></a>                                 <span class="at">upper =</span> <span class="fu">formula</span>(modelo.total)), <span class="co"># Rango final de modelos examinados</span></span>
+<span id="cb164-10"><a href="regresion-lineal.html#cb164-10" tabindex="-1"></a>                    <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>, <span class="co"># Método de selección de variables</span></span>
+<span id="cb164-11"><a href="regresion-lineal.html#cb164-11" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="dv">0</span>, <span class="co"># Si es igual a 0, no imprime todos los modelos que va elaborando, solo imprime el modelo final</span></span>
+<span id="cb164-12"><a href="regresion-lineal.html#cb164-12" tabindex="-1"></a>                    <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># Estadístico utilizado</span></span>
+<span id="cb164-13"><a href="regresion-lineal.html#cb164-13" tabindex="-1"></a><span class="fu">summary</span>(modelo.final)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Logro ~ LEN + NEM + Sexo, data = datos)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.31796 -0.07033  0.00162  0.07968  0.26073 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2.960e-01  7.173e-02  -4.126 5.44e-05 ***
+## LEN          9.961e-04  1.013e-04   9.833  &lt; 2e-16 ***
+## NEM          3.372e-04  8.732e-05   3.861 0.000153 ***
+## SexoMujer    2.665e-02  1.644e-02   1.621 0.106621    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1129 on 196 degrees of freedom
+## Multiple R-squared:  0.3775, Adjusted R-squared:  0.3679 
+## F-statistic: 39.61 on 3 and 196 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>¿Qué es posible comentar respecto a la inclusión de la variable Sexo en el modelo?</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:forward2" class="exercise"><strong>Ejercicio 3.19  </strong></span>Considerando el ejercicio <a href="regresion-lineal.html#exr:co2">3.12</a>, elabore un modelo para estudiar la tasa de absorción de dióxido de carbono de las plantas, seleccionado las variables independientes mediante el método <em>forward</em>. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el <span class="math inline">\(R^2\)</span> ajustado del modelo. Se recomienda aplicar el siguiente código de manera previa:</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="regresion-lineal.html#cb166-1" tabindex="-1"></a>data <span class="ot">=</span> CO2</span>
+<span id="cb166-2"><a href="regresion-lineal.html#cb166-2" tabindex="-1"></a>data<span class="sc">$</span>Plant <span class="ot">=</span> <span class="fu">factor</span>(data<span class="sc">$</span>Plant, <span class="at">ordered =</span> F)</span></code></pre></div>
+</div>
+<div class="exercise">
+<p><span id="exr:forward3" class="exercise"><strong>Ejercicio 3.20  </strong></span>Considerando el ejercicio <a href="regresion-lineal.html#exr:calidad-aire">3.14</a>, elabore un modelo para estudiar la concentración de Ozono en el aire, seleccionado las variables independientes mediante el método <em>forward</em>. Interprete los betas estimados, analice las pruebas de hipótesis asociadas a los betas e interprete el <span class="math inline">\(R^2\)</span> ajustado del modelo.</p>
+</div>
+</div>
+<div id="regresion-lineal-seleccion-variables-backward" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Backward<a href="regresion-lineal.html#regresion-lineal-seleccion-variables-backward" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Al contrario de la metodología <em>forward</em>, la metodología <em>backward</em> realiza una eliminación de variables considerando como punto de partida el modelo que contiene todas las covariables. Los pasos detallados son los siguientes:</p>
+<ol style="list-style-type: decimal">
+<li>Ajustar el modelo completo <span class="math inline">\((p − 1)\)</span> veces, de modo de obtener los <span class="math inline">\((p − 1)\)</span> estadísticos <span class="math inline">\(F\)</span> parciales, dado que todas las variables restantes ya están en el modelo.</li>
+<li>Eliminar el predictor con el menor estadístico <span class="math inline">\(F\)</span> parcial (mayor valor-p) que no sea significativo. En caso de ser todos significativos, reportar el modelo completo.</li>
+<li>Ajustar el modelo con los <span class="math inline">\((p − 2)\)</span> predictores restantes, de modo de obtener los estadísticos <span class="math inline">\(F\)</span> parciales de cada uno de ellos. Eliminar el predictor con el menor estadístico <span class="math inline">\(F\)</span> parcial (mayor valor-p) que no sea significativo. En caso de ser todos significativos, reportar el modelo con <span class="math inline">\((p − 2)\)</span> predictores.</li>
+<li>Proseguir hasta que:
+<ul>
+<li>Se llegue a un número predeterminado de predictores en el modelo, o</li>
+<li>Todos los estadísticos <span class="math inline">\(F\)</span> parciales sean significativos.</li>
+</ul></li>
+</ol>
+<p>El estadístico <span class="math inline">\(F\)</span> es el mismo que el aplicado en la metodología <em>forward</em>.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:backward1" class="example"><strong>Ejemplo 3.6  </strong></span>Considerando el ejercicio <a href="regresion-lineal.html#exr:calidad-aire">3.14</a>, elabore un modelo para estudiar la concentración de Ozono, seleccionado las variables independientes mediante el método <em>backward</em>.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="regresion-lineal.html#cb167-1" tabindex="-1"></a>datos <span class="ot">=</span> airquality</span>
+<span id="cb167-2"><a href="regresion-lineal.html#cb167-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
+<span id="cb167-3"><a href="regresion-lineal.html#cb167-3" tabindex="-1"></a><span class="co"># Planteamos un modelo vacío sin covariables, solo intercepto</span></span>
+<span id="cb167-4"><a href="regresion-lineal.html#cb167-4" tabindex="-1"></a>modelo.nulo <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> datos)</span>
+<span id="cb167-5"><a href="regresion-lineal.html#cb167-5" tabindex="-1"></a><span class="co"># Planteamos un modelo con todas las covariables</span></span>
+<span id="cb167-6"><a href="regresion-lineal.html#cb167-6" tabindex="-1"></a>modelo.total <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> ., <span class="at">data =</span> datos)</span>
+<span id="cb167-7"><a href="regresion-lineal.html#cb167-7" tabindex="-1"></a>modelo.final <span class="ot">=</span> <span class="fu">step</span>(modelo.total, <span class="co"># Modelo total</span></span>
+<span id="cb167-8"><a href="regresion-lineal.html#cb167-8" tabindex="-1"></a>                    <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="fu">formula</span>(modelo.nulo), <span class="co"># Rango inicial de modelos examinados</span></span>
+<span id="cb167-9"><a href="regresion-lineal.html#cb167-9" tabindex="-1"></a>                                 <span class="at">upper =</span> <span class="fu">formula</span>(modelo.total)), <span class="co"># Rango final de modelos examinados</span></span>
+<span id="cb167-10"><a href="regresion-lineal.html#cb167-10" tabindex="-1"></a>                    <span class="at">direction =</span> <span class="st">&quot;backward&quot;</span>, <span class="co"># Método de selección de variables</span></span>
+<span id="cb167-11"><a href="regresion-lineal.html#cb167-11" tabindex="-1"></a>                    <span class="at">trace =</span> <span class="dv">0</span>, <span class="co"># Si es igual a 0, no imprime todos los modelos que va elaborando, solo imprime el modelo final</span></span>
+<span id="cb167-12"><a href="regresion-lineal.html#cb167-12" tabindex="-1"></a>                    <span class="at">test =</span> <span class="st">&quot;F&quot;</span>) <span class="co"># Estadístico utilizado</span></span>
+<span id="cb167-13"><a href="regresion-lineal.html#cb167-13" tabindex="-1"></a><span class="fu">summary</span>(modelo.final)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Ozone ~ Solar.R + Wind + Temp + Month, data = datos)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -35.870 -13.968  -2.671   9.553  97.918 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -58.05384   22.97114  -2.527   0.0130 *  
+## Solar.R       0.04960    0.02346   2.114   0.0368 *  
+## Wind         -3.31651    0.64579  -5.136 1.29e-06 ***
+## Temp          1.87087    0.27363   6.837 5.34e-10 ***
+## Month        -2.99163    1.51592  -1.973   0.0510 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 20.9 on 106 degrees of freedom
+## Multiple R-squared:  0.6199, Adjusted R-squared:  0.6055 
+## F-statistic: 43.21 on 4 and 106 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:contaminacion" class="exercise"><strong>Ejercicio 3.21  </strong></span>En un estudio para explicar la tasa máxima de flujo de seis sectores de drenaje después de una tormenta, se desea analizar la relación entre el logaritmo de esta tasa (logq) y los siguientes predictores (<a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/drenaje.txt"><em>contaminacion.txt</em></a>), a través de un modelo de regresión lineal múltiple:</p>
+<ul>
+<li>area: área del sector de drenaje.</li>
+<li>area2: área impermeabilizada.</li>
+<li>pendiente: pendiente media del sector.</li>
+<li>largo: largo del flujo.</li>
+<li>absorbencia: índice de absorbencia de la superficie (0: absorbencia total, 100: no absorbencia).</li>
+<li>capacidad: capacidad estimada de almacenamiento del suelo.</li>
+<li>infiltracion: tasa de infiltración del agua en el suelo.</li>
+<li>lluvia: pulgadas de lluvia caída.</li>
+<li>tiempo: tiempo en el cual la lluvia excedió 1/4 pulgadas/hora.</li>
+</ul>
+<p>Determine dos modelos utilizando las metodologías forward y backward. Compare ambos modelos mediante el <span class="math inline">\(R^2\)</span> ajustado. ¿Cuál modelo eligiría para estudiar la varible <em>logq</em>?</p>
+</div>
+</div>
+</div>
+<div id="regresion-lineal-prediccion-observaciones" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Predicción de observaciones<a href="regresion-lineal.html#regresion-lineal-prediccion-observaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Es natural estar interesado en estudiar nuevas observaciones en un estudio, por ejemplo, si se construye una regresión lineal simple para estudiar el valor de dólar a través del PIB y el ICC, es posible que surja la pregunta ¿cuál será el valor del dólar para una PIB e ICC determinado? (considere que dichos valores del PIB e ICC no se encuentran en la muestra). Para responder a esto, es posible construir un denominado intervalo de predicción. Sin embargo, existe otro tipo de intervalo muy común, denominado intervalo de confianza. La distinción entre estos dos tipos de intervalos es la siguiente <span class="citation">(<a href="#ref-fahrmeir_regression_2013">Fahrmeir, 2013</a>, página 125)</span>:</p>
+<ul>
+<li><p>Un intervalo de predicción es un intervalo asociado con una variable aleatoria aún por observar, con una probabilidad específica de que la variable aleatoria se encuentre dentro del intervalo.</p></li>
+<li><p>Un intervalo de confianza es un intervalo asociado a un parámetro. Se supone que el parámetro no es aleatorio sino desconocido, y el intervalo de confianza se calcula a partir de los datos, con una probabilidad específica de que el intervalo contenga al parámetro.</p></li>
+</ul>
+<p>Consideremos la base de datos <em>airquality</em> del ejercicio <a href="regresion-lineal.html#exr:calidad-aire">3.14</a>. Para visualizar la diferencia entre los dos tipos de intervalos ajustemos una regresión lineal simple para estudiar la tasa de absorción del dióxido de carbono a través de la temperatura.</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="regresion-lineal.html#cb169-1" tabindex="-1"></a>datos <span class="ot">=</span> airquality</span>
+<span id="cb169-2"><a href="regresion-lineal.html#cb169-2" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
+<span id="cb169-3"><a href="regresion-lineal.html#cb169-3" tabindex="-1"></a>modelo <span class="ot">=</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> Temp, <span class="at">data =</span> datos) <span class="co"># Modelo</span></span></code></pre></div>
+<p>Al momento de obtener la información de los intervalos de confianza y predicción se incluye el valor central del intervalo (el mismo para ambos), además del valor inferior y superior de cada uno.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="regresion-lineal.html#cb170-1" tabindex="-1"></a>I_confianza <span class="ot">=</span> <span class="fu">predict.lm</span>(modelo, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>) <span class="co"># Intervalos de confianza</span></span>
+<span id="cb170-2"><a href="regresion-lineal.html#cb170-2" tabindex="-1"></a>I_prediccion <span class="ot">=</span> <span class="fu">predict.lm</span>(modelo, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>) <span class="co"># Intervalos de predicción</span></span>
+<span id="cb170-3"><a href="regresion-lineal.html#cb170-3" tabindex="-1"></a><span class="fu">head</span>(I_confianza,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##        fit       lwr      upr
+## 1 15.77429  8.958438 22.59014
+## 2 27.96984 22.697411 33.24227
+## 3 32.84806 28.001893 37.69423</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="regresion-lineal.html#cb172-1" tabindex="-1"></a><span class="fu">head</span>(I_prediccion,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##        fit       lwr      upr
+## 1 15.77429 -32.12231 63.67089
+## 2 27.96984 -19.73159 75.67127
+## 3 32.84806 -14.80814 80.50426</code></pre>
+<p>El gráfico <a href="regresion-lineal.html#fig:IC-IP">3.3</a> refleja los dos tipos de intervalo.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="regresion-lineal.html#cb174-1" tabindex="-1"></a>df_grafico <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> datos<span class="sc">$</span>Ozone, </span>
+<span id="cb174-2"><a href="regresion-lineal.html#cb174-2" tabindex="-1"></a>                        <span class="st">&quot;x&quot;</span> <span class="ot">=</span> datos<span class="sc">$</span>Temp,</span>
+<span id="cb174-3"><a href="regresion-lineal.html#cb174-3" tabindex="-1"></a>                        <span class="st">&quot;Confianza_lower&quot;</span> <span class="ot">=</span> I_confianza[,<span class="dv">2</span>],</span>
+<span id="cb174-4"><a href="regresion-lineal.html#cb174-4" tabindex="-1"></a>                        <span class="st">&quot;Confianza_upper&quot;</span> <span class="ot">=</span> I_confianza[,<span class="dv">3</span>],</span>
+<span id="cb174-5"><a href="regresion-lineal.html#cb174-5" tabindex="-1"></a>                        <span class="st">&quot;Prediccion_lower&quot;</span> <span class="ot">=</span> I_prediccion[,<span class="dv">2</span>],</span>
+<span id="cb174-6"><a href="regresion-lineal.html#cb174-6" tabindex="-1"></a>                        <span class="st">&quot;Prediccion_upper&quot;</span> <span class="ot">=</span> I_prediccion[,<span class="dv">3</span>])</span>
+<span id="cb174-7"><a href="regresion-lineal.html#cb174-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb174-8"><a href="regresion-lineal.html#cb174-8" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_grafico, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb174-9"><a href="regresion-lineal.html#cb174-9" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb174-10"><a href="regresion-lineal.html#cb174-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_lower, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-11"><a href="regresion-lineal.html#cb174-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Confianza_upper, <span class="at">color =</span> <span class="st">&quot;IC&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-12"><a href="regresion-lineal.html#cb174-12" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_lower, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-13"><a href="regresion-lineal.html#cb174-13" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> Prediccion_upper, <span class="at">color =</span> <span class="st">&quot;IP&quot;</span>), <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-14"><a href="regresion-lineal.html#cb174-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Temperatura&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Ozono&quot;</span>, <span class="at">color =</span> <span class="st">&quot;Intervalos&quot;</span>,</span>
+<span id="cb174-15"><a href="regresion-lineal.html#cb174-15" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Intervalo de confianza (IC) y predicción (IP)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:IC-IP"></span>
+<img src="est2+inferencia_files/figure-html/IC-IP-1.png" alt="Intervalo de confianza y predicción" width="576" />
+<p class="caption">
+Figura 3.3: Intervalo de confianza y predicción
+</p>
+</div>
+<p>Ahora, para responder a preguntas como ¿cuál sería la concentración de ozono a una temperatura de 90.34 grados Fahrenheit? se debe reportar el intervalo de predicción, el cual, en R, es al 95% de confianza por defecto.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="regresion-lineal.html#cb175-1" tabindex="-1"></a><span class="co"># Creamos una nueva base de datos para poder consultar el intervalo de predicción</span></span>
+<span id="cb175-2"><a href="regresion-lineal.html#cb175-2" tabindex="-1"></a><span class="co"># Se debe tener el cuidado de que las columnas tengan el mismo nombre que base usada</span></span>
+<span id="cb175-3"><a href="regresion-lineal.html#cb175-3" tabindex="-1"></a><span class="co"># para construir el modelo de regresión lineal</span></span>
+<span id="cb175-4"><a href="regresion-lineal.html#cb175-4" tabindex="-1"></a>aux <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">&quot;Temp&quot;</span> <span class="ot">=</span> <span class="fl">90.34</span>) <span class="co"># Solo incluimos la(s) variable(s) independiente(s)</span></span>
+<span id="cb175-5"><a href="regresion-lineal.html#cb175-5" tabindex="-1"></a><span class="fu">predict.lm</span>(modelo, <span class="at">newdata =</span> aux, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 72.70312 24.71044 120.6958</code></pre>
+<p>La salida de R indica, que la predicción de la concentración de ozono asociado a una medición de temperatura de 90.34 grados Fahrenheit sería de 72.70312 partes por billón, mientras que, el intervalo de predicción al 95% de confianza es <span class="math inline">\((24.71044, 120.6958)\)</span>.</p>
+<p>Por otro lado, si se desea conocer el intervalo de confianza asociado a un valor promedio (esperado o ajustado) del ozono asociado a una temperatura de 90.34 grados Fahrenheit, se debe efectuar el siguiente comando.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="regresion-lineal.html#cb177-1" tabindex="-1"></a><span class="fu">predict.lm</span>(modelo, <span class="at">newdata =</span> aux, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 72.70312 65.24199 80.16425</code></pre>
+<p>La salida de R indica, que el valor promedio de la concentración de ozono asociado a una medición de temperatura de 90.34 grados Fahrenheit sería de 72.70312 partes por billón, mientras que, el intervalo de confianza al 95% de confianza es <span class="math inline">\((65.24199, 80.16425)\)</span>.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-145" class="exercise"><strong>Ejercicio 3.22  </strong></span>Utilizando la base del ejercicio <a href="regresion-lineal.html#exr:contaminacion">3.21</a> realice lo siguiente:</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste en R un modelo de regresión lineal para estudiar el logaritmo de la tasa máxima de flujo de seis sectores de drenaje después de una tormenta (logq) a través de las pulgadas de lluvia caída.</li>
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Interprete los betas estimados.</li>
+<li>Elabore un gráfico de dispersión entre la variable dependiente e independiente del modelo de regresión lineal, que contenga los intervalos de confianza y predicción, diferenciándolos por colores.</li>
+<li>Determine el intervalo de predicción de logaritmo de la tasa máxima de flujo de seis sectores de drenaje después de una tormenta (logq) asociado a una cantidad de lluvia caída de 3.435 pulgadas. Interprete.</li>
+<li>Determine el intervalo de confianza del valor promedio del logaritmo de la tasa máxima de flujo de seis sectores de drenaje después de una tormenta (logq) asociado a una cantidad de lluvia caída de 3.435 pulgadas. Interprete.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-146" class="exercise"><strong>Ejercicio 3.23  </strong></span>Las mujeres ocupan aproximadamente la mitad de la población mundial, pero cuando se trata de la fuerza laboral total de un país, el porcentaje de trabajadores masculinos y femeninos rara vez es similar. Esto es aún más prominente para los países en desarrollo y subdesarrollados. Si bien varias razones, como el acceso insuficiente a la educación, las supersticiones religiosas y la falta de infraestructuras adecuadas, son responsables de esta discrepancia, va mucho más allá. Y para mostrar los efectos de múltiples factores socioeconómicos sobre la participación de la mujer en la fuerza laboral total, se ha considerado el porcentaje de empleo femenino en la fuerza laboral total, entre otros.</p>
+<p>El conjunto de datos (<a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Empleo%2Bfemenino.csv">Empleo+femenino.csv</a>) se eligió de una encuesta realizada en la población de Bangladesh. La base de datos contiene los siguientes datos:</p>
+<ul>
+<li>Year: Año de medición.</li>
+<li>PerFemEmploy: Relación entre empleo y población (%) de mujeres de 15 años o más.</li>
+<li>Ratio_MaletoFemale: Relación entre la tasa de participación de mujeres y hombres en la fuerza laboral. La tasa de participación en la fuerza laboral es la proporción de la población de 15 años o más que es económicamente activa.</li>
+<li>Wage.Salaried: Trabajadores asalariados, mujeres (% del empleo femenino). Los trabajadores asalariados (empleados) son aquellos trabajadores que ocupan el tipo de trabajos definidos como “trabajos de empleo remunerado”.</li>
+</ul>
+<p>A continuación:</p>
+<ol style="list-style-type: decimal">
+<li>Ajuste en R un modelo mediante la metodología forward para estudiar la variable <em>PerFemEmploy.</em></li>
+<li>Escriba el modelo poblacional.</li>
+<li>Escriba el modelo ajustado.</li>
+<li>Escriba la ecuación de regresión ajustada.</li>
+<li>Interprete los parámetros estimados.</li>
+<li>Estudie las pruebas de hipótesis de no nulidad (individual y conjunta) utilizando una confianza del 95%.</li>
+<li>Determine el intervalo de predicción de la variable <em>PerFemEmploy</em> asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 37.543 en el año 2020. Interprete.</li>
+<li>Determine el intervalo de confianza del valor promedio de la variable <em>PerFemEmploy</em> asociada a una tasa de participación de mujeres y hombres en la fuerza laboral igual a 45.121 en el año 2021. Interprete.</li>
+<li>Interprete el <span class="math inline">\(R^2\)</span> ajustado.</li>
+<li>Estudie los supuestos del modelo, utilizando una confianza del 95%.</li>
+</ol>
+</div>
+</div>
+<div id="ejercicios-unidad-3" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Ejercicios<a href="regresion-lineal.html#ejercicios-unidad-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación, desarrolle los ejercicios manualmente sin el uso de R.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-147" class="exercise"><strong>Ejercicio 3.24  </strong></span>En un estudio de marketing se observa el gasto en publicidad digital <span class="math inline">\(X\)</span> (miles de $) y las ventas semanales <span class="math inline">\(Y\)</span> (miles de unidades) para pequeños comercios durante cinco semanas consecutivas; los pares están emparejados por orden: <span class="math inline">\(X\)</span>: 2.0, 2.5, 3.0, 3.5, 4.0; <span class="math inline">\(Y\)</span>: 15, 16, 18, 19, 21. Calcule manualmente los estimadores de la recta de regresión lineal simple <span class="math inline">\(Y=\beta_0+\beta_1 X+\varepsilon\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-148" class="exercise"><strong>Ejercicio 3.25  </strong></span>Una empresa logística registra la cantidad de repartidores en turno <span class="math inline">\(X\)</span> y el número de entregas completadas <span class="math inline">\(Y\)</span> por día en siete jornadas; los datos están emparejados por orden: <span class="math inline">\(X\)</span>: 5, 6, 7, 8, 9, 10, 11; <span class="math inline">\(Y\)</span>: 42, 45, 47, 50, 52, 55, 58. Estime manualmente <span class="math inline">\(\hat\beta_1\)</span> y <span class="math inline">\(\hat\beta_0\)</span> de la regresión lineal simple <span class="math inline">\(Y=\beta_0+\beta_1 X+\varepsilon\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-149" class="exercise"><strong>Ejercicio 3.26  </strong></span>Para un e-commerce se registra el tiempo de carga promedio del sitio <span class="math inline">\(X\)</span> (segundos) y la tasa de conversión <span class="math inline">\(Y\)</span> (%) en ocho días de test A/B; los pares <span class="math inline">\((X,Y)\)</span> están en el mismo orden: <span class="math inline">\(X\)</span>: 1.8, 2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2; <span class="math inline">\(Y\)</span>: 3.9, 3.8, 3.7, 3.5, 3.4, 3.3, 3.1, 3.0. Calcule manualmente <span class="math inline">\(\hat\beta_1\)</span> y <span class="math inline">\(\hat\beta_0\)</span> de <span class="math inline">\(Y=\beta_0+\beta_1 X+\varepsilon\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-150" class="exercise"><strong>Ejercicio 3.27  </strong></span>Un analista de precios observa el descuento aplicado <span class="math inline">\(X\)</span> (%) y la cantidad vendida <span class="math inline">\(Y\)</span> (unidades) para nueve promociones del último mes, emparejadas por orden: <span class="math inline">\(X\)</span>: 0, 2, 4, 6, 8, 10, 12, 14, 16; <span class="math inline">\(Y\)</span>: 120, 125, 130, 138, 142, 150, 155, 160, 168. Determine manualmente <span class="math inline">\(\hat\beta_1\)</span> y <span class="math inline">\(\hat\beta_0\)</span> de la regresión <span class="math inline">\(Y=\beta_0+\beta_1 X+\varepsilon\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-151" class="exercise"><strong>Ejercicio 3.28  </strong></span>Considere una variable aleatoria <span class="math inline">\(Y\)</span> con observaciones <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span>. Muestre que:
+<span class="math display">\[
+\sum_{i=1}^n (y_i - \bar{y})^2 = \sum_{i=1}^n y_i^2 - n \bar{y}^2
+\]</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-152" class="exercise"><strong>Ejercicio 3.29  </strong></span>Sea el modelo de regresión lineal simple <span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i\)</span>. A partir de los estimadores de mínimos cuadrados <span class="math inline">\(\hat\beta_0\)</span> y <span class="math inline">\(\hat\beta_1\)</span>, demuestre la identidad de descomposición de la suma de cuadrados:
+<span class="math display">\[
+\text{SCR} = \text{SCReg} + \text{SCE}
+\]</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-153" class="exercise"><strong>Ejercicio 3.30  </strong></span>En el modelo de regresión lineal simple <span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i\)</span>, utilice los resultados de mínimos cuadrados para demostrar que
+<span class="math display">\[
+\sum_{i=1}^n (y_i - \bar{y})(x_i - \bar{x}) = \hat\beta_1 \sum_{i=1}^n (x_i - \bar{x})^2
+\]</span></p>
+<p>Explique cómo esta igualdad garantiza que <span class="math inline">\(\hat\beta_1 = \frac{S_{xy}}{S_{xx}}\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-154" class="exercise"><strong>Ejercicio 3.31  </strong></span>Sean <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> variables aleatorias de un muestra de tamaño <span class="math inline">\(n\)</span>. Considere el siguiente modelo de regresión lineal simple:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1X_i + \varepsilon_i, \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+\]</span></p>
+<p>Demuestre que:</p>
+<p>El estimador de mínimos cuadrados de <span class="math inline">\(\beta_1\)</span> es <span class="math inline">\(\hat{\beta}_1 = \displaystyle\frac{\displaystyle\sum_{i=1}^n(X_i - \bar{X})(Y_i - \bar{Y})}{\displaystyle\sum_{i=1}^n(X_i - \bar{X})^2}\)</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-155" class="exercise"><strong>Ejercicio 3.32  </strong></span>Sean <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> variables aleatorias de un muestra de tamaño <span class="math inline">\(n\)</span>. Considere el siguiente modelo de regresión lineal simple:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1X_i + \varepsilon_i, \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+\]</span></p>
+<p>Demuestre que el estimador de mínimos cuadrados de <span class="math inline">\(\beta_0\)</span> es <span class="math inline">\(\widehat{\beta}_0 = \bar{Y} - \beta_1\bar{X}\)</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-156" class="exercise"><strong>Ejercicio 3.33  </strong></span>Sean <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> variables aleatorias de un muestra de tamaño <span class="math inline">\(n\)</span>. Considere el siguiente modelo de regresión lineal simple:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1X_i + \varepsilon_i, \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+\]</span></p>
+<p>Demuestre que:</p>
+<p><span class="math display">\[
+\widehat{Y}_i = \bar{Y} + r_{XY}\displaystyle\frac{S_Y}{S_X}(X_i-\bar{X})
+\]</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-157" class="exercise"><strong>Ejercicio 3.34  </strong></span>Sean <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> variables aleatorias de un muestra de tamaño <span class="math inline">\(n\)</span>. Considere el siguiente modelo de regresión lineal simple:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1X_i + \varepsilon_i, \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)
+\]</span></p>
+<p>Demuestre que:</p>
+<p><span class="math display">\[
+R^2 = r_{XY}^2
+\]</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-158" class="exercise"><strong>Ejercicio 3.35  </strong></span>Se desea modelar el rendimiento de combustible (millas por galón, <span class="math inline">\(Y=\text{mpg}\)</span>) en función del peso del automóvil (miles de libras, <span class="math inline">\(X=\text{wt}\)</span>) usando la base <strong>mtcars</strong> de R (32 automóviles; variables relevadas por <em>Motor Trend</em>, 1974). A continuación se muestra el ajuste de una regresión lineal simple <span class="math inline">\(Y=\beta_0+\beta_1 X+\varepsilon\)</span> ejecutado en R (se asume normalidad de los residuos y homocedasticidad). Código:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="regresion-lineal.html#cb179-1" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb179-2"><a href="regresion-lineal.html#cb179-2" tabindex="-1"></a>ajuste <span class="ot">=</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb179-3"><a href="regresion-lineal.html#cb179-3" tabindex="-1"></a><span class="fu">summary</span>(ajuste)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ wt, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5432 -2.3647 -0.1252  1.4096  6.8727 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 ***
+## wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.046 on 30 degrees of freedom
+## Multiple R-squared:  0.7528, Adjusted R-squared:  0.7446 
+## F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10</code></pre>
+<p>Interprete los parámetros estimados y las pruebas de no nulidad con una confianza del 95%. Además, escriba la ecuación de regresión poblacional y ajustada.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-159" class="exercise"><strong>Ejercicio 3.36  </strong></span>Se estudia la relación entre el tiempo de espera en un restaurante (<span class="math inline">\(Y=\text{waiting}\)</span>, minutos) y la duración de la erupción de un géiser (<span class="math inline">\(X=\text{eruptions}\)</span>, minutos) usando la base <strong>faithful</strong> de R (272 observaciones recogidas en el géiser <em>Old Faithful</em>, Yellowstone). A continuación se muestra el ajuste de una regresión lineal simple <span class="math inline">\(Y=\beta_0+\beta_1 X+\varepsilon\)</span>. Código:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="regresion-lineal.html#cb181-1" tabindex="-1"></a><span class="fu">data</span>(faithful)</span>
+<span id="cb181-2"><a href="regresion-lineal.html#cb181-2" tabindex="-1"></a>ajuste <span class="ot">=</span> <span class="fu">lm</span>(waiting <span class="sc">~</span> eruptions, <span class="at">data =</span> faithful)</span>
+<span id="cb181-3"><a href="regresion-lineal.html#cb181-3" tabindex="-1"></a><span class="fu">summary</span>(ajuste)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = waiting ~ eruptions, data = faithful)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -12.0796  -4.4831   0.2122   3.9246  15.9719 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  33.4744     1.1549   28.98   &lt;2e-16 ***
+## eruptions    10.7296     0.3148   34.09   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.914 on 270 degrees of freedom
+## Multiple R-squared:  0.8115, Adjusted R-squared:  0.8108 
+## F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Interprete los parámetros estimados y las pruebas de no nulidad con una confianza del 95%. Además, escriba la ecuación de regresión poblacional y ajustada.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-160" class="exercise"><strong>Ejercicio 3.37  </strong></span></p>
+<p>Considere el siguiente modelo de regresión lineal simple:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1X_i + \varepsilon, \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2) \text{ ,} i = 1, \ldots, n = 74
+\]</span></p>
+<p>Utilizando los datos que se muestran a continuación, calcule lo siguiente: <span class="math inline">\(R^2\)</span>, Error estándar residual, <span class="math inline">\(F_0\)</span> de la prueba de no nulidad conjunta y los EMC de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>. Trabaje con 4 decimales.</p>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n \widehat{y}_i = 6704.54\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_i\widehat{y}_i = 616140.32\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_ix_i = 665482.26\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_i = 6704.54\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n \widehat{y}_i^2 = 616140.32\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_i^2 = 635642.36\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n x_i = 7421.21\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n x_i^2 = 749710.79\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-161" class="exercise"><strong>Ejercicio 3.38  </strong></span>Considere el siguiente modelo de regresión lineal simple:
+<span class="math display">\[
+Y_i=\beta_0+\beta_1 X_i+\varepsilon_i,\quad \varepsilon_i\overset{iid}{\sim}N(0,\sigma^2),\quad i=1,\ldots,n=60
+\]</span>
+Utilizando las sumatorias que se muestran a continuación, calcule: <span class="math inline">\(R^2\)</span>, el error estándar residual, el estadístico <span class="math inline">\(F_0\)</span> de la prueba de no nulidad conjunta y los EMC de <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>. Trabaje con 4 decimales.</p>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n \widehat{y}_i = 780.00\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_i\,\widehat{y}_i = 11598.00\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n x_i y_i = 6435.00\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_i = 780.00\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n \widehat{y}_i^2 = 11598.00\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n y_i^2 = 12500.00\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n x_i = 450.00\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\displaystyle\sum_{i=1}^n x_i^2 = 3700.00\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-162" class="exercise"><strong>Ejercicio 3.39  </strong></span>Considere el modelo de regresión lineal múltiple con dos regresores:
+<span class="math display">\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \varepsilon,
+\]</span>
+donde <span class="math inline">\(\varepsilon \sim N(0,\sigma^2I_n)\)</span>.</p>
+<p>Se entrega la siguiente <strong>matriz de diseño</strong> <span class="math inline">\(X\)</span> (incluyendo la columna de unos para el intercepto) y el vector de respuestas <span class="math inline">\(Y\)</span>:</p>
+<p><span class="math display">\[
+X =
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+1 &amp; 4 &amp; 2 \\
+1 &amp; 5 &amp; 6 \\
+1 &amp; 7 &amp; 5
+\end{bmatrix},
+\quad
+Y =
+\begin{bmatrix}
+10 \\
+12 \\
+20 \\
+23
+\end{bmatrix}.
+\]</span></p>
+<p>Calcule los <strong>estimadores de mínimos cuadrados ordinarios</strong> de los parámetros <span class="math inline">\(\beta_0, \beta_1, \beta_2\)</span>, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-163" class="exercise"><strong>Ejercicio 3.40  </strong></span>Considere el modelo de regresión lineal múltiple con dos regresores
+<span class="math display">\[
+Y=\beta_0+\beta_1X_1+\beta_2X_2+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2I_n).
+\]</span>
+Se entrega la <strong>matriz de diseño</strong> <span class="math inline">\(X\)</span> (incluye intercepto) y el <strong>vector de respuestas</strong> <span class="math inline">\(Y\)</span>, con valores <strong>decimales</strong> no redondeados:
+<span class="math display">\[
+X=
+\begin{bmatrix}
+1 &amp; 1.3 &amp; 2.7\\
+1 &amp; 2.1 &amp; 1.4\\
+1 &amp; 3.8 &amp; 4.2\\
+1 &amp; 4.5 &amp; 3.1\\
+1 &amp; 2.9 &amp; 5.6\\
+1 &amp; 5.2 &amp; 4.7
+\end{bmatrix},\quad
+Y=
+\begin{bmatrix}
+7.4\\
+8.9\\
+13.2\\
+14.8\\
+12.1\\
+17.3
+\end{bmatrix}.
+\]</span></p>
+<p>Calcule los estimadores MCO. Obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE y el error estándar residual.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-164" class="exercise"><strong>Ejercicio 3.41  </strong></span>Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudiar los supuestos de Homocedasticidad, Independencia y Normalidad de un modelo de regresión lineal múltiple ajustado a una base de datos simulada de ingresos (<span class="math inline">\(Y\)</span>) en función de edad (<span class="math inline">\(X_1\)</span>) y nivel educacional (<code>educacion</code>) (<span class="math inline">\(X_2\)</span>). Indique la fila del código seleccionado para cada supuesto, justificando su elección. Además, escriba las pruebas de hipótesis involucradas e interprete utilizando una confianza del 96%.</p>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Prueba de hipótesis
+</th>
+<th style="text-align:left;">
+Valor-p
+</th>
+<th style="text-align:left;">
+Datos utilizados en el comando de R
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Breusch-Pagan
+</td>
+<td style="text-align:left;">
+0.0440
+</td>
+<td style="text-align:left;">
+edad <span class="math inline">\(\sim\)</span> ingresos
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Durbin-Watson
+</td>
+<td style="text-align:left;">
+0.0674
+</td>
+<td style="text-align:left;">
+ingresos <span class="math inline">\(\sim\)</span> edad + educacion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Anderson-Darling
+</td>
+<td style="text-align:left;">
+0.0278
+</td>
+<td style="text-align:left;">
+modelo$y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Shapiro-Wilk
+</td>
+<td style="text-align:left;">
+0.0345
+</td>
+<td style="text-align:left;">
+modelo$y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+Shapiro-Wilk
+</td>
+<td style="text-align:left;">
+0.0812
+</td>
+<td style="text-align:left;">
+residuos estandarizados
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+Durbin-Watson
+</td>
+<td style="text-align:left;">
+0.0156
+</td>
+<td style="text-align:left;">
+ingresos <span class="math inline">\(\sim\)</span> educacion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+Breusch-Pagan
+</td>
+<td style="text-align:left;">
+0.0119
+</td>
+<td style="text-align:left;">
+ingresos <span class="math inline">\(\sim\)</span> region + edad + educacion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+Durbin-Watson
+</td>
+<td style="text-align:left;">
+0.0523
+</td>
+<td style="text-align:left;">
+edad ingresos + educacion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+Breusch-Pagan
+</td>
+<td style="text-align:left;">
+0.0925
+</td>
+<td style="text-align:left;">
+ingresos <span class="math inline">\(\sim\)</span> edad + educacion
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-165" class="exercise"><strong>Ejercicio 3.42  </strong></span>Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudiar los supuestos de Homocedasticidad, Independencia y Normalidad de un modelo de regresión lineal múltiple ajustado a una base simulada donde <span class="math inline">\(Y=\)</span> ventas y <span class="math inline">\(X_=\)</span> precio. Indique la fila del código seleccionado para cada supuesto, justificando su elección. Además, escriba las pruebas de hipótesis involucradas e interprete utilizando una confianza del 95%.</p>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Prueba de hipótesis
+</th>
+<th style="text-align:left;">
+Valor-p
+</th>
+<th style="text-align:left;">
+Datos utilizados en el comando de R
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Durbin-Watson
+</td>
+<td style="text-align:left;">
+0.0724
+</td>
+<td style="text-align:left;">
+ventas <span class="math inline">\(\sim\)</span> publicidad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Shapiro-Wilk
+</td>
+<td style="text-align:left;">
+0.0198
+</td>
+<td style="text-align:left;">
+modelo$residuals
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Shapiro-Wilk
+</td>
+<td style="text-align:left;">
+0.0613
+</td>
+<td style="text-align:left;">
+residuos estandarizados
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Durbin-Watson
+</td>
+<td style="text-align:left;">
+0.0589
+</td>
+<td style="text-align:left;">
+publicidad <span class="math inline">\(\sim\)</span> ventas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+Anderson-Darling
+</td>
+<td style="text-align:left;">
+0.0335
+</td>
+<td style="text-align:left;">
+modelo$residuals
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+Breusch-Pagan
+</td>
+<td style="text-align:left;">
+0.0221
+</td>
+<td style="text-align:left;">
+ventas <span class="math inline">\(\sim\)</span> precio
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+Breusch-Pagan
+</td>
+<td style="text-align:left;">
+0.0870
+</td>
+<td style="text-align:left;">
+ventas <span class="math inline">\(\sim\)</span> publicidad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+Durbin-Watson
+</td>
+<td style="text-align:left;">
+0.0126
+</td>
+<td style="text-align:left;">
+ventas <span class="math inline">\(\sim\)</span> precio
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+Breusch-Pagan
+</td>
+<td style="text-align:left;">
+0.0417
+</td>
+<td style="text-align:left;">
+ventas <span class="math inline">\(\sim\)</span> region
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-166" class="exercise"><strong>Ejercicio 3.43  </strong></span>Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible <span class="math inline">\(Y=\text{mpg}\)</span> (millas por galón) en función del <strong>peso</strong> del automóvil <span class="math inline">\(X_1=\text{wt}\)</span> (en miles de libras) y dos variables categóricas de la base <strong>mtcars</strong> de R: <strong>transmisión</strong> <span class="math inline">\(X_2=\text{am}\)</span> (0=automática, 1=manual) y <strong>cilindrada</strong> <span class="math inline">\(X_3=\text{cyl}\)</span> (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia <strong>am=0</strong> (automática) y <strong>cyl=4</strong> (4 cilindros). A continuación se muestra el código y la salida de R para el ajuste <span class="math inline">\(\text{mpg} \sim \text{wt} + \text{factor(am)} + \text{factor(cyl)}\)</span>.</p>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ wt + am + cyl, data = mt)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.4898 -1.3116 -0.5039  1.4162  5.7758 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  33.7536     2.8135  11.997  2.5e-12 ***
+## wt           -3.1496     0.9080  -3.469  0.00177 ** 
+## ammanual      0.1501     1.3002   0.115  0.90895    
+## cyl6         -4.2573     1.4112  -3.017  0.00551 ** 
+## cyl8         -6.0791     1.6837  -3.611  0.00123 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.603 on 27 degrees of freedom
+## Multiple R-squared:  0.8375, Adjusted R-squared:  0.8134 
+## F-statistic: 34.79 on 4 and 27 DF,  p-value: 2.73e-10</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Escriba la ecuación de regresión poblacional indicando la categoría de referencia.</p></li>
+<li><p>Escriba la ecuación ajustada.</p></li>
+<li><p>Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.</p></li>
+<li><p>Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95%, qué efectos son estadísticamente significativos.</p></li>
+<li><p>Comente las métricas del modelo: Error estándar residual y R^2 ajustado.</p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-167" class="exercise"><strong>Ejercicio 3.44  </strong></span>Se desea ajustar un <strong>modelo de regresión lineal múltiple con variables cualitativas</strong> para explicar la longitud del sépalo <span class="math inline">\(Y=\text{Sepal.Length}\)</span> en función de la anchura del sépalo <span class="math inline">\(X_1=\text{Sepal.Width}\)</span> y la especie <span class="math inline">\(X_2=\text{Species}\)</span> usando la base <strong>iris</strong> de R. La variable cualitativa <strong>Species</strong> tiene tres categorías: setosa, versicolor y virginica, con <strong>setosa</strong> como categoría de referencia. A continuación se muestra el código y la salida de R para el ajuste <span class="math inline">\(\text{Sepal.Length} \sim \text{Sepal.Width} + \text{Species}\)</span>.</p>
+<pre><code>## 
+## Call:
+## lm(formula = Sepal.Length ~ Sepal.Width + Species, data = iris)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.30711 -0.25713 -0.05325  0.19542  1.41253 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         2.2514     0.3698   6.089 9.57e-09 ***
+## Sepal.Width         0.8036     0.1063   7.557 4.19e-12 ***
+## Speciesversicolor   1.4587     0.1121  13.012  &lt; 2e-16 ***
+## Speciesvirginica    1.9468     0.1000  19.465  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.438 on 146 degrees of freedom
+## Multiple R-squared:  0.7259, Adjusted R-squared:  0.7203 
+## F-statistic: 128.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Escriba la ecuación de regresión poblacional indicando la categoría de referencia.</p></li>
+<li><p>Escriba la ecuación ajustada.</p></li>
+<li><p>Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.</p></li>
+<li><p>Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95%, qué efectos son estadísticamente significativos.</p></li>
+<li><p>Comente las métricas del modelo: Error estándar residual y R^2 ajustado.</p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-168" class="exercise"><strong>Ejercicio 3.45  </strong></span>En regresión lineal múltiple, el <strong>proyector</strong> (o matriz de proyección) sobre el espacio columna de <span class="math inline">\(X\)</span> (la matriz de diseño) es</p>
+<p><span class="math display">\[
+H = X(X^tX)^{-1}X^t.
+\]</span></p>
+<p>Demuestre las siguientes propiedades de <span class="math inline">\(H\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H\)</span> es simétrica, es decir <span class="math inline">\(H^t = H\)</span>.</p></li>
+<li><p><span class="math inline">\(H\)</span> es idempotente, es decir <span class="math inline">\(H^2 = H\)</span>.</p></li>
+<li><p><span class="math inline">\(\hat{Y}=HY\)</span>.</p></li>
+<li><p>El vector de residuos puede expresarse como <span class="math inline">\(e=(I-H)Y\)</span>.</p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-169" class="exercise"><strong>Ejercicio 3.46  </strong></span>Considere el modelo lineal múltiple. Demuestre que la covarianza muestral entre <span class="math inline">\(X_j\)</span> (columna de la matriz de diseño) y el vector de residuos <span class="math inline">\(e\)</span> es cero, es decir,</p>
+<p><span class="math display">\[
+X_j^te = 0, \quad \text{para cada regresor } X_j.
+\]</span></p>
+<p>Interprete este resultado en términos de que los residuos son ortogonales a todos los regresores en el modelo. <strong>Nota</strong>: el caso general <span class="math inline">\(e^tX = 0\)</span> se aborda en el anexo <a href="métricas.html#R2-no-decreciente">B.1</a>, ecuación <a href="métricas.html#eq:propiedad-residuos">(B.1)</a></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-170" class="exercise"><strong>Ejercicio 3.47  </strong></span>Demuestre que el coeficiente de determinación en regresión lineal múltiple puede escribirse en forma matricial como</p>
+<p><span class="math display">\[
+R^2 = \frac{Y^tHY - n\bar{y}^2}{Y^tY - n\bar{y}^2}.
+\]</span></p>
+<p>Explique qué papel juega el proyector <span class="math inline">\(H\)</span> en la interpretación de <span class="math inline">\(R^2\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-171" class="exercise"><strong>Ejercicio 3.48  </strong></span>Demuestre que la media muestral de los residuos en regresión múltiple es igual a cero:
+<span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n e_i = 0.
+\]</span></p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-172" class="exercise"><strong>Ejercicio 3.49  </strong></span>Sea el modelo lineal múltiple con matriz de proyección <span class="math inline">\(H = X(X^tX)^{-1}X^t\)</span>. Demuestre que la suma de cuadrados de residuos puede expresarse como
+<span class="math display">\[
+\text{SCE} = Y^t(I-H)Y,
+\]</span>
+Explique brevemente la interpretación geométrica de <span class="math inline">\((I-H)\)</span> como el proyector ortogonal sobre el complemento del espacio generado por las columnas de <span class="math inline">\(X\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-173" class="exercise"><strong>Ejercicio 3.50  </strong></span>Demuestre que en el modelo de regresión lineal múltiple</p>
+<p><span class="math display">\[
+\hat{\beta} \sim N\!\big(\beta, \, \sigma^2 (X&#39;X)^{-1}\big),
+\]</span></p>
+<p>se cumple que la matriz de varianzas y covarianzas de los estimadores es</p>
+<p><span class="math display">\[
+\mathrm{Var}(\hat{\beta}) = \sigma^2 (X&#39;X)^{-1}.
+\]</span></p>
+<p>Pista: use que <span class="math inline">\(\hat{\beta} = (X&#39;X)^{-1}X&#39;Y\)</span> y que <span class="math inline">\(Y = X\beta + \varepsilon\)</span> con <span class="math inline">\(\varepsilon \sim N(0, \sigma^2 I_n)\)</span>.</p>
+</div>
+
+</div>
+</div>
+
+
+
+<h3>Referencias<a href="referencias.html#referencias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-Devore" class="csl-entry">
+Devore, J. L. (2008). <em>Probability and statistics for engineering and the sciences</em> (7th ed). Thomson/Brooks/Cole.
+</div>
+<div id="ref-fahrmeir_regression_2013" class="csl-entry">
+Fahrmeir, L. (2013). <em>Regression: Models, methods and applications</em>. Springer.
+</div>
+<div id="ref-neter" class="csl-entry">
+Kutner, M. H., Nachtsheim, C. J., Neter, J., &amp; Wasserman, W. (2004). <em>Applied linear regression models</em> (Vol. 4). McGraw-Hill/Irwin New York.
+</div>
+<div id="ref-ratner_correlation_2009" class="csl-entry">
+Ratner, B. (2009). The correlation coefficient: <span>Its</span> values range between +1/−1, or do they? <em>Journal of Targeting, Measurement and Analysis for Marketing</em>, <em>17</em>(2), 139–142. <a href="https://doi.org/10.1057/jt.2009.5">https://doi.org/10.1057/jt.2009.5</a>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="PH.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimadores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": true,
+    "all": false
+  },
+  "fontsettings": false,
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["est2+inferencia.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": null
+  },
+  "info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

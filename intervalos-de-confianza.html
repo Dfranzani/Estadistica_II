@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Unidad 1 Intervalos de confianza | Estadística II &amp; Inferencia Estadística</title>
+  <meta name="description" content="Curso básico de Estadística para ingeniería." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Unidad 1 Intervalos de confianza | Estadística II &amp; Inferencia Estadística" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Curso básico de Estadística para ingeniería." />
+  <meta name="github-repo" content="Dfranzani/Estadistica_II" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unidad 1 Intervalos de confianza | Estadística II &amp; Inferencia Estadística" />
+  
+  <meta name="twitter:description" content="Curso básico de Estadística para ingeniería." />
+  
+
+<meta name="author" content="Daniel Franzani" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="talleres.html"/>
+<link rel="next" href="PH.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a la Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="" data-path="talleres.html"><a href="talleres.html"><i class="fa fa-check"></i>Talleres de práctica</a></li>
+<li class="chapter" data-level="1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>1</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto"><i class="fa fa-check"></i><b>1.1</b> Concepto</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-elaboracion"><i class="fa fa-check"></i><b>1.1.1</b> Elaboración</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media"><i class="fa fa-check"></i><b>1.2</b> Intervalo de confianza para la media</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media-varianza-conocida"><i class="fa fa-check"></i><b>1.2.1</b> Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-media-varianza-desconocida"><i class="fa fa-check"></i><b>1.2.2</b> Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias"><i class="fa fa-check"></i><b>1.3</b> Intervalo de confianza para la diferencia de medias</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas"><i class="fa fa-check"></i><b>1.3.1</b> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales"><i class="fa fa-check"></i><b>1.3.2</b> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas"><i class="fa fa-check"></i><b>1.3.3</b> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="01-unidad1.html"><a href="#intervalo-de-confianza-comparaci%C3%B3n-de-varianzas"><i class="fa fa-check"></i><b>1.4</b> Intervalo de confianza para la comparación de varianzas</a></li>
+<li class="chapter" data-level="1.5" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejercicios-unidad1"><i class="fa fa-check"></i><b>1.5</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="PH.html"><a href="PH.html"><i class="fa fa-check"></i><b>2</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-concepto"><i class="fa fa-check"></i><b>2.1</b> Concepto</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-elaboracion"><i class="fa fa-check"></i><b>2.1.1</b> Elaboración</a></li>
+<li class="chapter" data-level="2.1.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-errores"><i class="fa fa-check"></i><b>2.1.2</b> Errores tipo I y II</a></li>
+<li class="chapter" data-level="2.1.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-procedimiento"><i class="fa fa-check"></i><b>2.1.3</b> Procedimiento de prueba</a></li>
+<li class="chapter" data-level="2.1.4" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-intervalos-de-confianza"><i class="fa fa-check"></i><b>2.1.4</b> Intervalos de confianza</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="PH.html"><a href="PH.html#pruebas"><i class="fa fa-check"></i><b>2.2</b> Prueba de hipótesis para la media</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-media-varianza-conocida"><i class="fa fa-check"></i><b>2.2.1</b> Prueba de hipótesis para la media de una distribución normal con varianza poblacional conocida</a></li>
+<li class="chapter" data-level="2.2.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-media-varianza-desconocida"><i class="fa fa-check"></i><b>2.2.2</b> Prueba de hipótesis para la media de una distribución normal con varianza poblacional desconocida</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias"><i class="fa fa-check"></i><b>2.3</b> Prueba de hipótesis para la diferencia de medias</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-conocidas"><i class="fa fa-check"></i><b>2.3.1</b> Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales conocidas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-iguales"><i class="fa fa-check"></i><b>2.3.2</b> Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas e iguales</a></li>
+<li class="chapter" data-level="2.3.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-distintas"><i class="fa fa-check"></i><b>2.3.3</b> Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas y distintas</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-comparacion-varianzas"><i class="fa fa-check"></i><b>2.4</b> Prueba de hipótesis para comparación de varianzas</a></li>
+<li class="chapter" data-level="2.5" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-proporciones"><i class="fa fa-check"></i><b>2.5</b> Prueba de hipótesis para la diferencia de proporciones</a></li>
+<li class="chapter" data-level="2.6" data-path="PH.html"><a href="PH.html#ejercicios-unidad2"><i class="fa fa-check"></i><b>2.6</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regresion-lineal.html"><a href="regresion-lineal.html"><i class="fa fa-check"></i><b>3</b> Regresión Lineal</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-medidas-asociacion"><i class="fa fa-check"></i><b>3.1</b> Medidas de asociación lineal</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-covarianza"><i class="fa fa-check"></i><b>3.1.1</b> Covarianza</a></li>
+<li class="chapter" data-level="3.1.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-correlacion"><i class="fa fa-check"></i><b>3.1.2</b> Correlación</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-simple"><i class="fa fa-check"></i><b>3.2</b> Regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#EMCRLS"><i class="fa fa-check"></i><b>3.2.1</b> Estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="3.2.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#sumascuadraticas"><i class="fa fa-check"></i><b>3.2.2</b> Sumas cuadráticas</a></li>
+<li class="chapter" data-level="3.2.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#pruebasHipotesisRLS"><i class="fa fa-check"></i><b>3.2.3</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="3.2.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#metricasRLS"><i class="fa fa-check"></i><b>3.2.4</b> Métricas</a></li>
+<li class="chapter" data-level="3.2.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-simple-supuestos"><i class="fa fa-check"></i><b>3.2.5</b> Supuestos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple"><i class="fa fa-check"></i><b>3.3</b> Regresión lineal múltiple</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#EMC-RLM-CUERPO"><i class="fa fa-check"></i><b>3.3.1</b> Estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="3.3.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#covariables-cualitativas"><i class="fa fa-check"></i><b>3.3.2</b> Covariables cualitativas</a></li>
+<li class="chapter" data-level="3.3.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple-pruebas-hipotesis"><i class="fa fa-check"></i><b>3.3.3</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="3.3.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#metricasRLM"><i class="fa fa-check"></i><b>3.3.4</b> Métricas</a></li>
+<li class="chapter" data-level="3.3.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple-supuestos"><i class="fa fa-check"></i><b>3.3.5</b> Supuestos</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables"><i class="fa fa-check"></i><b>3.4</b> Selección de variables</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables-forward"><i class="fa fa-check"></i><b>3.4.1</b> Forward</a></li>
+<li class="chapter" data-level="3.4.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables-backward"><i class="fa fa-check"></i><b>3.4.2</b> Backward</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-prediccion-observaciones"><i class="fa fa-check"></i><b>3.5</b> Predicción de observaciones</a></li>
+<li class="chapter" data-level="3.6" data-path="regresion-lineal.html"><a href="regresion-lineal.html#ejercicios-unidad-3"><i class="fa fa-check"></i><b>3.6</b> Ejercicios</a></li>
+</ul></li>
+<li class="appendix"><span><b>Apéndice</b></span></li>
+<li class="chapter" data-level="A" data-path="estimadores.html"><a href="estimadores.html"><i class="fa fa-check"></i><b>A</b> Estimadores</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="estimadores.html"><a href="estimadores.html#RLS-EMC"><i class="fa fa-check"></i><b>A.1</b> EMC en Regresión Lineal Simple</a></li>
+<li class="chapter" data-level="A.2" data-path="01-unidad1.html"><a href="#descomposici%C3%B3n-de-la-suma-de-cuadrados-total"><i class="fa fa-check"></i><b>A.2</b> Descomposición de la Suma de Cuadrados Total</a></li>
+<li class="chapter" data-level="A.3" data-path="estimadores.html"><a href="estimadores.html#RLM-EMC"><i class="fa fa-check"></i><b>A.3</b> EMC en Regresión Lineal Múltiple</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="01-unidad1.html"><a href="#m%C3%A9tricas"><i class="fa fa-check"></i><b>B</b> Métricas</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="01-unidad1.html"><a href="#estad%C3%ADsticos"><i class="fa fa-check"></i><b>C</b> Estadísticos</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="estadísticos.html"><a href="estadísticos.html"><i class="fa fa-check"></i><b>C.1</b> Estadístico F del método de selección Forward</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>D</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="funciones.html"><a href="funciones.html#funcion-indicatriz"><i class="fa fa-check"></i><b>D.1</b> Esquema de la función indicatriz</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/rmarkdown-cookbook" target="blank">Published with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística II &amp; Inferencia Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intervalos-de-confianza" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Unidad 1</span> Intervalos de confianza<a href="intervalos-de-confianza.html#intervalos-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Las bases de datos que se trabajarán en esta unidad son las siguientes:</p>
+<ul>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv" id="Imacec1">Imacec</a>: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Ano: Año de medición del Imacec.</li>
+<li>Mes: Mes de medición del Imacec.</li>
+<li>Mineria: Imacec del sector de minería.</li>
+<li>Industria: Imacec del sector de industria.</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intervalos-de-confianza.html#cb1-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/imacec.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/control%2Bcuotas.csv" id="Cuotas">Control cuotas</a>: Contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Plan.Vital: contiene los valores cuota en pesos de la AFP Plan Vital de un APV de fondo A.</li>
+<li>Provida: contiene lo valores cuota en pesos de la AFP Provida de un APV de fondo A.</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="intervalos-de-confianza.html#cb2-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/control%2Bcuotas.csv&quot;</span>)</span></code></pre></div></li>
+</ul>
+<div id="intervalos-de-confianza-concepto" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Concepto<a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La estimación puntual aproxima mediante un número el valor de una característica poblacional o parámetro desconocido (la altura media de los chilenos, la intención de voto a un partido en las próximas elecciones generales, el tiempo medio de ejecución de un algoritmo, el valor del reajuste del IPC del próximo año) pero no nos indica el error que se comete en dicha estimación. <span class="citation">(<a href="#ref-Devore">Devore, 2008</a>, página 254)</span></p>
+<p>Lo razonable, en la práctica, es adjuntar junto a la estimación puntual del parámetro, un margen de error de la estimación. La construcción de dicho intervalo es el objetivo de la <strong>estimación por intervalos de confianza</strong>.</p>
+<p>Un intervalo de confianza para un parámetro con un nivel de confianza de <span class="math inline">\(1-\alpha\)</span> (el cual debe elegir el investigador), es un intervalo de extremos aleatorios <span class="math inline">\((L,U)\)</span> que con probabilidad <span class="math inline">\(1-\alpha\)</span> contiene al parámetro.</p>
+<p><span class="math display">\[
+P(\text{Parámetro} \in (L,U)) = 1-\alpha
+\]</span></p>
+<p>En la estimación por intervalos de confianza partimos de una muestra <span class="math inline">\(x_1,\ldots,x_n\)</span>, de lo cuales obtenemos un un intervalo numérico. Por ejemplo, podríamos hablar de que, con una confianza del <span class="math inline">\(90\%\)</span>, la estatura media de los chilenos (parámetro poblacional) está contenida por el intervalo <span class="math inline">\((1.80, 1.84)\)</span> metros, o , la probabilidad de que el intervalo <span class="math inline">\((1.80,1.84)\)</span> contenga al valor real de la estatura media de los chilenos en metros es de <span class="math inline">\(0.9\)</span>.</p>
+<div id="intervalos-de-confianza-elaboracion" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Elaboración<a href="intervalos-de-confianza.html#intervalos-de-confianza-elaboracion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando trabajamos con bases de datos (o cualquier conjunto de datos), se supone que las observaciones muestrales reales <span class="math inline">\(x_1,\ldots , x_n\)</span> son el resultado de una muestra aleatoria <span class="math inline">\(X_1,\ldots , X_n\)</span> tomada de una distribución normal con valor medio <span class="math inline">\(\mu\)</span> y desviación estándar <span class="math inline">\(\sigma\)</span>. Los resultados de la última unidad del curso de Estadística I (Distribución de la media) implican que independientemente del tamaño de la muestra (<span class="math inline">\(n\)</span>), la media muestral <span class="math inline">\(\bar{X}\)</span> está normalmente distribuida con valor esperado <span class="math inline">\(\mu\)</span> y desviación estándar <span class="math inline">\(\sigma/\sqrt{n}\)</span>. Si se estandariza el promedio se obtiene la variable normal estándar</p>
+<span class="math display" id="eq:normalestandar">\[\begin{equation}
+Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(\mu = 0,\sigma^2=1)
+\tag{1.1}
+\end{equation}\]</span>
+<p>Luego, en caso de estar interesado en construir un intervalo (bilateral) de confianza para la media con una determinada confianza, se debe plantear de la siguiente forma:</p>
+<span class="math display" id="eq:IC1">\[\begin{equation}
+P\left( Z_{\alpha/2} &lt; Z &lt; Z_{1-\alpha/2}\right) = 1-\alpha
+\tag{1.2}
+\end{equation}\]</span>
+<p>En la expresión <a href="intervalos-de-confianza.html#eq:IC1">(1.2)</a>, <span class="math inline">\(Z_{\alpha/2}\)</span> y <span class="math inline">\(Z_{1-\alpha/2}\)</span> son los puntos de cortes en el eje <span class="math inline">\(X\)</span> alrededor del 0, para los cuales, el área bajo la curva (probabilidad) de la función de densidad de la distribución normal estándar es igual a <span class="math inline">\(1-\alpha\)</span>, tal como se muestra en la figura <a href="intervalos-de-confianza.html#fig:normalestandar">1.1</a>. En este sentido, para la figura planteada, los puntos de corte se traducen en las siguientes expresiones.</p>
+<p><span class="math display">\[Z_{\alpha/2} = x : P(Z \leq x) = \alpha/2\]</span>
+<span class="math display">\[Z_{1-\alpha/2} = x : P(Z \leq x) = 1-\alpha/2\]</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:normalestandar"></span>
+<img src="est2+inferencia_files/figure-html/normalestandar-1.png" alt="Curva Z, Normal Estándar" width="384" />
+<p class="caption">
+Figura 1.1: Curva Z, Normal Estándar
+</p>
+</div>
+<p>Luego, reemplazando el valor de <span class="math inline">\(Z\)</span> por <a href="intervalos-de-confianza.html#eq:normalestandar">(1.1)</a> en la ecuación <a href="intervalos-de-confianza.html#eq:IC1">(1.2)</a>, y despejando el valor <span class="math inline">\(\mu\)</span> al interior de la probabilidad, se obtiene la siguiente expresión.</p>
+<span class="math display" id="eq:IntC">\[\begin{equation}
+P\left( \overline{X} + Z_{\alpha/2}\frac{\sigma}{\sqrt{n}} &lt; \mu &lt; \overline{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+\tag{1.3}
+\end{equation}\]</span>
+<p>o</p>
+<span class="math display" id="eq:IntC2">\[\begin{equation}
+P\left( \overline{X} - Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}} &lt; \mu &lt; \overline{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+\tag{1.4}
+\end{equation}\]</span>
+<p>La desigualdad dentro de la probabilidad es el intervalo de confianza construido para la media poblacional, mientras que, el término a la derecha de la igualdad corresponde a la confianza trabajada por el investigador (<span class="math inline">\(1-\alpha\)</span>). En la sección <a href="PH.html#PH">2</a> se dará a conocer en mayor profundidad el concepto de confianza y significancia (<span class="math inline">\(\alpha\)</span>).</p>
+<p>La forma de construir un intervalo de confianza para un determinado parámetro es distinta en todos los casos, en particular, debido a la suposiciones con las que se trabaja. Por ejemplo, para expresión desarrollada en <a href="intervalos-de-confianza.html#eq:IntC">(1.3)</a> es necesario suponer que se conoce la varianza poblacional de los datos, algo que puedo o no ocurrir en la realidad.</p>
+<p>Por último, cabe mencionar, que existen otros tipos de intervalos, si bien el que se ha mostrado hasta el momento es un intervalo que tiene tanto una cota inferior como superior, existen otros tipos de intervalos que son solo tienen una cota (o superior o inferior).</p>
+<p>A continuación, se dan a conocer intervalos de confianza para estimar la media poblacional, la diferencia de medias poblacionales y la comparación de varianzas, omitiendo los procesos de construcción.</p>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-la-media" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Intervalo de confianza para la media<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intervalo-de-confianza-para-la-media-varianza-conocida" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media-varianza-conocida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-9">Tabla 1.1: </span>Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tipo de intervalo
+</th>
+<th style="text-align:left;">
+Probabilidad
+</th>
+<th style="text-align:center;">
+Expresión del intervalo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Bilateral
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} \pm Z_{1-\alpha/2}\displaystyle\frac{\sigma}{\sqrt{n}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la derecha
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(\mu &lt; b)=1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left( -\infty, \bar{x} + Z_{1-\alpha}\displaystyle\frac{\sigma}{\sqrt{n}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la izquierda
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu)=1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - Z_{1-\alpha}\displaystyle\frac{\sigma}{\sqrt{n}}, \infty\right)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:ejemplo1IC" class="example"><strong>Ejemplo 1.1  </strong></span>Los datos que a continuación se dan son los pesos en gramos del contenido de 16 cajas de cereal que se seleccionaron de una proceso de llenado con el propósito de verificar el peso promedio: 506, 508, 499, 503, 504, 510, 497, 512, 514, 505, 493, 496, 506, 502, 509, 496. Si el peso de cada caja es una variable aleatoria normal con una desviación estándar <span class="math inline">\(\sigma = 5g\)</span>, obtener el intervalo de confianza al 99% para la media de llenado de este proceso.</p>
+<p><em>Nota</em>: <span class="math inline">\(\bar{x} = 503.75\)</span></p>
+<p>Dado que, no se especifica el tipo de intervalo, y que se está interesado es el estudiar la media del llenado de las cajas de cereal, corresponde elaborar un intervalo de confianza bilateral:</p>
+<p><span class="math display">\[\left(\bar{x} \pm Z_{1-\alpha/2}\displaystyle\frac{\sigma}{\sqrt{n}}\right)\]</span></p>
+<p>No existe un comando de R (nativo) para elaborar este intervalo, por lo que, la construcción debe ser manual, tal como se muestra a continuación.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intervalos-de-confianza.html#cb3-1" tabindex="-1"></a>peso <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">506</span>,<span class="dv">508</span>,<span class="dv">499</span>,<span class="dv">503</span>,<span class="dv">504</span>,<span class="dv">510</span>,<span class="dv">497</span>,<span class="dv">512</span>,</span>
+<span id="cb3-2"><a href="intervalos-de-confianza.html#cb3-2" tabindex="-1"></a>         <span class="dv">514</span>,<span class="dv">505</span>,<span class="dv">493</span>,<span class="dv">496</span>,<span class="dv">506</span>,<span class="dv">502</span>,<span class="dv">509</span>,<span class="dv">496</span>)</span>
+<span id="cb3-3"><a href="intervalos-de-confianza.html#cb3-3" tabindex="-1"></a>promedio <span class="ot">=</span> <span class="fu">mean</span>(peso)</span>
+<span id="cb3-4"><a href="intervalos-de-confianza.html#cb3-4" tabindex="-1"></a>L <span class="ot">=</span> promedio <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.01</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">5</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(peso))</span>
+<span id="cb3-5"><a href="intervalos-de-confianza.html#cb3-5" tabindex="-1"></a>U <span class="ot">=</span> promedio <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.01</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">5</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(peso))</span>
+<span id="cb3-6"><a href="intervalos-de-confianza.html#cb3-6" tabindex="-1"></a><span class="fu">c</span>(L,U)</span></code></pre></div>
+<pre><code>## [1] 500.5302 506.9698</code></pre>
+<p>El resultado indica que, la probabilidad de que el intervalo <span class="math inline">\((500.5, 506.9)\)</span> (en gramos) contenga el valor de la media de llenado de las cajas es de 0.99.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-1" class="exercise"><strong>Ejercicio 1.1  </strong></span>Obtener los intervalos con las confianzas al 90% y 95% asociados al ejemplo <a href="intervalos-de-confianza.html#exm:ejemplo1IC">1.1</a>. Comente las diferencias e interprete.</p>
+</div>
+<p>Dado lo expuesto en el ejercicio anterior, la figura <a href="intervalos-de-confianza.html#fig:simulacionIC">1.2</a> muestra la relación que existe entre la confianza y el rango del intervalo, en la cual, es posible observar que a mayor confianza es mayor el rango del intervalo.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:simulacionIC"></span>
+<img src="est2+inferencia_files/figure-html/simulacionIC-1.png" alt="Simulación de intervalos de confianza" width="480" />
+<p class="caption">
+Figura 1.2: Simulación de intervalos de confianza
+</p>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-media-varianza-desconocida" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-media-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-11">Tabla 1.2: </span>Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tipo de intervalo
+</th>
+<th style="text-align:left;">
+Probabilidad
+</th>
+<th style="text-align:center;">
+Expresión del intervalo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Bilateral
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} \pm t_{1-\alpha/2,n-1}\displaystyle\frac{S}{\sqrt{n}} \right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la derecha
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(\mu &lt; b)=1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left( -\infty, \bar{x} + t_{1-\alpha,n-1}\displaystyle\frac{S}{\sqrt{n}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la izquierda
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu)=1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - t_{1-\alpha,n-1}\displaystyle\frac{S}{\sqrt{n}}, \infty\right)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-2" class="example"><strong>Ejemplo 1.2  </strong></span>Para resolver el ejemplo <a href="intervalos-de-confianza.html#exm:ejemplo1IC">1.1</a> considerando varianza poblacional desconocida, es posible utilizar el comando <code>t.test()</code> para obtener el intervalo de confianza.</p>
+<p><span class="math display">\[\left(\bar{x} \pm t_{1-\alpha/2,n-1}\displaystyle\frac{S}{\sqrt{n}} \right)\]</span></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intervalos-de-confianza.html#cb5-1" tabindex="-1"></a>peso <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">506</span>,<span class="dv">508</span>,<span class="dv">499</span>,<span class="dv">503</span>,<span class="dv">504</span>,<span class="dv">510</span>,<span class="dv">497</span>,<span class="dv">512</span>,</span>
+<span id="cb5-2"><a href="intervalos-de-confianza.html#cb5-2" tabindex="-1"></a>         <span class="dv">514</span>,<span class="dv">505</span>,<span class="dv">493</span>,<span class="dv">496</span>,<span class="dv">506</span>,<span class="dv">502</span>,<span class="dv">509</span>,<span class="dv">496</span>)</span>
+<span id="cb5-3"><a href="intervalos-de-confianza.html#cb5-3" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> peso, <span class="at">conf.level =</span> <span class="fl">0.99</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  peso
+## t = 324.89, df = 15, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 99 percent confidence interval:
+##  499.181 508.319
+## sample estimates:
+## mean of x 
+##    503.75</code></pre>
+<p>En este sentido, se tiene una probabilidad de 0.99 de que el intervalo <span class="math inline">\((499.1, 508.3)\)</span> contenga el valor de la media de llenado de las cajas de cereal.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-3" class="exercise"><strong>Ejercicio 1.2  </strong></span>Utilizando la base de datos del <a href="intervalos-de-confianza.html#Imacec1">Imacec</a>:</p>
+<ol style="list-style-type: decimal">
+<li>Elabore un intervalo de confianza para estudiar el valor promedio del Imacec en el sector de Minería en los años 2019 y 2021, asumiendo que el Imacec de Minería es una variable aleatoria que distribuye normal. Utilice una confianza de 91%. Interprete.</li>
+<li>Elabore un intervalo de confianza para estudiar si, el valor promedio del Imacec en el sector de Industria en los años 2019 y 2021 es mayor a 100, asumiendo que el Imacec de Industria es una variable aleatoria que distribuye normal. Utilice una confianza de 91%. Interprete.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-la-diferencia-de-medias" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Intervalo de confianza para la diferencia de medias<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-13">Tabla 1.3: </span>Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tipo de intervalo
+</th>
+<th style="text-align:left;">
+Probabilidad
+</th>
+<th style="text-align:center;">
+Expresión del intervalo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Bilateral
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu_X - \mu_Y &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - \bar{y} \pm Z_{1-\alpha/2}\displaystyle\sqrt{\displaystyle\frac{\sigma^2_X}{n_x} + \displaystyle\frac{\sigma^2_Y}{n_y}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la derecha
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(\mu_X - \mu_Y &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left( -\infty, \bar{x} - \bar{y} + Z_{1-\alpha}\displaystyle\sqrt{\displaystyle\frac{\sigma^2_X}{n_x} + \displaystyle\frac{\sigma^2_Y}{n_y}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la izquierda
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu_X - \mu_Y) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - \bar{y} - Z_{1-\alpha}\displaystyle\sqrt{\displaystyle\frac{\sigma^2_X}{n_x} + \displaystyle\frac{\sigma^2_Y}{n_y}}, \infty\right)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:ICdiferencianormal" class="example"><strong>Ejemplo 1.3  </strong></span>La base de datos <a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/dolar.csv">dolar.csv</a> contiene los datos asociados al tipo de cambio del dólar. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Mes: mes de medición.</li>
+<li>Dia: día de medición.</li>
+<li>Valor: tipo de cambio del dólar a pesos (clp).</li>
+</ul>
+<p>Elabore un intervalo de confianza para estudiar la diferencia del valor promedio del dólar entre los meses de junio y julio, asumiendo distribución normal de los datos en ambas poblaciones, y varianzas poblacionales de 1250 y 580 para cada mes respectivamente. Utilice una confianza del 95%.</p>
+<p>Al conocer las varianzas poblacionales, y querer estudiar la diferencia, corresponde elaborar el siguiente intervalo de confianza.</p>
+<p><span class="math display">\[\left(\bar{x} - \bar{y} \pm Z_{1-\alpha/2}\displaystyle\sqrt{\displaystyle\frac{\sigma^2_X}{n_x} + \displaystyle\frac{\sigma^2_Y}{n_y}}\right)\]</span>
+No existe un comando en R que permita generar este intervalo de confianza, por lo que corresponde construirlo manualmente, tal como se muestra a continuación.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intervalos-de-confianza.html#cb7-1" tabindex="-1"></a><span class="co"># Cargue previamente la base datos, guardándola con el nombre &quot;df&quot;</span></span>
+<span id="cb7-2"><a href="intervalos-de-confianza.html#cb7-2" tabindex="-1"></a>junio <span class="ot">=</span> df<span class="sc">$</span>Valor[df<span class="sc">$</span>Mes<span class="sc">==</span><span class="st">&quot;Junio&quot;</span>]</span>
+<span id="cb7-3"><a href="intervalos-de-confianza.html#cb7-3" tabindex="-1"></a>julio <span class="ot">=</span> df<span class="sc">$</span>Valor[df<span class="sc">$</span>Mes<span class="sc">==</span><span class="st">&quot;Julio&quot;</span>]</span>
+<span id="cb7-4"><a href="intervalos-de-confianza.html#cb7-4" tabindex="-1"></a>L <span class="ot">=</span> <span class="fu">mean</span>(junio) <span class="sc">-</span> <span class="fu">mean</span>(julio) <span class="sc">-</span> </span>
+<span id="cb7-5"><a href="intervalos-de-confianza.html#cb7-5" tabindex="-1"></a>  <span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span></span>
+<span id="cb7-6"><a href="intervalos-de-confianza.html#cb7-6" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1250</span><span class="sc">/</span><span class="fu">length</span>(junio) <span class="sc">+</span> <span class="dv">580</span><span class="sc">/</span><span class="fu">length</span>(julio))</span>
+<span id="cb7-7"><a href="intervalos-de-confianza.html#cb7-7" tabindex="-1"></a>U <span class="ot">=</span> <span class="fu">mean</span>(junio) <span class="sc">-</span> <span class="fu">mean</span>(julio) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="intervalos-de-confianza.html#cb7-8" tabindex="-1"></a>  <span class="fu">qnorm</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span></span>
+<span id="cb7-9"><a href="intervalos-de-confianza.html#cb7-9" tabindex="-1"></a>  <span class="fu">sqrt</span>(<span class="dv">1250</span><span class="sc">/</span><span class="fu">length</span>(junio) <span class="sc">+</span> <span class="dv">580</span><span class="sc">/</span><span class="fu">length</span>(julio))</span>
+<span id="cb7-10"><a href="intervalos-de-confianza.html#cb7-10" tabindex="-1"></a><span class="fu">c</span>(L,U)</span></code></pre></div>
+<pre><code>## [1] -103.85536  -65.70453</code></pre>
+<p>El resultado indica que, la probabilidad de que el intervalo <span class="math inline">\((-103.8,  -65.7)\)</span> (en pesos) contenga al valor real de la diferencia entre ambas medias es de 0.95.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-4" class="exercise"><strong>Ejercicio 1.3  </strong></span>Estudiar si el valor promedio del dólar de Julio es mayor al de Junio por más de 50 pesos (clp). Considere que las variables distribuyen normal, y que las varianzas poblacionales son las mismas que se mencionan en el ejemplo <a href="intervalos-de-confianza.html#exm:ICdiferencianormal">1.3</a>. Utilice una confianza del 92.3%. Interprete.</p>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-16">Tabla 1.4: </span>Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tipo de intervalo
+</th>
+<th style="text-align:left;">
+Probabilidad
+</th>
+<th style="text-align:center;">
+Expresión del intervalo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Bilateral
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu_X - \mu_Y &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - \bar{y} \pm t_{1-\alpha/2,k}S_p\displaystyle\sqrt{\displaystyle\frac{1}{n_x} + \displaystyle\frac{1}{n_y}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la derecha
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(\mu_X - \mu_Y &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left( -\infty, \bar{x} - \bar{y} + t_{1-\alpha,k}S_p\displaystyle\sqrt{\displaystyle\frac{1}{n_x} + \displaystyle\frac{1}{n_y}}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la izquierda
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu_X - \mu_Y) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - \bar{y} - t_{1-\alpha,k}S_p\displaystyle\sqrt{\displaystyle\frac{1}{n_x} + \displaystyle\frac{1}{n_y}}, \infty\right)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>donde,</p>
+<p><span class="math display">\[k = n_X + n_Y-2\]</span></p>
+<p><span class="math display">\[S_p^2 = \frac{(n_X-1)S_X^2 + (n_Y-1)S_Y^2}{n_X+n_Y-2}\]</span></p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:ejemploICdiferencia" class="example"><strong>Ejemplo 1.4  </strong></span>Dos universidades financiadas por el gobierno tienen métodos distintos para inscribir a sus alumnos a principios de cada semestre. Las dos desean comparar el tiempo promedio que les toma a los estudiantes el trámite de inscripción. En cada universidad se anotaron los tiempo de inscripción para 30 alumnos seleccionados al azar. Las medias y las desviaciones estándar muestrales son las siguientes:</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{matrix}
+\bar{x}_1 = 50.2 &amp; \bar{x}_2=52.9\\
+S_1 = 4.8 &amp; S_2 = 5.4
+\end{matrix}
+\end{equation}\]</span>
+<p>Si se supone que el muestreo se llevó a cabo sobre dos poblaciones distribuidas normales e independientes con varianzas iguales , obtener el intervalo de confianza estimado del 99% para la diferencia entre las medias del tiempo de inscripción para las dos universidades. Con base en este evidencia, ¿se estaría inclinando a concluir que existe una diferencia real entre los tiempos medios para cada universidad?</p>
+<p>Para responder a la pregunta, es necesario construir un intervalo de confianza para la diferencia de medias y, verificar si el cero está incluido dentro de este. El desarrollo del intervalo debe ser manual, ya que, no se cuenta con una base de datos, sino que directamente con los promedios y desviaciones estándar de las muestras.</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+&amp;\left(\bar{x}_1 - \bar{x}_2 \pm t_{1-\alpha/2,k}S_p\displaystyle\sqrt{\displaystyle\frac{1}{n_{X_1}} + \displaystyle\frac{1}{n_{X_2}}}\right) = \left(-6.208;0.808 \right)\\
+S_p^2 &amp;= \frac{(n_{X_1}-1)S_{X_1}^2 + (n_{X_2}-1)S_{X_2}^2}{n_{X_1}+n_{X_2}-2} = \frac{29\cdot 4.8^2 + 29\cdot 5.4^2}{58} = 26.1\\
+k &amp;= n_{X_1} + n_{X_2}-2 = 58 \text{, } t_{0.995, 58} = 2.66\\
+\end{split}
+\end{equation}\]</span>
+<p>Como el intervalo contiene al cero, no existe suficiente evidencia para indicar que existe una diferencia real entre los tiempos medios para cada universidad, con un 99% de confianza.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:ICcontrolcuotas" class="exercise"><strong>Ejercicio 1.4  </strong></span>La base de datos <a href="intervalos-de-confianza.html#Cuotas">Control cuotas</a> contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Se está interesado en saber si el valor promedio de las cuotas de Plan Vital supera al de Provida por más de 30000 pesos, para ello, elabore un intervalo de confianza con una confianza del 90%. Asuma, que el valor cuota es una variable aleatoria que distribuye normal en ambas poblaciones (independientes), y que las varianzas poblacionales son desconocidas e iguales.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-5" class="exercise"><strong>Ejercicio 1.5  </strong></span>Utilizando la base de datos <a href="intervalos-de-confianza.html#Cuotas">Control cuotas</a>, estudiar si la media del valor cuota de Provida es menor a la de Plan Vital, utilizando una confianza del 99.64% Considere distribución normal de las variables y varianzas poblacionales desconocidas e iguales.</p>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-17">Tabla 1.5: </span>Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tipo de intervalo
+</th>
+<th style="text-align:left;">
+Probabilidad
+</th>
+<th style="text-align:center;">
+Expresión del intervalo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Bilateral
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu_X - \mu_Y &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - \bar{y} \pm t_{1-\alpha/2,k}\sqrt{S^2_X/n_X + S^2_Y/n_Y}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la derecha
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(\mu_X - \mu_Y &lt; b) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left( -\infty, \bar{x} - \bar{y} + t_{1-\alpha,k}\sqrt{S^2_X/n_X + S^2_Y/n_Y}\right)\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Acotado por la izquierda
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(a &lt; \mu_X - \mu_Y) = 1-\alpha\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\left(\bar{x} - \bar{y} - t_{1-\alpha,k}\sqrt{S^2_X/n_X + S^2_Y/n_Y}, \infty\right)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dónde <span class="math inline">\(k\)</span> es el entero más cercano a</p>
+<p><span class="math display">\[\frac{(S_X^2/n_X + S_Y^2/n_Y)^2}{(S_X^2/n_X)^2/(n_X-1) + (S_Y^2/n_Y)^2/(n_Y-1)}\]</span></p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-6" class="example"><strong>Ejemplo 1.5  </strong></span>Resuelva el ejemplo <a href="intervalos-de-confianza.html#exm:ICdiferencianormal">1.3</a> asumiendo varianzas poblacionales desconocidas y diferentes.</p>
+<p>Al asumir que las varianzas poblacionales son desconocidas y diferentes, corresponde elaborar el siguiente intervalo.</p>
+<p><span class="math display">\[\left(\bar{x} - \bar{y} \pm t_{1-\alpha/2,k}\sqrt{S^2_X/n_X + S^2_Y/n_Y}\right)\]</span></p>
+<p>La ejecución en R es mediante el comando <code>t.test()</code> considerando el argumento <code>var.equal = F</code>, el cual, indica que las varianzas poblacionales son desconocidas y distintas (por defecto el valor de este argumento es <code>F</code>, es decir, se asume que las varianzas poblacionales son desconocidas y distintas). Además, se asume una confianza del 95%.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intervalos-de-confianza.html#cb9-1" tabindex="-1"></a>junio <span class="ot">=</span> df<span class="sc">$</span>Valor[df<span class="sc">$</span>Mes<span class="sc">==</span><span class="st">&quot;Junio&quot;</span>]</span>
+<span id="cb9-2"><a href="intervalos-de-confianza.html#cb9-2" tabindex="-1"></a>julio <span class="ot">=</span> df<span class="sc">$</span>Valor[df<span class="sc">$</span>Mes<span class="sc">==</span><span class="st">&quot;Julio&quot;</span>]</span>
+<span id="cb9-3"><a href="intervalos-de-confianza.html#cb9-3" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> junio, <span class="at">y =</span> julio, <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">var.equal =</span> F)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  junio and julio
+## t = -8.793, df = 33.349, p-value = 3.338e-10
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -104.38837  -65.17152
+## sample estimates:
+## mean of x mean of y 
+##  857.7695  942.5494</code></pre>
+<p>El resultado indica que, la probabilidad de que el intervalo <span class="math inline">\((-104.3,  -65.17)\)</span> (en pesos) contenga al valor real de la diferencia entre ambas medias es de 0.95.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-7" class="exercise"><strong>Ejercicio 1.6  </strong></span>Utilizando la base de datos del <a href="intervalos-de-confianza.html#Imacec1">Imacec</a>, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor al del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96%. Interprete.</p>
+</div>
+</div>
+</div>
+<div id="intervalo-de-confianza-comparación-de-varianzas" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Intervalo de confianza para la comparación de varianzas<a href="#intervalo-de-confianza-comparaci%C3%B3n-de-varianzas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este caso, se estará interesado el siguiente intervalo, ya que, es el fundamental para determinar la igualdad de las varianzas.</p>
+<span class="math display">\[\begin{equation}
+\notag
+\begin{split}
+P\left(a&lt;\frac{\sigma_Y^2}{\sigma_X^2}&lt;b\right) = 1-\alpha &amp;\Rightarrow \left( F_1\frac{S_Y^2}{S_X^2},F_2\frac{S_Y^2}{S_X^2} \right)\\
+&amp; F_1 = \frac{1}{f_{1-\alpha/2,n_Y-1,n_X-1}}\\
+&amp; F_2 = f_{1-\alpha/2,n_X-1,n_Y-1}
+\end{split}
+\end{equation}\]</span>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-8" class="example"><strong>Ejemplo 1.6  </strong></span>Utilizando la base de datos <a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/dolar.csv">dolar.csv</a>, elabore un intervalo de confianza para el cociente de la variabilidad del valor del dólar entre los meses de junio y julio, asumiendo que las distribuciones poblacionales son normales e independientes</p>
+<p>Para estudiar o comparar varianzas, corresponde elaborar el único intervalo especificado en esta sección.</p>
+<p><span class="math display">\[\left( F_1\frac{S_Y^2}{S_X^2},F_2\frac{S_Y^2}{S_X^2} \right)\]</span></p>
+<p>La ejecución en R, considerando una confianza del 95% es la siguiente.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intervalos-de-confianza.html#cb11-1" tabindex="-1"></a>junio <span class="ot">=</span> df<span class="sc">$</span>Valor[df<span class="sc">$</span>Mes<span class="sc">==</span><span class="st">&quot;Junio&quot;</span>]</span>
+<span id="cb11-2"><a href="intervalos-de-confianza.html#cb11-2" tabindex="-1"></a>julio <span class="ot">=</span> df<span class="sc">$</span>Valor[df<span class="sc">$</span>Mes<span class="sc">==</span><span class="st">&quot;Julio&quot;</span>]</span>
+<span id="cb11-3"><a href="intervalos-de-confianza.html#cb11-3" tabindex="-1"></a><span class="fu">var.test</span>(<span class="at">x =</span> junio, <span class="at">y =</span> julio, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  junio and julio
+## F = 2.2409, num df = 19, denom df = 17, p-value = 0.1004
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.8510277 5.7522904
+## sample estimates:
+## ratio of variances 
+##           2.240867</code></pre>
+<p>Dado que, la probabilidad asociada a este intervalo de confianza contiene al cociente de las varianzas poblacionales, para determinar si existe o no diferencia entre estos parámetros se debe verificar si el 1 está dentro o no del intervalo. En caso de que el 1 esté dentro del intervalo, entonces, se asume que las varianzas poblacionales son iguales.</p>
+<p>En este sentido, el intervalo asociado al ejemplo es <span class="math inline">\((0.8, 5.7)\)</span>, el cual, contiene al 1. Por lo tanto, se asume que las varianzas del valor del dólar de ambos meses es igual, con un 95% de confianza.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-9" class="exercise"><strong>Ejercicio 1.7  </strong></span>Considerando el ejercicio <a href="intervalos-de-confianza.html#exr:ICcontrolcuotas">1.4</a>, elabore un intervalo de confianza para la comparación de varianzas de ambas poblaciones. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 93.2%. Interprete.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-10" class="exercise"><strong>Ejercicio 1.8  </strong></span>Utilizando la base de datos del <a href="intervalos-de-confianza.html#Imacec1">Imacec</a>, elabore un intervalo de confianza para comparar la variabilidad (varianza) del valor del Imacec entre ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 90%. Interprete.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-11" class="exercise"><strong>Ejercicio 1.9  </strong></span>Utilizando la base de datos del <a href="intervalos-de-confianza.html#Imacec1">Imacec</a>, elabore un intervalo de confianza para estudiar la diferencia la media del Imacec de ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 92%. Interprete.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-12" class="exercise"><strong>Ejercicio 1.10  </strong></span>Utilizando la base de datos del <a href="intervalos-de-confianza.html#Imacec1">Imacec</a>, elabore un intervalo de confianza para estudiar si, el promedio del Imacec de minería es mayor al de industria por más de 2 unidades. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 97%. Interprete.</p>
+</div>
+</div>
+<div id="ejercicios-unidad1" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Ejercicios<a href="intervalos-de-confianza.html#ejercicios-unidad1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación, desarrolle los ejercicios manualmente sin el uso de R.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-13" class="exercise"><strong>Ejercicio 1.11  </strong></span>Una empresa desea estimar el tiempo promedio de espera (en minutos) en un sistema de atención. Se sabe que la desviación estándar poblacional es <span class="math inline">\(\sigma = 2.0\)</span> minutos. Se registraron los siguientes tiempos de espera: 18, 20, 17, 22, 19, 21, 20, 18, 19, 20. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional de los tiempos de espera. Use que <span class="math inline">\(Z_{1-0.05/2} = 1.9599\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-14" class="exercise"><strong>Ejercicio 1.12  </strong></span>Un investigador mide la satisfacción de clientes en una escala de 0 a 100 puntos. La varianza poblacional es desconocida. Se registraron los siguientes valores: 72, 75, 78, 70, 74, 80, 77, 73. Con un nivel de confianza del 99% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional supera 75. Use que <span class="math inline">\(t_{1-0.01,\,7} = 2.9980\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-15" class="exercise"><strong>Ejercicio 1.13  </strong></span>Dos métodos de producción (A y B) generan rendimientos (en unidades por hora). Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 3.0\)</span> y <span class="math inline">\(\sigma_B = 2.5\)</span>. Para el método A se obtuvieron los siguientes datos: 102, 100, 98, 101, 99, 100, 97, 103, 101, 98. Para el método B se obtuvieron los siguientes datos: 95, 97, 94, 96, 95, 93, 92, 94, 96. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la media poblacional de A es mayor que la de B por menos de 6 unidades. Use que <span class="math inline">\(Z_{0.10} = 1.2816\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-16" class="exercise"><strong>Ejercicio 1.14  </strong></span>Un equipo desea estimar el tiempo promedio (en minutos) de descarga de un archivo. Se conoce la desviación estándar poblacional <span class="math inline">\(\sigma = 1.5\)</span>. Se registraron los siguientes tiempos: 5.2, 4.8, 5.5, 5.1, 4.9, 5.3, 5.0, 5.4, 4.7, 5.2. Con un nivel de confianza del 99% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional de los tiempos de descarga. Use que <span class="math inline">\(Z_{1-0.01/2} = 2.5758\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-17" class="exercise"><strong>Ejercicio 1.15  </strong></span>Una empresa monitorea el gasto promedio por compra (en miles de pesos). La varianza poblacional es desconocida. Se registraron los siguientes montos: 62, 68, 71, 65, 69, 70, 66, 64, 67. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el gasto promedio poblacional es menor a 70. Use que <span class="math inline">\(t_{1-0.05,\,8} = 1.8331\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-18" class="exercise"><strong>Ejercicio 1.16  </strong></span>Dos líneas de producción (A y B) registran rendimiento (unidades por hora). Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 2.0\)</span> y <span class="math inline">\(\sigma_B = 2.2\)</span>. Para A se observaron los siguientes valores: 48, 50, 49, 51, 52, 47, 50, 49, 51. Para B se observaron los siguientes valores: 45, 46, 47, 44, 46, 45, 47, 48. Con un nivel de confianza del 97% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el rendimiento promedio de A supera al de B por más de 3 unidades. Use que <span class="math inline">\(Z_{0.97} = 1.8808\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-19" class="exercise"><strong>Ejercicio 1.17  </strong></span>Un servicio técnico registra la duración (en minutos) de reparaciones rápidas. Se conoce la desviación estándar poblacional <span class="math inline">\(\sigma = 3.0\)</span>. Se observaron los valores: 34, 29, 31, 33, 35, 30, 28, 32, 31, 34, 30. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional de la duración de las reparaciones. Use que <span class="math inline">\(Z_{0.95} = 1.6449\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-20" class="exercise"><strong>Ejercicio 1.18  </strong></span>En una encuesta de satisfacción (0–100), la varianza poblacional es desconocida. Se registraron los siguientes puntajes: 81, 79, 85, 83, 80, 78, 82, 84, 81, 77. Con un nivel de confianza del 98% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional supera 80. Use que <span class="math inline">\(t_{1-0.02,\,9} = 2.2622\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-21" class="exercise"><strong>Ejercicio 1.19  </strong></span>Dos aplicaciones (A y B) miden el tiempo de respuesta (en milisegundos). Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 12\)</span> y <span class="math inline">\(\sigma_B = 10\)</span>. Para A se observaron: 210, 205, 198, 202, 207, 200, 203, 206, 199. Para B se observaron: 195, 197, 193, 198, 196, 194, 199, 192. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el tiempo promedio de A es menor que el de B por menos de 8 ms. Use que <span class="math inline">\(Z_{0.95} = 1.6449\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-22" class="exercise"><strong>Ejercicio 1.20  </strong></span>Una fintech registra el tiempo de aprobación de solicitudes (segundos). Se conoce la desviación estándar poblacional <span class="math inline">\(\sigma = 4.0\)</span>. Se observaron los valores: 52, 48, 50, 55, 53, 49, 51, 47, 54, 50. Con un nivel de confianza del 92% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional del tiempo de aprobación. Use que <span class="math inline">\(Z_{0.96} = 1.7507\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-23" class="exercise"><strong>Ejercicio 1.21  </strong></span>Un banco evalúa el tiempo promedio de atención (minutos) y la varianza poblacional es desconocida. Se registraron los tiempos: 9.2, 10.1, 8.7, 9.5, 9.8, 10.3, 9.0, 9.6. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el tiempo promedio poblacional es menor a 10. Use que <span class="math inline">\(t_{1-0.10,\,7} = 1.4398\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-24" class="exercise"><strong>Ejercicio 1.22  </strong></span>Dos campañas (A y B) reportan la tasa de clics (por mil impresiones). Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 0.9\)</span> y <span class="math inline">\(\sigma_B = 1.1\)</span>. Para A se registraron: 12.1, 11.8, 12.5, 12.0, 11.9, 12.3, 12.2, 11.7, 12.4. Para B se registraron: 10.8, 11.1, 10.9, 11.0, 10.7, 11.2, 10.6, 10.9. Con un nivel de confianza del 94% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la tasa promedio de A supera a la de B por más de 1.0. Use que <span class="math inline">\(Z_{0.94} = 1.5548\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-25" class="exercise"><strong>Ejercicio 1.23  </strong></span>Una fábrica mide el tiempo de ensamblaje de una pieza (minutos). Se conoce la desviación estándar poblacional <span class="math inline">\(\sigma = 2.5\)</span>. Se observaron los tiempos: 42, 45, 44, 46, 43, 41, 47, 44, 42, 45. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional del tiempo de ensamblaje. Use que <span class="math inline">\(Z_{0.95} = 1.6449\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-26" class="exercise"><strong>Ejercicio 1.24  </strong></span>Una encuesta estudia el número de horas de uso de internet diario. La varianza poblacional es desconocida. Se registraron: 3.5, 4.0, 3.8, 4.2, 3.9, 4.1, 3.7, 3.6. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional es mayor a 3.8 horas. Use que <span class="math inline">\(t_{1-0.05,\,7} = 1.8946\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-27" class="exercise"><strong>Ejercicio 1.25  </strong></span>Dos sucursales (A y B) reportan ingresos diarios (miles de pesos). Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 4.0\)</span> y <span class="math inline">\(\sigma_B = 3.5\)</span>. Para A se observaron los siguientes datos: 120, 118, 122, 121, 119, 117, 123. Para B se observaron los siguientes datos: 115, 116, 117, 114, 115, 116, 113. Con un nivel de confianza del 94% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el ingreso promedio de A supera al de B por más de 5 unidades. Use que <span class="math inline">\(Z_{0.94} = 1.5548\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-28" class="exercise"><strong>Ejercicio 1.26  </strong></span>Se mide la duración de llamadas telefónicas (segundos). Se conoce la desviación estándar poblacional <span class="math inline">\(\sigma = 5.0\)</span>. Se registraron los valores: 101, 98, 100, 102, 97, 103, 99, 101, 100, 98. Con un nivel de confianza del 92% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional de la duración de llamadas. Use que <span class="math inline">\(Z_{0.96} = 1.7507\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-29" class="exercise"><strong>Ejercicio 1.27  </strong></span>Un estudio mide el consumo de agua (litros/día). La varianza poblacional es desconocida. Se observaron: 2.3, 2.5, 2.4, 2.6, 2.2, 2.7, 2.5, 2.4, 2.6. Con un nivel de confianza del 97% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el consumo promedio poblacional es menor a 2.6. Use que <span class="math inline">\(t_{1-0.03,\,8} = 1.8946\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-30" class="exercise"><strong>Ejercicio 1.28  </strong></span>Dos métodos de enseñanza (A y B) son evaluados con puntajes. Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 5.0\)</span> y <span class="math inline">\(\sigma_B = 4.5\)</span>. Para A se registraron: 78, 82, 80, 81, 79, 83, 80. Para B se registraron: 74, 76, 73, 75, 74, 72, 76. Con un nivel de confianza del 99% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el puntaje promedio de A es mayor que el de B por menos de 8 puntos. Use que <span class="math inline">\(Z_{0.99} = 2.3263\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-31" class="exercise"><strong>Ejercicio 1.29  </strong></span>Un servicio de streaming mide el tiempo promedio de visualización de un episodio (minutos). Se conoce la desviación estándar poblacional <span class="math inline">\(\sigma = 6.0\)</span>. Se observaron: 42, 40, 41, 39, 44, 43, 41, 40, 42, 39. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional del tiempo de visualización. Use que <span class="math inline">\(Z_{1-0.05/2} = 1.9599\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-32" class="exercise"><strong>Ejercicio 1.30  </strong></span>Un estudio evalúa la cantidad de pasos diarios (en miles). La varianza poblacional es desconocida. Se observaron: 8.2, 7.9, 8.4, 8.1, 8.3, 8.0, 7.8, 8.2. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional es mayor a 8.0. Use que <span class="math inline">\(t_{1-0.10,\,7} = 1.4398\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-33" class="exercise"><strong>Ejercicio 1.31  </strong></span>Dos programas de ejercicio (A y B) registran reducción de peso (en kilogramos). Se conocen las desviaciones estándar poblacionales: <span class="math inline">\(\sigma_A = 1.5\)</span> y <span class="math inline">\(\sigma_B = 1.2\)</span>. Para A se obtuvieron: 4.5, 5.0, 4.7, 4.9, 5.1, 4.8. Para B se obtuvieron: 3.9, 4.1, 4.0, 3.8, 4.2, 3.7. Con un nivel de confianza del 96% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la reducción promedio de A es menor que la de B por menos de 1.0. Use que <span class="math inline">\(Z_{0.96} = 1.7507\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza utilizado y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-34" class="exercise"><strong>Ejercicio 1.32  </strong></span>Un analista financiero estudia el tiempo de espera (en minutos) en una plataforma de inversión. La desviación estándar poblacional es <span class="math inline">\(\sigma = 4.0\)</span>. Los tiempos registrados fueron: 18, 21, 19, 22, 20, 23, 19, 21, 20, 22. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional de los tiempos de espera. Use que <span class="math inline">\(Z_{1-0.10/2} = 1.6449\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-35" class="exercise"><strong>Ejercicio 1.33  </strong></span>Una empresa de transporte desea evaluar el tiempo promedio de entrega (en horas) de pedidos. La varianza poblacional es desconocida. Se observaron: 12, 11, 10, 13, 12, 14, 11, 12. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional de entrega es menor a 13. Use que <span class="math inline">\(t_{1-0.05,\,7} = 1.8946\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-36" class="exercise"><strong>Ejercicio 1.34  </strong></span>Un banco analiza el gasto promedio mensual (en miles de pesos) de sus clientes. La varianza poblacional es desconocida. Los datos son: 450, 470, 465, 480, 455, 475, 460, 470. Con un nivel de confianza del 97% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el gasto promedio poblacional es mayor a 460. Use que <span class="math inline">\(t_{1-0.03,\,7} = 2.3650\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-37" class="exercise"><strong>Ejercicio 1.35  </strong></span>Dos grupos de estudiantes (A y B) rinden un test de matemáticas. Se conocen las varianzas poblacionales: <span class="math inline">\(\sigma_A^2 = 25,\ \sigma_B^2 = 16\)</span>. Grupo A: 72, 75, 70, 74, 71, 76, 73, 72, 74. Grupo B: 68, 65, 70, 66, 67, 69, 68, 70. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la media poblacional de A supera a la de B en más de 2 puntos. Use que <span class="math inline">\(Z_{0.95} = 1.6449\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-38" class="exercise"><strong>Ejercicio 1.36  </strong></span>Un investigador compara el rendimiento promedio de dos procesos (A y B). La varianza poblacional es desconocida pero se asume igual en ambos grupos. A: 102, 105, 100, 104, 101, 103, 106. B: 98, 95, 99, 97, 96, 100, 94. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el rendimiento promedio de A es mayor al de B por menos de 7 puntos. Use que <span class="math inline">\(t_{1-0.10,\,12} = 1.3562\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-39" class="exercise"><strong>Ejercicio 1.37  </strong></span>Dos métodos de cultivo (A y B) se comparan en rendimiento (kg). La varianza poblacional es desconocida y no se asume igual. A: 210, 215, 220, 212, 218, 214. B: 200, 205, 198, 202, 199, 203. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la diferencia promedio poblacional entre A y B es menor a 15. Use que <span class="math inline">\(t_{1-0.05,\,13}=2.2281\)</span>. En su respuesta indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-40" class="exercise"><strong>Ejercicio 1.38  </strong></span>Un fabricante analiza la variabilidad en el tiempo de carga de baterías (minutos) entre dos modelos A y B. Los tiempos fueron: A: 120, 118, 122, 121, 119, 117, 123, 120. B: 115, 116, 114, 117, 115, 113, 118, 116. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para comparar la razón de varianzas poblacionales <span class="math inline">\(\sigma_A^2/\sigma_B^2\)</span>. Use que <span class="math inline">\(F_{1-0.05/2,\,7,\,7} = 4.99\)</span> y <span class="math inline">\(F_{0.05/2,\,7,\,7} = 0.20\)</span>. Indique los parámetros en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-41" class="exercise"><strong>Ejercicio 1.39  </strong></span>Un estudio mide la variabilidad en los tiempos de reacción (segundos) entre dos grupos de deportistas A y B. A: 0.45, 0.47, 0.46, 0.44, 0.48, 0.45, 0.47. B: 0.42, 0.40, 0.43, 0.41, 0.44, 0.42, 0.43. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para comparar la razón de varianzas poblacionales <span class="math inline">\(\sigma_A^2/\sigma_B^2\)</span>. Use que <span class="math inline">\(F_{1-0.10/2,\,6,\,6} = 3.87\)</span> y <span class="math inline">\(F_{0.10/2,\,6,\,6} = 0.26\)</span>. Indique los parámetros en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-42" class="exercise"><strong>Ejercicio 1.40  </strong></span>Un laboratorio mide la concentración de un reactivo (mg/L) en 8 muestras. Valores: 52, 55, 54, 56, 53, 57, 55, 54. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la concentración promedio poblacional es mayor a 53. Use que <span class="math inline">\(t_{1-0.10,\,7} = 1.4149\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-43" class="exercise"><strong>Ejercicio 1.41  </strong></span>Una encuesta registra la cantidad de horas de estudio semanal de un grupo de estudiantes: 8, 10, 9, 11, 10, 12, 9, 10. La desviación estándar poblacional es <span class="math inline">\(\sigma = 1.5\)</span>. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar el promedio poblacional de horas de estudio. Use que <span class="math inline">\(Z_{1-0.05/2} = 1.9599\)</span>. En su respuesta indique la media poblacional en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-44" class="exercise"><strong>Ejercicio 1.42  </strong></span>Dos equipos de ventas (X e Y) registran el número de contratos cerrados en una semana. Se asume que las varianzas poblacionales son iguales. X: 15, 18, 16, 17, 19, 20, 18. Y: 12, 14, 13, 15, 14, 13, 12. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional de X supera al de Y en más de 3 contratos. Use que <span class="math inline">\(t_{1-0.05,\,12} = 1.7823\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-45" class="exercise"><strong>Ejercicio 1.43  </strong></span>Un investigador mide la presión arterial en dos grupos de pacientes (Tratamiento y Control) bajo distintas dietas. Se asume que las varianzas poblacionales son iguales. Tratamiento: 122, 125, 128, 124, 126, 127. Control: 118, 117, 120, 119, 121, 118. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la diferencia promedio poblacional entre los grupos es menor a 10 mmHg. Use que <span class="math inline">\(t_{1-0.10,\,10} = 1.3722\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-46" class="exercise"><strong>Ejercicio 1.44  </strong></span>Dos cursos (Ingeniería e Economía) rinden un examen de cálculo. Se asume que las varianzas poblacionales son iguales. Ingeniería: 72, 75, 73, 74, 76, 71, 75. Economía: 68, 70, 69, 67, 71, 68, 70. Con un nivel de confianza del 92% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la media de Ingeniería es mayor que la de Economía por más de 5 puntos. Use que <span class="math inline">\(t_{1-0.08,\,12} = 1.4353\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-47" class="exercise"><strong>Ejercicio 1.45  </strong></span>Una empresa compara la productividad (unidades por hora) en dos plantas (Planta 1 y Planta 2). Se asume que las varianzas poblacionales son iguales. Planta 1: 105, 110, 108, 107, 109, 106. Planta 2: 100, 98, 101, 99, 102, 100. Con un nivel de confianza del 97% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la productividad promedio de Planta 1 supera a la de Planta 2 en menos de 10 unidades. Use que <span class="math inline">\(t_{1-0.03,\,10} = 2.2281\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-48" class="exercise"><strong>Ejercicio 1.46  </strong></span>Un laboratorio compara los niveles de glucosa en dos grupos de pacientes (X e Y) tras un tratamiento. No se asume igualdad de varianzas poblacionales. X: 92, 95, 94, 96, 93, 97. Y: 88, 85, 90, 87, 89, 86. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si el promedio poblacional de X es mayor al de Y en más de 6 unidades. Use que <span class="math inline">\(t_{1-0.05,\,10} = 2.2281\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-49" class="exercise"><strong>Ejercicio 1.47  </strong></span>Dos procesos de manufactura (Proceso 1 y Proceso 2) se comparan en defectos por lote. No se asume igualdad de varianzas poblacionales. Proceso 1: 12, 14, 13, 15, 14. Proceso 2: 9, 10, 8, 11, 9. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la diferencia promedio poblacional de defectos es menor a 7. Use que <span class="math inline">\(t_{1-0.10,\,7} = 1.8946\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-50" class="exercise"><strong>Ejercicio 1.48  </strong></span>Un investigador mide el tiempo de reacción (ms) en dos grupos (Grupo Control y Grupo Experimental). No se asume igualdad de varianzas poblacionales. Grupo Control: 220, 225, 218, 222, 219. Grupo Experimental: 210, 212, 208, 211, 209. Con un nivel de confianza del 92% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la media poblacional del Grupo Control supera a la del Grupo Experimental en menos de 15 ms. Use que <span class="math inline">\(t_{1-0.08,\,8} = 1.8595\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-51" class="exercise"><strong>Ejercicio 1.49  </strong></span>Dos métodos de entrenamiento físico (Método A y Método B) se comparan en la reducción de tiempo en una carrera (segundos). No se asume igualdad de varianzas poblacionales. Método A: 62, 65, 63, 64, 66. Método B: 58, 57, 59, 56, 60. Con un nivel de confianza del 97% y asumiendo normalidad de los datos, elabore un intervalo de confianza para estudiar si la diferencia promedio de reducción es mayor a 3 segundos. Use que <span class="math inline">\(t_{1-0.03,\,7} = 2.3650\)</span>. Indique las medias poblacionales en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-52" class="exercise"><strong>Ejercicio 1.50  </strong></span>Un estudio analiza la variabilidad de los salarios en dos áreas de una empresa (Área Técnica y Área Administrativa). Área Técnica: 1200, 1250, 1230, 1240, 1260, 1220. Área Administrativa: 1180, 1170, 1160, 1190, 1185, 1175. Con un nivel de confianza del 95% y asumiendo normalidad de los datos, elabore un intervalo de confianza para comparar la razón de varianzas poblacionales <span class="math inline">\(\sigma^2_{\text{Técnica}}/\sigma^2_{\text{Administrativa}}\)</span>. Use que <span class="math inline">\(F_{1-0.05/2,\,5,\,5} = 5.05\)</span> y <span class="math inline">\(F_{0.05/2,\,5,\,5} = 0.20\)</span>. Indique los parámetros en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-53" class="exercise"><strong>Ejercicio 1.51  </strong></span>Un análisis compara la variabilidad en el tiempo de entrega de dos proveedores (Proveedor X y Proveedor Y). Proveedor X: 32, 34, 33, 35, 31, 36. Proveedor Y: 28, 29, 30, 27, 31, 29. Con un nivel de confianza del 90% y asumiendo normalidad de los datos, elabore un intervalo de confianza para comparar la razón de varianzas poblacionales <span class="math inline">\(\sigma^2_{X}/\sigma^2_{Y}\)</span>. Use que <span class="math inline">\(F_{1-0.10/2,\,5,\,5} = 3.97\)</span> y <span class="math inline">\(F_{0.10/2,\,5,\,5} = 0.25\)</span>. Indique los parámetros en estudio, el tipo de intervalo, el nivel de confianza y la interpretación en el contexto.</p>
+</div>
+
+</div>
+</div>
+<h3>Referencias<a href="referencias.html#referencias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-Devore" class="csl-entry">
+Devore, J. L. (2008). <em>Probability and statistics for engineering and the sciences</em> (7th ed). Thomson/Brooks/Cole.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="talleres.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="PH.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": true,
+    "all": false
+  },
+  "fontsettings": false,
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["est2+inferencia.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": null
+  },
+  "info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
