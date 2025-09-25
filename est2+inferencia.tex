@@ -1,11 +1,12 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
   11pt,
 ]{book}
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -36,7 +37,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -105,7 +105,8 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
 \usepackage{booktabs}
 \usepackage[spanish, es-tabla]{babel}
 \usepackage{hyperref}
@@ -142,8 +143,6 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\usepackage[]{natbib}
-\bibliographystyle{apalike}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -155,7 +154,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 19-09-2025}
+\date{Actualizado al 25-09-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -5887,15 +5886,15 @@ Despejando \(\beta_0\)
 \label{eq:RLM-clasico8}
 \end{equation}
 
-El resultado obtenido en \eqref{eq:RLM-clasico7} permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño \(X_0\) y la matriz de proyección \(H_1\) asociada a la matriz de diseño \(X_1\).
+El resultado obtenido en c permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño \(X_0\) y la matriz de proyección \(H_1\) asociada a la matriz de diseño \(X_1\).
 
-A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, utilizado la base de datos \emph{iris}.
+A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, utilizado la base de datos \texttt{iris}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Carga de la base de datos iris}
 \NormalTok{datos }\OtherTok{=}\NormalTok{ iris}
-\CommentTok{\# Variables de la basede de datos}
+\CommentTok{\# Variables de la base de de datos}
 \FunctionTok{str}\NormalTok{(datos)}
 \end{Highlighting}
 \end{Shaded}
@@ -5909,9 +5908,32 @@ A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, 
 ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 \end{verbatim}
 
+Para el modelo de regresión lineal múltiple para estudiar el largo del sépalo a partir del resto de variables numéricas, mediante la ecuación \eqref{eq:RLM-clasico8} es posible obtener el estimador del parámetro asociado a las variables \emph{Sepal.Width} y \emph{Petal.Length}, es decir, el estimador de \(\beta_0\) considerando \(X_0 = [\texttt{Sepal.Width}, \texttt{Petal.Length}]\) y \(X_1 = [1, \texttt{Petal.Width}]\). Las matrices de diseño son las siguientes.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Modelo de regresión lineal múltiple para estudiar el largo del sépalo a partir del resto de variables numéricas.}
+\CommentTok{\# Matrices de diseño}
+\NormalTok{X0 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Width, datos}\SpecialCharTok{$}\NormalTok{Petal.Length), }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{X1 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(datos)), datos}\SpecialCharTok{$}\NormalTok{Petal.Width), }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{y }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Length, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\NormalTok{H1 }\OtherTok{=} \FunctionTok{diag}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(X1)) }\SpecialCharTok{{-}}\NormalTok{ X1 }\SpecialCharTok{\%*\%} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X1) }\SpecialCharTok{\%*\%}\NormalTok{ X1) }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(X1)}
+\NormalTok{b0 }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ X0) }\SpecialCharTok{\%*\%}  \FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ y}
+\NormalTok{b0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## [1,] 0.6508372
+## [2,] 0.7091320
+\end{verbatim}
+
+Se verifica el resultado anterior, ajustando un modelo de regresión lineal múltiple con la función \texttt{lm()} de R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modelo de regresión lineal múltiple para estudiar el largo del sépalo}
+\CommentTok{\# a partir del resto de variables numéricas.}
 \NormalTok{modelo }\OtherTok{=} \FunctionTok{lm}\NormalTok{(Sepal.Length }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Sepal.Width }\SpecialCharTok{+}\NormalTok{ Petal.Length }\SpecialCharTok{+}\NormalTok{ Petal.Width, }\AttributeTok{data =}\NormalTok{ datos)}
 \CommentTok{\# Coeficientes del modelo}
 \NormalTok{modelo}\SpecialCharTok{$}\NormalTok{coefficients}
@@ -5923,16 +5945,25 @@ A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, 
 ##    1.8559975    0.6508372    0.7091320   -0.5564827
 \end{verbatim}
 
+En particular, si se desea estimar el solo uno de los parámetros del modelo, la ecuación \eqref{eq:RLM-clasico8} puede ser expresada de la siguiente forma.
+
+\begin{equation}
+\begin{split}
+\widehat{\beta}_0 &= \frac{X^t_0(I-H_1)Y}{X^t_0(I-H_1)X_0}\\
+\end{split}
+\label{eq:RLM-clasico9}
+\end{equation}
+
+Un ejemplo de cómo utilizar esta expresión en R, estimando únicamente el parámetro asociado a \(\texttt{Sepal.Width}\).
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Matrices de diseño}
-\NormalTok{X0 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Width, datos}\SpecialCharTok{$}\NormalTok{Petal.Length), }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
-\NormalTok{X1 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(datos)), datos}\SpecialCharTok{$}\NormalTok{Petal.Width), }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{X0 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Width), }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\NormalTok{X1 }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(datos)), datos}\SpecialCharTok{$}\NormalTok{Petal.Width, datos}\SpecialCharTok{$}\NormalTok{Petal.Length), }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
 \NormalTok{y }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{Sepal.Length, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
 \NormalTok{H1 }\OtherTok{=} \FunctionTok{diag}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(X1)) }\SpecialCharTok{{-}}\NormalTok{ X1 }\SpecialCharTok{\%*\%} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X1) }\SpecialCharTok{\%*\%}\NormalTok{ X1) }\SpecialCharTok{\%*\%} \FunctionTok{t}\NormalTok{(X1)}
-
-\CommentTok{\# b0 = t(X1) \%*\% M2 \%*\% y / (t(X1) \%*\% M2 \%*\% X1)}
-\NormalTok{b0 }\OtherTok{=} \FunctionTok{solve}\NormalTok{(}\FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ X0) }\SpecialCharTok{\%*\%}  \FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ y}
+\NormalTok{b0 }\OtherTok{=} \FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ y}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{t}\NormalTok{(X0) }\SpecialCharTok{\%*\%}\NormalTok{ H1 }\SpecialCharTok{\%*\%}\NormalTok{ X0)}
 \NormalTok{b0}
 \end{Highlighting}
 \end{Shaded}
@@ -5940,7 +5971,6 @@ A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, 
 \begin{verbatim}
 ##           [,1]
 ## [1,] 0.6508372
-## [2,] 0.7091320
 \end{verbatim}
 
 \chapter{Métricas}\label{muxe9tricas}
@@ -6460,7 +6490,7 @@ Si bien existe libertad a la hora de elegir cómo trabajar la matriz de diseño,
 
 \backmatter
 
-  \bibliography{refs.bib}
+\bibliography{refs.bib}
 \addcontentsline{toc}{chapter}{\bibname}
 
 \end{document}
