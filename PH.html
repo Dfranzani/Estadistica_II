@@ -1552,7 +1552,7 @@ Criterio de rechazo
 <pre><code>## [1] TRUE</code></pre>
 <p><strong>Interpretación utilizando el método del valor-p</strong>: El valor-p de 3.886e-05 es menor o igual a la significancia del 0.03, por lo cual, existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, existe suficiente evidencia para apoyar la afirmación de que las varianzas poblacionales son desconocidas y distintas. Considerando una confianza del 96%.</p></li>
 <li><p><strong>Método del valor crítico</strong></p>
-<p>Verificación del criterio de rechazo: <span class="math inline">\(f_0 \leq f_{1-\alpha/2,n_X-1,n_Y-1} \vee f_{\alpha/2,n_X-1,n_Y-1}\)</span>.</p>
+<p>Verificación del criterio de rechazo: <span class="math inline">\(f_0 \geq f_{1-\alpha/2,n_X-1,n_Y-1} \vee f_0 \leq f_{\alpha/2,n_X-1,n_Y-1}\)</span>.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="PH.html#cb88-1" tabindex="-1"></a><span class="co"># Cálculo del valor crítico</span></span>
 <span id="cb88-2"><a href="PH.html#cb88-2" tabindex="-1"></a>valor_critico_1 <span class="ot">=</span> <span class="fu">qf</span>(<span class="dv">1</span><span class="fl">-0.04</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> <span class="dv">66</span>, <span class="at">df2 =</span> <span class="dv">66</span>)</span>
 <span id="cb88-3"><a href="PH.html#cb88-3" tabindex="-1"></a>valor_critico_2 <span class="ot">=</span> <span class="fu">qf</span>(<span class="fl">0.04</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">df1 =</span> <span class="dv">66</span>, <span class="at">df2 =</span> <span class="dv">66</span>)</span>

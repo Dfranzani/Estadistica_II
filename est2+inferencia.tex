@@ -154,7 +154,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 25-09-2025}
+\date{Actualizado al 30-09-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2379,7 +2379,7 @@ El código para realizar esta prueba es el siguiente.
 \item
   \textbf{Método del valor crítico}
 
-  Verificación del criterio de rechazo: \(f_0 \leq f_{1-\alpha/2,n_X-1,n_Y-1} \vee f_{\alpha/2,n_X-1,n_Y-1}\).
+  Verificación del criterio de rechazo: \(f_0 \geq f_{1-\alpha/2,n_X-1,n_Y-1} \vee f_0 \leq f_{\alpha/2,n_X-1,n_Y-1}\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5886,7 +5886,7 @@ Despejando \(\beta_0\)
 \label{eq:RLM-clasico8}
 \end{equation}
 
-El resultado obtenido en c permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño \(X_0\) y la matriz de proyección \(H_1\) asociada a la matriz de diseño \(X_1\).
+El resultado obtenido en \eqref{eq:RLM-clasico8} permite obtener el estimador de un subconjunto estricto de parámetros del modelo. En particular, se obtiene a partir de la matriz de diseño \(X_0\) y la matriz de proyección \(H_1\) asociada a la matriz de diseño \(X_1\).
 
 A continuación, se muestra una ejemplo de cómo utilizar esta expresión en R, utilizado la base de datos \texttt{iris}.
 
