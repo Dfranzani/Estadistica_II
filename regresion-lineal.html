@@ -1675,8 +1675,7 @@ R^2 = r_{XY}^2
 <p>Interprete los parámetros estimados y las pruebas de no nulidad con una confianza del 95%. Además, escriba la ecuación de regresión poblacional y ajustada.</p>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-160" class="exercise"><strong>Ejercicio 3.37  </strong></span></p>
-<p>Considere el siguiente modelo de regresión lineal simple:</p>
+<p><span id="exr:unlabeled-div-160" class="exercise"><strong>Ejercicio 3.37  </strong></span>Considere el siguiente modelo de regresión lineal simple:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1X_i + \varepsilon, \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2) \text{ ,} i = 1, \ldots, n = 74
 \]</span></p>
@@ -2215,13 +2214,515 @@ Explique brevemente la interpretación geométrica de <span class="math inline">
 <div class="exercise">
 <p><span id="exr:unlabeled-div-173" class="exercise"><strong>Ejercicio 3.50  </strong></span>Demuestre que en el modelo de regresión lineal múltiple</p>
 <p><span class="math display">\[
-\hat{\beta} \sim N\!\big(\beta, \, \sigma^2 (X&#39;X)^{-1}\big),
+\hat{\beta} \sim N\!\big(\beta, \, \sigma^2 (X^tX)^{-1}\big),
 \]</span></p>
 <p>se cumple que la matriz de varianzas y covarianzas de los estimadores es</p>
 <p><span class="math display">\[
-\mathrm{Var}(\hat{\beta}) = \sigma^2 (X&#39;X)^{-1}.
+\mathrm{Var}(\hat{\beta}) = \sigma^2 (X^tX)^{-1}.
 \]</span></p>
-<p>Pista: use que <span class="math inline">\(\hat{\beta} = (X&#39;X)^{-1}X&#39;Y\)</span> y que <span class="math inline">\(Y = X\beta + \varepsilon\)</span> con <span class="math inline">\(\varepsilon \sim N(0, \sigma^2 I_n)\)</span>.</p>
+<p>Pista: use que <span class="math inline">\(\hat{\beta} = (X^tX)^{-1}X^tY\)</span> y que <span class="math inline">\(Y = X\beta + \varepsilon\)</span> con <span class="math inline">\(\varepsilon \sim N(0, \sigma^2 I_n)\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-174" class="exercise"><strong>Ejercicio 3.51  </strong></span>A continuación, se muestra una base de datos con las siguientes columnas:</p>
+<ul>
+<li>Y: variable cuantitativa continua.</li>
+<li>V1: variable cuantitativa continua.</li>
+<li>V2: variable cuantitativa continua.</li>
+<li>V3: variable cualitativa de tres categorías (A,B y C).</li>
+</ul>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Y
+</th>
+<th style="text-align:center;">
+V1
+</th>
+<th style="text-align:center;">
+V2
+</th>
+<th style="text-align:center;">
+V3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+2.3
+</td>
+<td style="text-align:center;">
+1.1
+</td>
+<td style="text-align:center;">
+10.10
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2.8
+</td>
+<td style="text-align:center;">
+2.7
+</td>
+<td style="text-align:center;">
+20.50
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.6
+</td>
+<td style="text-align:center;">
+3.3
+</td>
+<td style="text-align:center;">
+30.02
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.1
+</td>
+<td style="text-align:center;">
+4.2
+</td>
+<td style="text-align:center;">
+40.10
+</td>
+<td style="text-align:center;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5.9
+</td>
+<td style="text-align:center;">
+5.9
+</td>
+<td style="text-align:center;">
+50.74
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se desea estudiar la variable <span class="math inline">\(Y\)</span> a partir del resto de columnas. Especifique la matriz de diseño, la matriz <span class="math inline">\(Y\)</span> y la matriz <span class="math inline">\(\beta\)</span>. Considere que la categoría de referencia de la variable V3 debe ser la categoría B.</p>
+<p>Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Calcule <span class="math inline">\(\widehat\beta\)</span>, e interprete los resultados.</li>
+<li>Calcule <span class="math inline">\(\widehat{Y}\)</span> y <span class="math inline">\(e\)</span>.</li>
+<li>Calcule <span class="math inline">\(\widehat\sigma\)</span>.</li>
+<li>Calcule la varianza estimada de los estimadores mediante <span class="math inline">\(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\)</span> .</li>
+<li>Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95% (escriba las pruebas de hipótesis respectivas para cada parámetro).</li>
+<li>Calcule el <span class="math inline">\(R^2\)</span> ajustado. Interprete.</li>
+<li>Calcule el estadístico de prueba <span class="math inline">\(F_0\)</span> de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95% mediante el uso de R (escriba la prueba de hipótesis respectiva).</li>
+<li>Escriba la ecuación de regresión poblacional y ajustada.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-175" class="exercise"><strong>Ejercicio 3.52  </strong></span>A continuación, se muestra una base de datos con las siguientes columnas:</p>
+<ul>
+<li>Y: variable cuantitativa continua.</li>
+<li>V1: variable cuantitativa continua.</li>
+<li>V2: variable cuantitativa continua.</li>
+<li>V3: variable cualitativa (dos categorías: A y B).</li>
+</ul>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Y
+</th>
+<th style="text-align:center;">
+V1
+</th>
+<th style="text-align:center;">
+V2
+</th>
+<th style="text-align:center;">
+V3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1.9
+</td>
+<td style="text-align:center;">
+0.9
+</td>
+<td style="text-align:center;">
+5.2
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.4
+</td>
+<td style="text-align:center;">
+2.5
+</td>
+<td style="text-align:center;">
+15.7
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2.7
+</td>
+<td style="text-align:center;">
+1.7
+</td>
+<td style="text-align:center;">
+25.1
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.0
+</td>
+<td style="text-align:center;">
+3.8
+</td>
+<td style="text-align:center;">
+35.3
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.2
+</td>
+<td style="text-align:center;">
+2.9
+</td>
+<td style="text-align:center;">
+45.0
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se desea estudiar la variable <span class="math inline">\(Y\)</span> a partir del resto de columnas. Especifique la matriz de diseño, la matriz <span class="math inline">\(Y\)</span> y la matriz <span class="math inline">\(\beta\)</span>. Considere que la categoría de referencia de la variable V3 debe ser la categoría B.</p>
+<p>Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Calcule <span class="math inline">\(\widehat\beta\)</span>, e interprete los resultados.</li>
+<li>Calcule <span class="math inline">\(\widehat{Y}\)</span> y <span class="math inline">\(e\)</span>.</li>
+<li>Calcule <span class="math inline">\(\widehat\sigma\)</span>.</li>
+<li>Calcule la varianza estimada de los estimadores mediante <span class="math inline">\(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\)</span> .</li>
+<li>Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95% (escriba las pruebas de hipótesis respectivas para cada parámetro).</li>
+<li>Calcule el <span class="math inline">\(R^2\)</span> ajustado. Interprete.</li>
+<li>Calcule el estadístico de prueba <span class="math inline">\(F_0\)</span> de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95% mediante el uso de R (escriba la prueba de hipótesis respectiva).</li>
+<li>Escriba la ecuación de regresión poblacional y ajustada.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-176" class="exercise"><strong>Ejercicio 3.53  </strong></span>A continuación, se muestra una base de datos con las siguientes columnas:</p>
+<ul>
+<li>Y: variable cuantitativa continua.</li>
+<li>V1: variable cuantitativa continua.</li>
+<li>V2: variable cuantitativa continua.</li>
+<li>V3: variable cualitativa de cuatro categorías (A, B, C y D).</li>
+</ul>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Y
+</th>
+<th style="text-align:center;">
+V1
+</th>
+<th style="text-align:center;">
+V2
+</th>
+<th style="text-align:center;">
+V3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+2.5
+</td>
+<td style="text-align:center;">
+1.2
+</td>
+<td style="text-align:center;">
+8.0
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.1
+</td>
+<td style="text-align:center;">
+2.1
+</td>
+<td style="text-align:center;">
+18.4
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.6
+</td>
+<td style="text-align:center;">
+3.9
+</td>
+<td style="text-align:center;">
+28.6
+</td>
+<td style="text-align:center;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.9
+</td>
+<td style="text-align:center;">
+3.5
+</td>
+<td style="text-align:center;">
+38.2
+</td>
+<td style="text-align:center;">
+D
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5.2
+</td>
+<td style="text-align:center;">
+4.7
+</td>
+<td style="text-align:center;">
+48.5
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.8
+</td>
+<td style="text-align:center;">
+4.2
+</td>
+<td style="text-align:center;">
+58.1
+</td>
+<td style="text-align:center;">
+C
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se desea estudiar la variable <span class="math inline">\(Y\)</span> a partir del resto de columnas. Especifique la matriz de diseño, la matriz <span class="math inline">\(Y\)</span> y la matriz <span class="math inline">\(\beta\)</span>. Considere que la categoría de referencia de la variable V3 debe ser la categoría B.</p>
+<p>Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Calcule <span class="math inline">\(\widehat\beta\)</span>, e interprete los resultados.</li>
+<li>Calcule <span class="math inline">\(\widehat{Y}\)</span> y <span class="math inline">\(e\)</span>.</li>
+<li>Calcule <span class="math inline">\(\widehat\sigma\)</span>.</li>
+<li>Calcule la varianza estimada de los estimadores mediante <span class="math inline">\(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\)</span> .</li>
+<li>Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95% (escriba las pruebas de hipótesis respectivas para cada parámetro).</li>
+<li>Calcule el <span class="math inline">\(R^2\)</span> ajustado. Interprete.</li>
+<li>Calcule el estadístico de prueba <span class="math inline">\(F_0\)</span> de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95% mediante el uso de R (escriba la prueba de hipótesis respectiva).</li>
+<li>Escriba la ecuación de regresión poblacional y ajustada.</li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-177" class="exercise"><strong>Ejercicio 3.54  </strong></span>A continuación, se muestra una base de datos con las siguientes columnas:</p>
+<ul>
+<li>Y: variable cuantitativa continua.</li>
+<li>V1: variable cuantitativa continua.</li>
+<li>V2: variable cuantitativa continua.</li>
+<li>V3: variable cualitativa de dos categorías (A, B).</li>
+<li>V4: variable cualitativa de dos categorías (P, Q).</li>
+</ul>
+<div style="border: 0px; overflow-x: auto; ">
+<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Y
+</th>
+<th style="text-align:center;">
+V1
+</th>
+<th style="text-align:center;">
+V2
+</th>
+<th style="text-align:center;">
+V3
+</th>
+<th style="text-align:center;">
+V4
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+2.2
+</td>
+<td style="text-align:center;">
+1.0
+</td>
+<td style="text-align:center;">
+7.5
+</td>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+P
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.7
+</td>
+<td style="text-align:center;">
+2.8
+</td>
+<td style="text-align:center;">
+17.2
+</td>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+Q
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.1
+</td>
+<td style="text-align:center;">
+3.5
+</td>
+<td style="text-align:center;">
+27.8
+</td>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+P
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3.3
+</td>
+<td style="text-align:center;">
+2.4
+</td>
+<td style="text-align:center;">
+37.1
+</td>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+Q
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5.0
+</td>
+<td style="text-align:center;">
+4.6
+</td>
+<td style="text-align:center;">
+47.6
+</td>
+<td style="text-align:center;">
+A
+</td>
+<td style="text-align:center;">
+P
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4.4
+</td>
+<td style="text-align:center;">
+3.9
+</td>
+<td style="text-align:center;">
+57.9
+</td>
+<td style="text-align:center;">
+B
+</td>
+<td style="text-align:center;">
+Q
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Se desea estudiar la variable <span class="math inline">\(Y\)</span> a partir del resto de columnas. Especifique la matriz de diseño, la matriz <span class="math inline">\(Y\)</span> y la matriz <span class="math inline">\(\beta\)</span>. Considere que la categoría de referencia de la variable V3 debe ser la categoría B, y para la variable V4 debe ser la categoría P.</p>
+<p>Luego,</p>
+<ol style="list-style-type: decimal">
+<li>Calcule <span class="math inline">\(\widehat\beta\)</span>, e interprete los resultados.</li>
+<li>Calcule <span class="math inline">\(\widehat{Y}\)</span> y <span class="math inline">\(e\)</span>.</li>
+<li>Calcule <span class="math inline">\(\widehat\sigma\)</span>.</li>
+<li>Calcule la varianza estimada de los estimadores mediante <span class="math inline">\(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\)</span>.</li>
+<li>Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95% (escriba las pruebas de hipótesis respectivas para cada parámetro).</li>
+<li>Calcule el <span class="math inline">\(R^2\)</span> ajustado. Interprete.</li>
+<li>Calcule el estadístico de prueba <span class="math inline">\(F_0\)</span> de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95% mediante el uso de R (escriba la prueba de hipótesis respectiva).</li>
+<li>Escriba la ecuación de regresión poblacional y ajustada.</li>
+</ol>
 </div>
 
 </div>
