@@ -1780,7 +1780,7 @@ Y =
 23
 \end{bmatrix}.
 \]</span></p>
-<p>Calcule los <strong>estimadores de mínimos cuadrados ordinarios</strong> de los parámetros <span class="math inline">\(\beta_0, \beta_1, \beta_2\)</span>, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>.</p>
+<p>Calcule los EMC, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>; obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE, el estadístico <span class="math inline">\(F_0\)</span> y el error estándar residual.</p>
 </div>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-163" class="exercise"><strong>Ejercicio 3.40  </strong></span>Considere el modelo de regresión lineal múltiple con dos regresores
@@ -1808,7 +1808,7 @@ Y=
 17.3
 \end{bmatrix}.
 \]</span></p>
-<p>Calcule los estimadores MCO. Obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE y el error estándar residual.</p>
+<p>Calcule los EMC, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>; obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE, el estadístico <span class="math inline">\(F_0\)</span> y el error estándar residual.</p>
 </div>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-164" class="exercise"><strong>Ejercicio 3.41  </strong></span>Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudiar los supuestos de Homocedasticidad, Independencia y Normalidad de un modelo de regresión lineal múltiple ajustado a una base de datos simulada de ingresos (<span class="math inline">\(Y\)</span>) en función de edad (<span class="math inline">\(X_1\)</span>) y nivel educacional (<code>educacion</code>) (<span class="math inline">\(X_2\)</span>). Indique la fila del código seleccionado para cada supuesto, justificando su elección. Además, escriba las pruebas de hipótesis involucradas e interprete utilizando una confianza del 96%.</p>
@@ -2138,7 +2138,7 @@ ventas <span class="math inline">\(\sim\)</span> region
 <li><p>Escriba la ecuación ajustada.</p></li>
 <li><p>Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.</p></li>
 <li><p>Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95%, qué efectos son estadísticamente significativos.</p></li>
-<li><p>Comente las métricas del modelo: Error estándar residual y R^2 ajustado.</p></li>
+<li><p>Comente las métricas del modelo: Error estándar residual y <span class="math inline">\(R^2\)</span> ajustado.</p></li>
 </ol>
 </div>
 <div class="exercise">
@@ -2168,7 +2168,7 @@ ventas <span class="math inline">\(\sim\)</span> region
 <li><p>Escriba la ecuación ajustada.</p></li>
 <li><p>Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.</p></li>
 <li><p>Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95%, qué efectos son estadísticamente significativos.</p></li>
-<li><p>Comente las métricas del modelo: Error estándar residual y R^2 ajustado.</p></li>
+<li><p>Comente las métricas del modelo: Error estándar residual y <span class="math inline">\(R^2\)</span> ajustado.</p></li>
 </ol>
 </div>
 <div class="exercise">
