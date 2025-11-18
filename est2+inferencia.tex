@@ -148,13 +148,13 @@
 \urlstyle{same}
 \hypersetup{
   pdftitle={Estadística II \& Inferencia Estadística},
-  pdfauthor={Daniel Franzani},
+  pdfauthor={Prof.~Daniel Franzani},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Estadística II \& Inferencia Estadística}
-\author{\href{https://dfranzani.github.io/website/principal/home.html}{Daniel Franzani}}
-\date{Actualizado al 30-09-2025}
+\author{Prof.~Daniel Franzani}
+\date{Actualizado al 18-11-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -182,11 +182,6 @@
 }
 \chapter*{Presentación}\label{presentacion}
 \addcontentsline{toc}{chapter}{Presentación}
-
-Esta sección del PDF es solo un borrador. Lea la versión HTML.
-
-\chapter*{Talleres de práctica}\label{talleres}
-\addcontentsline{toc}{chapter}{Talleres de práctica}
 
 Esta sección del PDF es solo un borrador. Lea la versión HTML.
 
@@ -235,9 +230,24 @@ P(\text{Parámetro} \in (L,U)) = 1-\alpha
 
 En la estimación por intervalos de confianza partimos de una muestra \(x_1,\ldots,x_n\), de lo cuales obtenemos un un intervalo numérico. Por ejemplo, podríamos hablar de que, con una confianza del \(90\%\), la estatura media de los chilenos (parámetro poblacional) está contenida por el intervalo \((1.80, 1.84)\) metros, o , la probabilidad de que el intervalo \((1.80,1.84)\) contenga al valor real de la estatura media de los chilenos en metros es de \(0.9\).
 
-\subsection{Elaboración}\label{intervalos-de-confianza-elaboracion}
+\section{Intervalo de confianza para una media}\label{intervalo-de-confianza-para-la-media}
 
-Cuando trabajamos con bases de datos (o cualquier conjunto de datos), se supone que las observaciones muestrales reales \(x_1,\ldots , x_n\) son el resultado de una muestra aleatoria \(X_1,\ldots , X_n\) tomada de una distribución normal con valor medio \(\mu\) y desviación estándar \(\sigma\). Los resultados de la última unidad del curso de Estadística I (Distribución de la media) implican que independientemente del tamaño de la muestra (\(n\)), la media muestral \(\bar{X}\) está normalmente distribuida con valor esperado \(\mu\) y desviación estándar \(\sigma/\sqrt{n}\). Si se estandariza el promedio se obtiene la variable normal estándar
+\subsection{Varianza poblacional conocida}\label{intervalo-de-confianza-para-la-media-varianza-conocida}
+
+Los conceptos y propiedades básicas de los intervalos de confianza son más fáciles de introducir si primero se presta atención a un problema simple, aunque un tanto irreal. Supóngase que el parámetro de interés es una media poblacional \(\mu\) y que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La distribución de la población es normal.
+\item
+  El valor de la desviación estándar poblacional \(\sigma\) es conocido.
+\end{enumerate}
+
+Con frecuencia la normalidad de la distribución de la población es una suposición razonable. Sin embargo, si el valor de \(\mu\) es desconocido, no es factible que el valor de \(\sigma\) estaría disponible (el conocimiento del centro de una población en general precede a la información con respecto a la dispersión). En secciones posteriores, se desarrollarán métodos basados en suposiciones menos restrictivas. \citep[página 254]{Devore}
+
+Se supone que las observaciones muestrales reales \(x_1,\ldots , x_n\) son el resultado de una muestra aleatoria \(X_1,\ldots , X_n\) tomada de una distribución normal con valor medio \(\mu\) y desviación estándar \(\sigma\). Los resultados de la última unidad del curso de Estadística I (Distribución de la media) implican que independientemente del tamaño de la muestra (\(n\)), la media muestral \(\bar{X}\) está normalmente distribuida con valor esperado \(\mu\) y desviación estándar \(\sigma/\sqrt{n}\). Si se estandariza el promedio se obtiene la variable normal estándar
 
 \begin{equation}
 Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(\mu = 0,\sigma^2=1)
@@ -268,32 +278,24 @@ En la expresión \eqref{eq:IC1}, \(Z_{\alpha/2}\) y \(Z_{1-\alpha/2}\) son los p
 Luego, reemplazando el valor de \(Z\) por \eqref{eq:normalestandar} en la ecuación \eqref{eq:IC1}, y despejando el valor \(\mu\) al interior de la probabilidad, se obtiene la siguiente expresión.
 
 \begin{equation}
-P\left( \overline{X} + Z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \overline{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+P\left( \bar{X} + Z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
 \label{eq:IntC}
 \end{equation}
 
 o
 
 \begin{equation}
-P\left( \overline{X} - Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \overline{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+P\left( \bar{X} - Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{X} + Z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
 \label{eq:IntC2}
 \end{equation}
 
-La desigualdad dentro de la probabilidad es el intervalo de confianza construido para la media poblacional, mientras que, el término a la derecha de la igualdad corresponde a la confianza trabajada por el investigador (\(1-\alpha\)). En la sección \ref{PH} se dará a conocer en mayor profundidad el concepto de confianza y significancia (\(\alpha\)).
+La desigualdad dentro de la probabilidad es el intervalo de confianza construido para la media poblacional, mientras que, el término a la derecha de la igualdad corresponde a la confianza trabajada por el investigador (\(1-\alpha\)).
 
-La forma de construir un intervalo de confianza para un determinado parámetro es distinta en todos los casos, en particular, debido a la suposiciones con las que se trabaja. Por ejemplo, para expresión desarrollada en \eqref{eq:IntC} es necesario suponer que se conoce la varianza poblacional de los datos, algo que puedo o no ocurrir en la realidad.
-
-Por último, cabe mencionar, que existen otros tipos de intervalos, si bien el que se ha mostrado hasta el momento es un intervalo que tiene tanto una cota inferior como superior, existen otros tipos de intervalos que son solo tienen una cota (o superior o inferior).
-
-A continuación, se dan a conocer intervalos de confianza para estimar la media poblacional, la diferencia de medias poblacionales y la comparación de varianzas, omitiendo los procesos de construcción.
-
-\section{Intervalo de confianza para la media}\label{intervalo-de-confianza-para-la-media}
-
-\subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional conocida}\label{intervalo-de-confianza-para-la-media-varianza-conocida}
+La siguiente tabla da cuenta de las tipos de intervalo que se pueden elaborar dependiendo del tipo de estimación, es decir, un intervalo bilateral, actoado por la derecha o acotado por la izquierda.
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-9}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
+\caption{\label{tab:unnamed-chunk-8}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -348,14 +350,34 @@ Dado lo expuesto en el ejercicio anterior, la figura \ref{fig:simulacionIC} mues
 
 }
 
-\caption{Simulación de intervalos de confianza}\label{fig:simulacionIC}
+\caption{Simulación de intervalos de confianza para una media con varianza poblacional conocida}\label{fig:simulacionIC}
 \end{figure}
 
-\subsection{Intervalo de confianza para la media de una distribución normal y varianza poblacional desconocida}\label{intervalo-de-confianza-para-media-varianza-desconocida}
+Respecto a la interpretación de los intervalos de confianza (en general, y no solo al de esta sección), si la población tiene una distribución normal, el intervalo de confianza que se obtiene con las expresiones (de la tabla anterior) es exacto. En otras palabras, si la expresión se usa repetidas veces para generar intervalos de 95\% de confianza, exactamente 95\% de los intervalos generados contendrán la media poblacional \citep[página 257]{Devore}. El gráfico \ref{fig:sim-ic1} da cuenta del fenómeno para los tres tipos de intervalos de confianza para la media con varianza poblacional desconocida; en cada tipo de intervalo se observa que la cantidad de intervalos que contiene al parámetro (color negro) es cercana a la confianza, lo cual, es más notorio al calcular una mayor cantidad de intervalos.
+
+\begin{figure}
+
+{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/sim-ic1-1} 
+
+}
+
+\caption{Simulación de intervalos de confianza para la media con varianza poblacional conocida}\label{fig:sim-ic1}
+\end{figure}
+
+\subsection{Varianza poblacional desconocida}\label{intervalo-de-confianza-para-media-varianza-desconocida}
+
+Cuando se calcula un intervalo de confianza para la media poblacional, suele no contarse con una buena estimación de la desviación estándar poblacional. En tales casos se usa la misma muestra para estimar \(\mu\) y \(\sigma\). Esta situación es el caso que se conoce como \(\sigma\) desconocida. Cuando se usa \(S\) para estimar \(\sigma\), el margen de error y la estimación por intervalo de la media poblacional se basan en una distribución de probabilidad conocida como distribución \(t\). \citep[página 307]{anderson}
+
+La razón de que el número de grados de libertad para el valor de \(t\) en la tabla \ref{tab:tabla-ic-una-media-tstudent} sean \(n-1\) se debe al uso de \(S\) como estimación de la desviación estándar poblacional \(\sigma\). La expresión para calcular la desviación estándar muestral es:
+
+\[
+S = \sqrt{\frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2}
+\]
+Los grados de libertad se refieren al número de valores independientes en el cálculo de \(\sum (x_i - \bar{x})^2\). Los \(n\) valores en el cálculo de \(\sum (x_i - \bar{x})^2\) son los siguientes: \(x_1 - \bar{x},\, x_2 - \bar{x},\, \ldots,\, x_n - \bar{x}\). En estadística 1 se indicó que en cualquier conjunto de datos \(\sum (x_i - \bar{x}) = 0\). Por tanto, únicamente \(n - 1\) de los valores \(x_i - \bar{x}\) son independientes; es decir, si se conocen \(n - 1\) de estos valores, el valor restante puede determinarse exactamente usando el hecho de que los valores \(x_i - \bar{x}\) deben sumar 0. Entonces, \(n - 1\) es el número de grados de libertad en la suma \(\sum (x_i - \bar{x})^2\) y de ahí el número de grados de libertad para la distribución \(t\) en la tabla \ref{tab:tabla-ic-una-media-tstudent}.
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-11}Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida}
+\caption{\label{tab:tabla-ic-una-media-tstudent}Intervalos de confianza para la media de una distribución normal y varianza poblacional desconocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -416,11 +438,18 @@ Utilizando la base de datos del \hyperref[Imacec1]{Imacec}:
 
 \section{Intervalo de confianza para la diferencia de medias}\label{intervalo-de-confianza-para-la-diferencia-de-medias}
 
-\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales conocidas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas}
+\subsection{Varianzas poblacionales conocidas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas}
+
+Sean \(\mu_X\) la media de la población X y \(\mu_Y\) la media de la población Y, lo que interesa aquí son inferencias acerca de la diferencia entre las medias: \(\mu_X - \mu_Y\). Para hacer una inferencia acerca de esta diferencia, se elige una muestra aleatoria simple de \(n_X\) unidades de la población X y otra muestra aleatoria simple de \(n_Y\) unidades de la población Y. A estas dos muestras que se toman separada e independientemente se les conoce como muestras aleatorias simples independientes.
+
+Si ambas poblaciones tienen distribución normal o si los tamaños de las muestras son suficientemente grandes para que el teorema del límite central permita concluir
+que las distribuciones muestrales de \(\bar{X}\) y \(\bar{Y}\) puedan ser aproximadas mediante una distribución normal, la distribución muestral de \(\bar{X} - \bar{Y}\) tendrá una distribución normal.
+
+En esta sección se supondrá que se cuenta con información que permite considerar que las dos desviaciones estándar \(\sigma_X\) y \(\sigma_Y\) se conocen antes de tomar las muestras. Este caso se conoce como el caso de varianzas conocidas. \citep[página 396]{anderson}
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-13}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
+\caption{\label{tab:unnamed-chunk-11}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -480,11 +509,13 @@ El resultado indica que, la probabilidad de que el intervalo \((-103.8,  -65.7)\
 Estudiar si el valor promedio del dólar de Julio es mayor al de Junio por más de 50 pesos (clp). Considere que las variables distribuyen normal, y que las varianzas poblacionales son las mismas que se mencionan en el ejemplo \ref{exm:ICdiferencianormal}. Utilice una confianza del 92.3\%. Interprete.
 \end{exercise}
 
-\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas e iguales}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales}
+\subsection{Varianzas poblacionales desconocidas e iguales}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales}
+
+En esta sección el estudio de las inferencias sobre la diferencia entre dos medias poblacionales se extiende al caso en el que las dos desviaciones estándar poblacionales, \(\sigma_X\) y \(\sigma_Y\) no se conocen, además de considerar de que son iguales. En este caso, para estimar las desviaciones estándar poblacionales desconocidas se emplean las desviaciones estándar muestrales, \(S_X\) y \(S_Y\). Cuando se usan las desviaciones estándar muestrales en las estimaciones por intervalo y en las pruebas de hipótesis, se emplea la distribución \(t\) en lugar de la distribución normal estándar.
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
+\caption{\label{tab:unnamed-chunk-14}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -539,11 +570,13 @@ Como el intervalo contiene al cero, no existe suficiente evidencia para indicar 
 Utilizando la base de datos \hyperref[Cuotas]{Control cuotas}, estudiar si la media del valor cuota de Provida es menor a la de Plan Vital, utilizando una confianza del 99.64\% Considere distribución normal de las variables y varianzas poblacionales desconocidas e iguales.
 \end{exercise}
 
-\subsection{Intervalo de confianza para la diferencia de medias de dos distribuciones normales y varianzas poblacionales desconocidas y distintas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas}
+\subsection{Varianzas poblacionales desconocidas y distintas}\label{intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas}
+
+A diferencia de los visto en la sección anterior, las dos desviaciones estándar poblacionales, \(\sigma_X\) y \(\sigma_Y\) si bien no se conocen, se consideran distintas.
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-17}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
+\caption{\label{tab:unnamed-chunk-15}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -599,17 +632,30 @@ El resultado indica que, la probabilidad de que el intervalo \((-104.3,  -65.17)
 Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor al del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
 \end{exercise}
 
-\section{Intervalo de confianza para la comparación de varianzas}\label{intervalo-de-confianza-comparaciuxf3n-de-varianzas}
+\section{Intervalo de confianza para la comparación de varianzas}\label{intervalo-de-confianza-comparacion-de-varianzas}
 
-En este caso, se estará interesado el siguiente intervalo, ya que, es el fundamental para determinar la igualdad de las varianzas.
+De vez en cuando se requieren métodos de comparar dos varianzas de población (o desviaciones estándar), aunque tales problemas surgen con mucho menor frecuencia que aquellos que implican medias o proporciones. Para el caso en que las poblaciones investigadas son normales, los procedimientos están basados en una nueva familia de distribuciones de probabilidad.
+
+\subsection*{Distribución F}\label{distribucion-f}
+\addcontentsline{toc}{subsection}{Distribución F}
+
+La distribución de probabilidad \(F\) tiene dos parámetros, denotados por \(\nu_{1}\) y \(\nu_{2}\). El parámetro \(\nu_{1}\) se conoce como \textit{numerador de número de grados de libertad} y \(\nu_{2}\) es el \textit{denominador de número de grados de libertad}; en este caso \(\nu_{1}\) y \(\nu_{2}\) son enteros positivos. Una variable aleatoria que tiene una distribución \(F\) no puede asumir un valor negativo. Como la función de densidad es complicada y no será utilizada en forma explícita, se omite la fórmula. Existe una importante conexión entre una variable \(F\) y variables chi-cuadrado. Si \(X_{1}\) y \(X_{2}\) son variables aleatorias chi-cuadradas independientes con \(\nu_{1}\) y \(\nu_{2}\) grados de libertad, respectivamente, entonces la variable aleatoria
+
+\[
+F = \frac{X_{1}/\nu_{1}}{X_{2}/\nu_{2}}
+\]
+
+se puede demostrar que la razón de las dos variables chi-cuadradas divididas entre sus respectivos grados de libertad tiene una distribución \(F\). \citep[página 360]{Devore}
+
+En esta sección, se hará uso únicamente del intervalo bilateral, ya que, es el único tipo de intervalo que no permite determinar si las varianzas poblacionales deben ser consideradas desconocidas distintas o iguales.
 
 \begin{equation}
-\notag
 \begin{split}
 P\left(a<\frac{\sigma_Y^2}{\sigma_X^2}<b\right) = 1-\alpha &\Rightarrow \left( F_1\frac{S_Y^2}{S_X^2},F_2\frac{S_Y^2}{S_X^2} \right)\\
 & F_1 = \frac{1}{f_{1-\alpha/2,n_Y-1,n_X-1}}\\
 & F_2 = f_{1-\alpha/2,n_X-1,n_Y-1}
 \end{split}
+\label{eq:ICvarianzas-bilateral}
 \end{equation}
 
 \begin{example}
@@ -1128,7 +1174,7 @@ El intervalo de números generado a partir del valor crítico es lo denominado \
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/region-rechazo-1-1} 
+{\centering \includegraphics{est2+inferencia_files/figure-latex/region-rechazo-1-1} 
 
 }
 
@@ -1158,11 +1204,11 @@ $\neq$ & $(a,b)$\\
 
 A lo largo de las distintas pruebas, se abordarán los distintos métodos de prueba, incluyendo el uso de intervalos de confianza.
 
-\section{Prueba de hipótesis para la media}\label{pruebas}
+\section{Prueba de hipótesis para una media}\label{pruebas}
 
 Esta sección se centra en el planteamiento y prueba de hipótesis relacionadas a la parámetro de media. Para cada uno de estos casos, se detalla el procedimiento en R y los distintos métodos de prueba para la decisión de rechazo de \(H_0\). En particular, las pruebas para este parámetro requieren que la distribución poblacional de la variable de estudio es normal, lo cual, se asumirá en los enunciados de los ejercicios y/o ejemplos según corresponda.
 
-\subsection{Prueba de hipótesis para la media de una distribución normal con varianza poblacional conocida}\label{prueba-de-hipotesis-media-varianza-conocida}
+\subsection{Varianza poblacional conocida}\label{prueba-de-hipotesis-media-varianza-conocida}
 
 Aun cuando la suposición de que el valor de \(\sigma^2\) es conocido, rara vez se cumple en la práctica. Este caso proporciona un buen punto de partida debido a la facilidad con que los procedimientos generales y sus propiedades pueden ser desarrollados. La hipótesis nula en los tres casos propondrá que \(\mu\) tiene un valor numérico particular, el valor nulo, el cual será denotado por \(\mu_0\).
 
@@ -1361,7 +1407,7 @@ Se requiere estudiar si la cantidad promedio de cafeína en una taza de café es
 Se desea evaluar si la altura promedio de una población de girasoles es distinta de 150 cm. Para ello, se selecciona una muestra aleatoria de 30 girasoles y se encuentra que la altura promedio es de 155 cm, con una desviación estándar conocida de 5 cm. ¿Hay suficiente evidencia para rechazar la hipótesis nula al nivel de significancia del 1\%?
 \end{exercise}
 
-\subsection{Prueba de hipótesis para la media de una distribución normal con varianza poblacional desconocida}\label{prueba-de-hipotesis-media-varianza-desconocida}
+\subsection{Varianza poblacional desconocida}\label{prueba-de-hipotesis-media-varianza-desconocida}
 
 De igual manera a lo expuesto en el primer caso, los pasos a seguir para probar una hipótesis son los mismos, y se mantendrá así para cualquier caso.
 
@@ -1694,7 +1740,7 @@ Establezca las hipótesis, estadísticos y criterios de rechazo. Utilice una sig
 
 En esta sección se continúa con el estudio de la inferencia estadística, específicamente para la diferencia entre dos medias poblacionales. Por ejemplo, quizá desee obtener una estimación por intervalo para la diferencia entre el salario inicial medio de la población de hombres y el salario inicial medio de la población de mujeres \citep[página 395]{anderson}. Para este tipo de pruebas, se requiere que las distribuciones poblacionales de las variables sean normales e independientes, lo cual, se asumirá en los enunciados de ejemplos y/o ejercicios según corresponda.
 
-\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales conocidas}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-conocidas}
+\subsection{Varianzas poblacionales conocidas}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-conocidas}
 
 El primero de los tres casos corresponde al de varianzas poblacionales conocidas. La tabla \ref{tab:dosmedias1} da cuenta del estadístico de prueba asociado las respectivas hipótesis, además de los criterios asociados al valor crítico correspondiente.
 
@@ -1882,7 +1928,7 @@ Al igual que en la prueba para una media cuando se conoce la varianza poblaciona
 Se está interesado en saber si, la media de los valores cuota de Plan Vital supera al de Provida por más de 30000 pesos. Considere una confianza del 99\%. Plantee y pruebe una hipótesis para la diferencia de medias, considerando \(\sigma^2_{\text{Provida}} = 1165833\) y \(\sigma^2_{\text{Plan Vital}} = 3393141\). Utilice todos los métodos de rechazo.
 \end{exercise}
 
-\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas e iguales}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-iguales}
+\subsection{Varianzas poblacionales desconocidas e iguales}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-iguales}
 
 Para el segundo caso, las varianzas poblacionales son desconocidas, sin embargo, los valores de estas varianzas poblacionales pueden ser iguales o distintos. La tabla \ref{tab:dosmedias2} refleja el estadístico de prueba y los criterios de rechazo asociados al método del valor crítico, para el caso en que los valores de las varianzas poblacionaes desconocidas son iguales.
 
@@ -2076,7 +2122,7 @@ A continuación elabore las siguiente pruebas.
 
 \end{exercise}
 
-\subsection{Prueba de hipótesis para la diferencia de medias de dos distribuciones normales con varianzas poblacionales desconocidas y distintas}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-distintas}
+\subsection{Varianzas poblacionales desconocidas y distintas}\label{prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-distintas}
 
 El último de los casos, las varianzas poblacionales son desconocidas y distintas. El detalle del estadístico de prueba y los criterios del método del valor crítico asociados se encuentran en la tabla \ref{tab:dosmedias3}.
 
@@ -3119,7 +3165,7 @@ La relación entre las variables es inversa. No podemos decir nada acerca de qu�
 
 A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-89-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-87-1} \end{center}
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
@@ -3167,7 +3213,7 @@ Por ejemplo, si \(r_{XY} = -0.96\), ¿qué podemos decir acerca de la relación 
 
 A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-90-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-88-1} \end{center}
 
 \textbf{Nota:} En R, se utiliza el comando \texttt{cor()} para calcular la correlación entre dos variables.
 
@@ -3213,7 +3259,7 @@ Una ejemplificación de esta ecuación es la siguiente (\ref{fig:regresion1}).
 
 \begin{figure}
 
-{\centering \includegraphics{est2+inferencia_files/figure-latex/regresion1-1} 
+{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/regresion1-1} 
 
 }
 
@@ -3224,7 +3270,7 @@ Siendo \(\beta_0\) la ordenada en el origen, \(\beta_1\) la pendiente y \(\varep
 
 \begin{figure}
 
-{\centering \includegraphics{est2+inferencia_files/figure-latex/regresion2-1} 
+{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/regresion2-1} 
 
 }
 
@@ -3327,7 +3373,7 @@ Luego, realizamos el gráfico de violín con caja y promedio.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-93-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-91-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3341,7 +3387,7 @@ Se observa, que la mayor concentración de datos se encuentra entre el primer y 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-94-1} \end{center}
+\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-92-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3424,7 +3470,7 @@ El valor de la correlación indica que la relación lineal entre las dos variabl
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-97-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-95-1} \end{center}
 
 \end{example}
 
@@ -3677,7 +3723,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-100-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-98-1} \end{center}
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
@@ -3782,7 +3828,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-104-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-102-1} \end{center}
 
 Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.
 
@@ -4576,7 +4622,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-120-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -4638,7 +4684,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-124-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-122-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 
@@ -5005,7 +5051,7 @@ El gráfico \ref{fig:IC-IP} refleja los dos tipos de intervalo.
 
 \begin{figure}
 
-{\centering \includegraphics{est2+inferencia_files/figure-latex/IC-IP-1} 
+{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/IC-IP-1} 
 
 }
 
@@ -5280,9 +5326,6 @@ Interprete los parámetros estimados y las pruebas de no nulidad con una confian
 \end{exercise}
 
 \begin{exercise}
-\leavevmode
-
-\item
 
 Considere el siguiente modelo de regresión lineal simple:
 
@@ -5353,7 +5396,7 @@ Y =
 \end{bmatrix}.
 \]
 
-Calcule los \textbf{estimadores de mínimos cuadrados ordinarios} de los parámetros \(\beta_0, \beta_1, \beta_2\), mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\).
+Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCe, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
 \end{exercise}
 
 \begin{exercise}
@@ -5383,7 +5426,7 @@ Y=
 \end{bmatrix}.
 \]
 
-Calcule los estimadores MCO. Obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE y el error estándar residual.
+Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule las SCT, SCReg, SCe, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
 \end{exercise}
 
 \begin{exercise}
@@ -5469,15 +5512,15 @@ Se desea ajustar un modelo de regresión lineal múltiple con variables cualitat
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Escriba la ecuación de regresión poblacional indicando la categoría de referencia.
+  Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de las variables cualitativas.
 \item
-  Escriba la ecuación ajustada.
+  Escriba la ecuación de regresión poblacional y ajustada.
 \item
   Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.
 \item
-  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95\%, qué efectos son estadísticamente significativos.
+  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida, y la prueba de no nulidad conjunta. Trabaje con un nivel de confianza del 95\%.
 \item
-  Comente las métricas del modelo: Error estándar residual y R\^{}2 ajustado.
+  Interprete las métricas del modelo: Error estándar residual y \(R^2\) ajustado.
 \end{enumerate}
 
 \end{exercise}
@@ -5512,15 +5555,15 @@ Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Escriba la ecuación de regresión poblacional indicando la categoría de referencia.
+  Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de la variable cualitativa.
 \item
-  Escriba la ecuación ajustada.
+  Escriba la ecuación de regresión poblacional y ajustada.
 \item
   Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.
 \item
-  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95\%, qué efectos son estadísticamente significativos.
+  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida, y la prueba de no nulidad conjunta. Trabaje con un nivel de confianza del 95\%.
 \item
-  Comente las métricas del modelo: Error estándar residual y R\^{}2 ajustado.
+  Interprete las métricas del modelo: Error estándar residual y \(R^2\) ajustado.
 \end{enumerate}
 
 \end{exercise}
@@ -5588,16 +5631,256 @@ Explique brevemente la interpretación geométrica de \((I-H)\) como el proyecto
 Demuestre que en el modelo de regresión lineal múltiple
 
 \[
-\hat{\beta} \sim N\!\big(\beta, \, \sigma^2 (X'X)^{-1}\big),
+\hat{\beta} \sim N\!\big(\beta, \, \sigma^2 (X^tX)^{-1}\big),
 \]
 
 se cumple que la matriz de varianzas y covarianzas de los estimadores es
 
 \[
-\mathrm{Var}(\hat{\beta}) = \sigma^2 (X'X)^{-1}.
+\mathrm{Var}(\hat{\beta}) = \sigma^2 (X^tX)^{-1}.
 \]
 
-Pista: use que \(\hat{\beta} = (X'X)^{-1}X'Y\) y que \(Y = X\beta + \varepsilon\) con \(\varepsilon \sim N(0, \sigma^2 I_n)\).
+Pista: use que \(\hat{\beta} = (X^tX)^{-1}X^tY\) y que \(Y = X\beta + \varepsilon\) con \(\varepsilon \sim N(0, \sigma^2 I_n)\).
+\end{exercise}
+
+\begin{exercise}
+
+A continuación, se muestra una base de datos con las siguientes columnas:
+
+\begin{itemize}
+\tightlist
+\item
+  Y: variable cuantitativa continua.
+\item
+  V1: variable cuantitativa continua.
+\item
+  V2: variable cuantitativa continua.
+\item
+  V3: variable cualitativa de tres categorías (A,B y C).
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{cccc}
+\toprule
+Y & V1 & V2 & V3\\
+\midrule
+2.3 & 1.1 & 10.10 & A\\
+2.8 & 2.7 & 20.50 & B\\
+3.6 & 3.3 & 30.02 & A\\
+4.1 & 4.2 & 40.10 & C\\
+5.9 & 5.9 & 50.74 & A\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Se desea estudiar la variable \(Y\) a partir del resto de columnas. Especifique la matriz de diseño, la matriz \(Y\) y la matriz \(\beta\). Considere que la categoría de referencia de la variable V3 debe ser la categoría B.
+
+Luego,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calcule \(\widehat\beta\), e interprete los resultados.
+\item
+  Calcule \(\widehat{Y}\) y \(e\).
+\item
+  Calcule \(\widehat\sigma\).
+\item
+  Calcule la varianza estimada de los estimadores mediante \(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\) .
+\item
+  Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95\% (escriba las pruebas de hipótesis respectivas para cada parámetro).
+\item
+  Calcule el \(R^2\) ajustado. Interprete.
+\item
+  Calcule el estadístico de prueba \(F_0\) de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95\% mediante el uso de R (escriba la prueba de hipótesis respectiva).
+\item
+  Escriba la ecuación de regresión poblacional y ajustada.
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+A continuación, se muestra una base de datos con las siguientes columnas:
+
+\begin{itemize}
+\tightlist
+\item
+  Y: variable cuantitativa continua.
+\item
+  V1: variable cuantitativa continua.
+\item
+  V2: variable cuantitativa continua.
+\item
+  V3: variable cualitativa (dos categorías: A y B).
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{cccc}
+\toprule
+Y & V1 & V2 & V3\\
+\midrule
+1.9 & 0.9 & 5.2 & A\\
+3.4 & 2.5 & 15.7 & B\\
+2.7 & 1.7 & 25.1 & A\\
+4.0 & 3.8 & 35.3 & B\\
+3.2 & 2.9 & 45.0 & A\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Se desea estudiar la variable \(Y\) a partir del resto de columnas. Especifique la matriz de diseño, la matriz \(Y\) y la matriz \(\beta\). Considere que la categoría de referencia de la variable V3 debe ser la categoría B.
+
+Luego,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calcule \(\widehat\beta\), e interprete los resultados.
+\item
+  Calcule \(\widehat{Y}\) y \(e\).
+\item
+  Calcule \(\widehat\sigma\).
+\item
+  Calcule la varianza estimada de los estimadores mediante \(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\) .
+\item
+  Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95\% (escriba las pruebas de hipótesis respectivas para cada parámetro).
+\item
+  Calcule el \(R^2\) ajustado. Interprete.
+\item
+  Calcule el estadístico de prueba \(F_0\) de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95\% mediante el uso de R (escriba la prueba de hipótesis respectiva).
+\item
+  Escriba la ecuación de regresión poblacional y ajustada.
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+A continuación, se muestra una base de datos con las siguientes columnas:
+
+\begin{itemize}
+\tightlist
+\item
+  Y: variable cuantitativa continua.
+\item
+  V1: variable cuantitativa continua.
+\item
+  V2: variable cuantitativa continua.
+\item
+  V3: variable cualitativa de cuatro categorías (A, B, C y D).
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{cccc}
+\toprule
+Y & V1 & V2 & V3\\
+\midrule
+2.5 & 1.2 & 8.0 & A\\
+3.1 & 2.1 & 18.4 & B\\
+4.6 & 3.9 & 28.6 & C\\
+3.9 & 3.5 & 38.2 & D\\
+5.2 & 4.7 & 48.5 & A\\
+4.8 & 4.2 & 58.1 & C\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Se desea estudiar la variable \(Y\) a partir del resto de columnas. Especifique la matriz de diseño, la matriz \(Y\) y la matriz \(\beta\). Considere que la categoría de referencia de la variable V3 debe ser la categoría B.
+
+Luego,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calcule \(\widehat\beta\), e interprete los resultados.
+\item
+  Calcule \(\widehat{Y}\) y \(e\).
+\item
+  Calcule \(\widehat\sigma\).
+\item
+  Calcule la varianza estimada de los estimadores mediante \(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\) .
+\item
+  Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95\% (escriba las pruebas de hipótesis respectivas para cada parámetro).
+\item
+  Calcule el \(R^2\) ajustado. Interprete.
+\item
+  Calcule el estadístico de prueba \(F_0\) de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95\% mediante el uso de R (escriba la prueba de hipótesis respectiva).
+\item
+  Escriba la ecuación de regresión poblacional y ajustada.
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+A continuación, se muestra una base de datos con las siguientes columnas:
+
+\begin{itemize}
+\tightlist
+\item
+  Y: variable cuantitativa continua.
+\item
+  V1: variable cuantitativa continua.
+\item
+  V2: variable cuantitativa continua.
+\item
+  V3: variable cualitativa de dos categorías (A, B).
+\item
+  V4: variable cualitativa de dos categorías (P, Q).
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{ccccc}
+\toprule
+Y & V1 & V2 & V3 & V4\\
+\midrule
+2.2 & 1.0 & 7.5 & A & P\\
+3.7 & 2.8 & 17.2 & B & Q\\
+4.1 & 3.5 & 27.8 & A & P\\
+3.3 & 2.4 & 37.1 & B & Q\\
+5.0 & 4.6 & 47.6 & A & P\\
+4.4 & 3.9 & 57.9 & B & Q\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Se desea estudiar la variable \(Y\) a partir del resto de columnas. Especifique la matriz de diseño, la matriz \(Y\) y la matriz \(\beta\). Considere que la categoría de referencia de la variable V3 debe ser la categoría B, y para la variable V4 debe ser la categoría P.
+
+Luego,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calcule \(\widehat\beta\), e interprete los resultados.
+\item
+  Calcule \(\widehat{Y}\) y \(e\).
+\item
+  Calcule \(\widehat\sigma\).
+\item
+  Calcule la varianza estimada de los estimadores mediante \(\widehat{\mathrm{Var}(\hat{\beta})} = \text{diag}(\widehat\sigma^2 (X^tX)^{-1})\).
+\item
+  Calcule los estadísticos de prueba para la prueba de hipótesis de no nulidad de cada parámetro. Luego, calcule el valor-p usando R, e interprete usando una confianza del 95\% (escriba las pruebas de hipótesis respectivas para cada parámetro).
+\item
+  Calcule el \(R^2\) ajustado. Interprete.
+\item
+  Calcule el estadístico de prueba \(F_0\) de la prueba de no nulidad conjunta. Interprete usando el método de valor crítico con una confianza del 95\% mediante el uso de R (escriba la prueba de hipótesis respectiva).
+\item
+  Escriba la ecuación de regresión poblacional y ajustada.
+\end{enumerate}
+
 \end{exercise}
 
 \appendix \addcontentsline{toc}{chapter}{\appendixname}

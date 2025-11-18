@@ -54,15 +54,17 @@ pre.numberSource code > span > a:first-child::before {
 .level1 .header-section-number {
   display: inline-block;
   border-bottom: 3px solid;
+  color: #0B3954 !important;
 }
 .level1 h1 {
   border-bottom: 1px solid;
+  color: #0B3954 !important;
 }
 
 /* Para los distintos niveles de título se modifica el color y el tipo de fuente, en este caso normal */
 h1,h2,h3,h4,h5 {
   /*color: #730000;*/
-  color: #000000;
+  color: #0B3954
   font-weight: normal;
 }
 
@@ -141,6 +143,27 @@ especifica los parámetro de las imágenes dentro de este.*/
 .book.with-summary .book-body {
     left: 350px;
 }
+
+/* --- TOC: permitir salto de línea  --- */
+.book-summary ul.summary li a {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-wrap: break-word;
+  line-height: 1.5em; /*edición de interlineado*/
+}
+
+.summary a:hover {
+    color: #19757F !important;
+}
+
+.book .book-summary ul.summary li.active>a { /*active TOC links*/
+    color: #6E044B !important;
+    border-left: solid 4px;
+    border-color: #6E044B;
+    padding-left: 11px !important;
+}
+
 /* Aquí termina la edición del menú de contenidos */
 
 /*-----------------------------------------------------------------*/
@@ -218,4 +241,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .summary {
     font-family: 'Ubuntu', sans-serif;
+}
+
+/*-----------------------------------------------------------------*/
+/*-----------------------------------------------------------------*/
+/*Código aumentar el tamaño de fuente de latex en el documento HTML*/
+/*Ya que la barra de promedio no estaba siendo visible*/
+
+.mathjax, .MathJax, .mjx-math {
+  font-size: 105% !important;
 }
