@@ -154,7 +154,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{Prof.~Daniel Franzani}
-\date{Actualizado al 18-11-2025}
+\date{Actualizado al 20-11-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4615,7 +4615,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Y\_Gorro"} \OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Mineria, }\StringTok{"Residuos"} \OtherTok{=} \FunctionTok{residuals}\NormalTok{(modelo)),}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Y\_Gorro"} \OtherTok{=}\NormalTok{ modelo}\SpecialCharTok{$}\NormalTok{fitted.values, }\StringTok{"Residuos"} \OtherTok{=} \FunctionTok{residuals}\NormalTok{(modelo)),}
        \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Y\_Gorro, }\AttributeTok{y =}\NormalTok{ Residuos)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Valores ajustados"}\NormalTok{)}

@@ -1233,7 +1233,7 @@ Y_{\text{Ozone}} = \beta_0 + \beta_1X_{\text{Solar.R}} + \beta_2X_{\text{Temp}} 
 <ol style="list-style-type: decimal">
 <li><strong>Linealidad</strong></li>
 </ol>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="regresion-lineal.html#cb156-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="st">&quot;Y_Gorro&quot;</span> <span class="ot">=</span> df<span class="sc">$</span>Mineria, <span class="st">&quot;Residuos&quot;</span> <span class="ot">=</span> <span class="fu">residuals</span>(modelo)),</span>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="regresion-lineal.html#cb156-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="st">&quot;Y_Gorro&quot;</span> <span class="ot">=</span> modelo<span class="sc">$</span>fitted.values, <span class="st">&quot;Residuos&quot;</span> <span class="ot">=</span> <span class="fu">residuals</span>(modelo)),</span>
 <span id="cb156-2"><a href="regresion-lineal.html#cb156-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Y_Gorro, <span class="at">y =</span> Residuos)) <span class="sc">+</span></span>
 <span id="cb156-3"><a href="regresion-lineal.html#cb156-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb156-4"><a href="regresion-lineal.html#cb156-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Valores ajustados&quot;</span>)</span></code></pre></div>
