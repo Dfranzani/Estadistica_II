@@ -154,7 +154,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{Prof.~Daniel Franzani}
-\date{Actualizado al 20-11-2025}
+\date{Actualizado al 25-11-2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -5396,7 +5396,7 @@ Y =
 \end{bmatrix}.
 \]
 
-Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCe, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
+Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCE, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
 \end{exercise}
 
 \begin{exercise}
@@ -5404,7 +5404,7 @@ Considere el modelo de regresión lineal múltiple con dos regresores
 \[
 Y=\beta_0+\beta_1X_1+\beta_2X_2+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2I_n).
 \]
-Se entrega la \textbf{matriz de diseño} \(X\) (incluye intercepto) y el \textbf{vector de respuestas} \(Y\), con valores \textbf{decimales} no redondeados:
+Se entrega la \textbf{matriz de diseño} \(X\) (incluye intercepto), el \textbf{vector de respuestas} \(Y\) y la matriz de parámetros estimados:
 \[
 X=
 \begin{bmatrix}
@@ -5423,10 +5423,16 @@ Y=
 14.8\\
 12.1\\
 17.3
+\end{bmatrix},\quad
+\widehat\beta=
+\begin{bmatrix}
+3.488\\
+2.3053\\
+0.3281
 \end{bmatrix}.
 \]
 
-Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule las SCT, SCReg, SCe, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
+Obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule las SCT, SCReg, SCE, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
 \end{exercise}
 
 \begin{exercise}
@@ -5483,7 +5489,7 @@ Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudi
 
 \begin{exercise}
 
-Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible \(Y=\text{mpg}\) (millas por galón) en función del \textbf{peso} del automóvil \(X_1=\text{wt}\) (en miles de libras) y dos variables categóricas de la base \textbf{mtcars} de R: \textbf{transmisión} \(X_2=\text{am}\) (0=automática, 1=manual) y \textbf{cilindrada} \(X_3=\text{cyl}\) (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia \textbf{am=0} (automática) y \textbf{cyl=4} (4 cilindros). A continuación se muestra el código y la salida de R para el ajuste \(\text{mpg} \sim \text{wt} + \text{factor(am)} + \text{factor(cyl)}\).
+Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible \(Y=\text{mpg}\) (millas por galón) en función del \textbf{peso} del automóvil \(X_1=\text{wt}\) (en miles de libras) y dos variables categóricas de la base \textbf{mtcars} de R: \textbf{transmisión} \(X_2=\text{am}\) (0=automática, 1=manual) y \textbf{cilindrada} \(X_3=\text{cyl}\) (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia \textbf{am=0} (automática) y \textbf{cyl=4} (4 cilindros). A continuación se muestra el ajuste realizado en R.
 
 \begin{verbatim}
 ## 
@@ -5514,7 +5520,7 @@ Se desea ajustar un modelo de regresión lineal múltiple con variables cualitat
 \item
   Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de las variables cualitativas.
 \item
-  Escriba la ecuación de regresión poblacional y ajustada.
+  Escriba la ecuación de regresión ajustada.
 \item
   Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.
 \item
@@ -5527,7 +5533,7 @@ Se desea ajustar un modelo de regresión lineal múltiple con variables cualitat
 
 \begin{exercise}
 
-Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables cualitativas} para explicar la longitud del sépalo \(Y=\text{Sepal.Length}\) en función de la anchura del sépalo \(X_1=\text{Sepal.Width}\) y la especie \(X_2=\text{Species}\) usando la base \textbf{iris} de R. La variable cualitativa \textbf{Species} tiene tres categorías: setosa, versicolor y virginica, con \textbf{setosa} como categoría de referencia. A continuación se muestra el código y la salida de R para el ajuste \(\text{Sepal.Length} \sim \text{Sepal.Width} + \text{Species}\).
+Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables cualitativas} para explicar la longitud (cm) del sépalo \(Y=\text{Sepal.Length}\) en función de la anchura (cm) del sépalo \(X_1=\text{Sepal.Width}\) y la especie \(X_2=\text{Species}\) usando la base \textbf{iris} de R. La variable cualitativa \textbf{Species} tiene tres categorías: setosa, versicolor y virginica, con \textbf{setosa} como categoría de referencia. A continuación se muestra el ajuste realizado en R.
 
 \begin{verbatim}
 ## 
@@ -5557,7 +5563,7 @@ Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables 
 \item
   Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de la variable cualitativa.
 \item
-  Escriba la ecuación de regresión poblacional y ajustada.
+  Escriba la ecuación de regresión ajustada.
 \item
   Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.
 \item

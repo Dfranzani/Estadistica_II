@@ -1780,14 +1780,14 @@ Y =
 23
 \end{bmatrix}.
 \]</span></p>
-<p>Calcule los EMC, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>; obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule la matriz de residuos. Calcule las SCT, SCReg, SCe, el MCE, el estadístico <span class="math inline">\(F_0\)</span>, <span class="math inline">\(R^2\)</span>, <span class="math inline">\(R^2\)</span> ajustado y el error estándar residual.</p>
+<p>Calcule los EMC, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>; obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule la matriz de residuos. Calcule las SCT, SCReg, SCE, el MCE, el estadístico <span class="math inline">\(F_0\)</span>, <span class="math inline">\(R^2\)</span>, <span class="math inline">\(R^2\)</span> ajustado y el error estándar residual.</p>
 </div>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-163" class="exercise"><strong>Ejercicio 3.40  </strong></span>Considere el modelo de regresión lineal múltiple con dos regresores
 <span class="math display">\[
 Y=\beta_0+\beta_1X_1+\beta_2X_2+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2I_n).
 \]</span>
-Se entrega la <strong>matriz de diseño</strong> <span class="math inline">\(X\)</span> (incluye intercepto) y el <strong>vector de respuestas</strong> <span class="math inline">\(Y\)</span>, con valores <strong>decimales</strong> no redondeados:
+Se entrega la <strong>matriz de diseño</strong> <span class="math inline">\(X\)</span> (incluye intercepto), el <strong>vector de respuestas</strong> <span class="math inline">\(Y\)</span> y la matriz de parámetros estimados:
 <span class="math display">\[
 X=
 \begin{bmatrix}
@@ -1806,9 +1806,15 @@ Y=
 14.8\\
 12.1\\
 17.3
+\end{bmatrix},\quad
+\widehat\beta=
+\begin{bmatrix}
+3.488\\
+2.3053\\
+0.3281
 \end{bmatrix}.
 \]</span></p>
-<p>Calcule los EMC, mostrando explícitamente los cálculos de <span class="math inline">\(X^tX\)</span>, <span class="math inline">\(X^tY\)</span>, <span class="math inline">\((X^tX)^{-1}\)</span> y finalmente el vector de estimadores <span class="math inline">\(\hat\beta\)</span>; obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule las SCT, SCReg, SCe, el MCE, el estadístico <span class="math inline">\(F_0\)</span>, <span class="math inline">\(R^2\)</span>, <span class="math inline">\(R^2\)</span> ajustado y el error estándar residual.</p>
+<p>Obtenga los valores ajustados <span class="math inline">\(\hat Y=X\hat\beta\)</span>. Calcule las SCT, SCReg, SCE, el MCE, el estadístico <span class="math inline">\(F_0\)</span>, <span class="math inline">\(R^2\)</span>, <span class="math inline">\(R^2\)</span> ajustado y el error estándar residual.</p>
 </div>
 <div class="exercise">
 <p><span id="exr:unlabeled-div-164" class="exercise"><strong>Ejercicio 3.41  </strong></span>Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudiar los supuestos de Homocedasticidad, Independencia y Normalidad de un modelo de regresión lineal múltiple ajustado a una base de datos simulada de ingresos (<span class="math inline">\(Y\)</span>) en función de edad (<span class="math inline">\(X_1\)</span>) y nivel educacional (<code>educacion</code>) (<span class="math inline">\(X_2\)</span>). Indique la fila del código seleccionado para cada supuesto, justificando su elección. Además, escriba las pruebas de hipótesis involucradas e interprete utilizando una confianza del 96%.</p>
@@ -2111,7 +2117,7 @@ ventas <span class="math inline">\(\sim\)</span> region
 </div>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-166" class="exercise"><strong>Ejercicio 3.43  </strong></span>Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible <span class="math inline">\(Y=\text{mpg}\)</span> (millas por galón) en función del <strong>peso</strong> del automóvil <span class="math inline">\(X_1=\text{wt}\)</span> (en miles de libras) y dos variables categóricas de la base <strong>mtcars</strong> de R: <strong>transmisión</strong> <span class="math inline">\(X_2=\text{am}\)</span> (0=automática, 1=manual) y <strong>cilindrada</strong> <span class="math inline">\(X_3=\text{cyl}\)</span> (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia <strong>am=0</strong> (automática) y <strong>cyl=4</strong> (4 cilindros). A continuación se muestra el código y la salida de R para el ajuste <span class="math inline">\(\text{mpg} \sim \text{wt} + \text{factor(am)} + \text{factor(cyl)}\)</span>.</p>
+<p><span id="exr:unlabeled-div-166" class="exercise"><strong>Ejercicio 3.43  </strong></span>Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible <span class="math inline">\(Y=\text{mpg}\)</span> (millas por galón) en función del <strong>peso</strong> del automóvil <span class="math inline">\(X_1=\text{wt}\)</span> (en miles de libras) y dos variables categóricas de la base <strong>mtcars</strong> de R: <strong>transmisión</strong> <span class="math inline">\(X_2=\text{am}\)</span> (0=automática, 1=manual) y <strong>cilindrada</strong> <span class="math inline">\(X_3=\text{cyl}\)</span> (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia <strong>am=0</strong> (automática) y <strong>cyl=4</strong> (4 cilindros). A continuación se muestra el ajuste realizado en R.</p>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ wt + am + cyl, data = mt)
@@ -2135,14 +2141,14 @@ ventas <span class="math inline">\(\sim\)</span> region
 ## F-statistic: 34.79 on 4 and 27 DF,  p-value: 2.73e-10</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de las variables cualitativas.</p></li>
-<li><p>Escriba la ecuación de regresión poblacional y ajustada.</p></li>
+<li><p>Escriba la ecuación de regresión ajustada.</p></li>
 <li><p>Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.</p></li>
 <li><p>Evalúe las pruebas de no nulidad de cada coeficiente usando la salida, y la prueba de no nulidad conjunta. Trabaje con un nivel de confianza del 95%.</p></li>
 <li><p>Interprete las métricas del modelo: Error estándar residual y <span class="math inline">\(R^2\)</span> ajustado.</p></li>
 </ol>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-167" class="exercise"><strong>Ejercicio 3.44  </strong></span>Se desea ajustar un <strong>modelo de regresión lineal múltiple con variables cualitativas</strong> para explicar la longitud del sépalo <span class="math inline">\(Y=\text{Sepal.Length}\)</span> en función de la anchura del sépalo <span class="math inline">\(X_1=\text{Sepal.Width}\)</span> y la especie <span class="math inline">\(X_2=\text{Species}\)</span> usando la base <strong>iris</strong> de R. La variable cualitativa <strong>Species</strong> tiene tres categorías: setosa, versicolor y virginica, con <strong>setosa</strong> como categoría de referencia. A continuación se muestra el código y la salida de R para el ajuste <span class="math inline">\(\text{Sepal.Length} \sim \text{Sepal.Width} + \text{Species}\)</span>.</p>
+<p><span id="exr:unlabeled-div-167" class="exercise"><strong>Ejercicio 3.44  </strong></span>Se desea ajustar un <strong>modelo de regresión lineal múltiple con variables cualitativas</strong> para explicar la longitud (cm) del sépalo <span class="math inline">\(Y=\text{Sepal.Length}\)</span> en función de la anchura (cm) del sépalo <span class="math inline">\(X_1=\text{Sepal.Width}\)</span> y la especie <span class="math inline">\(X_2=\text{Species}\)</span> usando la base <strong>iris</strong> de R. La variable cualitativa <strong>Species</strong> tiene tres categorías: setosa, versicolor y virginica, con <strong>setosa</strong> como categoría de referencia. A continuación se muestra el ajuste realizado en R.</p>
 <pre><code>## 
 ## Call:
 ## lm(formula = Sepal.Length ~ Sepal.Width + Species, data = iris)
@@ -2165,7 +2171,7 @@ ventas <span class="math inline">\(\sim\)</span> region
 ## F-statistic: 128.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de la variable cualitativa.</p></li>
-<li><p>Escriba la ecuación de regresión poblacional y ajustada.</p></li>
+<li><p>Escriba la ecuación de regresión ajustada.</p></li>
 <li><p>Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.</p></li>
 <li><p>Evalúe las pruebas de no nulidad de cada coeficiente usando la salida, y la prueba de no nulidad conjunta. Trabaje con un nivel de confianza del 95%.</p></li>
 <li><p>Interprete las métricas del modelo: Error estándar residual y <span class="math inline">\(R^2\)</span> ajustado.</p></li>
