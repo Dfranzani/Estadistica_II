@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Unidad 1 Estimación puntual | Estadística II &amp; Inferencia Estadística</title>
+  <meta name="description" content="Curso básico de Estadística para ingeniería." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Unidad 1 Estimación puntual | Estadística II &amp; Inferencia Estadística" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Curso básico de Estadística para ingeniería." />
+  <meta name="github-repo" content="Dfranzani/Estadistica_II" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unidad 1 Estimación puntual | Estadística II &amp; Inferencia Estadística" />
+  
+  <meta name="twitter:description" content="Curso básico de Estadística para ingeniería." />
+  
+
+<meta name="author" content="Prof. Daniel Franzani" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="intervalos-de-confianza.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a la Estadística</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
+<li class="chapter" data-level="1" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html"><i class="fa fa-check"></i><b>1</b> Estimación puntual</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#propiedades-de-los-estimadores"><i class="fa fa-check"></i><b>1.1</b> Propiedades de los estimadores</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#insesgadez"><i class="fa fa-check"></i><b>1.1.1</b> Insesgadez</a></li>
+<li class="chapter" data-level="1.1.2" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#eficiencia"><i class="fa fa-check"></i><b>1.1.2</b> Eficiencia</a></li>
+<li class="chapter" data-level="1.1.3" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#consistencia"><i class="fa fa-check"></i><b>1.1.3</b> Consistencia</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#el-error-est%C3%A1ndar"><i class="fa fa-check"></i><b>1.2</b> El error estándar</a></li>
+<li class="chapter" data-level="1.3" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#m%C3%A9todos-de-estimaci%C3%B3n"><i class="fa fa-check"></i><b>1.3</b> Métodos de estimación</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#m%C3%A9todo-de-momentos-em"><i class="fa fa-check"></i><b>1.3.1</b> Método de momentos (EM)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#estimac%C3%B3n-de-m%C3%A1xima-verosimilitud-emv"><i class="fa fa-check"></i><b>1.3.2</b> Estimacón de máxima verosimilitud (EMV)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#comportamiento-del-emv-en-muestras-grandes"><i class="fa fa-check"></i><b>1.4</b> Comportamiento del EMV en muestras grandes</a></li>
+<li class="chapter" data-level="1.5" data-path="estimacion-puntual.html"><a href="estimacion-puntual.html#ejercicios"><i class="fa fa-check"></i><b>1.5</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>2</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-concepto"><i class="fa fa-check"></i><b>2.1</b> Concepto</a></li>
+<li class="chapter" data-level="2.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media"><i class="fa fa-check"></i><b>2.2</b> Intervalo de confianza para una media</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-media-varianza-conocida"><i class="fa fa-check"></i><b>2.2.1</b> Varianza poblacional conocida</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-media-varianza-desconocida"><i class="fa fa-check"></i><b>2.2.2</b> Varianza poblacional desconocida</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias"><i class="fa fa-check"></i><b>2.3</b> Intervalo de confianza para la diferencia de medias</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-conocidas"><i class="fa fa-check"></i><b>2.3.1</b> Varianzas poblacionales conocidas</a></li>
+<li class="chapter" data-level="2.3.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-iguales"><i class="fa fa-check"></i><b>2.3.2</b> Varianzas poblacionales desconocidas e iguales</a></li>
+<li class="chapter" data-level="2.3.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-diferencia-de-medias-varianzas-desconocidas-distintas"><i class="fa fa-check"></i><b>2.3.3</b> Varianzas poblacionales desconocidas y distintas</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-comparacion-de-varianzas"><i class="fa fa-check"></i><b>2.4</b> Intervalo de confianza para la comparación de varianzas</a>
+<ul>
+<li class="chapter" data-level="" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#distribucion-f"><i class="fa fa-check"></i>Distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejercicios-unidad1"><i class="fa fa-check"></i><b>2.5</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="PH.html"><a href="PH.html"><i class="fa fa-check"></i><b>3</b> Pruebas de hipótesis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-concepto"><i class="fa fa-check"></i><b>3.1</b> Concepto</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-elaboracion"><i class="fa fa-check"></i><b>3.1.1</b> Elaboración</a></li>
+<li class="chapter" data-level="3.1.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-errores"><i class="fa fa-check"></i><b>3.1.2</b> Errores tipo I y II</a></li>
+<li class="chapter" data-level="3.1.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-procedimiento"><i class="fa fa-check"></i><b>3.1.3</b> Procedimiento de prueba</a></li>
+<li class="chapter" data-level="3.1.4" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-intervalos-de-confianza"><i class="fa fa-check"></i><b>3.1.4</b> Intervalos de confianza</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="PH.html"><a href="PH.html#pruebas"><i class="fa fa-check"></i><b>3.2</b> Prueba de hipótesis para una media</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-media-varianza-conocida"><i class="fa fa-check"></i><b>3.2.1</b> Varianza poblacional conocida</a></li>
+<li class="chapter" data-level="3.2.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-media-varianza-desconocida"><i class="fa fa-check"></i><b>3.2.2</b> Varianza poblacional desconocida</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias"><i class="fa fa-check"></i><b>3.3</b> Prueba de hipótesis para la diferencia de medias</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-conocidas"><i class="fa fa-check"></i><b>3.3.1</b> Varianzas poblacionales conocidas</a></li>
+<li class="chapter" data-level="3.3.2" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-iguales"><i class="fa fa-check"></i><b>3.3.2</b> Varianzas poblacionales desconocidas e iguales</a></li>
+<li class="chapter" data-level="3.3.3" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-de-medias-varianzas-desconocidas-distintas"><i class="fa fa-check"></i><b>3.3.3</b> Varianzas poblacionales desconocidas y distintas</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-comparacion-varianzas"><i class="fa fa-check"></i><b>3.4</b> Prueba de hipótesis para comparación de varianzas</a></li>
+<li class="chapter" data-level="3.5" data-path="PH.html"><a href="PH.html#prueba-de-hipotesis-diferencia-proporciones"><i class="fa fa-check"></i><b>3.5</b> Prueba de hipótesis para la diferencia de proporciones</a></li>
+<li class="chapter" data-level="3.6" data-path="PH.html"><a href="PH.html#ejercicios-unidad2"><i class="fa fa-check"></i><b>3.6</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="regresion-lineal.html"><a href="regresion-lineal.html"><i class="fa fa-check"></i><b>4</b> Regresión Lineal</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-medidas-asociacion"><i class="fa fa-check"></i><b>4.1</b> Medidas de asociación lineal</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-covarianza"><i class="fa fa-check"></i><b>4.1.1</b> Covarianza</a></li>
+<li class="chapter" data-level="4.1.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-correlacion"><i class="fa fa-check"></i><b>4.1.2</b> Correlación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-simple"><i class="fa fa-check"></i><b>4.2</b> Regresión lineal simple</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#EMCRLS"><i class="fa fa-check"></i><b>4.2.1</b> Estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="4.2.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#sumascuadraticas"><i class="fa fa-check"></i><b>4.2.2</b> Sumas cuadráticas</a></li>
+<li class="chapter" data-level="4.2.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#pruebasHipotesisRLS"><i class="fa fa-check"></i><b>4.2.3</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="4.2.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#metricasRLS"><i class="fa fa-check"></i><b>4.2.4</b> Métricas</a></li>
+<li class="chapter" data-level="4.2.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-simple-supuestos"><i class="fa fa-check"></i><b>4.2.5</b> Supuestos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple"><i class="fa fa-check"></i><b>4.3</b> Regresión lineal múltiple</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#EMC-RLM-CUERPO"><i class="fa fa-check"></i><b>4.3.1</b> Estimadores de mínimos cuadrados</a></li>
+<li class="chapter" data-level="4.3.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#covariables-cualitativas"><i class="fa fa-check"></i><b>4.3.2</b> Covariables cualitativas</a></li>
+<li class="chapter" data-level="4.3.3" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple-pruebas-hipotesis"><i class="fa fa-check"></i><b>4.3.3</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="4.3.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#metricasRLM"><i class="fa fa-check"></i><b>4.3.4</b> Métricas</a></li>
+<li class="chapter" data-level="4.3.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-multiple-supuestos"><i class="fa fa-check"></i><b>4.3.5</b> Supuestos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables"><i class="fa fa-check"></i><b>4.4</b> Selección de variables</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables-forward"><i class="fa fa-check"></i><b>4.4.1</b> Forward</a></li>
+<li class="chapter" data-level="4.4.2" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-seleccion-variables-backward"><i class="fa fa-check"></i><b>4.4.2</b> Backward</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="regresion-lineal.html"><a href="regresion-lineal.html#regresion-lineal-prediccion-observaciones"><i class="fa fa-check"></i><b>4.5</b> Predicción de observaciones</a></li>
+<li class="chapter" data-level="4.6" data-path="regresion-lineal.html"><a href="regresion-lineal.html#ejercicios-unidad-3"><i class="fa fa-check"></i><b>4.6</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bases-de-datos-utilizadas.html"><a href="bases-de-datos-utilizadas.html"><i class="fa fa-check"></i>Bases de datos utilizadas</a></li>
+<li class="appendix"><span><b>Apéndice</b></span></li>
+<li class="chapter" data-level="A" data-path="estimadores.html"><a href="estimadores.html"><i class="fa fa-check"></i><b>A</b> Estimadores</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="estimadores.html"><a href="estimadores.html#RLS-EMC"><i class="fa fa-check"></i><b>A.1</b> EMC en Regresión Lineal Simple</a></li>
+<li class="chapter" data-level="A.2" data-path="estimadores.html"><a href="estimadores.html#descomposici%C3%B3n-de-la-suma-de-cuadrados-total"><i class="fa fa-check"></i><b>A.2</b> Descomposición de la Suma de Cuadrados Total</a></li>
+<li class="chapter" data-level="A.3" data-path="estimadores.html"><a href="estimadores.html#RLM-EMC"><i class="fa fa-check"></i><b>A.3</b> EMC en Regresión Lineal Múltiple</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="métricas.html"><a href="métricas.html"><i class="fa fa-check"></i><b>B</b> Métricas</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="métricas.html"><a href="métricas.html#R2-no-decreciente"><i class="fa fa-check"></i><b>B.1</b> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="estadísticos.html"><a href="estadísticos.html"><i class="fa fa-check"></i><b>C</b> Estadísticos</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="estadísticos.html"><a href="estadísticos.html#F-forward"><i class="fa fa-check"></i><b>C.1</b> Estadístico F del método de selección Forward</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>D</b> Funciones</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="funciones.html"><a href="funciones.html#funcion-indicatriz"><i class="fa fa-check"></i><b>D.1</b> Esquema de la función indicatriz</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referencias</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/rmarkdown-cookbook" target="blank">Published with Bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística II &amp; Inferencia Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estimacion-puntual" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Unidad 1</span> Estimación puntual<a href="estimacion-puntual.html#estimacion-puntual" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El objetivo de la inferencia estadística casi siempre es sacar algún tipo de conclusión sobre uno o más parámetros (características de la población). Para hacer eso un investigador tiene que obtener datos muestrales de cada una de las poblaciones estudiadas. Las conclusiones pueden entonces basarse en los valores calculados de varias cantidades muestrales. Por ejemplo, sea <span class="math inline">\(\mu\)</span> (un parámetro) la resistencia a la ruptura promedio verdadera de conexiones alámbricas utilizadas en la unión de obleas semiconductoras. Se podría tomar una muestra aleatoria de <span class="math inline">\(n = 10\)</span> conexiones y determinar la resistencia a la ruptura de cada una y se tendrían las resistencias observadas <span class="math inline">\(x_1, x_2, \ldots, x_{10}\)</span>. La resistencia a la ruptura media muestral <span class="math inline">\(\bar{x}\)</span> se utilizaría entonces para sacar una conclusión con respecto al valor de <span class="math inline">\(\mu\)</span>. Asimismo, si <span class="math inline">\(\sigma^2\)</span> es la varianza de la distribución de la resistencia a la ruptura (varianza de la población, otro parámetro), el valor de la varianza muestral <span class="math inline">\(s^2\)</span> se utiliza para inferir algo sobre <span class="math inline">\(\sigma^2\)</span>. <span class="citation">(<a href="#ref-Devore">Devore, 2008</a>, página 228)</span></p>
+<p>Cuando se discuten los métodos y conceptos generales de inferencia, es conveniente disponer de un símbolo genérico para el parámetro de interés. Se utilizará la letra griega <span class="math inline">\(\theta\)</span> para este propósito. El objetivo de la estimación puntual es seleccionar un solo número, con base en los datos muestrales, que represente un valor sensible de <span class="math inline">\(\theta\)</span>. Supóngase, por ejemplo, que el parámetro de interés es <span class="math inline">\(\mu\)</span>, la vida útil promedio verdadera de baterías de un tipo. Una muestra aleatoria de <span class="math inline">\(n = 3\)</span> baterías podría dar las vidas útiles (horas) observadas <span class="math inline">\(x_1 = 5.0\)</span>, <span class="math inline">\(x_2 = 6.4\)</span>, <span class="math inline">\(x_3 = 5.9\)</span>. El valor calculado de la vida útil media muestral es <span class="math inline">\(\bar{x} = 5.77\)</span> y es razonable considerar 5.77 como un valor muy factible de <span class="math inline">\(\mu\)</span>, la “mejor suposición” del valor de <span class="math inline">\(\mu\)</span> basado en la información muestral disponible.</p>
+<p>Supóngase que se desea estimar un parámetro de una población (p. ej., <span class="math inline">\(\mu\)</span>) con una muestra aleatoria de tamaño <span class="math inline">\(n\)</span>. Recuérdese por el capítulo previo de que antes que los datos estén disponibles, las observaciones muestrales deben ser consideradas como variables aleatorias <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>. Se deduce que cualquier función de las <span class="math inline">\(X_i\)</span>, es decir, cualquier estadístico, tal como la media muestral <span class="math inline">\(\bar{X}\)</span> o la desviación estándar muestral <span class="math inline">\(S\)</span> también es una variable aleatoria. Lo mismo es cierto si los datos disponibles se componen de más de una muestra. Por ejemplo, se pueden representar las resistencias a la tensión de <span class="math inline">\(m\)</span> especímenes de tipo 1 y de <span class="math inline">\(n\)</span> especímenes de tipo 2 por <span class="math inline">\(X_1, \ldots, X_m\)</span> y <span class="math inline">\(Y_1, \ldots, Y_n\)</span>, respectivamente. La diferencia entre las dos resistencias medias muestrales es <span class="math inline">\(\bar{X} - \bar{Y}\)</span>, el estadístico natural para inferir sobre <span class="math inline">\(\mu_1 - \mu_2\)</span>, la diferencia entre las resistencias medias de la población.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-1" class="definition"><strong>Definición 1.1  (Estimación puntual) </strong></span>Una <strong>estimación puntual</strong> de un parámetro <span class="math inline">\(\theta\)</span> es un número único que puede ser considerado como un valor sensible de <span class="math inline">\(\theta\)</span>. Se obtiene una estimación puntual seleccionando un estadístico apropiado y calculando su valor con los datos muestrales dados. El estadístico seleccionado se llama <strong>estimador puntual</strong> de <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<p>En el ejemplo de la batería que se acaba de dar, el estimador utilizado para obtener la estimación puntual de <span class="math inline">\(\mu\)</span> fue <span class="math inline">\(\bar{X}\)</span> y la estimación puntual de <span class="math inline">\(\mu\)</span> fue 5.77. Si las tres vidas útiles hubieran sido <span class="math inline">\(x_1 = 5.6\)</span>, <span class="math inline">\(x_2 = 4.5\)</span> y <span class="math inline">\(x_3 = 6.1\)</span>, el uso del estimador <span class="math inline">\(\bar{X}\)</span> habría dado por resultado la estimación <span class="math inline">\(\bar{x} = (5.6 + 4.5 + 6.1)/3 = 5.40\)</span>. El símbolo <span class="math inline">\(\hat{\theta}\)</span> (“teta testada”) se utiliza comúnmente para denotar tanto la estimación de <span class="math inline">\(\theta\)</span> como la estimación puntual que resulta de una muestra dada. Por tanto, <span class="math inline">\(\hat{\mu} = \bar{X}\)</span> se lee como “el estimador puntual de <span class="math inline">\(\mu\)</span> es la media” muestral <span class="math inline">\(\overline{X}\)</span>. La proposición ``la estimación puntual de <span class="math inline">\(\mu\)</span> es 5.77’’ se escribe concisamente como <span class="math inline">\(\hat{\mu} = 5.77\)</span>. Obsérvese que cuando se escribe <span class="math inline">\(\hat{\theta} = 72.5\)</span>, no hay ninguna indicación de cómo se obtuvo esta estimación puntual (qué estadístico se utilizó). Se recomienda reportar tanto el estimador como la estimación resultante.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-2" class="example"><strong>Ejemplo 1.1  </strong></span>Un fabricante automotriz ha producido un nuevo tipo de defensa, la que se presume absorber impactos con menos daño que las defensas previas. El fabricante ha utilizado esta defensa en una secuencia de 25 choques controlados con un muro, cada uno a 10 mph, utilizando uno de sus modelos de carro compacto. Sea <span class="math inline">\(X =\)</span> el número de choques que no provocaron daños visibles al automóvil. El parámetro que tiene que ser estimado es <span class="math inline">\(p =\)</span> la proporción de todos los choques que no provocaron daños [alternativamente, <span class="math inline">\(p = P(\text{ningún daño en un choque})\)</span>]. Si se observa que <span class="math inline">\(X\)</span> es <span class="math inline">\(x = 15\)</span>, el estimador y estimación más razonables son</p>
+<p><span class="math display">\[
+\text{estimador } \hat{p} = \frac{X}{n}
+\]</span></p>
+<p><span class="math display">\[
+\text{estimación } \hat{x} = \frac{X}{n} = \frac{15}{25} = 0.60
+\]</span></p>
+<p>Si por cada parámetro de interés hubiera sólo un estimador puntual razonable, no habría mucho para la estimación puntual. En la mayoría de los problemas, sin embargo, habrá más de un estimador razonable.</p>
+</div>
+</div>
+<!-- :::: {.blackbox} -->
+<!-- ::: {.example} -->
+<!-- Reconsidere las 20 observaciones adjuntas de voltaje de ruptura dieléctrica de piezas de resina epóxica introducidas por primera vez en el ejemplo 4.30 (sección 4.6). -->
+<!-- \begin{center} -->
+<!-- \begin{tabular}{*{10}{c}} -->
+<!-- 24.46 & 25.61 & 26.25 & 26.42 & 26.66 & 27.15 & 27.31 & 27.54 & 27.74 & 27.94 \\ -->
+<!-- 27.98 & 28.04 & 28.28 & 28.49 & 28.50 & 28.87 & 29.11 & 29.13 & 29.50 & 30.88 -->
+<!-- \end{tabular} -->
+<!-- \end{center} -->
+<!-- El patrón en la gráfica de probabilidad normal dado allí es bastante recto, así que ahora se supone que la distribución de voltaje de ruptura es normal con valor medio \( \mu \). Como las distribuciones normales son simétricas, \( \mu \) también es la vida útil mediana de la distribución. Se supone entonces que las observaciones dadas son el resultado de una muestra aleatoria \( X_1, X_2, \ldots, X_{20} \) de esta distribución normal. Considere los siguientes estimadores y las estimaciones resultantes de \( \mu \): -->
+<!-- a. Estimador = \( \overline{X} \), estimación = \( \overline{X} = \sum X_i / n = 555.86 / 20 = 27.793 \) -->
+<!-- b. Estimador = \( \tilde{X} \), estimación = \( \tilde{X} = (27.94 + 27.98) / 2 = 27.960 \) -->
+<!-- c. Estimador = \( [\min(X_i) + \max(X_i)] / 2 = \) el promedio de las dos vidas útiles extremas, estimación = \( [\min(x_i) + \max(x_i)] / 2 = (24.46 + 30.88) / 2 = 27.670 \) -->
+<!-- d. Estimador = \( \overline{X}_{(10)} \), la media 10\% recortada (desechar el 10\% más pequeño y más grande de la muestra y luego promediar). -->
+<!-- \[ -->
+<!-- \text{estimación } \hat{\overline{X}}_{(10)} = \frac{555.86 - 24.46 - 25.61 - 29.50 - 30.88}{16} = 27.838 -->
+<!-- \] -->
+<!-- Cada uno de los estimadores a) al d) utiliza una medición diferente del centro de la muestra para estimar \( \mu \). ¿Cuál de las estimaciones se acerca más al valor verdadero? No se puede responder esta pregunta sin conocer el valor verdadero. Una preguntas de interés qué se abordará posteriormente es: ¿Cuál estimador, cuando se utiliza en otras muestras de \( X_i \), tiende a producir estimaciones cercanas al valor verdadero?  -->
+<!-- ::: -->
+<!-- :::: -->
+<div id="propiedades-de-los-estimadores" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Propiedades de los estimadores<a href="estimacion-puntual.html#propiedades-de-los-estimadores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="insesgadez" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Insesgadez<a href="estimacion-puntual.html#insesgadez" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Supóngase que se tienen dos instrumentos de medición: uno ha sido calibrado con precisión, pero el otro sistemáticamente da lecturas más pequeñas que el valor verdadero que se está midiendo. Cuando cada uno de los instrumentos se utiliza repetidamente en el mismo objeto, debido al error de medición, las mediciones observadas no serán idénticas. Sin embargo, las mediciones producidas por el primer instrumento se distribuirán en torno al valor verdadero de tal modo que en promedio este instrumento mide lo que se propone medir, por lo que este instrumento se conoce como instrumento insesgado. El segundo instrumento proporciona observaciones que tienen un componente de error o sesgo sistemático.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-3" class="definition"><strong>Definición 1.2  (Estimador insesgado) </strong></span>Se dice que un estimador puntual <span class="math inline">\(\hat{\theta}\)</span> es un <strong>estimador insesgado</strong> de <span class="math inline">\(\theta\)</span> si <span class="math inline">\(E(\hat{\theta}) = \theta\)</span> con todo valor posible de <span class="math inline">\(\theta\)</span>. Si <span class="math inline">\(\hat{\theta}\)</span> no es insesgado, la diferencia <span class="math inline">\(E(\hat{\theta}) - \theta\)</span> se conoce como el <strong>sesgo</strong> de <span class="math inline">\(\hat{\theta}\)</span>.</p>
+</div>
+<p>Es decir, <span class="math inline">\(\hat{\theta}\)</span> es insesgado si su distribución de probabilidad (es decir, muestreo) siempre está “centrada” en el valor verdadero del parámetro. Supóngase que <span class="math inline">\(\hat{\theta}\)</span> es un estimador insesgado; entonces si <span class="math inline">\(\theta = 100\)</span>, la distribución muestral <span class="math inline">\(\hat{\theta}\)</span> está centrada en 100; si <span class="math inline">\(\theta = 27.5\)</span>, en ese caso la distribución muestral <span class="math inline">\(\hat{\theta}\)</span> está centrada en 27.5, y así sucesivamente.</p>
+<p>Parece como si fuera necesario conocer el valor de <span class="math inline">\(\theta\)</span> (en cuyo caso la estimación es innecesaria) para ver si <span class="math inline">\(\hat{\theta}\)</span> es insesgado. Éste casi nunca es el caso, puesto que insesgamiento es una propiedad general del estimador muestral, donde se centra, y generalmente no depende de cualquier valor de parámetro particular.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-4" class="example"><strong>Ejemplo 1.2  </strong></span>Sean <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> una muestra aleatoria de una distribución con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span>. Entonces el estimador</p>
+<p><span class="math display">\[
+\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i
+\]</span></p>
+<p>es un estimador insesgado de <span class="math inline">\(\mu\)</span>.</p>
+<p>Para cualquier variable aleatoria <span class="math inline">\(Y\)</span>, <span class="math inline">\(V(Y) = E(Y^2) - [E(Y)]^2\)</span>, por lo tanto<br />
+<span class="math display">\[ E(Y^2) = V(Y) + [E(Y)]^2 \]</span>. Aplicando esto a</p>
+<p><span class="math display">\[
+S^2 = \frac{1}{n-1} \left[ \sum X_i^2 - \frac{(\sum X_i)^2}{n} \right]
+\]</span></p>
+<p>se obtiene</p>
+<p><span class="math display">\[
+E(S^2) = \frac{1}{n-1} \left\{ \sum E(X_i^2) - \frac{1}{n} E\left[(\sum X_i)^2\right] \right\}
+\]</span></p>
+<p><span class="math display">\[
+= \frac{1}{n-1} \left\{ n\sigma^2 + n\mu^2 - \frac{1}{n} (n\sigma^2 + n^2\mu^2) \right\}
+\]</span></p>
+<p><span class="math display">\[
+= \frac{1}{n-1} \left\{ n\sigma^2 + n\mu^2 - \sigma^2 - n\mu^2 \right\} = \frac{1}{n-1} (n\sigma^2 - \sigma^2) = \sigma^2
+\]</span></p>
+<p>El estimador que utiliza el divisor <span class="math inline">\(n\)</span> se expresa como <span class="math inline">\((n-1)S^2/n\)</span>, por lo tanto</p>
+<p><span class="math display">\[
+E\left[\frac{(n-1)S^2}{n}\right] = \frac{n-1}{n} E(S^2) = \frac{n-1}{n} \sigma^2
+\]</span></p>
+<p>Este estimador es por consiguiente sesgado. El sesgo es <span class="math inline">\(- \sigma^2 / n\)</span>. Como el sesgo es negativo, el estimador con divisor <span class="math inline">\(n\)</span> subestima <span class="math inline">\(\sigma^2\)</span> y por eso muchos estadísticos prefieren el divisor <span class="math inline">\(n-1\)</span> (aunque cuando <span class="math inline">\(n\)</span> es grande, el sesgo es pequeño y hay poca diferencia entre los dos).</p>
+<p>Aun cuando <span class="math inline">\(S^2\)</span> es insesgado para <span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(S\)</span> es un estimador sesgado de <span class="math inline">\(\sigma\)</span> (su sesgo depende de la distribución). Tampoco existe un estimador insesgado único para <span class="math inline">\(\mu\)</span> de una distribución normal. Si hubiera un estimador insesgado único para <span class="math inline">\(\mu\)</span>, el problema de estimación se simplificaría utilizando dicho estimador. Desafortunadamente, este no es el caso.</p>
+</div>
+</div>
+<p>Supóngase que <span class="math inline">\(\hat{\theta}_1\)</span> y <span class="math inline">\(\hat{\theta}_2\)</span> son dos estimadores de <span class="math inline">\(\theta\)</span> insesgados. Entonces, aunque la distribución de cada estimador esté centrada en el valor verdadero de <span class="math inline">\(\theta\)</span>, las dispersiones de las distribuciones en torno al valor verdadero pueden ser diferentes.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-5" class="definition"><strong>Definición 1.3  (Principio de estimación insesgada con varianza mínima) </strong></span>Entre todos los estimadores de <span class="math inline">\(\theta\)</span> insesgados, se selecciona el de varianza mínima. El <span class="math inline">\(\hat{\theta}\)</span> resultante se llama <strong>estimador insesgado con varianza mínima (EIVM)</strong> de <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-6" class="exercise"><strong>Ejercicio 1.1  </strong></span>Si <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> representan una muestra aleatoria tomada de una distribución de Rayleigh con función de densidad de probabilidad</p>
+<p><span class="math display">\[
+f(x; \theta) = \frac{x}{\theta} e^{-x^2/(2\theta)}, \quad x &gt; 0
+\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Se puede demostrar que <span class="math inline">\(E(X^2) = 2\theta\)</span>. Use este hecho para construir un estimador insesgado de <span class="math inline">\(\theta\)</span> basado en <span class="math inline">\(\sum X_i^2\)</span> (y use reglas de valor esperado para demostrar que es insesgado).</p></li>
+<li><p>Calcule <span class="math inline">\(\hat{\theta}\)</span> a partir de las siguientes <span class="math inline">\(n = 10\)</span> observaciones de esfuerzo vibratorio de un aspa de turbina en condiciones específicas:</p></li>
+</ol>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:center;">
+16.88
+</td>
+<td style="text-align:center;">
+10.23
+</td>
+<td style="text-align:center;">
+4.59
+</td>
+<td style="text-align:center;">
+6.66
+</td>
+<td style="text-align:center;">
+13.68
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14.23
+</td>
+<td style="text-align:center;">
+19.87
+</td>
+<td style="text-align:center;">
+9.40
+</td>
+<td style="text-align:center;">
+6.51
+</td>
+<td style="text-align:center;">
+10.95
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="eficiencia" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Eficiencia<a href="estimacion-puntual.html#eficiencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La eficiencia compara la varianza de diferentes estimadores. Un estimador es más eficiente si tiene una dispersión menor alrededor del parámetro.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-7" class="definition"><strong>Definición 1.4  (Eficiencia relativa) </strong></span>Si tenemos dos estimadores insesgados, <span class="math inline">\(\hat{\theta}_1\)</span> y <span class="math inline">\(\hat{\theta}_2\)</span>, la eficiencia relativa de <span class="math inline">\(\hat{\theta}_1\)</span> respecto a <span class="math inline">\(\hat{\theta}_2\)</span> se define como:</p>
+<p><span class="math display">\[ ER(\hat{\theta}_1, \hat{\theta}_2) = \frac{Var(\hat{\theta}_2)}{Var(\hat{\theta}_1)} \]</span></p>
+<p>Si <span class="math inline">\(ER &gt; 1\)</span>, entonces <span class="math inline">\(\hat{\theta}_1\)</span> es más eficiente que <span class="math inline">\(\hat{\theta}_2\)</span>.</p>
+</div>
+<p>En caso de que los estimadores no sean insesgados, se puede usar el Error Cuadrático Medio (ECM) para comparar su eficiencia:</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-8" class="definition"><strong>Definición 1.5  (Eficiencia basada en ECM) </strong></span>Si <span class="math inline">\(\hat{\theta}_1\)</span> y <span class="math inline">\(\hat{\theta}_2\)</span> son dos estimadores de <span class="math inline">\(\theta\)</span>, la eficiencia relativa basada en el ECM se define como:
+<span class="math display">\[ ER_{ECM}(\hat{\theta}_1, \hat{\theta}_2) = \frac{ECM(\hat{\theta}_2)}{ECM(\hat{\theta}_1)} \]</span>
+Donde <span class="math inline">\(ECM(\hat{\theta}) = Var(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2\)</span>.</p>
+<p>Si <span class="math inline">\(ER_{ECM} &gt; 1\)</span>, entonces <span class="math inline">\(\hat{\theta}_1\)</span> es más eficiente que <span class="math inline">\(\hat{\theta}_2\)</span>.</p>
+</div>
+</div>
+<div id="consistencia" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Consistencia<a href="estimacion-puntual.html#consistencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La consistencia es una propiedad asintótica. Se refiere a cómo se comporta el estimador a medida que el tamaño de la muestra <span class="math inline">\(n\)</span> aumenta indefinidamente.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-9" class="definition"><strong>Definición 1.6  (Estimador consistente) </strong></span>Se dice que un estimador <span class="math inline">\(\hat{\theta}_n\)</span> es si converge en probabilidad al valor verdadero del parámetro <span class="math inline">\(\theta\)</span>. Matemáticamente, para cualquier <span class="math inline">\(\epsilon &gt; 0\)</span>:</p>
+<p><span class="math display">\[ \lim_{n \to \infty} P(|\hat{\theta}_n - \theta| &gt; \epsilon) = 0 \]</span></p>
+<p>O de manera equivalente:
+<span class="math display">\[ \text{plim } \hat{\theta}_n = \theta \]</span></p>
+</div>
+<p>Una forma común de verificar la consistencia es a través del Error Cuadrático Medio (<span class="math inline">\(ECM\)</span>) (condición suficiente). Si el sesgo y la varianza tienden a cero cuando <span class="math inline">\(n \to \infty\)</span>, el estimador es consistente:</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\lim_{n \to \infty} E(\hat{\theta}_n) = \theta\)</span> (Insesgadez asintótica)</li>
+<li><span class="math inline">\(\lim_{n \to \infty} Var(\hat{\theta}_n) = 0\)</span></li>
+</ol>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-10" class="example"><strong>Ejemplo 1.3  </strong></span>Sea <span class="math inline">\(X_1, X_2, \dots, X_n\)</span> una muestra aleatoria de una población con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2 &lt; \infty\)</span>. El estimador <span class="math inline">\(\bar{X}_n = \frac{1}{n} \sum X_i\)</span> es consistente para <span class="math inline">\(\mu\)</span> porque:
+<span class="math display">\[ E(\bar{X}_n) = \mu \quad \text{y} \quad Var(\bar{X}_n) = \frac{\sigma^2}{n} \]</span>
+Al aplicar el límite:
+<span class="math display">\[ \lim_{n \to \infty} \frac{\sigma^2}{n} = 0 \]</span>
+Por la Ley Débil de los Grandes Números, <span class="math inline">\(\bar{X}_n \xrightarrow{p} \mu\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="el-error-estándar" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> El error estándar<a href="estimacion-puntual.html#el-error-est%C3%A1ndar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Además de reportar el valor de una estimación puntual, se debe dar alguna indicación de su precisión. La medición usual de precisión es el error estándar del estimador usado.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-11" class="definition"><strong>Definición 1.7  (Error estándar) </strong></span>El <strong>error estándar</strong> de un estimador <span class="math inline">\(\hat{\theta}\)</span> es su desviación estándar <span class="math inline">\(\sigma_{\hat{\theta}} = \sqrt{V(\hat{\theta})}\)</span>. Si el error estándar implica parámetros desconocidos cuyos valores pueden ser estimados, la sustitución de estas estimaciones en <span class="math inline">\(\sigma_{\hat{\theta}}\)</span> da el <strong>error estándar estimado</strong> (desviación estándar estimada) del estimador. El error estándar estimado puede ser denotado o por <span class="math inline">\(\hat{\sigma}_{\hat{\theta}}\)</span> (el <span class="math inline">\(\wedge\)</span> sobre <span class="math inline">\(\sigma\)</span> recalca que <span class="math inline">\(\sigma_{\hat{\theta}}\)</span> está siendo estimada) o por <span class="math inline">\(s_{\hat{\theta}}\)</span>.</p>
+</div>
+</div>
+<div id="métodos-de-estimación" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Métodos de estimación<a href="estimacion-puntual.html#m%C3%A9todos-de-estimaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La definición de insesgamiento no indica en general cómo se pueden obtener los estimadores insesgados. A continuación se discuten dos métodos “constructivos” para obtener estimadores puntuales: el método de momentos y el método de máxima verosimilitud. Por constructivo se quiere dar a entender que la definición general de cada tipo de estimador sugiere explícitamente cómo obtener el estimador en cualquier problema específico. Aun cuando se prefieren los estimadores de máxima verosimilitud a los de momento debido a ciertas propiedades de eficiencia, a menudo requieren significativamente más cálculo que los estimadores de momento. En ocasiones es el caso que estos métodos dan estimadores insesgados.</p>
+<div id="método-de-momentos-em" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Método de momentos (EM)<a href="estimacion-puntual.html#m%C3%A9todo-de-momentos-em" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La idea básica de este método es poder igualar ciertas características muestrales, tales como la media, a los valores esperados de la población correspondiente. Luego resolviendo estas ecuaciones con valores de parámetros conocidos se obtienen los estimadores.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-12" class="definition"><strong>Definición 1.8  </strong></span>Si <span class="math inline">\(X_1, \ldots, X_n\)</span> constituyen una muestra aleatoria proveniente de una función masa de probabilidad o de una función de densidad de probabilidad <span class="math inline">\(f(x)\)</span>. Con <span class="math inline">\(k = 1, 2, 3, \ldots\)</span> el <strong>k-ésimo momento de la población</strong> o el <strong>k-ésimo momento de la distribución</strong> <span class="math inline">\(f(x)\)</span> es <span class="math inline">\(E(X^k)\)</span>. El <strong>k-ésimo momento muestral</strong> es <span class="math inline">\(\frac{1}{n} \sum_{i=1}^n X_i^k\)</span>.</p>
+</div>
+<p>Por consiguiente el primer momento de la población es <span class="math inline">\(E(X) = \mu\)</span> y el primer momento muestral es <span class="math inline">\(\frac{1}{n} \sum X_i = \overline{X}\)</span>. Los segundos momentos de la población y muestral son <span class="math inline">\(E(X^2)\)</span> y <span class="math inline">\(\frac{1}{n} \sum X_i^2\)</span>, respectivamente. Los momentos de la población serán funciones de cualquier parámetro desconocido <span class="math inline">\(\theta_1, \theta_2, \ldots\)</span>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-13" class="definition"><strong>Definición 1.9  (Estimadores de momento) </strong></span>Si <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> son una muestra aleatoria de una distribución con función masa de probabilidad o función de densidad de probabilidad <span class="math inline">\(f(x; \theta_1, \ldots, \theta_m)\)</span>, donde <span class="math inline">\(\theta_1, \ldots, \theta_m\)</span> son parámetros cuyos valores son desconocidos. Entonces los estimadores de momento <span class="math inline">\(\hat{\theta}_1, \ldots, \hat{\theta}_m\)</span> se obtienen igualando los primeros <span class="math inline">\(m\)</span> momentos muestrales con los primeros <span class="math inline">\(m\)</span> momentos de la población correspondientes y resolviendo para <span class="math inline">\(\theta_1, \ldots, \theta_m\)</span>.</p>
+</div>
+<p>Si, por ejemplo, <span class="math inline">\(m = 2\)</span>, <span class="math inline">\(E(X)\)</span> y <span class="math inline">\(E(X^2)\)</span> serán funciones de <span class="math inline">\(\theta_1\)</span> y <span class="math inline">\(\theta_2\)</span>. Con <span class="math inline">\(E(X) = (1/n) \sum X_i = \overline{X}\)</span> y <span class="math inline">\(E(X^2) = (1/n) \sum X_i^2\)</span> se obtienen dos ecuaciones en <span class="math inline">\(\theta_1\)</span> y <span class="math inline">\(\theta_2\)</span>. La solución define entonces los estimadores. Para estimar una media <span class="math inline">\(\mu\)</span> poblacional, el método da <span class="math inline">\(\hat{\mu} = \overline{X}\)</span>, por lo tanto el estimador es la media muestral.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-14" class="example"><strong>Ejemplo 1.4  </strong></span>Si <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> representan una muestra aleatoria de tiempos de servicio de <span class="math inline">\(n\)</span> clientes en una instalación, donde la distribución subyacente se supone exponencial con el parámetro <span class="math inline">\(\lambda\)</span>. Como sólo hay un parámetro que tiene que ser estimado, el estimador se obtiene igualando <span class="math inline">\(E(X) = \overline{X}\)</span>. Como <span class="math inline">\(E(X) = 1/\lambda\)</span> con una distribución exponencial, ésta da <span class="math inline">\(1/\lambda = \overline{X}\)</span> o <span class="math inline">\(\lambda = 1/\overline{X}\)</span>. El estimador de momento de <span class="math inline">\(\lambda\)</span> es entonces <span class="math inline">\(\hat{\lambda} = 1/\overline{X}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="estimacón-de-máxima-verosimilitud-emv" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Estimacón de máxima verosimilitud (EMV)<a href="estimacion-puntual.html#estimac%C3%B3n-de-m%C3%A1xima-verosimilitud-emv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El método de máxima verosimilitud lo introdujo por primera vez R. A. Fisher, genetista y estadístico en la década de 1920. La mayoría de los estadísticos recomiendan este método, por lo menos cuando el tamaño de muestra es grande, puesto que los estimadores resultantes tienen ciertas propiedades de eficiencia deseables (véase la proposición en la página 249).</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-15" class="definition"><strong>Definición 1.10  (Método de máxima verosimilitud) </strong></span>Que <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> tengan una función masa de probabilidad o una función de densidad de probabilidad</p>
+<p><span class="math display">\[
+f(x_1, x_2, \ldots, x_n; \theta_1, \ldots, \theta_m)
+\]</span></p>
+<p>donde los parámetros <span class="math inline">\(\theta_1, \ldots, \theta_m\)</span> tienen valores desconocidos. Cuando <span class="math inline">\(x_1, \ldots, x_n\)</span> son los valores muestrales observados y la ecuación anterior se considera como una función de <span class="math inline">\(\theta_1, \ldots, \theta_m\)</span>, se llama . Las estimaciones de máxima verosimilitud (emv) <span class="math inline">\(\hat{\theta}_1, \ldots, \hat{\theta}_m\)</span> son aquellos valores de las <span class="math inline">\(\theta_i\)</span> que incrementan al máximo la función de verosimilitud, de modo que</p>
+<p><span class="math display">\[
+f(x_1, \ldots, x_n; \hat{\theta}_1, \ldots, \hat{\theta}_m) \geq f(x_1, \ldots, x_n; \theta_1, \ldots, \theta_m)
+\]</span></p>
+<p>con todos los <span class="math inline">\(\theta_1, \ldots, \theta_m\)</span>.</p>
+<p>Cuando se sustituyen las <span class="math inline">\(X_i\)</span> en lugar de las <span class="math inline">\(x_i\)</span>, se obtienen los <strong>estimadores de máxima verosimilitud</strong>.</p>
+</div>
+<p>La función de verosimilitud dice qué tan probable es que la muestra observada sea una función de los posibles valores de parámetro. Al incrementarse al máximo la verosimilitud se obtienen los valores de parámetro con los que la muestra observada es más probable que haya sido generada, es decir, los valores de parámetro que ``más concuerdan’’ con los datos observados.</p>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-16" class="example"><strong>Ejemplo 1.5  </strong></span>Suponga que <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> es una muestra aleatoria de una distribución exponencial con parámetro <span class="math inline">\(\lambda\)</span>. Debido a la independencia, la función de verosimilitud es un producto de las funciones de densidad de probabilidad individuales:</p>
+<p><span class="math display">\[
+f(x_1, \ldots, x_n; \lambda) = (\lambda e^{-\lambda x_1}) \cdots (\lambda e^{-\lambda x_n}) = \lambda^n e^{-\lambda \sum x_i}
+\]</span></p>
+<p>El logaritmo de la verosimilitud es</p>
+<p><span class="math display">\[
+\ln[f(x_1, \ldots, x_n; \lambda)] = n \ln(\lambda) - \lambda \sum_{i=1}^{n} x_i
+\]</span></p>
+<p>Si se iguala <span class="math inline">\(\frac{d}{d\lambda}[\ln(\text{verosimilitud})]\)</span> a cero se obtiene</p>
+<p><span class="math display">\[
+\frac{n}{\lambda} - \sum_{i=1}^{n} x_i = 0
+\]</span></p>
+<p>o</p>
+<p><span class="math display">\[
+\lambda = \frac{n}{\sum x_i} = \frac{1}{\bar{x}}
+\]</span></p>
+<p>Por consiguiente el estimador de máxima verosimilitud es <span class="math inline">\(\hat{\lambda} = 1/\bar{X}\)</span>; es idéntico al estimador de momentos [pero no es un estimador insesgado, puesto que <span class="math inline">\(E(1/\bar{X}) \neq 1/E(\bar{X})\)</span>].</p>
+</div>
+</div>
+<div class="blackbox">
+<div class="example">
+<p><span id="exm:unlabeled-div-17" class="example"><strong>Ejemplo 1.6  </strong></span>Sean <span class="math inline">\(X_1, \ldots, X_n\)</span> una muestra aleatoria de una distribución normal. La función de verosimilitud es</p>
+<p><span class="math display">\[
+f(x_1, \ldots, x_n; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x_1 - \mu)^2 / (2\sigma^2)} \cdot \cdots \cdot \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x_n - \mu)^2 / (2\sigma^2)}
+\]</span></p>
+<p><span class="math display">\[
+= \left(\frac{1}{2\pi\sigma^2}\right)^{n/2} e^{-\sum_{i=1}^n (x_i - \mu)^2 / (2\sigma^2)}
+\]</span></p>
+<p>por consiguiente</p>
+<p><span class="math display">\[
+\ln[f(x_1, \ldots, x_n; \mu, \sigma^2)] = -\frac{n}{2} \ln(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2
+\]</span></p>
+<p>Para determinar los valores maximizantes de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>, se deben tomar las derivadas parciales de <span class="math inline">\(\ln(f)\)</span> con respecto a <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>, igualarlas a cero y resolver las dos ecuaciones resultantes. Omitiendo los detalles, los estimadores de máxima verosimilitud resultantes son</p>
+<p><span class="math display">\[
+\hat{\mu} = \bar{X}, \quad \hat{\sigma}^2 = \frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n}
+\]</span></p>
+<p>El estimador de máxima verosimilitud de <span class="math inline">\(\sigma^2\)</span> no es el estimador insesgado, por consiguiente dos principios diferentes de estimación (insesgamiento y máxima verosimilitud) dan dos estimadores diferentes.</p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-18" class="exercise"><strong>Ejercicio 1.2  </strong></span>Se selecciona una muestra aleatoria de <span class="math inline">\(n\)</span> cascos para ciclistas fabricados por una compañía. Sea <span class="math inline">\(X =\)</span> el número entre los <span class="math inline">\(n\)</span> que están agrietados y sea <span class="math inline">\(p = P(\text{agrietado})\)</span>. Suponga que sólo se observa <span class="math inline">\(X\)</span>, en lugar de la secuencia de <span class="math inline">\(S\)</span> y <span class="math inline">\(F\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Obtenga el estimador de máxima verosimilitud de <span class="math inline">\(p\)</span>. Si <span class="math inline">\(n = 20\)</span> y <span class="math inline">\(x = 3\)</span>, ¿cuál es la estimación?</p></li>
+<li><p>¿Es insesgado el estimador del inciso a)?</p></li>
+<li><p>Si <span class="math inline">\(n = 20\)</span> y <span class="math inline">\(x = 3\)</span>, ¿cuál es el estimador de máxima verosimilitud de la probabilidad <span class="math inline">\((1 - p)^5\)</span> de que ninguno de los siguientes cinco cascos esté agrietado?</p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-19" class="exercise"><strong>Ejercicio 1.3  </strong></span>Sea <span class="math inline">\(X\)</span> la proporción de tiempo destinado que un estudiante seleccionado al azar pasa resolviendo cierta prueba de aptitud. Suponga que la función de densidad de probabilidad de <span class="math inline">\(X\)</span> es</p>
+<p><span class="math display">\[
+f(x; \theta) =
+\begin{cases}
+(\theta + 1)x^\theta, &amp; 0 \leq x \leq 1 \\
+0, &amp; \text{de lo contrario}
+\end{cases}
+\]</span></p>
+<p>donde <span class="math inline">\(\theta &gt; -1\)</span>. Una muestra aleatoria de diez estudiantes produce los datos <span class="math inline">\(x_1 = 0.92\)</span>, <span class="math inline">\(x_2 = 0.79\)</span>, <span class="math inline">\(x_3 = 0.90\)</span>, <span class="math inline">\(x_4 = 0.65\)</span>, <span class="math inline">\(x_5 = 0.86\)</span>, <span class="math inline">\(x_6 = 0.47\)</span>, <span class="math inline">\(x_7 = 0.73\)</span>, <span class="math inline">\(x_8 = 0.97\)</span>, <span class="math inline">\(x_9 = 0.94\)</span>, <span class="math inline">\(x_{10} = 0.77\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Use el método de momentos para obtener un estimador de <span class="math inline">\(\theta\)</span> y luego calcule la estimación con estos datos.</p></li>
+<li><p>Obtenga el estimador de máxima verosimilitud de <span class="math inline">\(\theta\)</span> y luego calcule la estimación con los datos dados.</p></li>
+</ol>
+</div>
+<!-- ## Estimación de funciones de parámetros -->
+</div>
+</div>
+<div id="comportamiento-del-emv-en-muestras-grandes" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Comportamiento del EMV en muestras grandes<a href="estimacion-puntual.html#comportamiento-del-emv-en-muestras-grandes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Aunque el principio de la estimación de máxima verosimilitud tiene un considerable atractivo intuitivo, la siguiente proposición proporciona razones adicionales fundamentales para el uso de estimadores de máxima verosimilitud.</p>
+<div class="prop">
+<p>En condiciones muy generales en relación con la distribución conjunta de la muestra, cuando el tamaño de la muestra <span class="math inline">\(n\)</span> es grande, el estimador de máxima verosimilitud de cualquier parámetro <span class="math inline">\(\theta\)</span> es aproximadamente insesgado <span class="math inline">\([E(\hat{\theta}) \approx \theta]\)</span> y su varianza es casi tan pequeña como la que puede ser lograda por cualquier estimador. Expresado de otra manera, el estimador de máxima verosimilitud <span class="math inline">\(\hat{\theta}\)</span> es aproximadamente el estimador insesgado con varianza mínima de <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<p>Debido a este resultado y al hecho de que las técnicas basadas en el cálculo casi siempre pueden ser utilizadas para derivar los estimadores de máxima verosimilitud (aunque a veces se requieren métodos numéricos, tales como el método de Newton), la estimación de máxima verosimilitud es la técnica de estimación más ampliamente utilizada entre los estadísticos. Muchos de los estimadores utilizados en lo que resta del libro son estimadores de máxima verosimilitud. La obtención de un estimador de máxima verosimilitud, sin embargo, requiere que se especifique la distribución subyacente.</p>
+</div>
+<div id="ejercicios" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Ejercicios<a href="estimacion-puntual.html#ejercicios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+<h3>Referencias<a href="referencias.html#referencias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-Devore" class="csl-entry">
+Devore, J. L. (2008). <em>Probability and statistics for engineering and the sciences</em> (7th ed). Thomson/Brooks/Cole.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intervalos-de-confianza.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": true,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": true,
+    "all": false
+  },
+  "fontsettings": false,
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["EstadisticaII.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": null
+  },
+  "info": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

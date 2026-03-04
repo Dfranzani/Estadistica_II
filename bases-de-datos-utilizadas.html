@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>B Métricas | Estadística II &amp; Inferencia Estadística</title>
+  <title>Bases de datos utilizadas | Estadística II &amp; Inferencia Estadística</title>
   <meta name="description" content="Curso básico de Estadística para ingeniería." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="B Métricas | Estadística II &amp; Inferencia Estadística" />
+  <meta property="og:title" content="Bases de datos utilizadas | Estadística II &amp; Inferencia Estadística" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Curso básico de Estadística para ingeniería." />
   <meta name="github-repo" content="Dfranzani/Estadistica_II" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="B Métricas | Estadística II &amp; Inferencia Estadística" />
+  <meta name="twitter:title" content="Bases de datos utilizadas | Estadística II &amp; Inferencia Estadística" />
   
   <meta name="twitter:description" content="Curso básico de Estadística para ingeniería." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="estimadores.html"/>
-<link rel="next" href="estadísticos.html"/>
+<link rel="prev" href="regresion-lineal.html"/>
+<link rel="next" href="estimadores.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -300,111 +300,76 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="métricas" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">B</span> Métricas<a href="métricas.html#m%C3%A9tricas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="R2-no-decreciente" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">B.1</span> <span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2\)</span> ajustado<a href="métricas.html#R2-no-decreciente" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>El coeficiente de determinación no decrece al añadir covariables al modelo de regresión lineal múltiple, es decir, la Suma Cuadrática de Errores no incrementa al aumentar la cantidad de covariables en el modelo.</p>
-<p>En primer lugar, considere la propiedad <span class="math inline">\(e^tX = 0\)</span>, donde, <span class="math inline">\(e\)</span> es la matriz de residuos y <span class="math inline">\(X\)</span> es la matriz de diseño de un modelo de regresión lineal múltiple ajustado. La demostración de esta propiedad es la siguiente:</p>
-<span class="math display" id="eq:propiedad-residuos">\[\begin{equation}
-\begin{split}
-e^tX &amp;= (Y - \widehat{Y})^tX\\
-&amp;= (Y - X\widehat{\beta})^tX\\
-&amp;= (Y - X(X^tX)^{-1}X^tY)^tX\\
-&amp;= (Y^t - Y^tX(X^tX)^{-1}X^t)X\\
-&amp;= Y^tX - Y^tX(X^tX)^{-1}X^tX\\
-&amp;= Y^tX - Y^tXI\\
-&amp;= Y^tX - Y^tX\\
-&amp;= 0\\
-\end{split}
-\tag{B.1}
-\end{equation}\]</span>
-<p>Esto implica, que la suma de la multiplicación de los residuos de un modelo ajustado por cualquier columna de la matriz de diseño es igual a cero. Ahora, considere dos modelos de regresión lineal múltiple.</p>
-<span class="math display" id="eq:R2-RLM1y2">\[\begin{equation}
-\begin{split}
-\text{Modelo 1: } Y &amp;= X_0\widehat{\beta} + a\\
-\text{Modelo 2: } Y &amp;= X_0\widehat{\beta}_0 + X_1\widehat{\beta}_1 + b,\\
-\end{split}
-\tag{B.2}
-\end{equation}\]</span>
-<p>donde, <span class="math inline">\(X_0\)</span> y <span class="math inline">\(X_1\)</span> son matrices de diseño, <span class="math inline">\(\widehat{\beta}\)</span>, <span class="math inline">\(\widehat{\beta}_0\)</span> y <span class="math inline">\(\widehat{\beta}_1\)</span> son las matrices de los EMC de parámetros y, <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son las matrices de los residuos de cada modelo ajustado. Como se observa, el segundo modelo tiene una segunda matriz de covariables, por lo cual, el valor del <span class="math inline">\(R^2\)</span> de este modelo no puede ser menor al del primero. Para demostrar esto, considere la igualdad entre los modelos <a href="métricas.html#eq:R2-RLM1y2">(B.2)</a>.</p>
-<span class="math display" id="eq:igualacion-modelos1">\[\begin{equation}
-\begin{split}
-X_0\beta + a &amp;= X_0\beta_0 + X_1\beta_1 + b\\
-b^tX_0\beta + b^ta &amp;= b^tX_0\beta_0 + b^tX_1\beta_1 + b^tb\\
-\end{split}
-\tag{B.3}
-\end{equation}\]</span>
-<p>Luego, por el resultado obtenido en la ecuación <a href="métricas.html#eq:propiedad-residuos">(B.1)</a>, se tiene que</p>
-<span class="math display" id="eq:igualacion-modelos2">\[\begin{equation}
-\begin{split}
-0 + b^ta &amp;= 0 + 0 + b^tb\\
-b^ta &amp;=b^tb\\
-\end{split}
-\tag{B.4}
-\end{equation}\]</span>
-<p>Considerando la suma cuadrática de las diferencias residuales entre ambos modelos y, utilizando el resultado obtenido en <a href="métricas.html#eq:igualacion-modelos2">(B.4)</a> se tiene que</p>
-<span class="math display" id="eq:igualacion-modelos3">\[\begin{equation}
-\begin{split}
-0 &amp;\leq (a-b)^t(a-b)\\
-&amp;= (a^t-b^t)(a-b)\\
-&amp;= a^ta - a^tb - b^ta + b^tb\\
-&amp;= a^ta - a^tb - b^ta + b^ta\\
-&amp;= a^ta - a^tb\\
-&amp;= a^ta - b^tb\\
-b^tb &amp;\leq a^ta\\
-\text{SCE}_{\text{Modelo 2}} &amp;\leq \text{SCE}_{\text{Modelo 1}}\\
-\text{SCT} - \text{SCE}_{\text{Modelo 2}} &amp;\geq \text{SCT} - \text{SCE}_{\text{Modelo 1}}\\
-\frac{\text{SCReg}_{\text{Modelo 2}}}{\text{SCT}} &amp;\geq \frac{\text{SCReg}_{\text{Modelo 1}}}{\text{SCT}}\\
-R^2_{\text{Modelo 2}} &amp;\geq R^2_{\text{Modelo 1}}\\
-\end{split}
-\tag{B.5}
-\end{equation}\]</span>
-<p>Esta conclusión no es la misma para el <span class="math inline">\(R^2\)</span> ajustado (<span class="math inline">\(\bar{R}^2\)</span>). Al incluir una variable en el modelo (<span class="math inline">\(k+1\)</span> variables en el modelo 2 y <span class="math inline">\(k\)</span> en el modelo 1), la condición para que el <span class="math inline">\(R^2\)</span> ajustado aumente es:</p>
-<span class="math display" id="eq:igualacion-modelos4">\[\begin{equation}
-\begin{split}
-\bar{R}^2_{\text{Modelo 2}} &amp;&gt; \bar{R}^2_{\text{Modelo 1}} \Leftrightarrow \frac{\text{SCE}_{\text{Modelo 2}}}{n-k-1} &lt; \frac{\text{SCE}_{\text{Modelo 1}}}{n-k}\\
-\end{split}
-\tag{B.6}
-\end{equation}\]</span>
-<p>Esta condición es equivalente a verificar si el estadístico t-student de la prueba de no nulidad de una variable es mayor a 1 en valor absoluto.</p>
-<p>Un punto interesante, es que a diferencia del <span class="math inline">\(R^2\)</span>, el <span class="math inline">\(\bar{R}^2\)</span> puede tomar valores negativos, para ello observe el siguiente desarrollo a partir de los posibles valores de <span class="math inline">\(R^2\)</span>.</p>
-<span class="math display" id="eq:igualacion-modelos5">\[\begin{gather*}
-0 \leq R^2 \leq 1\\
-0 \leq 1 - R^2 \leq 1\\
-0 \leq \left( \frac{n-1}{n-k-1} \right) (1 - R^2) \leq \left( \frac{n-1}{n-k-1} \right), \ n &gt; k+1\\
-1 - \left( \frac{n-1}{n-k-1} \right) \leq 1 - \left( \frac{n-1}{n-k-1} \right) (1 - R^2) \leq 1\\
-1 - \left( \frac{n-1}{n-k-1} \right) \leq \bar{R}^2 \leq 1\\
-\tag{B.7}
-\end{gather*}\]</span>
-<p>El miembro izquierdo de la desigualdad es negativo cuando <span class="math inline">\(n &gt; k+1\)</span> (la cantidad parámetros del modelo), lo cual, implica que <span class="math inline">\(1-(n-1)/(n-k-1) &lt; 0\)</span>. Por lo tanto, el <span class="math inline">\(\bar{R}^2\)</span> puede llegar a tomar valores negativos.</p>
-<p>Por otro lado, cuando <span class="math inline">\(n &lt; k+1\)</span> ocurre que no es posible estimar los parámetros del modelo, por ende, no es posible calcular nada referente a este (incluyendo las métricas). Para estudiar esta situación es necesario estudiar el rango de una matriz:</p>
+<div id="bases-de-datos-utilizadas" class="section level1 unnumbered hasAnchor">
+<h1>Bases de datos utilizadas<a href="bases-de-datos-utilizadas.html#bases-de-datos-utilizadas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A continuación se describen algunas las bases de datos que se utilizarán a lo largo del curso (el resto se explican en los ejemplos o ejercicios en las que son utilizadas). En cada caso, se incluye un enlace para descargar la base de datos en formato CSV.</p>
 <ul>
-<li><p>El rango de una matriz <span class="math inline">\(A\)</span> denotado por <span class="math inline">\(\text{rank}(A)\)</span> es el mínimo entre la cantidad de columnas y filas linealmente independientes de la matriz. Para una matriz producto se tiene que</p>
-<p><span class="math display">\[\text{rank}(AB) \leq \min(\text{rank}(A), \text{rank}(B)).\]</span></p>
-<p>Aplicando esto a la expresión para determinar <span class="math inline">\(\widehat{\beta} = X(X^tX)^{-1}X^tY\)</span>, en particular a la matriz <span class="math inline">\(X^tX\)</span>, se tiene que</p>
-<p><span class="math display">\[\text{rank}(X^tX) \leq \min(\text{rank}(X^t), \text{rank}(X)).\]</span></p>
-<p>Dado que <span class="math inline">\(\text{rank}(X) = \text{rank}(X^t)\)</span>, se tiene que <span class="math inline">\(\text{rank}(X^tX) \leq \text{rank}(X)\)</span>. Como la matriz <span class="math inline">\(X\)</span> tiene dimensión <span class="math inline">\(n \times k+1\)</span>, el rango de <span class="math inline">\(X\)</span> está delimitado, es decir, <span class="math inline">\(\text{rank}(X) = \min(n,k+1)\)</span>. Por lo tanto, si <span class="math inline">\(n &lt; k+1\)</span>, entonces <span class="math inline">\(\text{rank}(X) = n\)</span> y <span class="math inline">\(\text{rank}(X^tX) \leq n\)</span>.</p></li>
-<li><p>Se sabe que la matriz <span class="math inline">\(X^tX\)</span> tiene dimensión <span class="math inline">\(k+1 \times k+1\)</span>. Para poder calcular <span class="math inline">\((X^tX)^{-1}\)</span>, debe tener rango completo, es decir <span class="math inline">\(\text{rank}(X^tX) = k+1\)</span> (el rango debe ser igual a la dimensión). Sin embargo, del punto anterior se tiene que <span class="math inline">\(\text{rank}(X^tX) \leq n\)</span>, y sabemos que <span class="math inline">\(n &lt; k+1\)</span>, entonces <span class="math inline">\(\text{rank}(X^tX) &lt; k+1\)</span> y por ende, no es posible calcular <span class="math inline">\((X^tX)^{-1}\)</span>.</p></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa%2Beuro%2Bdolar%2Bhistorica2023.csv" id="TasaEURUSD">Tasa Euro/Dólar</a>: Contiene el registro diario histórico de la tasa de cambio del Euro a Dólar durante el 2023. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Date: Fecha de medición (yyyy-mm-dd), desde enero del 2003 hasta enero del 2023.</li>
+<li>Open: tasa de apertura.</li>
+<li>High: tasa más alta alcanzada en el día.</li>
+<li>Low: tasa más baja alcanzada en el día.</li>
+<li>Close: tasa de cierre del día.</li>
+<li>Adj Close: tasa de cierre ajustada del día (precio de cierre sin dividendos).</li>
 </ul>
-<p>Finalmente, cuando <span class="math inline">\(n=k+1\)</span> es posible estimar los parámetros del modelo mediante los EMC <a href="estimadores.html#eq:betasmultiple3-demostracion">(A.18)</a>, ya que la matriz <span class="math inline">\((X^tX)^{-1}\)</span> es invertible, sin embargo, no es posible determinar la varianza de los estimadores. Una extensión de lo presentado en la sección <a href="regresion-lineal.html#EMC-RLM-CUERPO">4.3.1</a> es que, la distribución de lo estimadores de mínimos cuadrados es</p>
-<p><span class="math display">\[
-\widehat{\beta} \sim N(\beta, (X^tX)^{-1}\sigma^2)
-\]</span>
-Luego, para calcular la varianza de los estimadores, se estima <span class="math inline">\(\sigma^2\)</span> por</p>
-<p><span class="math display">\[
-\widehat{\sigma}^2 = \frac{\text{SCE}}{n-k-1}
-\]</span>
-Se observa, que el denominador de la expresión es 0, por lo cual, la varianza de los estimadores no puede ser calculada, impidiendo ir más allá de la estimación de los coeficientes.</p>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="bases-de-datos-utilizadas.html#cb185-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa%2Beuro%2Bdolar%2Bhistorica2023.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Belgian%20Electricity%20Prices.csv" id="PreciosElectricidad">Precios de electricidad</a>: Un conjunto de datos históricos que contiene el precio por hora de la electricidad para Bélgica. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>MTU: Hora de inicio (formato fecha y hora) del coste de la electricidad.</li>
+<li>EUR_MWh: Precio por hora (Euros por MWh).</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="bases-de-datos-utilizadas.html#cb186-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Belgian%20Electricity%20Prices.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart+complete.csv" id="Pacientes">Pacientes</a>: Contiene datos respecto a los ataques al corazón de distintos pacientes hospitalarios. El detalle de algunas de las columnas de la base de datos que utilizaremos son las siguientes:</p>
+<ul>
+<li>age: edad del paciente (en años).</li>
+<li>sex: sexo del paciente (Hombre: 1 y Mujer: 0).</li>
+<li>cp: Tipo de dolor en el pecho, Valor 1: angina típica, Valor 2: angina atípica, Valor 3: dolor no anginoso, Valor 4: asintomático.</li>
+<li>trtbps: presión arterial en reposo (en mm Hg).</li>
+<li>chol: nivel de colestorol (en mg/dl).</li>
+<li>fbs: azúcar en sangre en ayunas <span class="math inline">\(&gt;\)</span> 120 mg/dl (V = 1; F = 0).</li>
+<li>thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).</li>
+<li>oldpeak: tiempo de duración del último ataque al corazón (en minutos).</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="bases-de-datos-utilizadas.html#cb187-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart+complete.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/dolar.csv">Dólar</a>: La base de datos contiene el valor del dólar observado de algunos de los días de los meses de junio y julio, tomados por el el SII:</p>
+<ul>
+<li>Mes: Mes del año (“Junio”, “Julio”).</li>
+<li>Dia: Día del mes.</li>
+<li>Valor: Valor del dólar observado en pesos chilenos.</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="bases-de-datos-utilizadas.html#cb188-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/dolar.csv&quot;</span>)</span></code></pre></div></li>
+<li><p><a href="https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/diabetes.csv">Diabetes</a>: El connjunto de datos proviene originalmente del Instituto Nacional de Diabetes y Enfermedades Digestivas y Renales. El objetivo del conjunto de datos es estudiar de forma diagnóstica si un paciente tiene diabetes, en función de ciertas medidas de diagnóstico incluidas en el conjunto de datos. Se impusieron varias restricciones a la selección de estas instancias de una base de datos más grande. En particular, todos los pacientes aquí son mujeres de al menos 21 años de ascendencia indígena Pima. Las columnas de la base de datos son las siguientes:</p>
+<ul>
+<li>Pregnancies: Para expresar el número de embarazos.</li>
+<li>Glucose: Para expresar el nivel de Glucosa en sangre (mg/dL).</li>
+<li>BloodPressure: para expresar la medida de la presión arterial distólica (mm Hg).</li>
+<li>SkinThickness: Para expresar el grosor de la piel (mm).</li>
+<li>Insulin: para expresar el nivel de insulina en sangre (mg/dL).</li>
+<li>BMI: Para expresar el índice de masa corporal.</li>
+<li>DiabetesPedigreeFunction: Para expresar el porcentaje de Diabetes.</li>
+<li>Age: Para expresar la edad en años.</li>
+<li>Outcome: Para expresar el resultado final de tener diabetes, 1 es Sí y 0 es No.</li>
+</ul>
+<p>El código para cargar la base de datos en R es:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="bases-de-datos-utilizadas.html#cb189-1" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad%C3%ADstica%201/diabetes.csv&quot;</span>)</span></code></pre></div></li>
+</ul>
+
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="estimadores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estadísticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="regresion-lineal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimadores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

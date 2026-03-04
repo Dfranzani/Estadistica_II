@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 \documentclass[
   11pt,
 ]{book}
@@ -149,21 +150,25 @@
 \hypersetup{
   pdftitle={Estadística II \& Inferencia Estadística},
   pdfauthor={Prof.~Daniel Franzani},
-  hidelinks,
+  colorlinks=true,
+  linkcolor={purple},
+  filecolor={Maroon},
+  citecolor={purple},
+  urlcolor={purple},
   pdfcreator={LaTeX via pandoc}}
 
 \title{Estadística II \& Inferencia Estadística}
 \author{Prof.~Daniel Franzani}
-\date{Actualizado al 17-11-2025}
+\date{Actualizado al 04-03-2026}
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{lemma}{Lemma}[chapter]
 \newtheorem{corollary}{Corollary}[chapter]
 \newtheorem{proposition}{Proposition}[chapter]
 \newtheorem{conjecture}{Conjecture}[chapter]
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
+\newtheorem{definition}{Definición}[chapter]
 \theoremstyle{definition}
 \newtheorem{example}{Ejemplo}[chapter]
 \theoremstyle{definition}
@@ -172,11 +177,12 @@
 \newtheorem{hypothesis}{Hypothesis}[chapter]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
+\newtheorem*{solution}{Solución }
 \begin{document}
 \maketitle
 
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
@@ -184,6 +190,337 @@
 \addcontentsline{toc}{chapter}{Presentación}
 
 Esta sección del PDF es solo un borrador. Lea la versión HTML.
+
+\chapter{Estimación puntual}\label{estimacion-puntual}
+
+El objetivo de la inferencia estadística casi siempre es sacar algún tipo de conclusión sobre uno o más parámetros (características de la población). Para hacer eso un investigador tiene que obtener datos muestrales de cada una de las poblaciones estudiadas. Las conclusiones pueden entonces basarse en los valores calculados de varias cantidades muestrales. Por ejemplo, sea \(\mu\) (un parámetro) la resistencia a la ruptura promedio verdadera de conexiones alámbricas utilizadas en la unión de obleas semiconductoras. Se podría tomar una muestra aleatoria de \(n = 10\) conexiones y determinar la resistencia a la ruptura de cada una y se tendrían las resistencias observadas \(x_1, x_2, \ldots, x_{10}\). La resistencia a la ruptura media muestral \(\bar{x}\) se utilizaría entonces para sacar una conclusión con respecto al valor de \(\mu\). Asimismo, si \(\sigma^2\) es la varianza de la distribución de la resistencia a la ruptura (varianza de la población, otro parámetro), el valor de la varianza muestral \(s^2\) se utiliza para inferir algo sobre \(\sigma^2\). \citep[página 228]{Devore}
+
+Cuando se discuten los métodos y conceptos generales de inferencia, es conveniente disponer de un símbolo genérico para el parámetro de interés. Se utilizará la letra griega \(\theta\) para este propósito. El objetivo de la estimación puntual es seleccionar un solo número, con base en los datos muestrales, que represente un valor sensible de \(\theta\). Supóngase, por ejemplo, que el parámetro de interés es \(\mu\), la vida útil promedio verdadera de baterías de un tipo. Una muestra aleatoria de \(n = 3\) baterías podría dar las vidas útiles (horas) observadas \(x_1 = 5.0\), \(x_2 = 6.4\), \(x_3 = 5.9\). El valor calculado de la vida útil media muestral es \(\bar{x} = 5.77\) y es razonable considerar 5.77 como un valor muy factible de \(\mu\), la ``mejor suposición'' del valor de \(\mu\) basado en la información muestral disponible.
+
+Supóngase que se desea estimar un parámetro de una población (p.~ej., \(\mu\)) con una muestra aleatoria de tamaño \(n\). Recuérdese por el capítulo previo de que antes que los datos estén disponibles, las observaciones muestrales deben ser consideradas como variables aleatorias \(X_1, X_2, \ldots, X_n\). Se deduce que cualquier función de las \(X_i\), es decir, cualquier estadístico, tal como la media muestral \(\bar{X}\) o la desviación estándar muestral \(S\) también es una variable aleatoria. Lo mismo es cierto si los datos disponibles se componen de más de una muestra. Por ejemplo, se pueden representar las resistencias a la tensión de \(m\) especímenes de tipo 1 y de \(n\) especímenes de tipo 2 por \(X_1, \ldots, X_m\) y \(Y_1, \ldots, Y_n\), respectivamente. La diferencia entre las dos resistencias medias muestrales es \(\bar{X} - \bar{Y}\), el estadístico natural para inferir sobre \(\mu_1 - \mu_2\), la diferencia entre las resistencias medias de la población.
+
+\begin{definition}[Estimación puntual]
+Una \textbf{estimación puntual} de un parámetro \(\theta\) es un número único que puede ser considerado como un valor sensible de \(\theta\). Se obtiene una estimación puntual seleccionando un estadístico apropiado y calculando su valor con los datos muestrales dados. El estadístico seleccionado se llama \textbf{estimador puntual} de \(\theta\).
+\end{definition}
+
+En el ejemplo de la batería que se acaba de dar, el estimador utilizado para obtener la estimación puntual de \(\mu\) fue \(\bar{X}\) y la estimación puntual de \(\mu\) fue 5.77. Si las tres vidas útiles hubieran sido \(x_1 = 5.6\), \(x_2 = 4.5\) y \(x_3 = 6.1\), el uso del estimador \(\bar{X}\) habría dado por resultado la estimación \(\bar{x} = (5.6 + 4.5 + 6.1)/3 = 5.40\). El símbolo \(\hat{\theta}\) (``teta testada'') se utiliza comúnmente para denotar tanto la estimación de \(\theta\) como la estimación puntual que resulta de una muestra dada. Por tanto, \(\hat{\mu} = \bar{X}\) se lee como ``el estimador puntual de \(\mu\) es la media'' muestral \(\overline{X}\). La proposición ``la estimación puntual de \(\mu\) es 5.77'\,' se escribe concisamente como \(\hat{\mu} = 5.77\). Obsérvese que cuando se escribe \(\hat{\theta} = 72.5\), no hay ninguna indicación de cómo se obtuvo esta estimación puntual (qué estadístico se utilizó). Se recomienda reportar tanto el estimador como la estimación resultante.
+
+\begin{example}
+Un fabricante automotriz ha producido un nuevo tipo de defensa, la que se presume absorber impactos con menos daño que las defensas previas. El fabricante ha utilizado esta defensa en una secuencia de 25 choques controlados con un muro, cada uno a 10 mph, utilizando uno de sus modelos de carro compacto. Sea \(X =\) el número de choques que no provocaron daños visibles al automóvil. El parámetro que tiene que ser estimado es \(p =\) la proporción de todos los choques que no provocaron daños {[}alternativamente, \(p = P(\text{ningún daño en un choque})\){]}. Si se observa que \(X\) es \(x = 15\), el estimador y estimación más razonables son
+
+\[
+\text{estimador } \hat{p} = \frac{X}{n}
+\]
+
+\[
+\text{estimación } \hat{x} = \frac{X}{n} = \frac{15}{25} = 0.60
+\]
+
+Si por cada parámetro de interés hubiera sólo un estimador puntual razonable, no habría mucho para la estimación puntual. En la mayoría de los problemas, sin embargo, habrá más de un estimador razonable.
+\end{example}
+
+\section{Propiedades de los estimadores}\label{propiedades-de-los-estimadores}
+
+\subsection{Insesgadez}\label{insesgadez}
+
+Supóngase que se tienen dos instrumentos de medición: uno ha sido calibrado con precisión, pero el otro sistemáticamente da lecturas más pequeñas que el valor verdadero que se está midiendo. Cuando cada uno de los instrumentos se utiliza repetidamente en el mismo objeto, debido al error de medición, las mediciones observadas no serán idénticas. Sin embargo, las mediciones producidas por el primer instrumento se distribuirán en torno al valor verdadero de tal modo que en promedio este instrumento mide lo que se propone medir, por lo que este instrumento se conoce como instrumento insesgado. El segundo instrumento proporciona observaciones que tienen un componente de error o sesgo sistemático.
+
+\begin{definition}[Estimador insesgado]
+Se dice que un estimador puntual \(\hat{\theta}\) es un \textbf{estimador insesgado} de \(\theta\) si \(E(\hat{\theta}) = \theta\) con todo valor posible de \(\theta\). Si \(\hat{\theta}\) no es insesgado, la diferencia \(E(\hat{\theta}) - \theta\) se conoce como el \textbf{sesgo} de \(\hat{\theta}\).
+\end{definition}
+
+Es decir, \(\hat{\theta}\) es insesgado si su distribución de probabilidad (es decir, muestreo) siempre está ``centrada'' en el valor verdadero del parámetro. Supóngase que \(\hat{\theta}\) es un estimador insesgado; entonces si \(\theta = 100\), la distribución muestral \(\hat{\theta}\) está centrada en 100; si \(\theta = 27.5\), en ese caso la distribución muestral \(\hat{\theta}\) está centrada en 27.5, y así sucesivamente.
+
+Parece como si fuera necesario conocer el valor de \(\theta\) (en cuyo caso la estimación es innecesaria) para ver si \(\hat{\theta}\) es insesgado. Éste casi nunca es el caso, puesto que insesgamiento es una propiedad general del estimador muestral, donde se centra, y generalmente no depende de cualquier valor de parámetro particular.
+
+\begin{example}
+Sean \(X_1, X_2, \ldots, X_n\) una muestra aleatoria de una distribución con media \(\mu\) y varianza \(\sigma^2\). Entonces el estimador
+
+\[
+\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i
+\]
+
+es un estimador insesgado de \(\mu\).
+
+Para cualquier variable aleatoria \(Y\), \(V(Y) = E(Y^2) - [E(Y)]^2\), por lo tanto\\
+\[ E(Y^2) = V(Y) + [E(Y)]^2 \]. Aplicando esto a
+
+\[
+S^2 = \frac{1}{n-1} \left[ \sum X_i^2 - \frac{(\sum X_i)^2}{n} \right]
+\]
+
+se obtiene
+
+\[
+E(S^2) = \frac{1}{n-1} \left\{ \sum E(X_i^2) - \frac{1}{n} E\left[(\sum X_i)^2\right] \right\}
+\]
+
+\[
+= \frac{1}{n-1} \left\{ n\sigma^2 + n\mu^2 - \frac{1}{n} (n\sigma^2 + n^2\mu^2) \right\}
+\]
+
+\[
+= \frac{1}{n-1} \left\{ n\sigma^2 + n\mu^2 - \sigma^2 - n\mu^2 \right\} = \frac{1}{n-1} (n\sigma^2 - \sigma^2) = \sigma^2
+\]
+
+El estimador que utiliza el divisor \(n\) se expresa como \((n-1)S^2/n\), por lo tanto
+
+\[
+E\left[\frac{(n-1)S^2}{n}\right] = \frac{n-1}{n} E(S^2) = \frac{n-1}{n} \sigma^2
+\]
+
+Este estimador es por consiguiente sesgado. El sesgo es \(- \sigma^2 / n\). Como el sesgo es negativo, el estimador con divisor \(n\) subestima \(\sigma^2\) y por eso muchos estadísticos prefieren el divisor \(n-1\) (aunque cuando \(n\) es grande, el sesgo es pequeño y hay poca diferencia entre los dos).
+
+Aun cuando \(S^2\) es insesgado para \(\sigma^2\), \(S\) es un estimador sesgado de \(\sigma\) (su sesgo depende de la distribución). Tampoco existe un estimador insesgado único para \(\mu\) de una distribución normal. Si hubiera un estimador insesgado único para \(\mu\), el problema de estimación se simplificaría utilizando dicho estimador. Desafortunadamente, este no es el caso.
+\end{example}
+
+Supóngase que \(\hat{\theta}_1\) y \(\hat{\theta}_2\) son dos estimadores de \(\theta\) insesgados. Entonces, aunque la distribución de cada estimador esté centrada en el valor verdadero de \(\theta\), las dispersiones de las distribuciones en torno al valor verdadero pueden ser diferentes.
+
+\begin{definition}[Principio de estimación insesgada con varianza mínima]
+Entre todos los estimadores de \(\theta\) insesgados, se selecciona el de varianza mínima. El \(\hat{\theta}\) resultante se llama \textbf{estimador insesgado con varianza mínima (EIVM)} de \(\theta\).
+\end{definition}
+
+\begin{exercise}
+
+Si \(X_1, X_2, \ldots, X_n\) representan una muestra aleatoria tomada de una distribución de Rayleigh con función de densidad de probabilidad
+
+\[
+f(x; \theta) = \frac{x}{\theta} e^{-x^2/(2\theta)}, \quad x > 0
+\]
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Se puede demostrar que \(E(X^2) = 2\theta\). Use este hecho para construir un estimador insesgado de \(\theta\) basado en \(\sum X_i^2\) (y use reglas de valor esperado para demostrar que es insesgado).
+\item
+  Calcule \(\hat{\theta}\) a partir de las siguientes \(n = 10\) observaciones de esfuerzo vibratorio de un aspa de turbina en condiciones específicas:
+\end{enumerate}
+
+\begin{table}[H]
+\centering
+\begin{tabular}[t]{ccccc}
+\hline
+16.88 & 10.23 & 4.59 & 6.66 & 13.68\\
+14.23 & 19.87 & 9.40 & 6.51 & 10.95\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{exercise}
+
+\subsection{Eficiencia}\label{eficiencia}
+
+La eficiencia compara la varianza de diferentes estimadores. Un estimador es más eficiente si tiene una dispersión menor alrededor del parámetro.
+
+\begin{definition}[Eficiencia relativa]
+Si tenemos dos estimadores insesgados, \(\hat{\theta}_1\) y \(\hat{\theta}_2\), la eficiencia relativa de \(\hat{\theta}_1\) respecto a \(\hat{\theta}_2\) se define como:
+
+\[ ER(\hat{\theta}_1, \hat{\theta}_2) = \frac{Var(\hat{\theta}_2)}{Var(\hat{\theta}_1)} \]
+
+Si \(ER > 1\), entonces \(\hat{\theta}_1\) es más eficiente que \(\hat{\theta}_2\).
+\end{definition}
+
+En caso de que los estimadores no sean insesgados, se puede usar el Error Cuadrático Medio (ECM) para comparar su eficiencia:
+
+\begin{definition}[Eficiencia basada en ECM]
+Si \(\hat{\theta}_1\) y \(\hat{\theta}_2\) son dos estimadores de \(\theta\), la eficiencia relativa basada en el ECM se define como:
+\[ ER_{ECM}(\hat{\theta}_1, \hat{\theta}_2) = \frac{ECM(\hat{\theta}_2)}{ECM(\hat{\theta}_1)} \]
+Donde \(ECM(\hat{\theta}) = Var(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2\).
+
+Si \(ER_{ECM} > 1\), entonces \(\hat{\theta}_1\) es más eficiente que \(\hat{\theta}_2\).
+\end{definition}
+
+\subsection{Consistencia}\label{consistencia}
+
+La consistencia es una propiedad asintótica. Se refiere a cómo se comporta el estimador a medida que el tamaño de la muestra \(n\) aumenta indefinidamente.
+
+\begin{definition}[Estimador consistente]
+Se dice que un estimador \(\hat{\theta}_n\) es \textbf{consistente} si converge en probabilidad al valor verdadero del parámetro \(\theta\). Matemáticamente, para cualquier \(\epsilon > 0\):
+
+\[ \lim_{n \to \infty} P(|\hat{\theta}_n - \theta| > \epsilon) = 0 \]
+
+O de manera equivalente:
+\[ \text{plim } \hat{\theta}_n = \theta \]
+\end{definition}
+
+Una forma común de verificar la consistencia es a través del Error Cuadrático Medio (\(ECM\)) (condición suficiente). Si el sesgo y la varianza tienden a cero cuando \(n \to \infty\), el estimador es consistente:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(\lim_{n \to \infty} E(\hat{\theta}_n) = \theta\) (Insesgadez asintótica)
+\item
+  \(\lim_{n \to \infty} Var(\hat{\theta}_n) = 0\)
+\end{enumerate}
+
+\begin{example}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria de una población con media \(\mu\) y varianza \(\sigma^2 < \infty\). El estimador \(\bar{X}_n = \frac{1}{n} \sum X_i\) es consistente para \(\mu\) porque:
+\[ E(\bar{X}_n) = \mu \quad \text{y} \quad Var(\bar{X}_n) = \frac{\sigma^2}{n} \]
+Al aplicar el límite:
+\[ \lim_{n \to \infty} \frac{\sigma^2}{n} = 0 \]
+Por la Ley Débil de los Grandes Números, \(\bar{X}_n \xrightarrow{p} \mu\).
+\end{example}
+
+\section{El error estándar}\label{el-error-estuxe1ndar}
+
+Además de reportar el valor de una estimación puntual, se debe dar alguna indicación de su precisión. La medición usual de precisión es el error estándar del estimador usado.
+
+\begin{definition}[Error estándar]
+El \textbf{error estándar} de un estimador \(\hat{\theta}\) es su desviación estándar \(\sigma_{\hat{\theta}} = \sqrt{V(\hat{\theta})}\). Si el error estándar implica parámetros desconocidos cuyos valores pueden ser estimados, la sustitución de estas estimaciones en \(\sigma_{\hat{\theta}}\) da el \textbf{error estándar estimado} (desviación estándar estimada) del estimador. El error estándar estimado puede ser denotado o por \(\hat{\sigma}_{\hat{\theta}}\) (el \(\wedge\) sobre \(\sigma\) recalca que \(\sigma_{\hat{\theta}}\) está siendo estimada) o por \(s_{\hat{\theta}}\).
+\end{definition}
+
+\section{Métodos de estimación}\label{muxe9todos-de-estimaciuxf3n}
+
+La definición de insesgamiento no indica en general cómo se pueden obtener los estimadores insesgados. A continuación se discuten dos métodos ``constructivos'' para obtener estimadores puntuales: el método de momentos y el método de máxima verosimilitud. Por constructivo se quiere dar a entender que la definición general de cada tipo de estimador sugiere explícitamente cómo obtener el estimador en cualquier problema específico. Aun cuando se prefieren los estimadores de máxima verosimilitud a los de momento debido a ciertas propiedades de eficiencia, a menudo requieren significativamente más cálculo que los estimadores de momento. En ocasiones es el caso que estos métodos dan estimadores insesgados.
+
+\subsection{Método de momentos (EM)}\label{muxe9todo-de-momentos-em}
+
+La idea básica de este método es poder igualar ciertas características muestrales, tales como la media, a los valores esperados de la población correspondiente. Luego resolviendo estas ecuaciones con valores de parámetros conocidos se obtienen los estimadores.
+
+\begin{definition}
+Si \(X_1, \ldots, X_n\) constituyen una muestra aleatoria proveniente de una función masa de probabilidad o de una función de densidad de probabilidad \(f(x)\). Con \(k = 1, 2, 3, \ldots\) el \textbf{k-ésimo momento de la población} o el \textbf{k-ésimo momento de la distribución} \(f(x)\) es \(E(X^k)\). El \textbf{k-ésimo momento muestral} es \(\frac{1}{n} \sum_{i=1}^n X_i^k\).
+\end{definition}
+
+Por consiguiente el primer momento de la población es \(E(X) = \mu\) y el primer momento muestral es \(\frac{1}{n} \sum X_i = \overline{X}\). Los segundos momentos de la población y muestral son \(E(X^2)\) y \(\frac{1}{n} \sum X_i^2\), respectivamente. Los momentos de la población serán funciones de cualquier parámetro desconocido \(\theta_1, \theta_2, \ldots\).
+
+\begin{definition}[Estimadores de momento]
+Si \(X_1, X_2, \ldots, X_n\) son una muestra aleatoria de una distribución con función masa de probabilidad o función de densidad de probabilidad \(f(x; \theta_1, \ldots, \theta_m)\), donde \(\theta_1, \ldots, \theta_m\) son parámetros cuyos valores son desconocidos. Entonces los estimadores de momento \(\hat{\theta}_1, \ldots, \hat{\theta}_m\) se obtienen igualando los primeros \(m\) momentos muestrales con los primeros \(m\) momentos de la población correspondientes y resolviendo para \(\theta_1, \ldots, \theta_m\).
+\end{definition}
+
+Si, por ejemplo, \(m = 2\), \(E(X)\) y \(E(X^2)\) serán funciones de \(\theta_1\) y \(\theta_2\). Con \(E(X) = (1/n) \sum X_i = \overline{X}\) y \(E(X^2) = (1/n) \sum X_i^2\) se obtienen dos ecuaciones en \(\theta_1\) y \(\theta_2\). La solución define entonces los estimadores. Para estimar una media \(\mu\) poblacional, el método da \(\hat{\mu} = \overline{X}\), por lo tanto el estimador es la media muestral.
+
+\begin{example}
+Si \(X_1, X_2, \ldots, X_n\) representan una muestra aleatoria de tiempos de servicio de \(n\) clientes en una instalación, donde la distribución subyacente se supone exponencial con el parámetro \(\lambda\). Como sólo hay un parámetro que tiene que ser estimado, el estimador se obtiene igualando \(E(X) = \overline{X}\). Como \(E(X) = 1/\lambda\) con una distribución exponencial, ésta da \(1/\lambda = \overline{X}\) o \(\lambda = 1/\overline{X}\). El estimador de momento de \(\lambda\) es entonces \(\hat{\lambda} = 1/\overline{X}\).
+\end{example}
+
+\subsection{Estimacón de máxima verosimilitud (EMV)}\label{estimacuxf3n-de-muxe1xima-verosimilitud-emv}
+
+El método de máxima verosimilitud lo introdujo por primera vez R. A. Fisher, genetista y estadístico en la década de 1920. La mayoría de los estadísticos recomiendan este método, por lo menos cuando el tamaño de muestra es grande, puesto que los estimadores resultantes tienen ciertas propiedades de eficiencia deseables (véase la proposición en la página 249).
+
+\begin{definition}[Método de máxima verosimilitud]
+Que \(X_1, X_2, \ldots, X_n\) tengan una función masa de probabilidad o una función de densidad de probabilidad
+
+\[
+f(x_1, x_2, \ldots, x_n; \theta_1, \ldots, \theta_m)
+\]
+
+donde los parámetros \(\theta_1, \ldots, \theta_m\) tienen valores desconocidos. Cuando \(x_1, \ldots, x_n\) son los valores muestrales observados y la ecuación anterior se considera como una función de \(\theta_1, \ldots, \theta_m\), se llama \textbf{función de verosimilitud}. Las estimaciones de máxima verosimilitud (emv) \(\hat{\theta}_1, \ldots, \hat{\theta}_m\) son aquellos valores de las \(\theta_i\) que incrementan al máximo la función de verosimilitud, de modo que
+
+\[
+f(x_1, \ldots, x_n; \hat{\theta}_1, \ldots, \hat{\theta}_m) \geq f(x_1, \ldots, x_n; \theta_1, \ldots, \theta_m)
+\]
+
+con todos los \(\theta_1, \ldots, \theta_m\).
+
+Cuando se sustituyen las \(X_i\) en lugar de las \(x_i\), se obtienen los \textbf{estimadores de máxima verosimilitud}.
+\end{definition}
+
+La función de verosimilitud dice qué tan probable es que la muestra observada sea una función de los posibles valores de parámetro. Al incrementarse al máximo la verosimilitud se obtienen los valores de parámetro con los que la muestra observada es más probable que haya sido generada, es decir, los valores de parámetro que ``más concuerdan'\,' con los datos observados.
+
+\begin{example}
+Suponga que \(X_1, X_2, \ldots, X_n\) es una muestra aleatoria de una distribución exponencial con parámetro \(\lambda\). Debido a la independencia, la función de verosimilitud es un producto de las funciones de densidad de probabilidad individuales:
+
+\[
+f(x_1, \ldots, x_n; \lambda) = (\lambda e^{-\lambda x_1}) \cdots (\lambda e^{-\lambda x_n}) = \lambda^n e^{-\lambda \sum x_i}
+\]
+
+El logaritmo de la verosimilitud es
+
+\[
+\ln[f(x_1, \ldots, x_n; \lambda)] = n \ln(\lambda) - \lambda \sum_{i=1}^{n} x_i
+\]
+
+Si se iguala \(\frac{d}{d\lambda}[\ln(\text{verosimilitud})]\) a cero se obtiene
+
+\[
+\frac{n}{\lambda} - \sum_{i=1}^{n} x_i = 0
+\]
+
+o
+
+\[
+\lambda = \frac{n}{\sum x_i} = \frac{1}{\bar{x}}
+\]
+
+Por consiguiente el estimador de máxima verosimilitud es \(\hat{\lambda} = 1/\bar{X}\); es idéntico al estimador de momentos {[}pero no es un estimador insesgado, puesto que \(E(1/\bar{X}) \neq 1/E(\bar{X})\){]}.
+\end{example}
+
+\begin{example}
+Sean \(X_1, \ldots, X_n\) una muestra aleatoria de una distribución normal. La función de verosimilitud es
+
+\[
+f(x_1, \ldots, x_n; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x_1 - \mu)^2 / (2\sigma^2)} \cdot \cdots \cdot \frac{1}{\sqrt{2\pi\sigma^2}} e^{-(x_n - \mu)^2 / (2\sigma^2)}
+\]
+
+\[
+= \left(\frac{1}{2\pi\sigma^2}\right)^{n/2} e^{-\sum_{i=1}^n (x_i - \mu)^2 / (2\sigma^2)}
+\]
+
+por consiguiente
+
+\[
+\ln[f(x_1, \ldots, x_n; \mu, \sigma^2)] = -\frac{n}{2} \ln(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2
+\]
+
+Para determinar los valores maximizantes de \(\mu\) y \(\sigma^2\), se deben tomar las derivadas parciales de \(\ln(f)\) con respecto a \(\mu\) y \(\sigma^2\), igualarlas a cero y resolver las dos ecuaciones resultantes. Omitiendo los detalles, los estimadores de máxima verosimilitud resultantes son
+
+\[
+\hat{\mu} = \bar{X}, \quad \hat{\sigma}^2 = \frac{\sum_{i=1}^n (X_i - \bar{X})^2}{n}
+\]
+
+El estimador de máxima verosimilitud de \(\sigma^2\) no es el estimador insesgado, por consiguiente dos principios diferentes de estimación (insesgamiento y máxima verosimilitud) dan dos estimadores diferentes.
+\end{example}
+
+\begin{exercise}
+
+Se selecciona una muestra aleatoria de \(n\) cascos para ciclistas fabricados por una compañía. Sea \(X =\) el número entre los \(n\) que están agrietados y sea \(p = P(\text{agrietado})\). Suponga que sólo se observa \(X\), en lugar de la secuencia de \(S\) y \(F\).
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Obtenga el estimador de máxima verosimilitud de \(p\). Si \(n = 20\) y \(x = 3\), ¿cuál es la estimación?
+\item
+  ¿Es insesgado el estimador del inciso a)?
+\item
+  Si \(n = 20\) y \(x = 3\), ¿cuál es el estimador de máxima verosimilitud de la probabilidad \((1 - p)^5\) de que ninguno de los siguientes cinco cascos esté agrietado?
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+Sea \(X\) la proporción de tiempo destinado que un estudiante seleccionado al azar pasa resolviendo cierta prueba de aptitud. Suponga que la función de densidad de probabilidad de \(X\) es
+
+\[
+f(x; \theta) =
+\begin{cases} 
+(\theta + 1)x^\theta, & 0 \leq x \leq 1 \\
+0, & \text{de lo contrario}
+\end{cases}
+\]
+
+donde \(\theta > -1\). Una muestra aleatoria de diez estudiantes produce los datos \(x_1 = 0.92\), \(x_2 = 0.79\), \(x_3 = 0.90\), \(x_4 = 0.65\), \(x_5 = 0.86\), \(x_6 = 0.47\), \(x_7 = 0.73\), \(x_8 = 0.97\), \(x_9 = 0.94\), \(x_{10} = 0.77\).
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Use el método de momentos para obtener un estimador de \(\theta\) y luego calcule la estimación con estos datos.
+\item
+  Obtenga el estimador de máxima verosimilitud de \(\theta\) y luego calcule la estimación con los datos dados.
+\end{enumerate}
+
+\end{exercise}
+
+\section{Comportamiento del EMV en muestras grandes}\label{comportamiento-del-emv-en-muestras-grandes}
+
+Aunque el principio de la estimación de máxima verosimilitud tiene un considerable atractivo intuitivo, la siguiente proposición proporciona razones adicionales fundamentales para el uso de estimadores de máxima verosimilitud.
+
+En condiciones muy generales en relación con la distribución conjunta de la muestra, cuando el tamaño de la muestra \(n\) es grande, el estimador de máxima verosimilitud de cualquier parámetro \(\theta\) es aproximadamente insesgado \([E(\hat{\theta}) \approx \theta]\) y su varianza es casi tan pequeña como la que puede ser lograda por cualquier estimador. Expresado de otra manera, el estimador de máxima verosimilitud \(\hat{\theta}\) es aproximadamente el estimador insesgado con varianza mínima de \(\theta\).
+
+Debido a este resultado y al hecho de que las técnicas basadas en el cálculo casi siempre pueden ser utilizadas para derivar los estimadores de máxima verosimilitud (aunque a veces se requieren métodos numéricos, tales como el método de Newton), la estimación de máxima verosimilitud es la técnica de estimación más ampliamente utilizada entre los estadísticos. Muchos de los estimadores utilizados en lo que resta del libro son estimadores de máxima verosimilitud. La obtención de un estimador de máxima verosimilitud, sin embargo, requiere que se especifique la distribución subyacente.
+
+\section{Ejercicios}\label{ejercicios}
 
 \chapter{Intervalos de confianza}\label{intervalos-de-confianza}
 
@@ -268,7 +605,7 @@ En la expresión \eqref{eq:IC1}, \(Z_{\alpha/2}\) y \(Z_{1-\alpha/2}\) son los p
 
 \begin{figure}
 
-{\centering \includegraphics{est2+inferencia_files/figure-latex/normalestandar-1} 
+{\centering \includegraphics{EstadisticaII_files/figure-latex/normalestandar-1} 
 
 }
 
@@ -295,7 +632,7 @@ La siguiente tabla da cuenta de las tipos de intervalo que se pueden elaborar de
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-8}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
+\caption{\label{tab:unnamed-chunk-9}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -346,7 +683,7 @@ Dado lo expuesto en el ejercicio anterior, la figura \ref{fig:simulacionIC} mues
 
 \begin{figure}
 
-{\centering \includegraphics{est2+inferencia_files/figure-latex/simulacionIC-1} 
+{\centering \includegraphics{EstadisticaII_files/figure-latex/simulacionIC-1} 
 
 }
 
@@ -357,7 +694,7 @@ Respecto a la interpretación de los intervalos de confianza (en general, y no s
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/sim-ic1-1} 
+{\centering \includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/sim-ic1-1} 
 
 }
 
@@ -449,7 +786,7 @@ En esta sección se supondrá que se cuenta con información que permite conside
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-11}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
+\caption{\label{tab:unnamed-chunk-12}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -515,7 +852,7 @@ En esta sección el estudio de las inferencias sobre la diferencia entre dos med
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-14}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
+\caption{\label{tab:unnamed-chunk-15}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -576,7 +913,7 @@ A diferencia de los visto en la sección anterior, las dos desviaciones estánda
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-15}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
+\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -1139,7 +1476,7 @@ En la figura \ref{fig:regiones3}, se puede observar los tres casos posibles para
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/regiones3-1} 
+{\centering \includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/regiones3-1} 
 
 }
 
@@ -1150,7 +1487,7 @@ La decisión de si en cada uno de los casos se rechaza o no la hipótesis nula, 
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/areas-rechazo-ud-1} 
+{\centering \includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/areas-rechazo-ud-1} 
 
 }
 
@@ -1174,7 +1511,7 @@ El intervalo de números generado a partir del valor crítico es lo denominado \
 
 \begin{figure}
 
-{\centering \includegraphics{est2+inferencia_files/figure-latex/region-rechazo-1-1} 
+{\centering \includegraphics{EstadisticaII_files/figure-latex/region-rechazo-1-1} 
 
 }
 
@@ -3165,7 +3502,7 @@ La relación entre las variables es inversa. No podemos decir nada acerca de qu�
 
 A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-87-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-88-1} \end{center}
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
@@ -3213,7 +3550,7 @@ Por ejemplo, si \(r_{XY} = -0.96\), ¿qué podemos decir acerca de la relación 
 
 A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-89-1} \end{center}
 
 \textbf{Nota:} En R, se utiliza el comando \texttt{cor()} para calcular la correlación entre dos variables.
 
@@ -3259,7 +3596,7 @@ Una ejemplificación de esta ecuación es la siguiente (\ref{fig:regresion1}).
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/regresion1-1} 
+{\centering \includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/regresion1-1} 
 
 }
 
@@ -3270,7 +3607,7 @@ Siendo \(\beta_0\) la ordenada en el origen, \(\beta_1\) la pendiente y \(\varep
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/regresion2-1} 
+{\centering \includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/regresion2-1} 
 
 }
 
@@ -3373,7 +3710,7 @@ Luego, realizamos el gráfico de violín con caja y promedio.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-91-1} \end{center}
+\begin{center}\includegraphics{EstadisticaII_files/figure-latex/unnamed-chunk-92-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3387,7 +3724,7 @@ Se observa, que la mayor concentración de datos se encuentra entre el primer y 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{est2+inferencia_files/figure-latex/unnamed-chunk-92-1} \end{center}
+\begin{center}\includegraphics{EstadisticaII_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3470,7 +3807,7 @@ El valor de la correlación indica que la relación lineal entre las dos variabl
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-95-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-96-1} \end{center}
 
 \end{example}
 
@@ -3723,7 +4060,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-98-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-99-1} \end{center}
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
@@ -3828,7 +4165,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-102-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-103-1} \end{center}
 
 Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.
 
@@ -4615,14 +4952,14 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Y\_Gorro"} \OtherTok{=}\NormalTok{ df}\SpecialCharTok{$}\NormalTok{Mineria, }\StringTok{"Residuos"} \OtherTok{=} \FunctionTok{residuals}\NormalTok{(modelo)),}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"Y\_Gorro"} \OtherTok{=}\NormalTok{ modelo}\SpecialCharTok{$}\NormalTok{fitted.values, }\StringTok{"Residuos"} \OtherTok{=} \FunctionTok{residuals}\NormalTok{(modelo)),}
        \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Y\_Gorro, }\AttributeTok{y =}\NormalTok{ Residuos)) }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Valores ajustados"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-120-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-121-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -4684,7 +5021,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/unnamed-chunk-122-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-123-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 
@@ -5051,7 +5388,7 @@ El gráfico \ref{fig:IC-IP} refleja los dos tipos de intervalo.
 
 \begin{figure}
 
-{\centering \includegraphics[width=\linewidth]{est2+inferencia_files/figure-latex/IC-IP-1} 
+{\centering \includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/IC-IP-1} 
 
 }
 
@@ -5396,7 +5733,7 @@ Y =
 \end{bmatrix}.
 \]
 
-Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE, el estadístico \(F_0\) y el error estándar residual.
+Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCE, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
 \end{exercise}
 
 \begin{exercise}
@@ -5404,7 +5741,7 @@ Considere el modelo de regresión lineal múltiple con dos regresores
 \[
 Y=\beta_0+\beta_1X_1+\beta_2X_2+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2I_n).
 \]
-Se entrega la \textbf{matriz de diseño} \(X\) (incluye intercepto) y el \textbf{vector de respuestas} \(Y\), con valores \textbf{decimales} no redondeados:
+Se entrega la \textbf{matriz de diseño} \(X\) (incluye intercepto), el \textbf{vector de respuestas} \(Y\) y la matriz de parámetros estimados:
 \[
 X=
 \begin{bmatrix}
@@ -5423,10 +5760,16 @@ Y=
 14.8\\
 12.1\\
 17.3
+\end{bmatrix},\quad
+\widehat\beta=
+\begin{bmatrix}
+3.488\\
+2.3053\\
+0.3281
 \end{bmatrix}.
 \]
 
-Calcule los EMC, mostrando explícitamente los cálculos de \(X^tX\), \(X^tY\), \((X^tX)^{-1}\) y finalmente el vector de estimadores \(\hat\beta\); obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule la matriz de residuos. Calcule las SCT, SCReg, SCR, el MCE, el estadístico \(F_0\) y el error estándar residual.
+Obtenga los valores ajustados \(\hat Y=X\hat\beta\). Calcule las SCT, SCReg, SCE, el MCE, el estadístico \(F_0\), \(R^2\), \(R^2\) ajustado y el error estándar residual.
 \end{exercise}
 
 \begin{exercise}
@@ -5483,7 +5826,7 @@ Utilice la siguiente tabla (que contiene un resumen de salidas en R) para estudi
 
 \begin{exercise}
 
-Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible \(Y=\text{mpg}\) (millas por galón) en función del \textbf{peso} del automóvil \(X_1=\text{wt}\) (en miles de libras) y dos variables categóricas de la base \textbf{mtcars} de R: \textbf{transmisión} \(X_2=\text{am}\) (0=automática, 1=manual) y \textbf{cilindrada} \(X_3=\text{cyl}\) (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia \textbf{am=0} (automática) y \textbf{cyl=4} (4 cilindros). A continuación se muestra el código y la salida de R para el ajuste \(\text{mpg} \sim \text{wt} + \text{factor(am)} + \text{factor(cyl)}\).
+Se desea ajustar un modelo de regresión lineal múltiple con variables cualitativas para explicar el rendimiento de combustible \(Y=\text{mpg}\) (millas por galón) en función del \textbf{peso} del automóvil \(X_1=\text{wt}\) (en miles de libras) y dos variables categóricas de la base \textbf{mtcars} de R: \textbf{transmisión} \(X_2=\text{am}\) (0=automática, 1=manual) y \textbf{cilindrada} \(X_3=\text{cyl}\) (niveles: 4, 6, 8 cilindros). Se asume codificación de tratamiento con categorías de referencia \textbf{am=0} (automática) y \textbf{cyl=4} (4 cilindros). A continuación se muestra el ajuste realizado en R.
 
 \begin{verbatim}
 ## 
@@ -5512,22 +5855,22 @@ Se desea ajustar un modelo de regresión lineal múltiple con variables cualitat
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Escriba la ecuación de regresión poblacional indicando la categoría de referencia.
+  Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de las variables cualitativas.
 \item
-  Escriba la ecuación ajustada.
+  Escriba la ecuación de regresión ajustada.
 \item
   Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.
 \item
-  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95\%, qué efectos son estadísticamente significativos.
+  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida, y la prueba de no nulidad conjunta. Trabaje con un nivel de confianza del 95\%.
 \item
-  Comente las métricas del modelo: Error estándar residual y \(R^2\) ajustado.
+  Interprete las métricas del modelo: Error estándar residual y \(R^2\) ajustado.
 \end{enumerate}
 
 \end{exercise}
 
 \begin{exercise}
 
-Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables cualitativas} para explicar la longitud del sépalo \(Y=\text{Sepal.Length}\) en función de la anchura del sépalo \(X_1=\text{Sepal.Width}\) y la especie \(X_2=\text{Species}\) usando la base \textbf{iris} de R. La variable cualitativa \textbf{Species} tiene tres categorías: setosa, versicolor y virginica, con \textbf{setosa} como categoría de referencia. A continuación se muestra el código y la salida de R para el ajuste \(\text{Sepal.Length} \sim \text{Sepal.Width} + \text{Species}\).
+Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables cualitativas} para explicar la longitud (cm) del sépalo \(Y=\text{Sepal.Length}\) en función de la anchura (cm) del sépalo \(X_1=\text{Sepal.Width}\) y la especie \(X_2=\text{Species}\) usando la base \textbf{iris} de R. La variable cualitativa \textbf{Species} tiene tres categorías: setosa, versicolor y virginica, con \textbf{setosa} como categoría de referencia. A continuación se muestra el ajuste realizado en R.
 
 \begin{verbatim}
 ## 
@@ -5555,15 +5898,15 @@ Se desea ajustar un \textbf{modelo de regresión lineal múltiple con variables 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Escriba la ecuación de regresión poblacional indicando la categoría de referencia.
+  Escriba la ecuación de regresión poblacional. Indique la categoría de referencia de la variable cualitativa.
 \item
-  Escriba la ecuación ajustada.
+  Escriba la ecuación de regresión ajustada.
 \item
   Interprete los parámetros estimados en su contexto y con la codificación usada, indicando unidades y sentido del efecto.
 \item
-  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida (valores t y p-values). Indique, con un nivel de confianza del 95\%, qué efectos son estadísticamente significativos.
+  Evalúe las pruebas de no nulidad de cada coeficiente usando la salida, y la prueba de no nulidad conjunta. Trabaje con un nivel de confianza del 95\%.
 \item
-  Comente las métricas del modelo: Error estándar residual y \(R^2\) ajustado.
+  Interprete las métricas del modelo: Error estándar residual y \(R^2\) ajustado.
 \end{enumerate}
 
 \end{exercise}
@@ -5882,6 +6225,100 @@ Luego,
 \end{enumerate}
 
 \end{exercise}
+
+\chapter*{Bases de datos utilizadas}\label{bases-de-datos-utilizadas}
+\addcontentsline{toc}{chapter}{Bases de datos utilizadas}
+
+A continuación se describen algunas las bases de datos que se utilizarán a lo largo del curso (el resto se explican en los ejemplos o ejercicios en las que son utilizadas). En cada caso, se incluye un enlace para descargar la base de datos en formato CSV.
+
+\begin{itemize}
+\item
+  \phantomsection\label{TasaEURUSD}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa\%2Beuro\%2Bdolar\%2Bhistorica2023.csv}{Tasa Euro/Dólar}: Contiene el registro diario histórico de la tasa de cambio del Euro a Dólar durante el 2023. Las columnas de la base de datos son las siguientes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Date: Fecha de medición (yyyy-mm-dd), desde enero del 2003 hasta enero del 2023.
+  \item
+    Open: tasa de apertura.
+  \item
+    High: tasa más alta alcanzada en el día.
+  \item
+    Low: tasa más baja alcanzada en el día.
+  \item
+    Close: tasa de cierre del día.
+  \item
+    Adj Close: tasa de cierre ajustada del día (precio de cierre sin dividendos).
+  \end{itemize}
+\item
+  \phantomsection\label{PreciosElectricidad}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Belgian\%20Electricity\%20Prices.csv}{Precios de electricidad}: Un conjunto de datos históricos que contiene el precio por hora de la electricidad para Bélgica. Las columnas de la base de datos son las siguientes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    MTU: Hora de inicio (formato fecha y hora) del coste de la electricidad.
+  \item
+    EUR\_MWh: Precio por hora (Euros por MWh).
+  \end{itemize}
+\item
+  \phantomsection\label{Pacientes}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart+complete.csv}{Pacientes}: Contiene datos respecto a los ataques al corazón de distintos pacientes hospitalarios. El detalle de algunas de las columnas de la base de datos que utilizaremos son las siguientes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    age: edad del paciente (en años).
+  \item
+    sex: sexo del paciente (Hombre: 1 y Mujer: 0).
+  \item
+    cp: Tipo de dolor en el pecho, Valor 1: angina típica, Valor 2: angina atípica, Valor 3: dolor no anginoso, Valor 4: asintomático.
+  \item
+    trtbps: presión arterial en reposo (en mm Hg).
+  \item
+    chol: nivel de colestorol (en mg/dl).
+  \item
+    fbs: azúcar en sangre en ayunas \(>\) 120 mg/dl (V = 1; F = 0).
+  \item
+    thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).
+  \item
+    oldpeak: tiempo de duración del último ataque al corazón (en minutos).
+  \end{itemize}
+\item
+  \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/dolar.csv}{Dólar}: La base de datos contiene el valor del dólar observado de algunos de los días de los meses de junio y julio, tomados por el el SII:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Mes: Mes del año (``Junio'', ``Julio'').
+  \item
+    Dia: Día del mes.
+  \item
+    Valor: Valor del dólar observado en pesos chilenos.
+  \end{itemize}
+\item
+  \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/diabetes.csv}{Diabetes}: El connjunto de datos proviene originalmente del Instituto Nacional de Diabetes y Enfermedades Digestivas y Renales. El objetivo del conjunto de datos es estudiar de forma diagnóstica si un paciente tiene diabetes, en función de ciertas medidas de diagnóstico incluidas en el conjunto de datos. Se impusieron varias restricciones a la selección de estas instancias de una base de datos más grande. En particular, todos los pacientes aquí son mujeres de al menos 21 años de ascendencia indígena Pima. Las columnas de la base de datos son las siguientes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Pregnancies: Para expresar el número de embarazos.
+  \item
+    Glucose: Para expresar el nivel de Glucosa en sangre (mg/dL).
+  \item
+    BloodPressure: para expresar la medida de la presión arterial distólica (mm Hg).
+  \item
+    SkinThickness: Para expresar el grosor de la piel (mm).
+  \item
+    Insulin: para expresar el nivel de insulina en sangre (mg/dL).
+  \item
+    BMI: Para expresar el índice de masa corporal.
+  \item
+    DiabetesPedigreeFunction: Para expresar el porcentaje de Diabetes.
+  \item
+    Age: Para expresar la edad en años.
+  \item
+    Outcome: Para expresar el resultado final de tener diabetes, 1 es Sí y 0 es No.
+  \end{itemize}
+\end{itemize}
 
 \appendix \addcontentsline{toc}{chapter}{\appendixname}
 
