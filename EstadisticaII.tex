@@ -159,7 +159,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{Prof.~Daniel Franzani}
-\date{Actualizado al 04-03-2026}
+\date{Actualizado al 05-03-2026}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Teorema}[chapter]
@@ -237,10 +237,10 @@ Parece como si fuera necesario conocer el valor de \(\theta\) (en cuyo caso la e
 Sean \(X_1, X_2, \ldots, X_n\) una muestra aleatoria de una distribución con media \(\mu\) y varianza \(\sigma^2\). Entonces el estimador
 
 \[
-\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i
+\widehat\sigma^2 = S^2 = \frac{1}{n-1} \left[ \sum X_i^2 - \frac{(\sum X_i)^2}{n} \right]
 \]
 
-es un estimador insesgado de \(\mu\).
+es un estimador insesgado de \(\sigma^2\).
 
 Para cualquier variable aleatoria \(Y\), \(V(Y) = E(Y^2) - [E(Y)]^2\), por lo tanto\\
 \[ E(Y^2) = V(Y) + [E(Y)]^2 \]. Aplicando esto a
@@ -394,7 +394,7 @@ Si, por ejemplo, \(m = 2\), \(E(X)\) y \(E(X^2)\) serán funciones de \(\theta_1
 Si \(X_1, X_2, \ldots, X_n\) representan una muestra aleatoria de tiempos de servicio de \(n\) clientes en una instalación, donde la distribución subyacente se supone exponencial con el parámetro \(\lambda\). Como sólo hay un parámetro que tiene que ser estimado, el estimador se obtiene igualando \(E(X) = \overline{X}\). Como \(E(X) = 1/\lambda\) con una distribución exponencial, ésta da \(1/\lambda = \overline{X}\) o \(\lambda = 1/\overline{X}\). El estimador de momento de \(\lambda\) es entonces \(\hat{\lambda} = 1/\overline{X}\).
 \end{example}
 
-\subsection{Estimacón de máxima verosimilitud (EMV)}\label{estimacuxf3n-de-muxe1xima-verosimilitud-emv}
+\subsection{Método de máxima verosimilitud (EMV)}\label{muxe9todo-de-muxe1xima-verosimilitud-emv}
 
 El método de máxima verosimilitud lo introdujo por primera vez R. A. Fisher, genetista y estadístico en la década de 1920. La mayoría de los estadísticos recomiendan este método, por lo menos cuando el tamaño de muestra es grande, puesto que los estimadores resultantes tienen ciertas propiedades de eficiencia deseables (véase la proposición en la página 249).
 
