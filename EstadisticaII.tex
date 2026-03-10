@@ -159,7 +159,7 @@
 
 \title{Estadística II \& Inferencia Estadística}
 \author{Prof.~Daniel Franzani}
-\date{Actualizado al 05-03-2026}
+\date{Actualizado al 10-03-2026}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Teorema}[chapter]
@@ -330,6 +330,45 @@ Donde \(ECM(\hat{\theta}) = Var(\hat{\theta}) + [E(\hat{\theta}) - \theta]^2\).
 Si \(ER_{ECM} > 1\), entonces \(\hat{\theta}_1\) es más eficiente que \(\hat{\theta}_2\).
 \end{definition}
 
+\begin{example}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria simple de una población con distribución exponencial \(Exp(\lambda)\), donde \(E[X] = 1/\lambda\) y \(Var(X) = 1/\lambda^2\).
+
+Consideremos dos estimadores para el parámetro \(\theta = 1/\lambda\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(\widehat{\theta}_1 = \bar{X}\)
+\item
+  \(\widehat{\theta}_2 = X_1\)
+\end{itemize}
+
+Ambos estimadores son insesgados para \(\theta\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(E[\hat{\theta}_1] = E[\bar{X}] = \theta\)
+\item
+  \(E[\hat{\theta}_2] = E[X_1] = \theta\)
+\end{itemize}
+
+Como el sesgo es cero, el \(ECM\) es igual a la varianza:
+
+\begin{itemize}
+\tightlist
+\item
+  \(ECM(\widehat{\theta}_1) = Var(\bar{X}) = \frac{\theta^2}{n}\)
+\item
+  \(ECM(\widehat{\theta}_2) = Var(X_1) = \theta^2\)
+\end{itemize}
+
+Calculamos la eficiencia de \(\widehat{\theta}_1\) respecto a \(\widehat{\theta}_2\):
+\[ ER(\hat{\theta}_1, \hat{\theta}_2) = \frac{Var(\hat{\theta}_2)}{Var(\hat{\theta}_1)} = \frac{\theta^2}{\theta^2 / n} = n \]
+
+La eficiencia relativa es \(n\). Esto significa que el estimador \(\bar{X}\) es \(n\) veces más eficiente que usar una sola observación. Por ejemplo, con una muestra de \(n=100\), el estimador de momentos es 100 veces más preciso (tiene un error cuadrático medio 100 veces menor).
+\end{example}
+
 \subsection{Consistencia}\label{consistencia}
 
 La consistencia es una propiedad asintótica. Se refiere a cómo se comporta el estimador a medida que el tamaño de la muestra \(n\) aumenta indefinidamente.
@@ -370,6 +409,20 @@ Además de reportar el valor de una estimación puntual, se debe dar alguna indi
 El \textbf{error estándar} de un estimador \(\hat{\theta}\) es su desviación estándar \(\sigma_{\hat{\theta}} = \sqrt{V(\hat{\theta})}\). Si el error estándar implica parámetros desconocidos cuyos valores pueden ser estimados, la sustitución de estas estimaciones en \(\sigma_{\hat{\theta}}\) da el \textbf{error estándar estimado} (desviación estándar estimada) del estimador. El error estándar estimado puede ser denotado o por \(\hat{\sigma}_{\hat{\theta}}\) (el \(\wedge\) sobre \(\sigma\) recalca que \(\sigma_{\hat{\theta}}\) está siendo estimada) o por \(s_{\hat{\theta}}\).
 \end{definition}
 
+\begin{example}
+El error estándar de \(\widehat{p} = X/n\) es
+
+\[
+\sigma_{\widehat{p}} = \sqrt{V(X/n)} = \sqrt{\frac{V(X)}{n^2}} = \sqrt{\frac{npq}{n^2}} = \sqrt{\frac{pq}{n}}
+\]
+
+Como \(p\) y \(q = 1 - p\) son desconocidas (¿de otro modo por qué estimar?), se sustituye \(\widehat{p} = x/n\) y \(\hat{q} = 1 - x/n\) en \(\sigma_{\widehat{p}}\) para obtener el error estándar estimado
+
+\[
+\widehat{\sigma}_{\hat{p}} = \sqrt{\frac{\hat{p}\hat{q}}{n}} 
+\]
+\end{example}
+
 \section{Métodos de estimación}\label{muxe9todos-de-estimaciuxf3n}
 
 La definición de insesgamiento no indica en general cómo se pueden obtener los estimadores insesgados. A continuación se discuten dos métodos ``constructivos'' para obtener estimadores puntuales: el método de momentos y el método de máxima verosimilitud. Por constructivo se quiere dar a entender que la definición general de cada tipo de estimador sugiere explícitamente cómo obtener el estimador en cualquier problema específico. Aun cuando se prefieren los estimadores de máxima verosimilitud a los de momento debido a ciertas propiedades de eficiencia, a menudo requieren significativamente más cálculo que los estimadores de momento. En ocasiones es el caso que estos métodos dan estimadores insesgados.
@@ -393,6 +446,22 @@ Si, por ejemplo, \(m = 2\), \(E(X)\) y \(E(X^2)\) serán funciones de \(\theta_1
 \begin{example}
 Si \(X_1, X_2, \ldots, X_n\) representan una muestra aleatoria de tiempos de servicio de \(n\) clientes en una instalación, donde la distribución subyacente se supone exponencial con el parámetro \(\lambda\). Como sólo hay un parámetro que tiene que ser estimado, el estimador se obtiene igualando \(E(X) = \overline{X}\). Como \(E(X) = 1/\lambda\) con una distribución exponencial, ésta da \(1/\lambda = \overline{X}\) o \(\lambda = 1/\overline{X}\). El estimador de momento de \(\lambda\) es entonces \(\hat{\lambda} = 1/\overline{X}\).
 \end{example}
+
+\begin{exercise}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria simple de una población con distribución Bernoulli de parámetro \(p\), donde \(X_i \in \{0, 1\}\). Obtenga el estimador de momentos para \(p\).
+\end{exercise}
+
+\begin{exercise}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria de una distribución Uniforme \(U(0, \theta)\), cuya función de densidad es \(f(x) = \frac{1}{\theta}\) para \(0 \leq x \leq \theta\).
+\end{exercise}
+
+\begin{exercise}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria de una población con distribución exponencial cuya función de densidad es \(f(x; \theta) = \frac{1}{\theta} e^{-x/\theta}\) para \(x > 0\). Encuentre el estimador de momentos para \(\theta\).
+\end{exercise}
+
+\begin{exercise}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria simple de una población con distribución normal \(N(\mu, \sigma^2)\). Obtenga los estimadores de momentos para la media (\(\mu\)) y la varianza (\(\sigma^2\)).
+\end{exercise}
 
 \subsection{Método de máxima verosimilitud (EMV)}\label{muxe9todo-de-muxe1xima-verosimilitud-emv}
 
@@ -512,6 +581,10 @@ donde \(\theta > -1\). Una muestra aleatoria de diez estudiantes produce los dat
 
 \end{exercise}
 
+\begin{exercise}
+Sea \(X_1, X_2, \dots, X_n\) una muestra aleatoria simple de una población con distribución de Poisson de parámetro \(\lambda > 0\), cuya función de masa de probabilidad es \(f(x; \lambda) = \frac{e^{-\lambda} \lambda^x}{x!}\) para \(x = 0, 1, 2, \dots\). Encuentre el estimador de máxima verosimilitud para \(\lambda\).
+\end{exercise}
+
 \section{Comportamiento del EMV en muestras grandes}\label{comportamiento-del-emv-en-muestras-grandes}
 
 Aunque el principio de la estimación de máxima verosimilitud tiene un considerable atractivo intuitivo, la siguiente proposición proporciona razones adicionales fundamentales para el uso de estimadores de máxima verosimilitud.
@@ -522,36 +595,89 @@ Debido a este resultado y al hecho de que las técnicas basadas en el cálculo c
 
 \section{Ejercicios}\label{ejercicios}
 
+\begin{exercise}
+
+Los datos siguientes provienen de una muestra aleatoria simple: 5, 8, 10, 7, 10, 14.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  ¿Cuál es la estimación puntual de la media poblacional?
+\item
+  ¿Cuál es la estimación puntual de la desviación estándar poblacional?
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+Como respuestas a una pregunta de una encuesta a 150 individuos de una muestra se obtuvieron 75 Sí, 55 No y 20 individuos no dieron su opinión.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  ¿Cuál es la estimación puntual de la proporción de la población que responde Sí?
+\item
+  ¿Cuál es la estimación puntual de la proporción de la población que responde No?
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+Obtenga el estimador de momentos para cada uno de los siguientes casos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Distribución Uniforme}: Sea una muestra \(X_i \sim U(\theta_1, \theta_2)\). Obtenga los estimadores para ambos límites del intervalo.
+\item
+  \textbf{Distribución Geométrica}: \(f(x; p) = p(1-p)^x\) para \(x=0,1,2\dots\). Halle el estimador para la probabilidad de éxito \(p\).
+\item
+  \textbf{Distribución de Pareto}: \(f(x; \alpha, k) = \frac{\alpha k^\alpha}{x^{\alpha+1}}, x \geq k\). Estime \(\alpha\) asumiendo que \(k\) es conocido (\(E[X] = \frac{\alpha k}{\alpha-1}\) para \(\alpha > 1\)).
+\item
+  \textbf{Distribución Beta}: \(f(x; \alpha) = \alpha x^{\alpha-1}\) para \(0 < x < 1\). Estime el parámetro de forma \(\alpha\).
+\item
+  \textbf{Distribución de Potencia}: Sea \(f(x; \theta) = \theta x^{\theta-1}\) para \(0 < x < 1\) y \(\theta > 0\). Obtenga el estimador de momentos para \(\theta\) igualando el primer momento poblacional \(E[X] = \frac{\theta}{\theta+1}\) con la media muestral.
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+
+Obtenga el estimador de máxima verosimilitud para cada uno de los siguientes casos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Distribución Binomial}: Sea una muestra de tamaño \(n\) de una Binomial donde el número de ensayos \(m\) es conocido. Estime la probabilidad \(p\).
+\item
+  \textbf{Distribución Uniforme} \(U(\theta-1, \theta+1)\): Encuentre el estimador de \(\theta\). (Analice el soporte de la función).
+\item
+  \textbf{Distribución Exponencial desplazada}: \(f(x; \theta) = e^{-(x-\theta)}\) para \(x \geq \theta\). Halle el estimador de \(\theta\).
+\item
+  \textbf{Distribución de Pareto}: \(f(x; \alpha, k) = \frac{\alpha k^\alpha}{x^{\alpha+1}}, x \geq k\). Obtenga el estimador de \(k\) cuando \(\alpha\) es desconocido (Pista: el soporte depende de \(k\)).
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+Determine el estimador de máxima verosimilitud de la proporción de éxito de una población de 2 características es \(\widehat{p} = X/n\), donde \(X\) es la cantidad de éxitos y \(n\) la cantidad total de observaciones (éxitos + fracasos), para ello, considere la proporción de éxito (probabilidad de éxito) de una distribución Bernoulli.
+\end{exercise}
+
+\begin{exercise}
+Sea \(X_1, \dots, X_n \sim \text{Poisson}(\lambda)\). Se proponen dos estimadores para \(\lambda\): \(\hat{\lambda}_1 = \bar{X}\) y \(\hat{\lambda}_2 = \frac{X_1 + X_2}{2}\). Demuestre que ambos son insesgados.
+\end{exercise}
+
+\begin{exercise}
+Sea una muestra \(X_1, \dots, X_n\) de una población con media \(\mu\) y varianza \(\sigma^2\). Demuestre que el estimador de momentos \(S_n^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2\) es sesgado, calculando que \(E[S_n^2] = \frac{n-1}{n}\sigma^2\).
+\end{exercise}
+
+\begin{exercise}
+En una distribución Bernoulli(\(p\)), se toma una muestra de tamaño \(n=3\). Se propone el estimador: \(\hat{p} = \frac{1}{4}(X_1 + 2X_2 + X_3)\). ¿Es este un estimador insesgado para \(p\)? Justifique su respuesta mediante el cálculo de la esperanza.
+\end{exercise}
+
 \chapter{Intervalos de confianza}\label{intervalos-de-confianza}
-
-Las bases de datos que se trabajarán en esta unidad son las siguientes:
-
-\begin{itemize}
-\item
-  \phantomsection\label{Imacec1}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/imacec.csv}{Imacec}: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Ano: Año de medición del Imacec.
-  \item
-    Mes: Mes de medición del Imacec.
-  \item
-    Mineria: Imacec del sector de minería.
-  \item
-    Industria: Imacec del sector de industria.
-  \end{itemize}
-\item
-  \phantomsection\label{Cuotas}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/control\%2Bcuotas.csv}{Control cuotas}: Contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Plan.Vital: contiene los valores cuota en pesos de la AFP Plan Vital de un APV de fondo A.
-  \item
-    Provida: contiene lo valores cuota en pesos de la AFP Provida de un APV de fondo A.
-  \end{itemize}
-\end{itemize}
 
 \section{Concepto}\label{intervalos-de-confianza-concepto}
 
@@ -632,7 +758,7 @@ La siguiente tabla da cuenta de las tipos de intervalo que se pueden elaborar de
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-9}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
+\caption{\label{tab:unnamed-chunk-5}Intervalos de confianza para la media de una distribución normal y varianza poblacional conocida}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -760,7 +886,7 @@ En este sentido, se tiene una probabilidad de 0.99 de que el intervalo \((499.1,
 
 \begin{exercise}
 
-Utilizando la base de datos del \hyperref[Imacec1]{Imacec}:
+Utilizando la base de datos del \hyperref[Imacec]{Imacec}:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -786,7 +912,7 @@ En esta sección se supondrá que se cuenta con información que permite conside
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-12}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
+\caption{\label{tab:unnamed-chunk-8}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales conocidas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -852,7 +978,7 @@ En esta sección el estudio de las inferencias sobre la diferencia entre dos med
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-15}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
+\caption{\label{tab:unnamed-chunk-11}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas e iguales}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -913,7 +1039,7 @@ A diferencia de los visto en la sección anterior, las dos desviaciones estánda
 
 \begin{table}[H]
 \centering
-\caption{\label{tab:unnamed-chunk-16}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
+\caption{\label{tab:unnamed-chunk-12}Intervalos de confianza para la diferencia de medias de dos distribucones normales y varianzas poblacionales desconocidas y distintas}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{llc}
@@ -966,7 +1092,7 @@ El resultado indica que, la probabilidad de que el intervalo \((-104.3,  -65.17)
 \end{example}
 
 \begin{exercise}
-Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor al del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
+Utilizando la base de datos del \hyperref[Imacec]{Imacec}, elabore un intervalo de confianza para estudiar si, la media del Imacec del sector de minería es menor al del sector de industria en el periodo 2019-2020. Asuma que, las distribuciones poblacionales son normales e indendientes, y que las varianzas poblacionales son desconocidas y distintas. Utilice una confianza del 96\%. Interprete.
 \end{exercise}
 
 \section{Intervalo de confianza para la comparación de varianzas}\label{intervalo-de-confianza-comparacion-de-varianzas}
@@ -1036,15 +1162,15 @@ Considerando el ejercicio \ref{exr:ICcontrolcuotas}, elabore un intervalo de con
 \end{exercise}
 
 \begin{exercise}
-Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para comparar la variabilidad (varianza) del valor del Imacec entre ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 90\%. Interprete.
+Utilizando la base de datos del \hyperref[Imacec]{Imacec}, elabore un intervalo de confianza para comparar la variabilidad (varianza) del valor del Imacec entre ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 90\%. Interprete.
 \end{exercise}
 
 \begin{exercise}
-Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar la diferencia la media del Imacec de ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 92\%. Interprete.
+Utilizando la base de datos del \hyperref[Imacec]{Imacec}, elabore un intervalo de confianza para estudiar la diferencia la media del Imacec de ambos sectores. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 92\%. Interprete.
 \end{exercise}
 
 \begin{exercise}
-Utilizando la base de datos del \hyperref[Imacec1]{Imacec}, elabore un intervalo de confianza para estudiar si, el promedio del Imacec de minería es mayor al de industria por más de 2 unidades. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 97\%. Interprete.
+Utilizando la base de datos del \hyperref[Imacec]{Imacec}, elabore un intervalo de confianza para estudiar si, el promedio del Imacec de minería es mayor al de industria por más de 2 unidades. Asuma, que las distribuciones poblacionales son normales e independientes. Utilice una confianza del 97\%. Interprete.
 \end{exercise}
 
 \section{Ejercicios}\label{ejercicios-unidad1}
@@ -1216,41 +1342,6 @@ Un análisis compara la variabilidad en el tiempo de entrega de dos proveedores 
 \end{exercise}
 
 \chapter{Pruebas de hipótesis}\label{PH}
-
-En general, las bases de datos que se trabajarán en esta sección son las siguientes:
-
-\begin{itemize}
-\item
-  \phantomsection\label{Imacec2}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/imacec.csv}{Imacec}: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Ano: Año de medición del Imacec.
-  \item
-    Mes: Mes de medición del Imacec.
-  \item
-    Mineria: Imacec del sector de minería.
-  \item
-    Industria: Imacec del sector de industria.
-  \end{itemize}
-\item
-  \phantomsection\label{ICC}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%202/consumidor.csv}{ICC}: Contiene registros del Índice de Confianza del Consumidor (ICC). Este indicador de confianza del consumidor proporciona una indicación de la evolución futura del consumo y el ahorro de los hogares. Un indicador por encima de 100 señala un aumento en la confianza de los consumidores hacia la situación económica futura, como consecuencia de la cual son menos propensos a ahorrar y más inclinados a gastar dinero en compras importantes en los próximos 12 meses. Los valores por debajo de 100 indican una actitud pesimista hacia la evolución futura de la economía, lo que posiblemente resulte en una tendencia a ahorrar más y consumir menos.
-\end{itemize}
-
-Las variables que contiene la base de datos son las siguientes:
-
-\begin{itemize}
-\tightlist
-\item
-  Locacion: lugar en donde se mide el ICC (FRA = Francia, POL = Polonia, OECD = OCDE, ESP = España, BEL = Bélgica, ITA = Italia, DEU = Alemania).
-\item
-  Mes: corresponde al mes en el que se realiza la medición del índice.
-\item
-  Ano: corresponde al año en el que se realiza la medición del índice.
-\item
-  ICC: valor del índice de confianza del consumidor.
-\end{itemize}
 
 \section{Concepto}\label{prueba-de-hipotesis-concepto}
 
@@ -1788,7 +1879,7 @@ donde \(n\) corresponde al tamaño de la muestra.
 \begin{example}
 \protect\hypertarget{exm:imacec}{}\label{exm:imacec}
 
-Utilizando la base de datos \hyperref[Imacec2]{Imacec}, establezca si hay suficiente evidencia estadística para afirmar que, el valor promedio del Imacec de cada sector por separado es mayor a 98.54167 (denote este valor por \(\mu_0\)). Establezca las hipótesis respectivas, estadísticos y criterios de rechazo, utilizando una significancia del 10\%. Asuma que las variables distribuyen normal y tienen varianza poblacional desconocida.
+Utilizando la base de datos \hyperref[Imacec]{Imacec}, establezca si hay suficiente evidencia estadística para afirmar que, el valor promedio del Imacec de cada sector por separado es mayor a 98.54167 (denote este valor por \(\mu_0\)). Establezca las hipótesis respectivas, estadísticos y criterios de rechazo, utilizando una significancia del 10\%. Asuma que las variables distribuyen normal y tienen varianza poblacional desconocida.
 
 En este caso al contar con una base de datos (y para este tipo de prueba), podemos hacer uso directamente de R para obtener el estadístico de prueba, valor-p e intervalo de confianza asociado.
 
@@ -2024,7 +2115,7 @@ La prueba de hipótesis para el sector de industria es la siguiente.
 \end{example}
 
 \begin{exercise}
-Utilizando la base de datos \hyperref[Imacec2]{Imacec}, establezca si hay suficiente evidencia estadística para afirmar que, el valor promedio del Imacec de cada sector durante el año 2022 es mayor 96.89167. Establezca las hipótesis, estadísticos y criterios de rechazo. Utilice una significancia del 7\%. Además, asuma que las variables distribuyen normal y tienen varianza poblacional desconocida. Concluya.
+Utilizando la base de datos \hyperref[Imacec]{Imacec}, establezca si hay suficiente evidencia estadística para afirmar que, el valor promedio del Imacec de cada sector durante el año 2022 es mayor 96.89167. Establezca las hipótesis, estadísticos y criterios de rechazo. Utilice una significancia del 7\%. Además, asuma que las variables distribuyen normal y tienen varianza poblacional desconocida. Concluya.
 \end{exercise}
 
 \begin{exercise}
@@ -3381,92 +3472,31 @@ Un responsable de manufactura mide tiempos de cambio de formato (min) en una lí
 Un control de calidad mide la dureza (HRC) de piezas templadas; se conoce \(\sigma=1.8\). En una inspección al azar se registraron 8 piezas consecutivas de la misma cuba: 58.1, 57.9, 58.4, 58.2, 58.0, 58.3, 58.1, 58.2. Con un nivel de significancia del 5\% y asumiendo normalidad de los datos, elabore una prueba de hipótesis para verificar si el promedio poblacional es mayor a 58.0. Considere que \(Z_{1-0.05}=1.6449\). El valor-p debe calcularse en R. Utilice todos los métodos de rechazo.
 \end{exercise}
 
+\chapter{Comparación de grupos y asociación}\label{comparaciuxf3n-de-grupos-y-asociaciuxf3n}
+
+\section{Análisis de datos categóricos (tablas de contingencia)}\label{anuxe1lisis-de-datos-categuxf3ricos-tablas-de-contingencia}
+
+\subsection{Prueba de bondad y ajuste}\label{prueba-de-bondad-y-ajuste}
+
+\subsection{Prueba chi-cuadrado de homogeneidad}\label{prueba-chi-cuadrado-de-homogeneidad}
+
+\subsection{Prueba chi-cuadrado de independencia}\label{prueba-chi-cuadrado-de-independencia}
+
+\section{ANOVA}\label{anova}
+
+\subsection{ANOVA de un factor}\label{anova-de-un-factor}
+
+\subsection{ANOVA de dos factores}\label{anova-de-dos-factores}
+
+\section{Métodos no parámetricos}\label{muxe9todos-no-paruxe1metricos}
+
+\subsection{Prueba de Wilcoxon de rangos signados}\label{prueba-de-wilcoxon-de-rangos-signados}
+
+\subsection{Prueba de Mann-Whitney}\label{prueba-de-mann-whitney}
+
+\subsection{Prueba de Kruskal-Wallis}\label{prueba-de-kruskal-wallis}
+
 \chapter{Regresión Lineal}\label{regresion-lineal}
-
-En general, las bases de datos que se trabajarán en esta sección son las siguientes:
-
-\begin{itemize}
-\item
-  \phantomsection\label{TasaEURUSD}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa\%2Beuro\%2Bdolar\%2Bhistorica2023.csv}{Tasa Euro/Dólar}: Contiene el registro diario histórico de la tasa de cambio del Euro a Dólar durante el 2023. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Date: Fecha de medición (yyyy-mm-dd), desde enero del 2003 hasta enero del 2023.
-  \item
-    Open: tasa de apertura.
-  \item
-    High: tasa más alta alcanzada en el día.
-  \item
-    Low: tasa más baja alcanzada en el día.
-  \item
-    Close: tasa de cierre del día.
-  \item
-    Adj Close: tasa de cierre ajustada del día (precio de cierre sin dividendos).
-  \end{itemize}
-\item
-  \phantomsection\label{PreciosElectricidad}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2024-1/Belgian\%20Electricity\%20Prices.csv}{Precios de electricidad}: Un conjunto de datos históricos que contiene el precio por hora de la electricidad para Bélgica. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    MTU: Hora de inicio (formato fecha y hora) del coste de la electricidad.
-  \item
-    EUR\_MWh: Precio por hora (Euros por MWh).
-  \end{itemize}
-\item
-  \phantomsection\label{Pacientes}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Heart+complete.csv}{Pacientes}: Contiene datos respecto a los ataques al corazón de distintos pacientes hospitalarios. El detalle de algunas de las columnas de la base de datos que utilizaremos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    age: edad del paciente (en años).
-  \item
-    sex: sexo del paciente (Hombre: 1 y Mujer: 0).
-  \item
-    cp: Tipo de dolor en el pecho, Valor 1: angina típica, Valor 2: angina atípica, Valor 3: dolor no anginoso, Valor 4: asintomático.
-  \item
-    trtbps: presión arterial en reposo (en mm Hg).
-  \item
-    chol: nivel de colestorol (en mg/dl).
-  \item
-    fbs: azúcar en sangre en ayunas \(>\) 120 mg/dl (V = 1; F = 0).
-  \item
-    thalachh: frecuencia cardíaca máxima alcanzada (en latidos por minuto).
-  \item
-    oldpeak: tiempo de duración del último ataque al corazón (en minutos).
-  \end{itemize}
-\item
-  \phantomsection\label{Ingreso}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Ingreso\%2Buniversidad.csv}{Ingreso}: Contiene datos relacionados a características de ingresos de estudiantes a un determinada universidad. Las columnas de la base de datos son las siguientes.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Sexo: Hombre o Mujer.
-  \item
-    Ingreso: indica la vía de ingreso del estudiante a la universidad, se clasifica en PTU u Otra.
-  \item
-    Logro: corresponde a la proporción de logro (número entre 0 y 1, un logro de 0.4 indica que el estudiante respondió correctamente un 40\% de la prueba) del estudiante en el diagnóstico de ``Comunicación escrita'' aplicado por la universidad.
-  \item
-    LEN: Puntaje PTU - Lenguaje.
-  \item
-    NEM: Puntaje NEM del estudiante.
-  \end{itemize}
-\item
-  \phantomsection\label{Imacec3}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/imacec.csv}{Imacec}: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Ano: Año de medición del Imacec.
-  \item
-    Mes: Mes de medición del Imacec.
-  \item
-    Mineria: Imacec del sector de minería.
-  \item
-    Industria: Imacec del sector de industria.
-  \end{itemize}
-\end{itemize}
 
 \section{Medidas de asociación lineal}\label{regresion-lineal-medidas-asociacion}
 
@@ -3502,7 +3532,7 @@ La relación entre las variables es inversa. No podemos decir nada acerca de qu�
 
 A continuación, se estudia gráficamente la covarianza entre dos variables. Para ello, se necesita del gráfico de dispersión y de las líneas promedio de ambas variables.
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-88-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 En este caso, la mayoría de los puntos están en los cuadrantes `\(+ +\)' y `\(- -\)', y en estos cuadrantes la expresión \((x_i-\bar{x})(y_i-\bar{y})\) es positiva; por eso la covarianza es positiva (aunque también necesario considerar que tan lejos están los puntos de la intersección de las líneas promedio). \textbf{¿Es pronunciada la relación lineal?}
 
@@ -3550,7 +3580,7 @@ Por ejemplo, si \(r_{XY} = -0.96\), ¿qué podemos decir acerca de la relación 
 
 A continuación, se estudia gráficamente la correlación entre dos variables. Para ello, se necesita del gráfico de dispersión y una recta que refleje la asociación lineal (detalles de esta recta en secciones posteriores).
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-89-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-71-1} \end{center}
 
 \textbf{Nota:} En R, se utiliza el comando \texttt{cor()} para calcular la correlación entre dos variables.
 
@@ -3710,7 +3740,7 @@ Luego, realizamos el gráfico de violín con caja y promedio.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{EstadisticaII_files/figure-latex/unnamed-chunk-92-1} \end{center}
+\begin{center}\includegraphics{EstadisticaII_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Además, el cierre superior del gráfico de violín presenta una mayor concentración de datos que el cierre inferior, lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3724,7 +3754,7 @@ Se observa, que la mayor concentración de datos se encuentra entre el primer y 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{EstadisticaII_files/figure-latex/unnamed-chunk-93-1} \end{center}
+\begin{center}\includegraphics{EstadisticaII_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 Se observa, que la mayor concentración de datos se encuentra entre el primer y segundo cuartil. Una segunda concentración se encuentra por sobre el tercer cuartil , lo cual, explica la posición del promedio por sobre la mediana.
 
@@ -3807,7 +3837,7 @@ El valor de la correlación indica que la relación lineal entre las dos variabl
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-96-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 \end{example}
 
@@ -4060,7 +4090,7 @@ La relación entre ambas variables (dependiente e independiente) debe ser lineal
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-99-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-81-1} \end{center}
 
 La interpretación del comportamiento queda a discreción del profesional. En este caso, se aprecia una clara tendencia lineal, por lo que se asume que se cumple el supuesto de linealidad.
 
@@ -4165,7 +4195,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-103-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-85-1} \end{center}
 
 Las amplitudes verticales no tiene un patrón claro de cambio (puede ser difícil de interpretar), por lo que utilizaremos la prueba de Breucsh - Pagan para decidir.
 
@@ -4364,7 +4394,7 @@ e = Y - \widehat{Y}
 Cabe mencionar, que se mantiene la igualdad respecto a la descomposición de la SCT expresada en la ecuación \eqref{eq:descomposicion-sct}.
 
 \begin{example}
-\protect\hypertarget{exm:MultipleManual}{}\label{exm:MultipleManual}Utilizando la base de datos \hyperref[Imacec3]{Imacec} , se debe considerar un modelo que estudie el valor del Imacec de Minería a base del Imacec de Industria y del Año de medición, con el fin de determinar los beta estimados, los valores ajustados y los errores del modelo, mediante las fórmulas explicadas anteriormente.
+\protect\hypertarget{exm:MultipleManual}{}\label{exm:MultipleManual}Utilizando la base de datos \hyperref[Imacec]{Imacec} , se debe considerar un modelo que estudie el valor del Imacec de Minería a base del Imacec de Industria y del Año de medición, con el fin de determinar los beta estimados, los valores ajustados y los errores del modelo, mediante las fórmulas explicadas anteriormente.
 
 Los modelos poblacional y ajustado son:
 
@@ -4959,7 +4989,7 @@ Utilizando el modelo ajustado en el ejemplo \ref{exm:MultipleManual}, verifique 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-121-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-103-1} \end{center}
 
 Existe un claro patrón lineal, por lo cual, no se estaría cumpliendo con el supuesto de linealidad.
 
@@ -5021,7 +5051,7 @@ H_1&: \text{Los residuos NO tienen varianza constante}\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-123-1} \end{center}
+\begin{center}\includegraphics[width=\linewidth]{EstadisticaII_files/figure-latex/unnamed-chunk-105-1} \end{center}
 
 No se evidencia patrones en la amplitud de los residuos, por lo que se asume homocedasticidad. Verificamos mediante la prueba de hipótesis correspondiente
 
@@ -6233,6 +6263,45 @@ A continuación se describen algunas las bases de datos que se utilizarán a lo 
 
 \begin{itemize}
 \item
+  \phantomsection\label{Imacec}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/imacec.csv}{Imacec}: Contiene los datos de los valores del Imacec mensual de distintos sectores desde enero del 2018 hasta junio del 2022. Las columnas de la base de datos son las siguientes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ano: Año de medición del Imacec.
+  \item
+    Mes: Mes de medición del Imacec.
+  \item
+    Mineria: Imacec del sector de minería.
+  \item
+    Industria: Imacec del sector de industria.
+  \end{itemize}
+\item
+  \phantomsection\label{Cuotas}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/control\%2Bcuotas.csv}{Control cuotas}: Contiene los datos de los valores cuota de los primeros tres meses del año 2022 de las AFP Plan Vital y Provida. Las columnas de la base de datos son las siguientes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Plan.Vital: contiene los valores cuota en pesos de la AFP Plan Vital de un APV de fondo A.
+  \item
+    Provida: contiene lo valores cuota en pesos de la AFP Provida de un APV de fondo A.
+  \end{itemize}
+\item
+  \phantomsection\label{ICC}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%202/consumidor.csv}{ICC}: Contiene registros del Índice de Confianza del Consumidor (ICC). Este indicador de confianza del consumidor proporciona una indicación de la evolución futura del consumo y el ahorro de los hogares. Un indicador por encima de 100 señala un aumento en la confianza de los consumidores hacia la situación económica futura, como consecuencia de la cual son menos propensos a ahorrar y más inclinados a gastar dinero en compras importantes en los próximos 12 meses. Los valores por debajo de 100 indican una actitud pesimista hacia la evolución futura de la economía, lo que posiblemente resulte en una tendencia a ahorrar más y consumir menos.
+\end{itemize}
+
+Las variables que contiene la base de datos son las siguientes:
+
+\begin{itemize}
+\item
+  Locacion: lugar en donde se mide el ICC (FRA = Francia, POL = Polonia, OECD = OCDE, ESP = España, BEL = Bélgica, ITA = Italia, DEU = Alemania).
+\item
+  Mes: corresponde al mes en el que se realiza la medición del índice.
+\item
+  Ano: corresponde al año en el que se realiza la medición del índice.
+\item
+  ICC: valor del índice de confianza del consumidor.
+\item
   \phantomsection\label{TasaEURUSD}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Tasa\%2Beuro\%2Bdolar\%2Bhistorica2023.csv}{Tasa Euro/Dólar}: Contiene el registro diario histórico de la tasa de cambio del Euro a Dólar durante el 2023. Las columnas de la base de datos son las siguientes:
 
   \begin{itemize}
@@ -6283,40 +6352,20 @@ A continuación se describen algunas las bases de datos que se utilizarán a lo 
     oldpeak: tiempo de duración del último ataque al corazón (en minutos).
   \end{itemize}
 \item
-  \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/dolar.csv}{Dólar}: La base de datos contiene el valor del dólar observado de algunos de los días de los meses de junio y julio, tomados por el el SII:
+  \phantomsection\label{Ingreso}\href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2023-1/Ingreso\%2Buniversidad.csv}{Ingreso}: Contiene datos relacionados a características de ingresos de estudiantes a un determinada universidad. Las columnas de la base de datos son las siguientes.
 
   \begin{itemize}
   \tightlist
   \item
-    Mes: Mes del año (``Junio'', ``Julio'').
+    Sexo: Hombre o Mujer.
   \item
-    Dia: Día del mes.
+    Ingreso: indica la vía de ingreso del estudiante a la universidad, se clasifica en PTU u Otra.
   \item
-    Valor: Valor del dólar observado en pesos chilenos.
-  \end{itemize}
-\item
-  \href{https://raw.githubusercontent.com/Dfranzani/Bases-de-datos-para-cursos/main/2022-2/Estad\%C3\%ADstica\%201/diabetes.csv}{Diabetes}: El connjunto de datos proviene originalmente del Instituto Nacional de Diabetes y Enfermedades Digestivas y Renales. El objetivo del conjunto de datos es estudiar de forma diagnóstica si un paciente tiene diabetes, en función de ciertas medidas de diagnóstico incluidas en el conjunto de datos. Se impusieron varias restricciones a la selección de estas instancias de una base de datos más grande. En particular, todos los pacientes aquí son mujeres de al menos 21 años de ascendencia indígena Pima. Las columnas de la base de datos son las siguientes:
-
-  \begin{itemize}
-  \tightlist
+    Logro: corresponde a la proporción de logro (número entre 0 y 1, un logro de 0.4 indica que el estudiante respondió correctamente un 40\% de la prueba) del estudiante en el diagnóstico de ``Comunicación escrita'' aplicado por la universidad.
   \item
-    Pregnancies: Para expresar el número de embarazos.
+    LEN: Puntaje PTU - Lenguaje.
   \item
-    Glucose: Para expresar el nivel de Glucosa en sangre (mg/dL).
-  \item
-    BloodPressure: para expresar la medida de la presión arterial distólica (mm Hg).
-  \item
-    SkinThickness: Para expresar el grosor de la piel (mm).
-  \item
-    Insulin: para expresar el nivel de insulina en sangre (mg/dL).
-  \item
-    BMI: Para expresar el índice de masa corporal.
-  \item
-    DiabetesPedigreeFunction: Para expresar el porcentaje de Diabetes.
-  \item
-    Age: Para expresar la edad en años.
-  \item
-    Outcome: Para expresar el resultado final de tener diabetes, 1 es Sí y 0 es No.
+    NEM: Puntaje NEM del estudiante.
   \end{itemize}
 \end{itemize}
 
